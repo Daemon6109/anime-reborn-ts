@@ -1,0 +1,83 @@
+services:
+    # Main development container
+    roblox-ts-dev:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        platform: linux/amd64
+        container_name: roblox-ts-dev
+        volumes:
+            # Mount source code for live development
+            - .:/workspace:cached
+            # Persist node_modules for better performance
+            - node_modules_volume:/workspace/node_modules
+            # Persist rokit tools
+            - rokit_cache:/root/.rokit
+        working_dir: /workspace
+        ports:
+            - "3000:3000"
+        environment:
+            - NODE_ENV=development
+            - FORCE_COLOR=1
+        stdin_open: true
+        tty: true
+        command: bash
+        networks:
+            - roblox-dev
+
+    # Container specifically for running tests
+    roblox-ts-test:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        platform: linux/amd64
+        volumes:
+            - .:/workspace:cached
+            - node_modules_volume:/workspace/node_modules
+            - rokit_cache:/root/.rokit
+        working_dir: /workspace
+        environment:
+            - NODE_ENV=test
+            - CI=true
+        command: npm run test
+        networks:
+            - roblox-dev
+
+    # Container for building the project
+    roblox-ts-build:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        platform: linux/amd64
+        volumes:
+            - .:/workspace:cached
+            - node_modules_volume:/workspace/node_modules
+            - rokit_cache:/root/.rokit
+        working_dir: /workspace
+        environment:
+            - NODE_ENV=production
+        command: npm run build
+        networks:
+            - roblox-dev
+
+    # Container for linting (if you want to add linting)
+    roblox-ts-lint:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        platform: linux/amd64
+        volumes:
+            - .:/workspace:cached
+            - node_modules_volume:/workspace/node_modules
+        working_dir: /workspace
+        command: npx eslint src/ --ext .ts
+        networks:
+            - roblox-dev
+
+volumes:
+    node_modules_volume:
+    rokit_cache:
+
+networks:
+    roblox-dev:
+        driver: bridge

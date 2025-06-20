@@ -1,0 +1,62 @@
+# Node.js dependencies
+/node_modules
+
+# Build outputs
+/out
+/include
+*.tsbuildinfo
+build
+dist
+
+# Note: package-lock.json is intentionally NOT ignored
+# This ensures reproducible builds and consistent dependency versions
+# across all environments (local, Docker, CI/CD)
+
+# Environment and config
+.env
+.asphalt/output
+coverage
+
+pesde.lock
+.pesde
+
+luau_packages
+lune_packages
+roblox_packages
+roblox_server_packages
+
+network
+
+sourcemap.json
+
+__pycache__
+.DS_Store
+/*.rbxlx.lock
+/*.rbxlx
+/*.rbxl.lock
+/*.rbxl
+/*.rbxm.lock
+/*.rbxm
+test-output.log
+test-debug.log
+
+# IDE and editor files
+.vscode/settings.json.local
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+.AppleDouble
+.LSOverride
+
+# Docker development
+.docker-data/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

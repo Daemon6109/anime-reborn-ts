@@ -1,0 +1,49 @@
+{
+	"name": "Roblox-TS Development",
+
+	// Use the main Dockerfile
+	"build": {
+		"dockerfile": "../Dockerfile",
+		"context": ".."
+	},
+
+	"workspaceFolder": "/workspace",
+	"shutdownAction": "stopContainer",
+
+	// Set *default* container specific settings.json values on container create.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"typescript.preferences.importModuleSpecifier": "relative",
+				"jest.jestCommandLine": "npm run test:jest",
+				"jest.runMode": "on-demand"
+			},
+
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+		"roblox-ts.vscode-roblox-ts",
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"Orta.vscode-jest",
+		"checkraisefold.blink-vscode",
+		"ms-python.python",
+		"kampfkarren.selene-vscode",
+		"johnnymorganz.stylua",
+		"johnnymorganz.luau-lsp"
+			]
+		}
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [3000, 8080, 4000],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm install",
+
+	// Mount the source code
+	"mounts": ["source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"],
+
+	// Uncomment to connect as a non-root user if you've added one.
+	"remoteUser": "node"
+}
