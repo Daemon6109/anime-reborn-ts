@@ -1,6 +1,19 @@
 {
 	"recommendations": [
 		"roblox-ts.vscode-roblox-ts",
-		"dbaeumer.vscode-eslint"
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"Orta.vscode-jest",
+		"checkraisefold.blink-vscode",
+		"ms-python.python",
+		"kampfkarren.selene-vscode",
+		"johnnymorganz.stylua",
+		"johnnymorganz.luau-lsp",
+		"Gruntfuggly.todo-tree",
+		"JohnnyMorganz.stylua",
+		"foxundermoon.shell-format",
+		"christian-kohler.npm-intellisense",
+		"DavidAnson.vscode-markdownlint",
+		"eamodio.gitlens"
 	]
 }
