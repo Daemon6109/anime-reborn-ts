@@ -59,7 +59,7 @@ COPY --chown=node:node rokit.toml ./
 RUN rokit install --no-trust-check
 
 COPY --chown=node:node . .
-RUN find scripts/shell -name "*.sh" -type f -exec chmod +x {} \; || true
+RUN find ../scripts/shell -name "*.sh" -type f -exec chmod +x {} \; || true
 
 # Final environment setup
 ENV PATH="/home/node/.rokit/bin:/workspace/node_modules/.bin:/opt/venv/bin:/home/node/.local/bin:$PATH"
@@ -70,6 +70,5 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD node --version && npm --version || exit 1
 
-# For devcontainer, we'll let VS Code manage the container lifecycle
-# ENTRYPOINT ["/workspace/scripts/shell/docker-entrypoint.sh"]
+ENTRYPOINT ["/workspace/scripts/shell/docker-entrypoint.sh"]
 CMD ["bash"]
