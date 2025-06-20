@@ -1,5 +1,6 @@
 {
 	"name": "anime-reborn",
+	"emitLegacyScripts": false,
 	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
 	"tree": {
 		"$className": "DataModel",
