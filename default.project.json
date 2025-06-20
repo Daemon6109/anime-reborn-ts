@@ -1,13 +1,12 @@
 {
-	"name": "roblox-ts-game",
-	"emitLegacyScripts": false,
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+	"name": "flamework-game",
+	"globIgnorePaths": [
+		"**/package.json",
+		"**/tsconfig.json"
+	],
 	"tree": {
 		"$className": "DataModel",
 		"ServerScriptService": {
-			"$properties": {
-				"LoadStringEnabled": true
-			},
 			"$className": "ServerScriptService",
 			"TS": {
 				"$path": "out/server"
@@ -22,23 +21,41 @@
 					"@rbxts": {
 						"$path": "node_modules/@rbxts"
 					},
-					"@rbxts-js": {
-						"$path": "node_modules/@rbxts-js"
-					},
-					"Project": {
-						"$path": "out"
+					"@flamework": {
+						"$path": "node_modules/@flamework"
 					}
 				}
 			},
-			"TS_Shared": {
+			"TS": {
 				"$path": "out/shared"
-			},
-			"TS_Cl": {
-				"$path": "out/client"
+			}
+		},
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"TS": {
+					"$path": "out/client"
+				}
 			}
 		},
 		"Workspace": {
-			"$className": "Workspace"
+			"$className": "Workspace",
+			"$properties": {
+				"FilteringEnabled": true
+			}
+		},
+		"HttpService": {
+			"$className": "HttpService",
+			"$properties": {
+				"HttpEnabled": true
+			}
+		},
+		"SoundService": {
+			"$className": "SoundService",
+			"$properties": {
+				"RespectFilteringEnabled": true
+			}
 		}
 	}
 }

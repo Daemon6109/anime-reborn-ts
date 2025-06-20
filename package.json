@@ -1,54 +1,32 @@
 {
-	"name": "roblox-ts-template",
-	"version": "1.0.0",
-	"description": "A comprehensive, production-ready template for building Roblox experiences with TypeScript",
-	"main": "index.js",
-	"scripts": {
-		"build": "rbxtsc",
-		"watch": "rbxtsc -w",
-		"test": "jest",
-		"test:shell": "./scripts/shell/test.sh",
-		"test:jest": "jest",
-		"test:debug": "jest --runInBand",
-		"docker:build": "docker compose build || docker-compose build",
-		"docker:dev": "docker compose up -d roblox-ts-dev || docker-compose up -d roblox-ts-dev",
-		"docker:test": "docker compose run --rm roblox-ts-test || docker-compose run --rm roblox-ts-test",
-		"docker:build-project": "docker compose run --rm roblox-ts-build || docker-compose run --rm roblox-ts-build",
-		"docker:lint": "docker compose run --rm roblox-ts-lint || docker-compose run --rm roblox-ts-lint",
-		"docker:shell": "docker compose exec roblox-ts-dev bash || docker-compose exec roblox-ts-dev bash",
-		"docker:logs": "docker compose logs -f roblox-ts-dev || docker-compose logs -f roblox-ts-dev",
-		"docker:down": "docker compose down || docker-compose down",
-		"docker:clean": "(docker compose down -v && docker system prune -f) || (docker-compose down -v && docker system prune -f)",
-		"lint": "eslint src/"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"type": "commonjs",
-	"devDependencies": {
-		"@babel/preset-typescript": "^7.27.1",
-		"@eslint/js": "^9.29.0",
-		"@jest/globals": "^29.7.0",
-		"@rbxts/compiler-types": "^3.0.0-types.0",
-		"@rbxts/jest": "^3.13.2-alpha.1",
-		"@rbxts/jest-globals": "^3.13.2-alpha.1",
-		"@rbxts/types": "^1.0.859",
-		"@types/jest": "^29.5.0",
-		"@typescript-eslint/eslint-plugin": "^8.34.0",
-		"@typescript-eslint/parser": "^8.34.0",
-		"eslint": "^9.29.0",
-		"eslint-config-prettier": "^10.1.5",
-		"eslint-plugin-prettier": "^5.4.1",
-		"eslint-plugin-roblox-ts": "^0.0.36",
-		"jest": "^29.7.0",
-		"prettier": "^3.5.3",
-		"roblox-ts": "^3.0.0",
-		"ts-jest": "^29.1.0",
-		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.34.1"
-	},
-	"dependencies": {
-		"@rbxts/jecs": "^0.6.1",
-		"@rbxts/services": "^1.5.5"
-	}
+  "name": "flamework-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rbxtsc",
+    "watch": "rbxtsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rbxts/compiler-types": "^2.3.0-types.1",
+    "@rbxts/types": "^1.0.777",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-roblox-ts": "^0.0.30",
+    "prettier": "^2.3.2",
+    "rbxts-transformer-flamework": "^1.2.2",
+    "roblox-ts": "^2.3.0",
+    "typescript": "~5.2.2"
+  },
+  "dependencies": {
+    "@flamework/components": "^1.2.2",
+    "@flamework/core": "^1.2.2",
+    "@flamework/networking": "^1.2.2"
+  }
 }

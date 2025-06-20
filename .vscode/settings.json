@@ -1,5 +1,4 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
 	"files.eol": "\n",
 	"[typescript]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
@@ -11,33 +10,5 @@
 	},
 	"eslint.run": "onType",
 	"eslint.format.enable": true,
-	"luau-lsp.ignoreGlobs": [
-		"**/_Index/**",
-		"**/node_modules/**",
-		"**/dist/**",
-		"**/out/**",
-		"**/build/**",
-		"**/coverage/**",
-		"**/.vscode/**",
-		"**/.git/**",
-		"**/.github/**",
-		"**/tasks/**",
-		"**/scripts/**",
-		"**/out/**"
-	],
-
-	// Jest extension configuration
-	"jest.jestCommandLine": "npx jest",
-	"jest.rootPath": ".",
-	"jest.runMode": "on-demand",
-	"jest.useDashedArgs": true,
-	"jest.monitorLongRun": "off",
-	"jest.outputConfig": {
-		"revealOn": "run",
-		"revealWithFocus": "test-results",
-		"clearOnRun": "none",
-		"revealOutput": "on-run"
-	},
-	"jest.debugMode": false,
-	"jest.disabledWorkspaceFolders": []
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
