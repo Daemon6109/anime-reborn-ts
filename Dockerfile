@@ -39,7 +39,7 @@ ENV PATH="/home/node/.rokit/bin:$PATH"
 
 WORKDIR /workspace
 COPY --chown=node:node package*.json ./
-RUN npm ci --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 COPY --chown=node:node rokit.toml ./
 RUN rokit install --no-trust-check
