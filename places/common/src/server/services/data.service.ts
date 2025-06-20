@@ -12,10 +12,10 @@ import { performance } from "../../shared/utils/performance";
 import { validateDataSection } from "../../shared/utils/validate";
 import { deepCopy } from "../../shared/utils/deep-copy";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Profile = any;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ProfileStoreType = any;
+// Let TypeScript infer the types from the actual ProfileStore calls
+type DataProfileStore = ReturnType<typeof ProfileStore.New<DataTemplate>>;
+type MockDataProfileStore = DataProfileStore["Mock"];
+type DataProfile = NonNullable<ReturnType<DataProfileStore["StartSessionAsync"]>>;
 
 interface ServiceVersion {
 	major: number;
@@ -34,14 +34,14 @@ export class DataService implements OnInit {
 	public readonly version: ServiceVersion = { major: 1, minor: 0, patch: 0 };
 
 	private readonly CURRENT_DATA_VERSION = migrations.CurrentVersion;
-	private readonly playerStore: ProfileStoreType;
-	private readonly profiles = new Map<Player, Profile>();
+	private readonly playerStore: DataProfileStore | MockDataProfileStore;
+	private readonly profiles = new Map<Player, DataProfile>();
 	private readonly threadsPendingSessionEndedLoad = new Map<Player, thread[]>();
 
 	constructor() {
 		// Initialize ProfileStore based on environment
 		this.playerStore = RunService.IsStudio()
-			? (ProfileStore.New(DATA_CONSTANTS.DATASTORE_NAME, DATA_TEMPLATE).Mock as ProfileStoreType)
+			? ProfileStore.New(DATA_CONSTANTS.DATASTORE_NAME, DATA_TEMPLATE).Mock
 			: ProfileStore.New(DATA_CONSTANTS.DATASTORE_NAME, DATA_TEMPLATE);
 	}
 

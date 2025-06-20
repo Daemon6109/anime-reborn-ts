@@ -27,10 +27,12 @@ fi
 # Debug: Print environment variables received in Docker container
 echo "Debug: Environment variables in Docker container:"
 echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
-echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"  
+echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
 echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
 echo "---"
+echo "Building all places..."
 npm run build
+echo "Generating sourcemap..."
 rojo sourcemap default.project.json -o sourcemap.json
 echo "Building with rojo..."
 rojo build default.project.json -o dist.rbxl
@@ -39,8 +41,9 @@ echo "Uploading to Roblox..."
 # Initialize exit code variable
 PYTHON_EXIT_CODE=0
 
+# Run Jest once for all places using the root jest.config.js
 if [ -n "$TEST_PATTERN" ]; then
-    echo "Running specific test pattern: $TEST_PATTERN"
+    echo "Running Jest with test pattern: $TEST_PATTERN"
     if command -v python3 &>/dev/null; then
         python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN"
         PYTHON_EXIT_CODE=$?
@@ -49,7 +52,7 @@ if [ -n "$TEST_PATTERN" ]; then
         PYTHON_EXIT_CODE=$?
     fi
 else
-    echo "Running all tests"
+    echo "Running all Jest tests"
     if command -v python3 &>/dev/null; then
         python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau
         PYTHON_EXIT_CODE=$?

@@ -21,6 +21,8 @@ class RobloxTestRunner {
 	constructor(globalConfig, context) {
 		this._globalConfig = globalConfig;
 		this._context = context;
+		this._cloudTestsExecuted = false; // Flag to prevent multiple executions
+		this._cloudTestResults = null; // Store results from cloud execution
 	}
 
 	// Parse test structure from TypeScript file
@@ -95,12 +97,31 @@ class RobloxTestRunner {
 			testPattern = this._globalConfig.testNamePattern.source || this._globalConfig.testNamePattern;
 		}
 
+		// Run cloud tests only once for all test files
+		if (!this._cloudTestsExecuted) {
+			console.log(`Running cloud tests once for ${tests.length} test files...`);
+			
+			try {
+				// Execute cloud test pipeline once
+				this._cloudTestResults = await this.runCloudTestsOnce(testPattern);
+				this._cloudTestsExecuted = true;
+			} catch (error) {
+				console.error(`Cloud test execution failed:`, error.message);
+				this._cloudTestResults = {
+					failed: true,
+					error: error.message
+				};
+				this._cloudTestsExecuted = true;
+			}
+		}
+
+		// Process each test file and extract results from the single cloud execution
 		for (const test of tests) {
 			onStart(test);
 
 			try {
-				// Run our cloud test pipeline with optional test pattern
-				const result = await this.runSingleTest(test, testPattern);
+				// Extract results for this specific test file from cloud results
+				const result = this.extractTestResultFromCloud(test, testPattern);
 				results.push(result);
 				onResult(test, result);
 			} catch (error) {
@@ -471,6 +492,186 @@ class RobloxTestRunner {
 				return `No specific output captured for: ${testInfo.name}`;
 			}
 		});
+	}
+
+	async runCloudTestsOnce(testPattern = "") {
+		console.log("Executing cloud test pipeline once for all tests...");
+		
+		try {
+			// Execute our cloud test script
+			const scriptPath = path.join(__dirname, "..", "shell", "test-with-output.sh");
+			const outputFile = path.join(__dirname, "..", "..", "test-output.log");
+
+			// Clear any previous output file
+			const fs = require("fs");
+			if (fs.existsSync(outputFile)) {
+				fs.unlinkSync(outputFile);
+			}
+
+			// Execute script and capture output properly
+			let testOutput = "";
+			let hasOutput = false;
+			let scriptExitCode = 0;
+
+			try {
+				// Build command with optional test pattern
+				const command = testPattern ? `"${scriptPath}" "${testPattern}"` : `"${scriptPath}"`;
+
+				// Run the script and wait for completion
+				execSync(command, {
+					encoding: "utf8",
+					cwd: path.join(__dirname, "..", ".."),
+					stdio: ["pipe", "inherit", "inherit"], // Let output go to console
+					shell: true,
+					timeout: 120000, // 2 minute timeout
+					windowsHide: false,
+				});
+
+				// Script succeeded (exit 0)
+				scriptExitCode = 0;
+
+				// Read output from file
+				if (fs.existsSync(outputFile)) {
+					testOutput = fs.readFileSync(outputFile, "utf8");
+					hasOutput = true;
+				}
+			} catch (error) {
+				// Script failed - capture the exit code
+				scriptExitCode = error.status || 1;
+				console.error(`[ERROR] Test script failed with exit code ${scriptExitCode}:`, error.message);
+
+				// Try to read output file even if script failed
+				if (fs.existsSync(outputFile)) {
+					testOutput = fs.readFileSync(outputFile, "utf8");
+					hasOutput = true;
+				}
+
+				// If script failed, we should treat this as test failure
+				if (!hasOutput) {
+					testOutput = `Test script execution failed: ${error.message}\nExit code: ${scriptExitCode}`;
+				}
+			}
+
+			return {
+				testOutput,
+				scriptExitCode,
+				hasOutput,
+				testPattern
+			};
+
+		} catch (error) {
+			console.error(`[ERROR] Cloud test execution failed:`, error.message);
+			throw error;
+		}
+	}
+
+	extractTestResultFromCloud(testPath, testPattern = "") {
+		const startTime = Date.now();
+		
+		// If cloud tests failed to execute, return failure for this test
+		if (this._cloudTestResults.failed) {
+			return {
+				console: null,
+				failureMessage: `Cloud test execution failed: ${this._cloudTestResults.error}`,
+				numFailingTests: 1,
+				numPassingTests: 0,
+				numPendingTests: 0,
+				perfStats: {
+					end: Date.now(),
+					start: startTime,
+				},
+				skipped: false,
+				snapshot: {
+					added: 0,
+					fileDeleted: false,
+					matched: 0,
+					unchecked: 0,
+					uncheckedKeys: [],
+					unmatched: 0,
+					updated: 0,
+				},
+				sourceMaps: {},
+				testFilePath: testPath.path,
+				testResults: [
+					{
+						ancestorTitles: [],
+						duration: 0,
+						failureMessages: [this._cloudTestResults.error],
+						fullName: "Cloud Test Execution",
+						location: null,
+						status: "failed",
+						title: "Cloud Test Execution",
+					},
+				],
+			};
+		}
+
+		// Parse the Jest-Lua output to get actual results for this specific test file
+		const parsedResults = this.parseJestOutput(
+			this._cloudTestResults.testOutput, 
+			testPath.path, 
+			this._cloudTestResults.testPattern
+		);
+
+		// If script failed (non-zero exit code), force test failure regardless of output parsing
+		if (this._cloudTestResults.scriptExitCode !== 0) {
+			console.error(
+				`[ERROR] Test script failed with exit code ${this._cloudTestResults.scriptExitCode} - treating tests as failed`,
+			);
+
+			// Override parsed results to ensure failure is reported
+			parsedResults.numFailedTests = Math.max(parsedResults.numFailedTests, 1);
+			parsedResults.numPassedTests = 0; // No tests can pass if script failed
+
+			// Ensure we have a failure message
+			if (!parsedResults.failureMessage) {
+				parsedResults.failureMessage = `Test execution failed with exit code ${this._cloudTestResults.scriptExitCode}`;
+			}
+
+			// Mark all test results as failed
+			parsedResults.testResults = parsedResults.testResults.map((test) => ({
+				...test,
+				status: "failed",
+				failureMessages:
+					test.failureMessages.length > 0
+						? test.failureMessages
+						: [`Test execution failed with exit code ${this._cloudTestResults.scriptExitCode}`],
+			}));
+		}
+
+		return {
+			console:
+				parsedResults.testOutputs && parsedResults.testOutputs.length > 0
+					? parsedResults.testOutputs
+							.filter((output) => output && output.trim() && !output.includes("No output captured"))
+							.map((output) => ({
+								message: output.trim(),
+								origin: "",
+								type: "log",
+							}))
+					: null,
+			failureMessage: parsedResults.numFailedTests > 0 ? parsedResults.failureMessage : null,
+			numFailingTests: parsedResults.numFailedTests,
+			numPassingTests: parsedResults.numPassedTests,
+			numPendingTests: parsedResults.numSkippedTests || 0,
+			perfStats: {
+				end: Date.now(),
+				start: startTime,
+			},
+			skipped: false,
+			snapshot: {
+				added: 0,
+				fileDeleted: false,
+				matched: 0,
+				unchecked: 0,
+				uncheckedKeys: [],
+				unmatched: 0,
+				updated: 0,
+			},
+			sourceMaps: {},
+			testFilePath: testPath.path,
+			testResults: parsedResults.testResults,
+		};
 	}
 }
 

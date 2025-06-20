@@ -1,7 +1,7 @@
 import { Flamework } from "@flamework/core";
 
-Flamework.addPaths("src/client/components");
-Flamework.addPaths("src/client/controllers");
-Flamework.addPaths("src/shared/components");
+Flamework.addPaths("./places/common/src/client/components");
+Flamework.addPaths("./places/common/src/client/controllers");
+Flamework.addPaths("./places/common/src/shared/components");
 
 Flamework.ignite();
