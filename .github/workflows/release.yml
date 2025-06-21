@@ -22,28 +22,31 @@ jobs:
                   echo "🔨 Building project..."
                   docker compose run --rm roblox-ts-dev npm run build
 
-            # Always run comprehensive tests before deployment
-            - name: Run tests before deployment
+            # Always run comprehensive cloud tests before deployment
+            - name: Run comprehensive cloud tests before deployment
               env:
                   ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_TEST_PLACE_ID }}
               run: |
-                  echo "🧪 Running comprehensive tests before deployment..."
+                  echo "🧪 Running comprehensive cloud tests before deployment..."
+                  echo "🎯 Using real Roblox environment for maximum deployment confidence"
                   echo "Debug: Environment variables:"
                   echo "ROBLOX_API_KEY: ${ROBLOX_API_KEY:+[SET]} ${ROBLOX_API_KEY:-[NOT SET]}"
                   echo "ROBLOX_UNIVERSE_ID: ${ROBLOX_UNIVERSE_ID:+[SET]} ${ROBLOX_UNIVERSE_ID:-[NOT SET]}"
                   echo "ROBLOX_PLACE_ID: ${ROBLOX_PLACE_ID:+[SET]} ${ROBLOX_PLACE_ID:-[NOT SET]}"
 
-                  # Run tests with explicit exit code handling
+                  # Run comprehensive cloud tests using test:shell for maximum accuracy
                   if docker compose run --rm \
                     -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                     -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                     -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                    roblox-ts-dev npm test; then
-                      echo "✅ All tests passed - proceeding with deployment"
+                    roblox-ts-dev npm run test:shell; then
+                      echo "✅ All cloud tests passed - deployment is safe to proceed"
+                      echo "🎉 Code validated against real Roblox APIs and environment"
                   else
-                      echo "❌ Tests failed - aborting deployment"
+                      echo "❌ Cloud tests failed - aborting deployment for safety"
+                      echo "🛑 Fix failing tests before attempting deployment"
                       exit 1
                   fi
 
@@ -102,14 +105,23 @@ jobs:
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_PRODUCTION_PLACE_ID }}
               run: |
                   echo "🔍 Running post-deployment verification on production..."
+                  echo "🎯 Verifying deployment against live production environment"
 
-                  # Run production verification tests in Docker with environment variables passed directly
-                  echo "🧪 Running production-safe verification tests"
-                  docker compose run --rm \
+                  # Run comprehensive verification tests against production environment
+                  echo "🧪 Running cloud verification tests against production"
+                  if docker compose run --rm \
                     -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                     -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                     -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                    roblox-ts-dev npx jest --testNamePattern="production" 2>/dev/null || echo "⚠️  No production-specific tests found - skipping verification"
+                    roblox-ts-dev npm run test:shell; then
+                      echo "✅ Production deployment verified successfully!"
+                      echo "🎉 All systems operational in production environment"
+                  else
+                      echo "⚠️  Post-deployment verification found issues"
+                      echo "🔍 Check production logs and consider immediate remediation"
+                      # Don't fail the deployment, but warn about issues
+                      exit 0
+                  fi
 
                   echo "✅ Post-deployment verification completed!"
 

@@ -2,33 +2,104 @@
 
 ## Overview
 
-This project now has a fully working Jest test setup that supports both local VS Code development and cloud Roblox execution. The setup handles TypeScript, decorators, and Roblox-specific APIs seamlessly.
+This project has a comprehensive Jest test setup that supports both local VS Code development and cloud Roblox execution. The setup handles TypeScript, decorators, and Roblox-specific APIs seamlessly, with a robust CI/CD pipeline that uses cloud testing for maximum accuracy.
+
+## Testing Strategy
+
+### Local Development
+
+- **Fast iteration**: Local Jest with Roblox API mocks for quick development
+- **Full coverage**: All places tested locally for comprehensive validation
+- **VS Code integration**: Test Explorer, debugging, and watch mode support
+
+### CI/CD Pipeline
+
+- **Two-stage approach**: Local tests first (fast feedback), then cloud tests (accuracy)
+- **Cloud validation**: Uses actual Roblox environment for deployment gating
+- **Production-ready**: Only deploy if cloud tests pass
+
+### Cloud Testing Limitations
+
+Due to Jest runtime global conflicts when running multiple places in the same Roblox environment, **only the Common place is tested in the cloud**. This is sufficient for CI/CD validation as:
+
+- Common contains shared utilities and core functionality
+- Place-specific logic is thoroughly tested locally
+- Cloud tests validate Roblox API compatibility and runtime behavior
 
 ## Available Test Commands
 
 ### Primary Commands
 
-1. **`npm run test:jest`** - Main testing command for VS Code Jest extension
+1. **`npm run test`** - **Main CI/CD command**
+   - Runs cloud tests using actual Roblox environment
+   - Uses `./scripts/shell/test.sh` for cloud execution
+   - Preferred for deployment validation and accuracy
+
+2. **`npm run test:jest`** - Local development command
    - Runs tests locally in Node.js with Roblox API mocks
    - VS Code Test Explorer integration
    - Fast execution and debugging support
-   - No coverage collection (for speed)
+   - Tests all places locally
 
-2. **`npm run test:coverage`** - Coverage collection
+3. **`npm run test:coverage`** - Coverage collection
    - Runs tests with coverage reporting
    - Uses a separate config to avoid Babel parsing issues
    - Generates HTML, LCOV, and text reports
    - Coverage files: `coverage/` directory
 
-3. **`npm run test:shell`** - Cloud execution
+4. **`npm run test:shell`** - Alias for cloud execution
+   - Same as `npm run test`
    - Builds project and runs tests in actual Roblox environment
-   - Uses custom Jest runner for cloud execution
-   - Slower but tests against real Roblox APIs
 
 ### Utility Commands
 
-- **`npm run test`** - Basic Jest (mainly for CI/CD)
+- **`npm run test:local`** - Alias for `npm run test:jest`
 - **`npm run test:debug`** - Debug mode with `--runInBand`
+- **`npm run test:local-build`** - Build then run local tests
+
+## CI/CD Integration
+
+### GitHub Actions Workflow
+
+The project uses a two-stage testing approach in CI/CD:
+
+#### 1. Local Tests Job (`test-local`)
+
+- **Purpose**: Fast feedback and comprehensive validation
+- **What it does**:
+  - Linting and code quality checks
+  - Build verification
+  - Local Jest execution (all places)
+  - Coverage collection and reporting
+- **Speed**: ~2-3 minutes
+- **Scope**: All places tested with mocked Roblox APIs
+
+#### 2. Cloud Tests Job (`test-cloud`)
+
+- **Purpose**: Roblox environment validation
+- **What it does**:
+  - Runs after local tests pass
+  - Uses `npm run test` (cloud execution)
+  - Tests in actual Roblox environment
+  - Only tests Common place (see limitations above)
+- **Speed**: ~5-10 minutes
+- **Scope**: Common place with real Roblox APIs
+
+#### Environment Variables Required
+
+For cloud testing in CI/CD, set these GitHub secrets:
+
+```bash
+ROBLOX_API_KEY=your_api_key
+PLACE_ID=your_place_id
+UNIVERSE_ID=your_universe_id
+```
+
+### Deployment Strategy
+
+- **Pre-deployment**: Cloud tests must pass
+- **Post-deployment**: Cloud tests verify deployment
+- **Gating**: Only cloud-validated code reaches production
 
 ## Configuration Files
 
@@ -167,6 +238,24 @@ babel.config.js                     # Babel config for coverage
    - Custom transformer always returns `{ code, map }` object
    - Should work with Jest 28+ out of the box
 
+5. **Cloud tests fail with Jest conflicts**
+   - This is expected behavior - only Common place runs in cloud
+   - Verify other places pass locally with `npm run test:jest`
+   - Check `/tasks/run-tests.server.luau` for current cloud test configuration
+
+6. **CI/CD failures**
+   - Local tests failing: Check linting, build, and Jest locally
+   - Cloud tests failing: Verify Roblox API credentials and environment
+   - Deployment issues: Ensure cloud tests pass before merge
+
+### Testing Workflow Best Practices
+
+1. **Development**: Use `npm run test:jest` for fast local iteration
+2. **Pre-commit**: Run `npm run test:coverage` for full validation
+3. **CI/CD**: Let GitHub Actions handle the two-stage testing
+4. **Debugging**: Use VS Code Jest extension for breakpoint debugging
+5. **Cloud validation**: Use `npm run test` to manually verify cloud behavior
+
 ### Adding New Tests
 
 1. Create test files in `places/*/src/tests/` directories
@@ -184,18 +273,72 @@ To mock a new Roblox API:
 
 ## Performance
 
-- **Local execution**: ~0.7s for all tests
+### Local Testing
+
+- **Jest execution**: ~0.7s for all tests (all places)
 - **With coverage**: ~1.1s for all tests  
-- **Cloud execution**: ~10-30s depending on build time
+- **VS Code integration**: Near-instant test discovery and execution
+
+### Cloud Testing
+
+- **Build time**: ~5-10s (TypeScript compilation)
+- **Upload and execution**: ~10-30s depending on Roblox API response
+- **Total cloud test time**: ~15-40s for Common place validation
+
+### CI/CD Performance
+
+- **Local tests job**: ~2-3 minutes (lint, build, test, coverage)
+- **Cloud tests job**: ~5-10 minutes (build, upload, execute)
+- **Total pipeline**: ~7-13 minutes for full validation
+
+## Future Improvements
+
+### Potential Enhancements
+
+1. **Multi-place cloud testing**:
+   - Investigate Jest global isolation techniques
+   - Consider separate Roblox sessions for each place
+   - Explore alternative test runners for cloud execution
+
+2. **Enhanced coverage**:
+   - Gradually add more file patterns to coverage config
+   - Improve TypeScript parsing for complex files
+   - Better Babel configuration for decorators
+
+3. **Performance optimizations**:
+   - Parallel cloud test execution (if multi-place support added)
+   - Incremental builds for faster CI/CD
+   - Smarter test selection based on changed files
+
+4. **Developer experience**:
+   - More comprehensive Roblox API mocks
+   - Better VS Code debugging integration
+   - Automated test generation tools
+
+### Current Limitations
+
+- **Cloud testing**: Only Common place due to Jest global conflicts
+- **Coverage**: Limited to basic files due to Babel TypeScript parsing
+- **Performance**: Cloud tests are slower but provide accuracy
+- **Complexity**: Two-stage testing requires understanding of both local and cloud workflows
 
 ## Next Steps
 
-1. **Expand Coverage**: Gradually add more file patterns to coverage config
-2. **Better Babel Config**: Improve TypeScript parsing for coverage
-3. **More Roblox Mocks**: Add missing APIs as needed
-4. **Integration Tests**: Add tests that exercise actual game logic
-5. **CI/CD Integration**: Use `npm run test:coverage` in automated builds
+1. **Immediate**:
+   - Monitor CI/CD performance and adjust as needed
+   - Add more comprehensive tests to Common place for better cloud validation
+   - Document any new Roblox APIs that need mocking
+
+2. **Short-term**:
+   - Expand coverage collection to include more file types
+   - Investigate solutions for multi-place cloud testing
+   - Optimize build and upload times for cloud tests
+
+3. **Long-term**:
+   - Consider alternative testing frameworks that handle Roblox environments better
+   - Implement integration tests that exercise cross-place functionality
+   - Explore automated performance testing in cloud environment
 
 ---
 
-The Jest setup is now production-ready for both local development and cloud testing!
+The Jest setup now provides a robust, production-ready testing framework with comprehensive local development support and accurate cloud validation for CI/CD workflows!
