@@ -16,6 +16,12 @@ jobs:
             - name: Build Docker development environment
               run: docker compose build roblox-ts-dev
 
+            - name: Fix file permissions
+              run: |
+                  # Fix any permission issues that might prevent cleanup
+                  sudo chown -R runner:docker . || true
+                  sudo chmod -R 755 . || true
+
             - name: Save Docker image
               run: |
                   # Alternative approach: use docker compose config to get service info
@@ -51,12 +57,6 @@ jobs:
                       fi
                   fi
                   ls -la docker-image.tar.gz
-
-            - name: Fix file permissions
-              run: |
-                  # Fix any permission issues that might prevent cleanup
-                  sudo chown -R runner:docker . || true
-                  sudo chmod -R 755 . || true
 
             - name: Upload Docker image artifact
               uses: actions/upload-artifact@v4
