@@ -50,52 +50,23 @@ class LuneBridge {
 		this.processCache = new Map(); // Cache for reusing processes
 	}
 
-	async execute(code) {
-		return new Promise((resolve, reject) => {
-			const luneProcess = spawn(this.lunePath, ["run", this.bridgeScript, "--execute", code], {
-				cwd: path.dirname(this.bridgeScript),
-			});
-
+	async execute(code, ...args) {
+		return new Promise((resolve) => {
+			const luneProcess = spawn(this.lunePath, ["run", this.bridgeScript, "--execute", code, ...args]);
 			let stdout = "";
 			let stderr = "";
-
-			luneProcess.stdout.on("data", (data) => {
-				stdout += data.toString();
-			});
-
-			luneProcess.stderr.on("data", (data) => {
-				stderr += data.toString();
-			});
-
-			luneProcess.on("close", (code) => {
-				try {
-					if (stdout.trim()) {
-						const result = JSON.parse(stdout.trim());
-						resolve(result);
-					} else if (stderr.trim()) {
-						resolve({
-							success: false,
-							error: stderr.trim(),
-							result: null,
-						});
-					} else {
-						resolve({
-							success: false,
-							error: "No output from Lune process",
-							result: null,
-						});
+			luneProcess.stdout.on("data", (data) => (stdout += data.toString()));
+			luneProcess.stderr.on("data", (data) => (stderr += data.toString()));
+			luneProcess.on("close", () => {
+				if (stderr) {
+					resolve({ success: false, error: stderr, result: null });
+				} else {
+					try {
+						resolve(JSON.parse(stdout));
+					} catch (e) {
+						resolve({ success: false, error: `JSON parse error: ${e}\n${stdout}`, result: null });
 					}
-				} catch (parseError) {
-					resolve({
-						success: false,
-						error: `Failed to parse Lune output: ${parseError.message}. Raw output: ${stdout}`,
-						result: null,
-					});
 				}
-			});
-
-			luneProcess.on("error", (error) => {
-				reject(new Error(`Failed to start Lune process: ${error.message}`));
 			});
 		});
 	}
@@ -286,6 +257,35 @@ global.task = {
 // Mock Roblox services and other globals
 global.game = {
 	GetService: (serviceName) => {
+		// Return specific service mocks based on service name
+		if (serviceName === "RunService") {
+			return {
+				Name: serviceName,
+				IsStudio: () => true,
+				IsClient: () => false,
+				IsServer: () => true,
+				Heartbeat: {
+					Connect: () => ({}),
+					Disconnect: () => {},
+				},
+				Stepped: {
+					Connect: () => ({}),
+					Disconnect: () => {},
+				},
+			};
+		}
+
+		if (serviceName === "Players") {
+			return {
+				Name: serviceName,
+				PlayerAdded: { Connect: () => {}, Disconnect: () => {} },
+				PlayerRemoving: { Connect: () => {}, Disconnect: () => {} },
+				GetPlayerByUserId: () => undefined,
+				GetPlayers: () => [],
+			};
+		}
+
+		// Default fallback for other services
 		return {
 			Name: serviceName,
 		};
@@ -349,38 +349,16 @@ global.print = jest.fn((...args) => {
 });
 
 // Utility function to execute arbitrary Luau code
-global.executeLuau = async function (code, data = null) {
+global.executeLuau = async function (code, args = {}) {
 	if (!checkLuneSync()) {
 		throw new Error("Lune bridge not available. Cannot execute Luau code.");
 	}
 
-	// If data is provided, we need to inject it into the code
-	if (data) {
-		// Convert JavaScript object to Lua table syntax
-		function jsToLuaTable(obj) {
-			if (obj === null || obj === undefined) return "nil";
-			if (typeof obj === "string") return `"${obj.replace(/"/g, '\\"')}"`;
-			if (typeof obj === "number" || typeof obj === "boolean") return String(obj);
-			if (Array.isArray(obj)) {
-				const items = obj.map((item) => jsToLuaTable(item)).join(", ");
-				return `{${items}}`;
-			}
-			if (typeof obj === "object") {
-				const pairs = Object.entries(obj)
-					.map(([k, v]) => `["${k}"] = ${jsToLuaTable(v)}`)
-					.join(", ");
-				return `{${pairs}}`;
-			}
-			return "nil";
-		}
+	// Pass args as a JSON string to the Luau script
+	const argsJson = JSON.stringify(args);
+	const fullCommand = `${code}\nreturn require(script.Parent.Parent.shared.data.utils.json).decode(...)`;
 
-		const luaData = jsToLuaTable(data);
-		// Replace the ... (varargs) with the actual data
-		const modifiedCode = code.replace(/local\s+(\w+)\s*=\s*\.\.\./, `local $1 = ${luaData}`);
-		return await luneBridge.execute(modifiedCode);
-	}
-
-	return await luneBridge.execute(code);
+	return await luneBridge.execute(fullCommand, argsJson);
 };
 
 // Utility to check if Lune is available in tests
@@ -535,5 +513,76 @@ if (!String.prototype.size) {
 		return this.length;
 	};
 }
+
+// Mock Roblox services directly as globals for compatibility with @rbxts/services imports
+global.RunService = {
+	IsStudio: () => true,
+	IsClient: () => false,
+	IsServer: () => true,
+	Heartbeat: {
+		Connect: () => ({}),
+		Disconnect: () => {},
+	},
+	Stepped: {
+		Connect: () => ({}),
+		Disconnect: () => {},
+	},
+};
+
+global.Players = {
+	PlayerAdded: { Connect: () => {}, Disconnect: () => {} },
+	PlayerRemoving: { Connect: () => {}, Disconnect: () => {} },
+	GetPlayerByUserId: () => undefined,
+	GetPlayers: () => [],
+};
+
+// Make ProfileStore available globally
+global.ProfileStore = {
+	New: () => ({
+		Mock: {
+			StartSessionAsync: () => null,
+		},
+		StartSessionAsync: () => null,
+	}),
+};
+
+// Additional Roblox globals
+global.typeIs = (value, typeName) => {
+	const actualType = typeof value;
+	if (typeName === "table") {
+		return actualType === "object" && value !== null;
+	}
+	if (typeName === "string") {
+		return actualType === "string";
+	}
+	if (typeName === "number") {
+		return actualType === "number";
+	}
+	if (typeName === "boolean") {
+		return actualType === "boolean";
+	}
+	if (typeName === "function") {
+		return actualType === "function";
+	}
+	if (typeName === "nil") {
+		return value === null || value === undefined;
+	}
+	return false;
+};
+
+global.warn = (...args) => {
+	console.warn(...args);
+};
+
+global.assert = (condition, message) => {
+	if (!condition) {
+		throw new Error(message || "Assertion failed");
+	}
+	return condition;
+};
+
+global.print = (...args) => {
+	console.log(...args);
+};
 
 console.log("🚀 Jest setup with Lune bridge initialized");

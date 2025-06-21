@@ -119,15 +119,20 @@ export class DataService implements OnInit {
 		const userDataTable = userData as Record<string, unknown>;
 
 		// Add all fields from template
-		for (const [key, templateValueInLoop] of pairs(templateTable)) { // Renamed to avoid conflict
+		for (const [key, templateValueInLoop] of pairs(templateTable)) {
+			// Renamed to avoid conflict
 			const currentTemplateValue = templateValueInLoop; // Use value from iteration
 			const currentUserValue = userDataTable[key];
 
-			// Check if template value is an array using typeOf and checking for numeric indices
-			const isTemplateArray = typeOf(currentTemplateValue) === "table" && 
-									(currentTemplateValue as Record<string, unknown>)[1] !== undefined;
-			const isUserArray = typeOf(currentUserValue) === "table" && 
-								(currentUserValue as Record<string, unknown>)[1] !== undefined;
+			// Check if template value is an array using a more reliable method
+			const isTemplateArray =
+				typeOf(currentTemplateValue) === "table" &&
+				typeIs(currentTemplateValue, "table") &&
+				(currentTemplateValue as Record<string | number, unknown>).length !== undefined;
+			const isUserArray =
+				typeOf(currentUserValue) === "table" &&
+				typeIs(currentUserValue, "table") &&
+				(currentUserValue as Record<string | number, unknown>).length !== undefined;
 
 			if (isTemplateArray) {
 				// If template field is an array, result should also be an array.
@@ -152,7 +157,7 @@ export class DataService implements OnInit {
 		for (const [key, userValue] of pairs(userDataTable)) {
 			if (templateTable[key] === undefined) {
 				// Only add if it's not in template. If it's a table, deep copy it.
-				result[key] = (typeOf(userValue) === "table") ? deepCopy(userValue) : userValue;
+				result[key] = typeOf(userValue) === "table" ? deepCopy(userValue) : userValue;
 			}
 		}
 
@@ -180,18 +185,25 @@ export class DataService implements OnInit {
 			// Apply migrations if needed
 			if (version < this.CURRENT_DATA_VERSION) {
 				const [migrated, newVersion] = migrations.migrateData(dataTable, version);
-				dataTable._version = newVersion;
+				// Update the dataTable with migrated data
 				for (const [key, val] of pairs(migrated)) {
 					dataTable[key] = val;
 				}
+				dataTable._version = newVersion;
 			}
-		// Deep merge with template defaults
-		const completeData = this.deepMergeWithTemplate(dataTable, DATA_TEMPLATE);
-		const result = completeData as DataTemplate;
-		result._version = dataTable._version as number;
 
-		// Validate the complete data
-		const [isValid, errorMessage] = validateDataSection(result, () => DATA_TEMPLATE);
+			// Store the correct version before merging
+			const correctVersion = dataTable._version as number;
+
+			// Deep merge with template defaults
+			const completeData = this.deepMergeWithTemplate(dataTable, DATA_TEMPLATE);
+			const result = completeData as DataTemplate;
+
+			// Ensure version is preserved after merging
+			result._version = correctVersion;
+
+			// Validate the complete data
+			const [isValid, errorMessage] = validateDataSection(result, DATA_TEMPLATE);
 			if (!isValid) {
 				warn(`Data validation failed: ${errorMessage}`);
 			}
@@ -299,7 +311,9 @@ export class DataService implements OnInit {
 			} else {
 				if (typeOf(value) !== typeOf(template[key])) {
 					warn(
-						`Data migration: Type mismatch for field '${key}'. Expected ${typeOf(template[key])}, got ${typeOf(value)}. This may cause issues.`
+						`Data migration: Type mismatch for field '${key}'. Expected ${typeOf(
+							template[key],
+						)}, got ${typeOf(value)}. This may cause issues.`,
 					);
 				}
 
@@ -332,115 +346,156 @@ export class DataService implements OnInit {
 	 */
 	private initializeMigrations(): void {
 		// Migration from version 1 to version 2
-		migrations.registerMigration(1, (data) => {
-			const newData = { ...data };
+		migrations.registerMigration(
+			1,
+			(data) => {
+				const newData = { ...data };
 
-			if (!newData.SlotsApplicable) {
-				newData.SlotsApplicable = 3;
-			}
+				if (!newData.SlotsApplicable) {
+					newData.SlotsApplicable = 3;
+				}
 
-			return newData;
-		}, "Add missing SlotsApplicable field");
+				return newData;
+			},
+			"Add missing SlotsApplicable field",
+		);
 
 		// Migration from version 2 to version 3
-		migrations.registerMigration(2, (data) => {
-			const newData = { ...data };
+		migrations.registerMigration(
+			2,
+			(data) => {
+				const newData = { ...data };
 
-			// Handle old DailyRewardData structure
-			if (newData.DailyRewardData) {
-				const oldDailyData = newData.DailyRewardData as Record<string, unknown>;
+				// Handle old DailyRewardData structure
+				if (newData.DailyRewardData) {
+					const oldDailyData = newData.DailyRewardData as Record<string, unknown>;
 
-				newData.DailyRewardsData = {
-					LastClaimedDay: undefined,
-					CurrentStreak: 0,
-					CanClaim: true,
-					TotalClaimed: 0,
-				} as DailyRewardsData;
+					newData.DailyRewardsData = {
+						LastClaimedDay: undefined,
+						CurrentStreak: 0,
+						CanClaim: true,
+						TotalClaimed: 0,
+					} as DailyRewardsData;
 
-				// Preserve meaningful data
-				if (oldDailyData.LastClaimTime && (oldDailyData.LastClaimTime as number) > 0) {
-					(newData.DailyRewardsData as DailyRewardsData).LastClaimedDay = math.floor((oldDailyData.LastClaimTime as number) / 86400);
-				}
-
-				if (oldDailyData.StreakDays && (oldDailyData.StreakDays as number) > 0) {
-					(newData.DailyRewardsData as DailyRewardsData).CurrentStreak = oldDailyData.StreakDays as number;
-				}
-
-				newData.DailyRewardData = undefined;
-			}
-
-			// Ensure DailyRewardsData exists
-			if (!newData.DailyRewardsData) {
-				newData.DailyRewardsData = {
-					LastClaimedDay: undefined,
-					CurrentStreak: 0,
-					CanClaim: true,
-					TotalClaimed: 0,
-				};
-			}
-
-			// Handle ReceiptHistory migration
-			newData.ReceiptHistory = newData.ReceiptHistory || [];
-			if (newData.ProductsBought) {
-				const productsBought = newData.ProductsBought as unknown[];
-				const receiptHistory = newData.ReceiptHistory as string[];
-				
-				for (const purchaseId of productsBought) {
-					if (purchaseId && !receiptHistory.includes(purchaseId as string)) {
-						receiptHistory.push(purchaseId as string);
+					// Preserve meaningful data
+					if (oldDailyData.LastClaimTime && (oldDailyData.LastClaimTime as number) > 0) {
+						(newData.DailyRewardsData as DailyRewardsData).LastClaimedDay = math.floor(
+							(oldDailyData.LastClaimTime as number) / 86400,
+						);
 					}
+
+					if (oldDailyData.StreakDays && (oldDailyData.StreakDays as number) > 0) {
+						(newData.DailyRewardsData as DailyRewardsData).CurrentStreak =
+							oldDailyData.StreakDays as number;
+					}
+
+					newData.DailyRewardData = undefined;
 				}
-				newData.ProductsBought = undefined;
-			}
 
-			if (newData.FailedPurchases) {
-				newData.FailedPurchases = undefined;
-			}
-
-			return newData;
-		}, "Transform daily rewards data structure and add ReceiptHistory");
-
-		// Add remaining migrations (3-5) following the same pattern...
-		// Migration from version 3 to version 4
-		migrations.registerMigration(3, (data) => {
-			const newData = { ...data };
-
-			if (newData.DailyRewardsData) {
-				const dailyData = newData.DailyRewardsData as Record<string, unknown>;
-
-				// Check for old structure
-				if (dailyData.LastDay || dailyData.CurrentDay || dailyData.ClaimedDays) {
-					const newDailyData: DailyRewardsData = {
+				// Ensure DailyRewardsData exists
+				if (!newData.DailyRewardsData) {
+					newData.DailyRewardsData = {
 						LastClaimedDay: undefined,
 						CurrentStreak: 0,
 						CanClaim: true,
 						TotalClaimed: 0,
 					};
-
-					if (dailyData.LastDay && (dailyData.LastDay as number) > 0) {
-						newDailyData.LastClaimedDay = dailyData.LastDay as number;
-					}
-
-					if (dailyData.CurrentDay && (dailyData.CurrentDay as number) > 1) {
-						newDailyData.CurrentStreak = (dailyData.CurrentDay as number) - 1;
-					}
-
-					if (dailyData.ClaimedDays) {
-						const claimedDays = dailyData.ClaimedDays as Record<string, boolean>;
-						let count = 0;
-						for (const [, claimed] of pairs(claimedDays)) {
-							if (claimed) count++;
-						}
-						newDailyData.TotalClaimed = count;
-					}
-
-					newData.DailyRewardsData = newDailyData;
 				}
-			}
 
-			return newData;
-		}, "Fix daily rewards data structure mismatches");
+				// Handle ReceiptHistory migration
+				newData.ReceiptHistory = newData.ReceiptHistory || [];
+				if (newData.ProductsBought) {
+					const productsBought = newData.ProductsBought as unknown[];
+					const receiptHistory = newData.ReceiptHistory as string[];
+
+					for (const purchaseId of productsBought) {
+						if (purchaseId && !receiptHistory.includes(purchaseId as string)) {
+							receiptHistory.push(purchaseId as string);
+						}
+					}
+					newData.ProductsBought = undefined;
+				}
+
+				if (newData.FailedPurchases) {
+					newData.FailedPurchases = undefined;
+				}
+
+				return newData;
+			},
+			"Transform daily rewards data structure and add ReceiptHistory",
+		);
+
+		// Add remaining migrations (3-5) following the same pattern...
+		// Migration from version 3 to version 4
+		migrations.registerMigration(
+			3,
+			(data) => {
+				const newData = { ...data };
+
+				if (newData.DailyRewardsData) {
+					const dailyData = newData.DailyRewardsData as Record<string, unknown>;
+
+					// Check for old structure
+					if (dailyData.LastDay || dailyData.CurrentDay || dailyData.ClaimedDays) {
+						const newDailyData: DailyRewardsData = {
+							LastClaimedDay: undefined,
+							CurrentStreak: 0,
+							CanClaim: true,
+							TotalClaimed: 0,
+						};
+
+						if (dailyData.LastDay && (dailyData.LastDay as number) > 0) {
+							newDailyData.LastClaimedDay = dailyData.LastDay as number;
+						}
+
+						if (dailyData.CurrentDay && (dailyData.CurrentDay as number) > 1) {
+							newDailyData.CurrentStreak = (dailyData.CurrentDay as number) - 1;
+						}
+
+						if (dailyData.ClaimedDays) {
+							const claimedDays = dailyData.ClaimedDays as Record<string, boolean>;
+							let count = 0;
+							for (const [, claimed] of pairs(claimedDays)) {
+								if (claimed) count++;
+							}
+							newDailyData.TotalClaimed = count;
+						}
+
+						newData.DailyRewardsData = newDailyData;
+					}
+				}
+
+				return newData;
+			},
+			"Fix daily rewards data structure mismatches",
+		);
 
 		// Additional migrations (4-5) can be added here following the same pattern
+
+		// Migration from version 4 to version 5
+		migrations.registerMigration(
+			4,
+			(data) => {
+				const newData = { ...data };
+
+				// Add any new fields or fixes for version 5
+				// For now, this is just a placeholder migration
+				return newData;
+			},
+			"Placeholder migration for version 5",
+		);
+
+		// Migration from version 5 to version 6
+		migrations.registerMigration(
+			5,
+			(data) => {
+				const newData = { ...data };
+
+				// Add any new fields or fixes for version 6
+				// For now, this is just a placeholder migration
+				return newData;
+			},
+			"Placeholder migration for version 6",
+		);
 	}
 }
