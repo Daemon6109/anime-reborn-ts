@@ -106,61 +106,36 @@ export class DataService implements OnInit {
 	 * Deeply merges user data with template defaults
 	 */
 	private deepMergeWithTemplate(userData: unknown, template: unknown): unknown {
+		// Base case 1: If template is not a table, return userData if defined, else template.
 		if (typeOf(template) !== "table") {
 			return userData !== undefined ? userData : template;
 		}
 
+		// Base case 2: If template IS a table, but userData is NOT a table.
 		if (typeOf(userData) !== "table") {
+			// If userData is defined (e.g. primitive), it takes precedence.
+			// If userData is undefined, use a deep copy of the template table.
 			return userData !== undefined ? userData : deepCopy(template);
 		}
 
+		// Both userData and template are tables. Merge them.
 		const result: Record<string, unknown> = {};
 		const templateTable = template as Record<string, unknown>;
 		const userDataTable = userData as Record<string, unknown>;
 
-		// Add all fields from template
-		for (const [key, templateValueInLoop] of pairs(templateTable)) {
-			// Renamed to avoid conflict
-			const currentTemplateValue = templateValueInLoop; // Use value from iteration
-			const currentUserValue = userDataTable[key];
-
-			// Check if template value is an array using a more reliable method
-			const isTemplateArray =
-				typeOf(currentTemplateValue) === "table" &&
-				typeIs(currentTemplateValue, "table") &&
-				(currentTemplateValue as Record<string | number, unknown>).length !== undefined;
-			const isUserArray =
-				typeOf(currentUserValue) === "table" &&
-				typeIs(currentUserValue, "table") &&
-				(currentUserValue as Record<string | number, unknown>).length !== undefined;
-
-			if (isTemplateArray) {
-				// If template field is an array, result should also be an array.
-				// User's array takes precedence if it's also an array. Otherwise, use template's array.
-				result[key] = isUserArray ? deepCopy(currentUserValue) : deepCopy(currentTemplateValue);
-			} else if (typeOf(currentTemplateValue) === "table") {
-				// Template field is an object. User's value should also be an object.
-				if (typeOf(currentUserValue) === "table" && !isUserArray) {
-					result[key] = this.deepMergeWithTemplate(currentUserValue, currentTemplateValue);
-				} else {
-					// User value is not a compatible object (e.g., it's primitive, array, or undefined).
-					// Default to template's object structure.
-					result[key] = deepCopy(currentTemplateValue);
-				}
-			} else {
-				// Template field is a primitive. Use user's value if defined, else template's.
-				result[key] = currentUserValue !== undefined ? currentUserValue : currentTemplateValue;
-			}
+		// Iterate through template keys
+		for (const [key, templateValue] of pairs(templateTable)) {
+			const userValue = userDataTable[key];
+			// Recurse for all template keys. The recursion's base cases will handle type differences.
+			result[key] = this.deepMergeWithTemplate(userValue, templateValue);
 		}
 
-		// Add extra fields from userData (fields not present in the template)
+		// Add extra fields from userData that are not in template
 		for (const [key, userValue] of pairs(userDataTable)) {
 			if (templateTable[key] === undefined) {
-				// Only add if it's not in template. If it's a table, deep copy it.
 				result[key] = typeOf(userValue) === "table" ? deepCopy(userValue) : userValue;
 			}
 		}
-
 		return result;
 	}
 
@@ -476,26 +451,50 @@ export class DataService implements OnInit {
 		migrations.registerMigration(
 			4,
 			(data) => {
-				const newData = { ...data };
-
-				// Add any new fields or fixes for version 5
-				// For now, this is just a placeholder migration
+				const newData = { ...data } as any; // Use any to handle potentially missing fields
+				if (newData.BattlepassData) {
+					const bpData = newData.BattlepassData as Record<string, unknown>;
+					if (bpData.Level === undefined || (bpData.Level as number) < 0) {
+						bpData.Level = 0;
+					}
+					if (bpData.Exp === undefined) {
+						bpData.Exp = 0;
+					}
+					if (bpData.HasPremium === undefined) {
+						bpData.HasPremium = false;
+					}
+					if (bpData.ResetExp === undefined) {
+						bpData.ResetExp = false;
+					}
+					if (bpData.ClaimedFree === undefined) {
+						bpData.ClaimedFree = 0;
+					}
+					if (bpData.ClaimedPremium === undefined) {
+						bpData.ClaimedPremium = 0;
+					}
+					if (bpData.BattlepassName === undefined) {
+						bpData.BattlepassName = "";
+					}
+				}
 				return newData;
 			},
-			"Placeholder migration for version 5",
+			"Ensure BattlepassData structure",
 		);
 
 		// Migration from version 5 to version 6
 		migrations.registerMigration(
 			5,
 			(data) => {
-				const newData = { ...data };
-
-				// Add any new fields or fixes for version 6
-				// For now, this is just a placeholder migration
+				const newData = { ...data } as any; // Use any for flexibility
+				if (newData.AdventCalendarData) {
+					const acData = newData.AdventCalendarData as Record<string, unknown>;
+					if (acData.DayNumber === undefined) {
+						acData.DayNumber = 0;
+					}
+				}
 				return newData;
 			},
-			"Placeholder migration for version 6",
+			"Add DayNumber field to AdventCalendarData",
 		);
 	}
 }
