@@ -1,0 +1,29 @@
+local module = {
+	Set = {	
+		Currencies = {
+			Gems = 50,
+		},
+
+		Items = {},
+
+		Units = {},
+	},
+
+	FirstClear = {
+		Currencies = {},
+
+		Items = {},
+
+		Units = {},
+	},
+
+	["Random"] = {
+		Currencies = {},
+
+		Items = {},
+
+		Units = {},
+	},
+}
+
+return module

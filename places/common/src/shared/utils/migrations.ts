@@ -11,14 +11,10 @@ export interface Migration {
 
 class DataMigrations {
 	private migrations = new Map<number, Migration>();
-	
+
 	public readonly CurrentVersion = 6;
 
-	public registerMigration(
-		fromVersion: number, 
-		migrationFunction: MigrationFunction, 
-		description: string
-	): void {
+	public registerMigration(fromVersion: number, migrationFunction: MigrationFunction, description: string): void {
 		this.migrations.set(fromVersion, {
 			fromVersion,
 			toVersion: fromVersion + 1,

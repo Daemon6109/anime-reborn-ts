@@ -1,0 +1,99 @@
+local module = {}
+
+local debris = require(game.ReplicatedStorage.Libs.DebrisSystemV2)
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService") 
+local Collection = game:GetService("CollectionService")
+local Replicated = game:GetService("ReplicatedStorage")
+local AnimModule = require(Replicated.AnimModule)
+
+local emit = require(Replicated.Libs.emit)
+local SoundWrapper = require(Replicated.Libs.SoundWrapper)
+local VFXModule = require(Replicated.Libs.VFXModule)
+
+module.config = {
+	HitDelay = 1, -- seconds
+	HitCount = 1, -- amout of hits the skill does to split the damage visually on client
+	MultihitDelay = 0, -- delay between hits in a multi-hit move
+}
+
+local Rand = Random.new()
+
+function module:Effect(Tab)
+	local unit, rt, pos = table.unpack(Tab) -- rt = unit rootpart, pos = enemy rootpart
+	
+	local humanoid = unit:FindFirstChild("Humanoid")
+	local startpos = rt.CFrame
+	
+	rt.CFrame = CFrame.lookAt(rt.Position, pos.Position)
+    local DefaultCFrame = CFrame.lookAt(rt.Position, pos.Position)
+
+    AnimModule.PlayAnim(script.EnergyBurst, unit, 1, "", {Weight = 2, Fade = .15})
+	SoundWrapper:PlaySound(script["Move2sfx"], rt, Replicated.SoundGroups.UnitSFX)
+	
+    task.spawn(function()
+		for i=0,16,1 do
+			task.wait(.025)
+			emit.bezier(rt.CFrame,ColorSequence.new(Color3.fromRGB(255, 221, 69)),0.00000000005,.5,"Mid",true,5,.5,3.6)
+		end
+	end)
+
+    task.wait(.35)
+
+    local Fireball = script.OrihimeFireball:Clone()
+    Fireball.CFrame = rt.CFrame * CFrame.new(0, 0, -1)
+    Fireball.Parent = workspace.Effects
+    VFXModule.Debris(Fireball, 3)
+    VFXModule.EffectToggle(Fireball, true)
+
+    task.wait(.25)
+
+    local NumberValue = Instance.new("NumberValue")
+    TweenService:Create(NumberValue, TweenInfo.new(.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Value = 1}):Play()
+
+    task.spawn(function()
+		for i=0,4,1 do
+			task.wait(.03)
+			emit.bezier(Fireball.CFrame,ColorSequence.new(Color3.fromRGB(255, 221, 69)),0.00000000005,.5,"Long",true, 5, 0, 5)
+		end
+	end)
+
+    local p0 = Fireball.Position
+    local p2 = pos.Position
+    local p1 = p0:Lerp(p2, .375) + Vector3.new(Rand:NextInteger(-24, 24), Rand:NextInteger(4, 16), Rand:NextInteger(-24, 12))
+
+    local MovementConnection
+    MovementConnection = RunService.RenderStepped:Connect(function(deltaTime)
+        Fireball.CFrame = CFrame.lookAt(VFXModule.ReturnQuadraticBezier(NumberValue.Value, p0, p1, p2), VFXModule.ReturnQuadraticBezier(NumberValue.Value + deltaTime, p0, p1, p2))
+
+        if NumberValue.Value == 1 then
+            MovementConnection:Disconnect()
+            NumberValue:Destroy()
+        end
+    end)
+
+    task.wait(.5)
+
+    VFXModule.EffectToggle(Fireball, false)
+
+    local Explosion = script.OrihimeExplosion:Clone()
+    Explosion.CFrame = CFrame.new(pos.Position) * CFrame.new(0, -1, 0)
+    Explosion.Parent = workspace.Effects
+    VFXModule.Emit(Explosion)
+    VFXModule.Debris(Explosion, 3)
+
+    task.spawn(function()
+		for i=0, 4,1 do
+			task.wait(.075)
+			emit.bezier(Explosion.CFrame * CFrame.new(Rand:NextInteger(-16, 16), Rand:NextInteger(2, 12), Rand:NextInteger(-16, 16)) ,ColorSequence.new(Color3.fromRGB(255, 221, 69)),0.00000000005,.5,"Long",true, 5, 0, 5)
+		end
+	end)
+
+
+end
+
+-- Calling the method gonna look like VFXModule:Effect({Unit, Unit.HumanoidRootPart.CFrame})
+-- You could make it use multiple arguments from the table, just add the needed ones onto 11th line
+-- Like local Unit, UnitCFrame, Color, Etc, Etc = table.unpack(Tab)
+
+return module

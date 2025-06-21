@@ -4,6 +4,7 @@ include
 *.tsbuildinfo
 build
 dist
+install-rokit.sh
 
 # Note: package-lock.json is intentionally NOT ignored
 # This ensures reproducible builds and consistent dependency versions

@@ -1,0 +1,71 @@
+option Casing = Camel
+
+option TypesOutput = "../network/types.luau"
+option ServerOutput = "../network/server.luau"
+option ClientOutput = "../network/client.luau"
+
+option UsePolling = false
+
+struct PurchaseShopItemData {
+    shopType: string,
+    itemId: string,
+    amount: u8
+}
+
+struct ClaimBattlepassRewardData {
+    tier: u8,
+    isPremium: boolean
+}
+
+event EquipMount {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: string
+}
+
+event UnequipMount {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync
+}
+
+event ClaimDailyReward {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync
+}
+
+event PurchaseShopItem {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: PurchaseShopItemData
+}
+
+event ClaimBattlepassReward {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: ClaimBattlepassRewardData
+}
+
+event JoinTeam {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: string
+}
+
+event ClaimAdventReward {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: u8
+}
+
+event PurchasePremiumBattlepass {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync
+}

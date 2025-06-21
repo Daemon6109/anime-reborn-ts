@@ -1,0 +1,668 @@
+local StoryStage = {}
+
+StoryStage.WaveCount = 20 -- how many waves you need to setup
+StoryStage.Boss = "Bunny [Boss]"
+
+StoryStage.EnemyPool = { 
+	["Flying Angel"] = "Bunny [Aerial]",
+	["Shielder Angel"] = "Bunny [Basic]",
+	["Angel"] = "Bunny [Basic]", 
+	["Guardian Angel"] = "Bunny [Basic]",
+	["Speedster Angel"] = "Bunny [Basic]",
+	["Explosive Angel"] = "Bunny [Basic]",
+}
+
+local Constants = require(game.ReplicatedStorage.Libs.Constants)
+
+StoryStage.ItemPool = {
+	T2_BunnyVillagePortal = {Amount = NumberRange.new(1, 2), Chance = 1, RNG = NumberRange.new(1,1)},
+	T3_BunnyVillagePortal = {Amount = NumberRange.new(1, 1), Chance = 50, RNG = NumberRange.new(1,100)},
+	OrangeStar = {Amount = NumberRange.new(5, 10), Chance = 1, RNG = NumberRange.new(1,5)},
+	BlueStar = {Amount = NumberRange.new(1, 2), Chance = 1, RNG = NumberRange.new(1,50)},
+	GreenStar = {Amount = NumberRange.new(1, 2), Chance = 1, RNG = NumberRange.new(1,50)},
+	PurpleStar = {Amount = NumberRange.new(1, 2), Chance = 1, RNG = NumberRange.new(1,50)},
+	RedStar = {Amount = NumberRange.new(1, 2), Chance = 1, RNG = NumberRange.new(1,50)},
+}
+StoryStage.UnitPool = {}
+StoryStage.RandomCurrencyPool = {
+	Gems = {Amount = NumberRange.new(60,60), Chance = 1, RNG = NumberRange.new(1,1)},
+}
+
+StoryStage.Rewards = {
+	Set = {	
+		Currencies = {},
+
+		Items = {},
+
+		Units = {},
+	},
+
+	FirstClear = {
+		Currencies = {},
+
+		Items = {},
+
+		Units = {},
+	},
+
+	["Random"] = {
+		Currencies = StoryStage.RandomCurrencyPool,
+
+		Items = StoryStage.ItemPool,
+
+		Units = StoryStage.UnitPool,
+	},
+}
+
+StoryStage.Star_Rewards = {
+	[1] = {
+		Currencies = {
+			Gems = 60,
+		},
+
+		Items = {},
+
+		Units = {},
+	},
+	[2] = {
+		Currencies = {
+			Gems = 60,
+		},
+
+		Items = {},
+
+		Units = {},
+	},
+	[3] = {
+		Currencies = {},
+
+		Items = {
+			["TraitCrystal"] = 1
+		},
+
+		Units = {},
+	},
+}
+
+StoryStage.Star_Missions = {
+	[1] = {Name = "BeatStage", Data = {}},
+	[2] = {Name = "LessThanUnits", Data = {Amount = 6}} ,
+	[3] = {Name = "LimitedTime", Data = {Time = 7}},
+}
+
+StoryStage.Star_Missions_Nightmare = {
+	[1] = {Name = "BeatStage", Data = {}},
+	[2] = {Name = "LessThanUnits", Data = {Amount = 4}} ,
+	[3] = {Name = "LimitedTime", Data = {Time = 13}},
+}
+
+StoryStage.UnitXPReward = NumberRange.new(500,5000)
+
+StoryStage.Waves = {
+	[1] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 0, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[2] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 2,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 0, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[3] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 6,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 0, -- seconds
+			}, -- one pack
+		},
+		Notification = "Speedsters incoming!",
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[4] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 8,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 0, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[5] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 8,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 4,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[6] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 4,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[4] = {
+						EnemyName = StoryStage.EnemyPool["Explosive Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[7] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Shielder Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		Notification = "Be careful! Shielders incoming!",
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[8] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 4,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[9] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Shielder Angel"],
+						EnemyCount = 6,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[4] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		Notification = "Be careful! Guardians incoming!",
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[10] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Explosive Angel"],
+						EnemyCount = 4,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[11] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 8,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[12] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		--IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		--IsLastWave = true
+	},
+	[13] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 6,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		--IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		--IsLastWave = true
+	},
+	[14] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 12,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[4] = {
+						EnemyName = StoryStage.EnemyPool["Shielder Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		--IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		--IsLastWave = true
+	},
+	[15] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Explosive Angel"],
+						EnemyCount = 4,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[16] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 8,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+	},
+	[17] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 3,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		--IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		--IsLastWave = true
+	},
+	[18] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Speedster Angel"],
+						EnemyCount = 6,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		--IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		--IsLastWave = true
+	},
+	[19] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 12,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[4] = {
+						EnemyName = StoryStage.EnemyPool["Shielder Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+		},
+		--IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		--IsLastWave = true
+	},
+	[20] = {
+		EnemyPacks = {
+			[1] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.EnemyPool.Angel,
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[2] = {
+						EnemyName = StoryStage.EnemyPool["Guardian Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[3] = {
+						EnemyName = StoryStage.EnemyPool["Shielder Angel"],
+						EnemyCount = 5,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+					[4] = {
+						EnemyName = StoryStage.EnemyPool["Flying Angel"],
+						EnemyCount = 10,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 1.5, -- seconds
+			}, -- one pack
+			[2] = {
+				Enemies = {
+					[1] = {
+						EnemyName = StoryStage.Boss,
+						EnemyCount = 1,
+						PerEnemySpawnDelay = 0.7, -- seconds
+						AsyncSpawn = false,
+					}, -- array for ordering
+				},
+				AfterPackSpawnedDelay = 0, -- seconds
+			}, -- one pack
+		},
+		IsBoss = true,
+		AfterWaveEndedDelay = 3, -- seconds until next wave
+		IsLastWave = true
+	},
+}
+
+return StoryStage

@@ -63,7 +63,7 @@ export function diffData(data1: unknown, data2: unknown, path = ""): DataDiffere
 
 	if (typeOf(data1) !== "table" || typeOf(data2) !== "table") {
 		if (data1 !== data2) {
-			differences[path || "root"] = { old: data1, new: data2 };
+			differences[path === "" ? "root" : path] = { old: data1, new: data2 };
 		}
 		return differences;
 	}
@@ -73,7 +73,7 @@ export function diffData(data1: unknown, data2: unknown, path = ""): DataDiffere
 
 	// Check for fields in data1 that differ from data2
 	for (const [key, value1] of pairs(data1Table)) {
-		const currentPath = path ? `${path}.${key}` : key;
+		const currentPath = path === "" ? key : `${path}.${key}`;
 		const value2 = data2Table[key];
 
 		if (value2 === undefined) {
@@ -90,7 +90,7 @@ export function diffData(data1: unknown, data2: unknown, path = ""): DataDiffere
 
 	// Check for fields in data2 that don't exist in data1
 	for (const [key, value2] of pairs(data2Table)) {
-		const currentPath = path ? `${path}.${key}` : key;
+		const currentPath = path !== "" ? `${path}.${key}` : key;
 		if (data1Table[key] === undefined) {
 			differences[currentPath] = { old: undefined, new: value2 };
 		}
@@ -111,19 +111,19 @@ export function printDataSummary(data: DataTemplate): void {
 		print(`  ${name}: ${amount}`);
 	}
 	print("Inventory:");
-	
+
 	// Count units and items using pairs iteration
 	let unitCount = 0;
 	let itemCount = 0;
-	
+
 	for (const [,] of pairs(data.Inventory.Units)) {
 		unitCount++;
 	}
-	
+
 	for (const [,] of pairs(data.Inventory.Items)) {
 		itemCount++;
 	}
-	
+
 	print(`  Units: ${unitCount}`);
 	print(`  Items: ${itemCount}`);
 	print("--------------------");
@@ -134,7 +134,7 @@ export function printDataSummary(data: DataTemplate): void {
  */
 export function createTestData(overrides: Partial<DataTemplate> = {}): DataTemplate {
 	const baseData = deepCopy(DATA_TEMPLATE);
-	
+
 	// Apply overrides
 	for (const [key, value] of pairs(overrides)) {
 		(baseData as Record<string, unknown>)[key] = value;
@@ -152,17 +152,13 @@ export function validateRequiredFields(data: DataTemplate): [boolean, string[]] 
 
 	function checkFields(dataObj: Record<string, unknown>, templateObj: Record<string, unknown>, prefix = ""): void {
 		for (const [key, templateValue] of pairs(templateObj)) {
-			const fullKey = prefix ? `${prefix}.${key}` : key;
+			const fullKey = prefix === "" ? key : `${prefix}.${key}`;
 			const dataValue = dataObj[key];
 
 			if (dataValue === undefined) {
 				missingFields.push(fullKey);
 			} else if (typeOf(templateValue) === "table" && typeOf(dataValue) === "table") {
-				checkFields(
-					dataValue as Record<string, unknown>, 
-					templateValue as Record<string, unknown>, 
-					fullKey
-				);
+				checkFields(dataValue as Record<string, unknown>, templateValue as Record<string, unknown>, fullKey);
 			}
 		}
 	}

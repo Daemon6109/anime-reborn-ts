@@ -1,0 +1,1 @@
+return {DamageBuff = 0, DamageDebuff = 0}

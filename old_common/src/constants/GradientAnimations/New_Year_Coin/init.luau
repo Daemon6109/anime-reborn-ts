@@ -1,0 +1,49 @@
+local module = {}
+module.Gradient = script.UIGradient
+
+local colors = {
+	Color3.new(0.894118, 0.407843, 1),
+	Color3.new(1, 0.0980392, 0.713725),
+	Color3.new(0.992157, 0.992157, 0.992157),
+	Color3.new(0.984314, 0.231373, 0.243137),
+	Color3.new(0.984314, 0, 0.0156863),
+}
+
+function module:Animate(gradient, dt, ExtraData)
+	local num_colors = #colors
+	local color_length = 1 / num_colors
+	local period = 3 
+	local progress = (tick() % period) / period 
+	local newColors = {}
+	local wrapColor = false
+
+	for i = 1, num_colors + 1 do 
+		local color = colors[i] or colors[i-num_colors]
+		local position = progress + (i-1)/num_colors 
+
+		if position > 1 then position = position - 1 end 
+		if position == 0 or position == 1 then wrapColor = true end 
+
+		table.insert(newColors, ColorSequenceKeypoint.new(position, color))
+	end
+
+	if not wrapColor then 
+		local indexProgress = ((1 - progress) / color_length) + 1
+		local col1 = colors[math.floor(indexProgress)]
+		local col2 = colors[math.ceil(indexProgress)] or colors[1]
+		local finalCol = col1:Lerp(col2, indexProgress % 1) 
+
+		table.insert(newColors, ColorSequenceKeypoint.new(0, finalCol))
+		table.insert(newColors, ColorSequenceKeypoint.new(1, finalCol))
+	end
+
+	table.sort(newColors, function(a, b)
+		return a.Time < b.Time
+	end)
+	newColors[1]= ColorSequenceKeypoint.new(0, newColors[1].Value) 
+	newColors[#newColors]= ColorSequenceKeypoint.new(1, newColors[#newColors].Value) 
+
+	gradient.Color = ColorSequence.new(newColors)
+end
+
+return module

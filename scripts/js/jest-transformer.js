@@ -1,30 +1,52 @@
-// Jest transformer that converts Roblox-TS test files to Node.js compatible ones
+// Jest transformer that converts Roblox-TS files to Node.js compatible ones
 const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
 
-// Transform Roblox-TS test files to Node.js compatible Jest tests
+// Transform Roblox-TS files to Node.js compatible Jest tests
 function process(sourceText, sourcePath) {
-	// Guard: Only process test/spec files
-	if (!/\.test\.ts$|\.spec\.ts$|__tests__/.test(sourcePath)) {
+	// Only process TypeScript files
+	if (!/\.ts$/.test(sourcePath)) {
 		return {
 			code: sourceText,
 			map: null, // Source maps not needed for our use case
 		};
 	}
-	// Replace Roblox-TS Jest imports with standard Jest globals
-	let transformedSource = sourceText
-		.replace(/import\s+\{[^}]*\}\s+from\s+["']@rbxts\/jest-globals["'];?/g, "")
-		.replace(/from\s+["']@rbxts\/jest-globals["']/g, "")
-		.replace(/import.*@rbxts\/jest-globals.*/g, "");
 
-	// Add standard Jest globals at the top
-	transformedSource = `
+	// Check if this is a test file
+	const isTestFile = /\.test\.ts$|\.spec\.ts$|__tests__/.test(sourcePath);
+	
+	// Replace Roblox-TS specific imports and exports for non-test files
+	let transformedSource = sourceText;
+	
+	// Replace Roblox services with mock implementations
+	transformedSource = transformedSource
+		.replace(/import\s+\{[^}]*\}\s+from\s+["']@rbxts\/services["'];?/g, "")
+		.replace(/from\s+["']@rbxts\/services["']/g, "")
+		.replace(/import.*@rbxts\/services.*/g, "");
+
+	// Replace ProfileStore imports with mock
+	transformedSource = transformedSource
+		.replace(/import\s+\{[^}]*\}\s+from\s+["']@rbxts\/profilestore["'];?/g, "")
+		.replace(/from\s+["']@rbxts\/profilestore["']/g, "")
+		.replace(/import.*@rbxts\/profilestore.*/g, "");
+
+	// For test files, replace Jest imports and add globals
+	if (isTestFile) {
+		// Replace Roblox-TS Jest imports with standard Jest globals
+		transformedSource = transformedSource
+			.replace(/import\s+\{[^}]*\}\s+from\s+["']@rbxts\/jest-globals["'];?/g, "")
+			.replace(/from\s+["']@rbxts\/jest-globals["']/g, "")
+			.replace(/import.*@rbxts\/jest-globals.*/g, "");
+
+		// Add standard Jest globals at the top
+		transformedSource = `
 // Auto-generated Jest globals for extension compatibility
 const { describe, it, test, expect, beforeEach, afterEach, beforeAll, afterAll } = require('@jest/globals');
 
 ${transformedSource}
 `;
+	}
 
 	// Transform TypeScript to JavaScript
 	const result = ts.transpile(transformedSource, {

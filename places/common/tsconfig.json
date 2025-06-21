@@ -16,10 +16,10 @@
 		"strict": true,
 		"target": "ESNext",
 		"skipLibCheck": true,
-		"typeRoots": ["../../node_modules/@rbxts", "../../node_modules/@flamework"],
+		"typeRoots": ["node_modules/@rbxts", "../../node_modules/@rbxts", "../../node_modules/@flamework"],
 
 		// configurable
-		"rootDirs": ["src", "../common/src"],
+		"rootDirs": ["src", "../../old_common/src"],
 		"outDir": "out",
 		"baseUrl": "src",
 		"paths": {
@@ -28,15 +28,7 @@
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
 
-		"plugins": [
-			{ "transform": "rbxts-transformer-flamework" }
-		]
+		"plugins": [{ "transform": "rbxts-transformer-flamework" }]
 	},
-	"exclude": [
-		"node_modules/**",
-		"../../node_modules/**",
-		"out/**",
-		"include/**",
-		"tasks/**"
-	]
+	"exclude": ["node_modules/**", "../../node_modules/**", "out/**", "include/**", "tasks/**"]
 }

@@ -1,0 +1,38 @@
+{
+  "name": "Anime-Reborn",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Assets": {
+        "$path": "./assets"
+      },
+      "Types": {
+        "$path": "./types"
+      },
+      "Network": {
+        "$path": "../network"
+      },
+      "DevPackages": {
+        "$path": "../pkgs/dev/roblox_packages"
+      },
+      "Packages": {
+        "$path": "../pkgs/prod/roblox_packages"
+      },
+      "Project": {
+        "$path": "./src"
+      },
+      "Tests": {
+        "$path": "./tests"
+      },
+      "Registry": {
+        "$path": "./src/constants"
+      }
+    },
+    "ServerScriptService": {
+      "Packages": {
+        "$path": "../pkgs/prod/roblox_server_packages"
+      }
+    }
+  }
+}
