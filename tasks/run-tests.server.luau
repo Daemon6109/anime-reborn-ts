@@ -1,7 +1,6 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- TEST_PATTERN will be injected here by the Python script when filtering is needed
-local TEST_PATTERN = nil
 
 local runCLI = require(
 	ReplicatedStorage:FindFirstChild("rbxts_include")
@@ -12,145 +11,53 @@ local runCLI = require(
 ).runCLI
 
 local processServiceExists, ProcessService = pcall(function()
-	return game:GetService("ProcessService")
-end)
-
--- Define all the places to test with their correct folder structures
--- Note: Currently only testing Common place in cloud to avoid Jest runtime conflicts
--- Local Jest testing covers all places comprehensively
-local places = {
-	{
-		name = "Common",
-		folder = ReplicatedStorage:FindFirstChild("rbxts_include")
-			:FindFirstChild("node_modules")
-			:FindFirstChild("Project")
-			:FindFirstChild("Common"),
-		enabled = true, -- Always test Common place for cloud validation
-	},
-	-- Disabled for cloud testing due to Jest runtime conflicts
-	-- All places are still tested locally via npm run test:jest
-	--[[
-	{
-		name = "Gameplay",
-		folder = ReplicatedStorage:FindFirstChild("rbxts_include")
-			:FindFirstChild("node_modules")
-			:FindFirstChild("Project")
-			:FindFirstChild("Gameplay")
-			:FindFirstChild("gameplay")
-			:FindFirstChild("src"),
-		enabled = false,
-	},
-	{
-		name = "Lobby",
-		folder = ReplicatedStorage:FindFirstChild("rbxts_include")
-			:FindFirstChild("node_modules")
-			:FindFirstChild("Project")
-			:FindFirstChild("Lobby")
-			:FindFirstChild("lobby")
-			:FindFirstChild("src"),
-		enabled = false,
-	},
-	{
-		name = "AFK",
-		folder = ReplicatedStorage:FindFirstChild("rbxts_include")
-			:FindFirstChild("node_modules")
-			:FindFirstChild("Project")
-			:FindFirstChild("AFK")
-			:FindFirstChild("afk")
-			:FindFirstChild("src"),
-		enabled = false,
-	},
-	--]]
-}
-
-local totalFailedTests = 0
-local totalFailedTestSuites = 0
-local totalPassedTests = 0
-local totalTestSuites = 0
-
-print("🧪 Running cloud tests for enabled places...")
-print("💡 Note: Only Common place tested in cloud to avoid Jest runtime conflicts")
-print("🔍 All places are tested locally via 'npm run test:jest'")
-print("=" .. string.rep("=", 50))
-
--- Run tests for each enabled place
-for _, place in ipairs(places) do
-	if place.folder and (place.enabled == nil or place.enabled == true) then
-		print("\n🏢 Running tests for " .. place.name .. "...")
-		print("-" .. string.rep("-", 30))
-
-		-- Debug: Check if folder exists and what's in it
-		if place.folder then
-			print("📁 Found folder for " .. place.name .. ": " .. tostring(place.folder))
-
-			-- Build Jest options for this place (optimized for cloud execution)
-			local jestOptions = {
-				verbose = true,
-				ci = true, -- Non-interactive mode for cloud
-				forceExit = true, -- Force exit after completion
-				runInBand = true, -- Sequential execution to avoid conflicts
-				testTimeout = 15000, -- Reduced to 15 seconds per test
-				bail = 1, -- Exit on first failure to prevent hanging
-				maxWorkers = 1, -- Force single worker
-			}
-
-			-- Check if TEST_PATTERN was injected and add it to Jest options
-			if TEST_PATTERN then
-				print("🔍 Filtering tests with pattern: " .. TEST_PATTERN)
-				jestOptions.testNamePattern = TEST_PATTERN
-			end
-
-			print("⏳ Starting Jest execution for " .. place.name .. "...")
-			print("🔧 Jest options: " .. tostring(jestOptions))
-
-			-- Run tests for this specific place
-			local status, result = runCLI(place.folder, jestOptions, { place.folder }):awaitStatus()
-
-			print("✅ Jest execution completed for " .. place.name .. " with status: " .. status)
-
-			if status == "Rejected" then
-				print("❌ Error running tests for " .. place.name .. ": " .. tostring(result))
-				totalFailedTestSuites = totalFailedTestSuites + 1
-			elseif status == "Resolved" then
-				-- Accumulate results
-				if result.results then
-					totalFailedTests = totalFailedTests + (result.results.numFailedTests or 0)
-					totalFailedTestSuites = totalFailedTestSuites + (result.results.numFailedTestSuites or 0)
-					totalPassedTests = totalPassedTests + (result.results.numPassedTests or 0)
-					totalTestSuites = totalTestSuites + (result.results.numTestSuites or 0)
-
-					if result.results.numFailedTests > 0 or result.results.numFailedTestSuites > 0 then
-						print("❌ " .. place.name .. " tests failed!")
-					else
-						print("✅ " .. place.name .. " tests passed!")
-					end
-				end
-			end
-		else
-			print("❌ No folder found for " .. place.name)
-		end
-	else
-		print("⚠️  " .. place.name .. " folder not found, skipping...")
+-- Roblox does not have a ProcessService; use BindToClose for exit handling
+local function exitAsync(code)
+	-- In Roblox cloud, you can't exit the process, but you can use BindToClose for cleanup
+	if typeof(code) == "number" then
+		-- Optionally log or handle exit code
 	end
 end
+-- Build Jest options
+local jestOptions = {
+	verbose = false,
+	ci = false,
+}
 
-print("\n" .. "=" .. string.rep("=", 50))
-print("📊 Test Summary:")
-print("Total Test Suites: " .. totalTestSuites)
-print("Total Passed Tests: " .. totalPassedTests)
-print("Total Failed Tests: " .. totalFailedTests)
-print("Total Failed Test Suites: " .. totalFailedTestSuites)
+-- Check if TEST_PATTERN was injected and add it to Jest options
+if TEST_PATTERN then
+	print("🔍 Filtering tests with pattern: " .. TEST_PATTERN)
+	jestOptions.testNamePattern = TEST_PATTERN
+end
 
-if totalFailedTests == 0 and totalFailedTestSuites == 0 then
-	print("🎉 All tests passed!")
+local status, result = runCLI(
+	ReplicatedStorage:FindFirstChild("rbxts_include"):FindFirstChild("node_modules"):FindFirstChild("Project"):FindFirstChild("Common"),
+	jestOptions,
+	{ ReplicatedStorage:FindFirstChild("rbxts_include"):FindFirstChild("node_modules"):FindFirstChild("Project"):FindFirstChild("Common"), 
+	ReplicatedStorage:FindFirstChild("rbxts_include"):FindFirstChild("node_modules"):FindFirstChild("Project"):FindFirstChild("Gameplay"), 
+	ReplicatedStorage:FindFirstChild("rbxts_include"):FindFirstChild("node_modules"):FindFirstChild("Project"):FindFirstChild("Lobby"), 
+	ReplicatedStorage:FindFirstChild("rbxts_include"):FindFirstChild("node_modules"):FindFirstChild("Project"):FindFirstChild("AFK")  
+  }
+):awaitStatus()
+
+if status == "Rejected" then
+	print(result)
+end
+
+if status == "Resolved" and result.results.numFailedTestSuites == 0 and result.results.numFailedTests == 0 then
 	if processServiceExists then
 		ProcessService:ExitAsync(0)
 	end
-else
-	print("💥 Some tests failed!")
-	if processServiceExists then
-		ProcessService:ExitAsync(1)
-	end
 end
 
-return nil
+if processServiceExists then
+	ProcessService:ExitAsync(1)
+end
+
+return nilif totalFailedTests == 0 and totalFailedTestSuites == 0 then
+	print("🎉 All tests passed!")
+	exitAsync(0)
+else
+	print("💥 Some tests failed!")
+	exitAsync(1)
+end
