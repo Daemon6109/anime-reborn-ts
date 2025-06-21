@@ -16,7 +16,7 @@
 		"strict": true,
 		"target": "ESNext",
 		"skipLibCheck": true,
-		"typeRoots": ["node_modules/@rbxts", "../../node_modules/@rbxts"],
+		"typeRoots": ["node_modules/@rbxts", "../../node_modules/@rbxts", "../../node_modules/@flamework"],
 
 		// configurable
 		"rootDirs": ["src", "../../old_common/src"],
