@@ -5,6 +5,13 @@ const path = require("path");
 
 // Transform Roblox-TS test files to Node.js compatible Jest tests
 function process(sourceText, sourcePath) {
+	// Guard: Only process test/spec files
+	if (!/\.test\.ts$|\.spec\.ts$|__tests__/.test(sourcePath)) {
+		return {
+			code: sourceText,
+			map: null, // Source maps not needed for our use case
+		};
+	}
 	// Replace Roblox-TS Jest imports with standard Jest globals
 	let transformedSource = sourceText
 		.replace(/import\s+\{[^}]*\}\s+from\s+["']@rbxts\/jest-globals["'];?/g, "")
