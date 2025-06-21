@@ -185,14 +185,30 @@ def pollForTaskCompletion(api_key, path):
 
     logging.info("Waiting for task to finish...")
     poll_count = 0
-    max_polls = 120  # 6 minutes max (120 * 3 seconds)
+    
+    # Check if we're in CI environment (GitHub Actions sets CI=true)
+    is_ci = os.environ.get('CI', '').lower() == 'true'
+    
+    if is_ci:
+        max_polls = 200  # 10 minutes for CI (200 * 3 seconds)
+        print("[DEBUG] CI environment detected - using extended timeout (10 minutes)")
+    else:
+        max_polls = 120  # 6 minutes for local (120 * 3 seconds)
+        print("[DEBUG] Local environment - using standard timeout (6 minutes)")
 
     while True:
         poll_count += 1
         print(f"[DEBUG] pollForTaskCompletion: Poll attempt #{poll_count}/{max_polls}")
         
         if poll_count > max_polls:
-            print(f"[ERROR] Task polling timed out after {max_polls * 3} seconds")
+            timeout_minutes = (max_polls * 3) // 60
+            print(f"[ERROR] Task polling timed out after {timeout_minutes} minutes ({max_polls * 3} seconds)")
+            if is_ci:
+                print("[ERROR] This timeout often occurs in CI environments due to:")
+                print("[ERROR] - Network latency differences")
+                print("[ERROR] - Roblox Cloud API performance variations")
+                print("[ERROR] - Resource constraints in CI runners")
+                print("[ERROR] Consider checking Roblox API status or retrying the build")
             sys.exit(1)
         
         try:
@@ -216,7 +232,11 @@ def pollForTaskCompletion(api_key, path):
             sys.stderr.flush()
             # Print status every 30 seconds (10 polls)
             if poll_count % 10 == 0:
-                print(f"\n[DEBUG] Still polling... {poll_count * 3} seconds elapsed")
+                elapsed_minutes = (poll_count * 3) // 60
+                elapsed_seconds = (poll_count * 3) % 60
+                print(f"\n[DEBUG] Still polling... {elapsed_minutes}m {elapsed_seconds}s elapsed")
+                if is_ci and poll_count > 60:  # After 3 minutes in CI
+                    print(f"[DEBUG] CI: Long polling detected. Roblox Cloud API may be slow.")
             time.sleep(3)
 
 def getTaskLogs(api_key, task_path):

@@ -83,14 +83,14 @@ jobs:
                   gunzip docker-image.tar.gz
                   docker load < docker-image.tar
 
+            - name: Install dependencies
+              run: docker compose run --rm roblox-ts-dev npm ci
+
             - name: Fix file permissions for linting
               run: |
                   # Fix any permission issues that might prevent cleanup
                   sudo chown -R runner:docker . || true
                   sudo chmod -R 755 . || true
-
-            - name: Install dependencies
-              run: docker compose run --rm roblox-ts-dev npm ci
 
             - name: Run linting with auto-fix
               run: docker compose run --rm roblox-ts-dev npm run lint:fix
@@ -138,6 +138,7 @@ jobs:
               if: github.event_name == 'push'
               uses: codecov/codecov-action@v3
               with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
                   file: ./coverage/lcov.info
                   fail_ci_if_error: false
 
@@ -159,16 +160,17 @@ jobs:
                   gunzip docker-image.tar.gz
                   docker load < docker-image.tar
 
+            - name: Install dependencies
+              run: docker compose run --rm roblox-ts-dev npm ci
+
             - name: Fix file permissions for cloud tests
               run: |
                   # Fix any permission issues that might prevent cleanup
                   sudo chown -R runner:docker . || true
                   sudo chmod -R 755 . || true
 
-            - name: Install dependencies
-              run: docker compose run --rm roblox-ts-dev npm ci
-
             - name: Run comprehensive cloud tests
+              timeout-minutes: 15
               env:
                   ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
@@ -177,14 +179,17 @@ jobs:
                   if [ -n "$ROBLOX_API_KEY" ]; then
                       echo "🔑 API key found - running comprehensive cloud tests"
                       echo "🧪 Testing against real Roblox environment for maximum accuracy"
+                      echo "⏱️  Timeout set to 15 minutes to prevent CI hanging"
+                      echo "🔧 Python script has CI-aware extended timeout (10 minutes for polling)"
                       echo "Debug: Environment configuration:"
                       echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
                       echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
                       
-                      # Run cloud tests using our new test:shell command for maximum accuracy
-                      if docker compose run --rm \
+                      # Run cloud tests with timeout to prevent hanging
+                      echo "🚀 Starting cloud tests with timeout protection..."
+                      if timeout 900s docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
@@ -192,9 +197,18 @@ jobs:
                           echo "✅ All cloud tests passed!"
                           echo "🎉 Code is ready for real Roblox deployment"
                       else
-                          echo "❌ Cloud tests failed!"
-                          echo "🔍 Check test output above for details"
-                          exit 1
+                          EXIT_CODE=$?
+                          if [ $EXIT_CODE -eq 124 ]; then
+                              echo "⏰ Cloud tests timed out after 15 minutes"
+                              echo "🔍 This usually indicates Roblox Cloud API is slow or stuck"
+                              echo "💡 Tests work locally but CI environment may have network differences"
+                              echo "🔄 Consider running tests again or checking Roblox API status"
+                              exit 1
+                          else
+                              echo "❌ Cloud tests failed with exit code: $EXIT_CODE"
+                              echo "🔍 Check test output above for details"
+                              exit 1
+                          fi
                       fi
                   else
                       echo "⚠️  Roblox API secrets not configured - skipping cloud tests"
