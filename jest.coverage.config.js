@@ -6,6 +6,10 @@ const baseConfig = require('./jest.config.js');
 module.exports = {
   ...baseConfig,
   
+  // Force local execution for coverage (override cloud runner)
+  runner: undefined, // Use default Jest runner for local execution
+  setupFilesAfterEnv: ["<rootDir>/scripts/js/jest-setup-roblox-mocks.js"], // Use Roblox mocks
+  
   // Override coverage settings for targeted coverage collection
   collectCoverage: true,
   collectCoverageFrom: [

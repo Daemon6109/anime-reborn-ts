@@ -63,31 +63,21 @@ Due to Jest runtime global conflicts when running multiple places in the same Ro
 
 ### GitHub Actions Workflow
 
-The project uses a two-stage testing approach in CI/CD with Docker containers that include all necessary tools (rokit, rbxtsc, etc.):
+The project uses a single, efficient CI/CD job with Docker containers that include all necessary tools (rokit, rbxtsc, etc.):
 
-#### 1. Local Tests Job (`test-local`)
+#### Combined Test Job (`test`)
 
-- **Purpose**: Fast feedback and comprehensive validation
+- **Purpose**: Complete validation in a single job (efficient, no duplicate Docker builds)
 - **What it does**:
-  - Builds Docker environment with rokit and all tools
+  - Builds Docker environment with rokit and all tools (once)
   - Installs dependencies in Docker container
   - Linting with auto-fix (`npm run lint:fix`)
   - Build verification (`npm run build`)
-  - Local Jest execution (all places)
-  - Coverage collection and reporting
-- **Speed**: ~3-5 minutes (including Docker build)
-- **Scope**: All places tested with mocked Roblox APIs
-
-#### 2. Cloud Tests Job (`test-cloud`)
-
-- **Purpose**: Roblox environment validation
-- **What it does**:
-  - Builds Docker environment (runs after local tests pass)
-  - Uses `npm run test` (cloud execution)
-  - Tests in actual Roblox environment
-  - Only tests Common place (see limitations above)
-- **Speed**: ~7-12 minutes (including Docker build and cloud execution)
-- **Scope**: Common place with real Roblox APIs
+  - Local Jest execution with coverage (all places)
+  - Coverage reporting to Codecov
+  - Cloud tests in actual Roblox environment (Common place)
+- **Speed**: ~5-8 minutes (single Docker build, sequential execution)
+- **Scope**: All places locally + Common place in cloud
 
 #### Environment Variables Required
 
@@ -294,9 +284,9 @@ To mock a new Roblox API:
 
 ### CI/CD Performance
 
-- **Local tests job**: ~3-5 minutes (Docker build, lint, build, test, coverage)
-- **Cloud tests job**: ~7-12 minutes (Docker build, upload, execute)
-- **Total pipeline**: ~10-17 minutes for full validation
+- **Combined test job**: ~5-8 minutes (single Docker build, lint, build, local tests, coverage, cloud tests)
+- **Efficiency**: No duplicate Docker builds or redundant steps
+- **Total pipeline**: ~5-8 minutes for complete validation
 
 ## Future Improvements
 
