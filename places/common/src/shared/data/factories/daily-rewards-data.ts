@@ -8,7 +8,7 @@ export interface DailyRewardsData {
 
 export function createDailyRewardsData(): DailyRewardsData {
 	return {
-		LastClaimedDay: undefined,
+		LastClaimedDay: 0, // Changed from undefined to 0 to satisfy validation
 		CurrentStreak: 0,
 		CanClaim: true,
 		TotalClaimed: 0,

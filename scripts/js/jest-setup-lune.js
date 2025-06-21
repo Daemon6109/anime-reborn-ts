@@ -45,7 +45,7 @@ const path = require("path");
 // Lune Bridge Class
 class LuneBridge {
 	constructor() {
-		this.lunePath = "/home/node/.rokit/bin/lune";
+		this.lunePath = "lune"; // Rely on PATH to find the lune executable
 		this.bridgeScript = path.join(__dirname, "../lune/test-bridge-simple.luau");
 		this.processCache = new Map(); // Cache for reusing processes
 	}
