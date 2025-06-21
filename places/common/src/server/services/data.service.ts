@@ -451,7 +451,7 @@ export class DataService implements OnInit {
 		migrations.registerMigration(
 			4,
 			(data) => {
-				const newData = { ...data } as any; // Use any to handle potentially missing fields
+				const newData = { ...data } as Record<string, unknown>; // Use Record<string, unknown> to handle potentially missing fields
 				if (newData.BattlepassData) {
 					const bpData = newData.BattlepassData as Record<string, unknown>;
 					if (bpData.Level === undefined || (bpData.Level as number) < 0) {
@@ -485,7 +485,7 @@ export class DataService implements OnInit {
 		migrations.registerMigration(
 			5,
 			(data) => {
-				const newData = { ...data } as any; // Use any for flexibility
+				const newData = { ...data } as Record<string, unknown>; // Use Record<string, unknown> for flexibility
 				if (newData.AdventCalendarData) {
 					const acData = newData.AdventCalendarData as Record<string, unknown>;
 					if (acData.DayNumber === undefined) {
