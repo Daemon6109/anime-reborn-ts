@@ -4,7 +4,7 @@
 	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
 	"tree": {
 		"$className": "DataModel",
-				"ServerScriptService": {
+		"ServerScriptService": {
 			"$properties": {
 				"LoadStringEnabled": true
 			},
@@ -22,7 +22,7 @@
 					"@flamework": {
 						"$path": "node_modules/@flamework"
 					},
-							"@rbxts-js": {
+					"@rbxts-js": {
 						"$path": "node_modules/@rbxts-js"
 					},
 					"Project": {
@@ -30,19 +30,19 @@
 						"Common": {
 							"$path": "places/common/out"
 						},
-								"Gameplay": {
-									"$path": "places/gameplay/out"
-								},
-								"Lobby": {
-									"$path": "places/lobby/out"
-								},
-								"AFK": {
-									"$path": "places/afk/out"
-								}
+						"Gameplay": {
+							"$path": "places/gameplay/out/gameplay/src"
+						},
+						"Lobby": {
+							"$path": "places/lobby/out/lobby/src"
+						},
+						"AFK": {
+							"$path": "places/afk/out/afk/src"
+						}
 					}
 				}
 			}
-	},
+		},
 		"Workspace": {
 			"$className": "Workspace",
 			"$properties": {

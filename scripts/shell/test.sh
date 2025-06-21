@@ -40,45 +40,108 @@ echo "Uploading to Roblox..."
 
 # Initialize exit code variable
 PYTHON_EXIT_CODE=0
+OVERALL_EXIT_CODE=0
 
-# Run Jest once for all places using the root jest.config.js
+# Define the places to test
+PLACES=("Common" "Gameplay" "Lobby" "AFK")
+
+# Function to check if a place has test files
+check_place_has_tests() {
+    local place_name="$1"
+    local test_pattern="$2"
+
+    # Convert place name to lowercase for directory matching
+    local place_dir=$(echo "$place_name" | tr '[:upper:]' '[:lower:]')
+    local test_dir="places/$place_dir/src/tests"
+
+    # Check if test directory exists
+    if [ ! -d "$test_dir" ]; then
+        echo "⏭️  Skipping $place_name: no test directory found at $test_dir"
+        return 1
+    fi
+
+    # Check if there are any test files
+    local test_files=$(find "$test_dir" -name "*.spec.ts" -o -name "*.test.ts" 2>/dev/null | wc -l)
+    if [ "$test_files" -eq 0 ]; then
+        echo "⏭️  Skipping $place_name: no test files found in $test_dir"
+        return 1
+    fi
+
+    # If test pattern is specified, check if any test files match
+    if [ -n "$test_pattern" ]; then
+        local matching_files=$(find "$test_dir" -name "*.spec.ts" -o -name "*.test.ts" 2>/dev/null | xargs grep -l "$test_pattern" 2>/dev/null | wc -l)
+        if [ "$matching_files" -eq 0 ]; then
+            echo "⏭️  Skipping $place_name: no test files match pattern '$test_pattern'"
+            return 1
+        fi
+    fi
+
+    return 0
+}
+
+# Run Jest separately for each place to avoid runtime conflicts
 if [ -n "$TEST_PATTERN" ]; then
     echo "Running Jest with test pattern: $TEST_PATTERN"
-    echo "[DEBUG] About to run Python script with test pattern..."
-    if command -v python3 &>/dev/null; then
-        echo "[DEBUG] Using python3..."
-        python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN"
+    for PLACE in "${PLACES[@]}"; do
+        echo ""
+        echo "========================================"
+        echo "Checking $PLACE for tests matching pattern: $TEST_PATTERN"
+        echo "========================================"
+
+        # Check if this place has relevant tests
+        if ! check_place_has_tests "$PLACE" "$TEST_PATTERN"; then
+            continue
+        fi
+
+        echo "Running tests for $PLACE with pattern: $TEST_PATTERN"
+
+        if command -v python3 &>/dev/null; then
+            python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN" "$PLACE"
+        else
+            python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN" "$PLACE"
+        fi
+
         PYTHON_EXIT_CODE=$?
-        echo "[DEBUG] Python3 script completed with exit code: $PYTHON_EXIT_CODE"
-    else
-        echo "[DEBUG] Using python..."
-        python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN"
-        PYTHON_EXIT_CODE=$?
-        echo "[DEBUG] Python script completed with exit code: $PYTHON_EXIT_CODE"
-    fi
+        if [ $PYTHON_EXIT_CODE -ne 0 ]; then
+            echo "❌ Tests failed for $PLACE"
+            OVERALL_EXIT_CODE=$PYTHON_EXIT_CODE
+        else
+            echo "✅ Tests passed for $PLACE"
+        fi
+    done
 else
     echo "Running all Jest tests"
-    echo "[DEBUG] About to run Python script without test pattern..."
-    echo "[DEBUG] PATH: $PATH"
-    echo "[DEBUG] Which python3: $(which python3)"
-    echo "[DEBUG] Which python: $(which python)"
-    echo "[DEBUG] Python3 version: $(python3 --version 2>&1 || echo 'python3 not found')"
-    echo "[DEBUG] Python version: $(python --version 2>&1 || echo 'python not found')"
-    if command -v python3 &>/dev/null; then
-        echo "[DEBUG] Using python3..."
-        python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau
+    for PLACE in "${PLACES[@]}"; do
+        echo ""
+        echo "========================================"
+        echo "Checking $PLACE for tests"
+        echo "========================================"
+
+        # Check if this place has any tests
+        if ! check_place_has_tests "$PLACE" ""; then
+            continue
+        fi
+
+        echo "Running tests for $PLACE"
+
+        if command -v python3 &>/dev/null; then
+            python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "" "$PLACE"
+        else
+            python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "" "$PLACE"
+        fi
+
         PYTHON_EXIT_CODE=$?
-        echo "[DEBUG] Python3 script completed with exit code: $PYTHON_EXIT_CODE"
-    else
-        echo "[DEBUG] Using python..."
-        python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau
-        PYTHON_EXIT_CODE=$?
-        echo "[DEBUG] Python script completed with exit code: $PYTHON_EXIT_CODE"
-    fi
+        if [ $PYTHON_EXIT_CODE -ne 0 ]; then
+            echo "❌ Tests failed for $PLACE"
+            OVERALL_EXIT_CODE=$PYTHON_EXIT_CODE
+        else
+            echo "✅ Tests passed for $PLACE"
+        fi
+    done
 fi
 
 echo "Cleaning up..."
 
-# Exit with the same code that the Python script returned
-echo "Test script completed with exit code: $PYTHON_EXIT_CODE"
-exit $PYTHON_EXIT_CODE
+# Exit with the overall failure code if any tests failed
+echo "Test script completed with exit code: $OVERALL_EXIT_CODE"
+exit $OVERALL_EXIT_CODE

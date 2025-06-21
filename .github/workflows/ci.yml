@@ -2,12 +2,13 @@ name: CI/CD Pipeline
 
 on:
     push:
-        branches: [main, develop]
+        branches: [main]
     pull_request:
         branches: [main]
 
 jobs:
-    docker-ci:
+    # Build Docker image once for all jobs
+    build:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -15,47 +16,119 @@ jobs:
             - name: Build Docker development environment
               run: docker compose build roblox-ts-dev
 
-            - name: Run linting in Docker
+            - name: Save Docker image
+              run: docker save $(docker compose config --format json | jq -r '.services."roblox-ts-dev".image') | gzip > docker-image.tar.gz
+
+            - name: Upload Docker image artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: docker-image
+                  path: docker-image.tar.gz
+                  retention-days: 1
+
+    # Linting job
+    lint:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Download Docker image artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: docker-image
+
+            - name: Load Docker image
+              run: docker load < docker-image.tar.gz
+
+            - name: Install dependencies
+              run: docker compose run --rm roblox-ts-dev npm ci
+
+            - name: Run linting with auto-fix
               run: docker compose run --rm roblox-ts-dev npm run lint:fix
 
-            - name: Run cloud tests with proper signal handling
+    # Coverage testing job
+    coverage:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Download Docker image artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: docker-image
+
+            - name: Load Docker image
+              run: docker load < docker-image.tar.gz
+
+            - name: Install dependencies
+              run: docker compose run --rm roblox-ts-dev npm ci
+
+            - name: Run local tests with coverage
+              run: docker compose run --rm -v $(pwd)/coverage:/workspace/coverage roblox-ts-dev npm run test:coverage
+
+            - name: Upload coverage reports to Codecov
+              if: github.event_name == 'push'
+              uses: codecov/codecov-action@v3
+              with:
+                  file: ./coverage/lcov.info
+                  fail_ci_if_error: false
+
+    # Cloud testing job - comprehensive testing in real Roblox environment
+    cloud-tests:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Download Docker image artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: docker-image
+
+            - name: Load Docker image
+              run: docker load < docker-image.tar.gz
+
+            - name: Install dependencies
+              run: docker compose run --rm roblox-ts-dev npm ci
+
+            - name: Run comprehensive cloud tests
               env:
                   ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_TEST_PLACE_ID }}
               run: |
                   if [ -n "$ROBLOX_API_KEY" ]; then
-                      echo "🔑 API key found - running cloud tests with proper signal handling"
-                      echo "Debug: GitHub Actions environment variables:"
+                      echo "🔑 API key found - running comprehensive cloud tests"
+                      echo "🧪 Testing against real Roblox environment for maximum accuracy"
+                      echo "Debug: Environment configuration:"
                       echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
                       echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
-                      # Start container in detached mode first
-                      docker compose up -d roblox-ts-dev
                       
-                      # Run the test script inside the running container with proper signal handling
-                      if docker compose exec -T \
+                      # Run cloud tests using our new test:shell command for maximum accuracy
+                      if docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        -e CI=true \
-                        roblox-ts-dev bash -c './scripts/shell/test.sh'; then
-                          echo "✅ All tests passed!"
-                          TEST_EXIT_CODE=0
+                        roblox-ts-dev npm run test:shell; then
+                          echo "✅ All cloud tests passed!"
+                          echo "🎉 Code is ready for real Roblox deployment"
                       else
-                          echo "❌ Tests failed!"
-                          TEST_EXIT_CODE=1
+                          echo "❌ Cloud tests failed!"
+                          echo "🔍 Check test output above for details"
+                          exit 1
                       fi
-                      
-                      # Clean up container
-                      docker compose down
-                      
-                      # Exit with the test result
-                      exit $TEST_EXIT_CODE
                   else
                       echo "⚠️  Roblox API secrets not configured - skipping cloud tests"
-                      echo "💡 Configure ROBLOX_API_KEY secret and test environment variables to enable cloud testing"
-                      # Still validate test structure works
+                      echo "💡 Configure ROBLOX_API_KEY, ROBLOX_TEST_UNIVERSE_ID, and ROBLOX_TEST_PLACE_ID secrets to enable cloud testing"
+                      echo "🔧 For now, validating test structure and local Jest execution..."
+                      
+                      # Validate local test structure and Jest execution works
                       docker compose run --rm roblox-ts-dev npx jest --listTests
+                      docker compose run --rm roblox-ts-dev npm run test:jest
+                      
+                      echo "💡 Local tests passed, but cloud validation is recommended before deployment"
                   fi

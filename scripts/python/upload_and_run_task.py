@@ -165,7 +165,7 @@ def upload_place(binary_path, universe_id, place_id, do_publish=False):
         raise
 
 
-def run_luau_task(universe_id, place_id, place_version, script_file, test_pattern=None):
+def run_luau_task(universe_id, place_id, place_version, script_file, test_pattern=None, single_place=None):
     print("[DEBUG] Entering run_luau_task function")
     print("Executing Luau task")
     print(f"[DEBUG] Script file: {script_file}")
@@ -174,20 +174,34 @@ def run_luau_task(universe_id, place_id, place_version, script_file, test_patter
     script_contents = read_file(script_file).decode("utf8")    # If test pattern is provided, inject it into the script
     print(f"[DEBUG] Script contents length: {len(script_contents)} characters")
     
+    # Inject test pattern and/or single place into the script
+    lines = script_contents.split('\n')
+    
     if test_pattern:
         print(f"Test pattern: {test_pattern}")
-        # Insert test pattern variable at the beginning of the script (after the first line)
-        lines = script_contents.split('\n')
-        if len(lines) > 0:
-            # Insert after the first line (usually local ReplicatedStorage...)
-            pattern_injection = f'local TEST_PATTERN = "{test_pattern}"'
-            lines.insert(1, pattern_injection)
-            script_contents = '\n'.join(lines)
-            print(f"Injected TEST_PATTERN into script")
-            # Debug: print first few lines of modified script
-            modified_lines = script_contents.split('\n')[:5]
-            print("Modified script preview:")
-            for i, line in enumerate(modified_lines):
+        # Find the TEST_PATTERN line and replace it
+        for i, line in enumerate(lines):
+            if "local TEST_PATTERN = nil" in line:
+                lines[i] = f'local TEST_PATTERN = "{test_pattern}"'
+                break
+        print(f"Injected TEST_PATTERN into script")
+    
+    if single_place:
+        print(f"Single place: {single_place}")
+        # Find the SINGLE_PLACE line and replace it
+        for i, line in enumerate(lines):
+            if "local SINGLE_PLACE = nil" in line:
+                lines[i] = f'local SINGLE_PLACE = "{single_place}"'
+                break
+        print(f"Injected SINGLE_PLACE into script")
+    
+    script_contents = '\n'.join(lines)
+    
+    # Debug: print first few lines of modified script
+    if test_pattern or single_place:
+        modified_lines = script_contents.split('\n')[:10]
+        print("Modified script preview:")
+        for i, line in enumerate(modified_lines):
                 print(f"  {i+1}: {line}")
     else:
         print("No test pattern provided - running all tests")
@@ -248,14 +262,16 @@ if __name__ == "__main__":
     print(f"[DEBUG] Binary file: {binary_file}")
     print(f"[DEBUG] Script file: {script_file}")
     
-    # Get test pattern from command line argument if provided
-    test_pattern = sys.argv[3] if len(sys.argv) > 3 else None
+    # Get test pattern and single place from command line arguments if provided
+    test_pattern = sys.argv[3] if len(sys.argv) > 3 and sys.argv[3] else None
+    single_place = sys.argv[4] if len(sys.argv) > 4 and sys.argv[4] else None
     print(f"[DEBUG] Test pattern: {test_pattern}")
+    print(f"[DEBUG] Single place: {single_place}")
 
     print("[DEBUG] About to upload place...")
     place_version = upload_place(binary_file, universe_id, place_id)
     print(f"[DEBUG] Place uploaded, version: {place_version}")
     
     print("[DEBUG] About to run Luau task...")
-    run_luau_task(universe_id, place_id, place_version, script_file, test_pattern)
+    run_luau_task(universe_id, place_id, place_version, script_file, test_pattern, single_place)
     print("[DEBUG] Luau task completed successfully")
