@@ -28,13 +28,7 @@
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
 
-		"plugins": [
-			{ "transform": "rbxts-transformer-flamework" }
-		]
+		"plugins": [{ "transform": "rbxts-transformer-flamework" }]
 	},
-	"exclude": [
-		"out/**",
-		"include/**",
-		"tasks/**"
-	]
+	"exclude": ["out/**", "include/**", "tasks/**"]
 }
