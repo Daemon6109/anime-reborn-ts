@@ -120,7 +120,7 @@ export class DataService implements OnInit {
 
 		// Add all fields from template
 		for (const [key, templateValueInLoop] of pairs(templateTable)) { // Renamed to avoid conflict
-			const currentTemplateValue = templateTable[key]; // Get fresh value
+			const currentTemplateValue = templateValueInLoop; // Use value from iteration
 			const currentUserValue = userDataTable[key];
 
 			if (Array.isArray(currentTemplateValue)) {
