@@ -18,7 +18,12 @@ jobs:
 
             - name: Save Docker image
               run: |
-                  docker save roblox-ts-dev:latest | gzip > docker-image.tar.gz
+                  # Get the actual image name created by docker compose
+                  IMAGE_NAME=$(docker compose images -q roblox-ts-dev)
+                  echo "Image ID: $IMAGE_NAME"
+                  docker images
+                  echo "Saving image..."
+                  docker save $IMAGE_NAME | gzip > docker-image.tar.gz
                   ls -la docker-image.tar.gz
 
             - name: Upload Docker image artifact
