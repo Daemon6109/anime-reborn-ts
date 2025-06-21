@@ -25,14 +25,14 @@ jobs:
             - name: Build project
               run: docker compose run --rm roblox-ts-dev npm run build
 
-            - name: Run comprehensive tests (local coverage + cloud validation)
+            - name: Run comprehensive tests (local + cloud validation)
               env:
                   ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_TEST_PLACE_ID }}
               run: |
-                  echo "🧪 Running local tests with coverage..."
-                  docker compose run --rm -v $(pwd)/coverage:/workspace/coverage roblox-ts-dev npm run test:coverage
+                  echo "🧪 Running local tests..."
+                  docker compose run --rm roblox-ts-dev npm run test:jest
                   
                   if [ -n "$ROBLOX_API_KEY" ]; then
                       echo "🔑 API key found - running comprehensive cloud tests"
@@ -68,9 +68,9 @@ jobs:
                       echo "💡 Local tests passed, but cloud validation is recommended before deployment"
                   fi
 
-            - name: Upload coverage reports to Codecov
-              if: github.event_name == 'push'
-              uses: codecov/codecov-action@v3
-              with:
-                  file: ./coverage/lcov.info
-                  fail_ci_if_error: false
+            - name: Fix file permissions for git cleanup
+              if: always()
+              run: |
+                  # Fix ownership of files that may have been changed by Docker
+                  sudo chown -R runner:runner .git/ || true
+                  sudo chown -R runner:runner . || true
