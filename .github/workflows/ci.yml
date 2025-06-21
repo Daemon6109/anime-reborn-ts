@@ -2,7 +2,19 @@ name: CI/CD Pipeline
 
 on:
     push:
-        branches: [main, develop]
+        branches: [ma                      else
+                          TIMEOUT_EXIT_CODE=$?
+                          echo "$CLOUD_TEST_OUTPUT"
+                          if [ $TIMEOUT_EXIT_CODE -eq 124 ]; then
+                              echo "⏰ Cloud tests timed out after 10 minutes"
+                              echo "� This suggests Jest is hanging - check Jest configuration"
+                          else
+                              echo "�📊 Docker command failed with exit code: $TIMEOUT_EXIT_CODE"
+                          fi
+                          echo "❌ Cloud tests failed!"
+                          echo "🔍 Check test output above for details"
+                          exit 1
+                      fielop]
     pull_request:
         branches: [main]
 
@@ -43,17 +55,17 @@ jobs:
                       # Run cloud tests using our new test:shell command for maximum accuracy
                       echo "🚀 Starting cloud test execution..."
                       echo "📋 Running: docker compose run --rm roblox-ts-dev npm run test:shell"
+                      echo "⏰ Adding timeout to prevent hanging..."
                       set -o pipefail  # Ensure we capture failures properly
-                      docker compose run --rm \
+                      
+                      # Run the command with a timeout and capture output
+                      if CLOUD_TEST_OUTPUT=$(timeout 600 docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        roblox-ts-dev npm run test:shell 2>&1 | tee cloud_test_output.log
-                      
-                      DOCKER_EXIT_CODE=${PIPESTATUS[0]}
-                      echo "📊 Docker command exit code: $DOCKER_EXIT_CODE"
-                      
-                      if [ $DOCKER_EXIT_CODE -eq 0 ]; then
+                        roblox-ts-dev npm run test:shell 2>&1); then
+                          echo "$CLOUD_TEST_OUTPUT"
+                          echo "📊 Docker command completed successfully"
                           echo "✅ All cloud tests passed!"
                           echo "🎉 Code is ready for real Roblox deployment"
                       else
