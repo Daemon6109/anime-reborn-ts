@@ -22,6 +22,7 @@
 		"test:local-build": "npm run build && jest",
 		"test:shell": "./scripts/shell/test.sh",
 		"test:jest": "bash ./scripts/shell/jest-vscode-wrapper.sh",
+		"test:lune": "jest --config jest.lune.config.js",
 		"test:coverage": "jest --config jest.coverage.config.js",
 		"test:debug": "jest --runInBand",
 		"docker:build": "docker compose build || docker-compose build",
