@@ -18,13 +18,45 @@ jobs:
 
             - name: Save Docker image
               run: |
-                  # Get the actual image name created by docker compose
-                  IMAGE_NAME=$(docker compose images -q roblox-ts-dev)
-                  echo "Image ID: $IMAGE_NAME"
+                  # Alternative approach: use docker compose config to get service info
+                  echo "=== Docker images before save ==="
                   docker images
-                  echo "Saving image..."
-                  docker save $IMAGE_NAME | gzip > docker-image.tar.gz
+                  echo "=== Docker compose images ==="
+                  docker compose images
+
+                  # Try multiple approaches to get the image
+                  if IMAGE_NAME=$(docker compose images -q roblox-ts-dev 2>/dev/null) && [ -n "$IMAGE_NAME" ]; then
+                      echo "Using compose image ID: $IMAGE_NAME"
+                      docker save $IMAGE_NAME | gzip > docker-image.tar.gz
+                  else
+                      echo "Compose image query failed, trying alternative..."
+                      # Get project name and try standard naming
+                      PROJECT_NAME=$(basename $(pwd) | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g')
+                      IMAGE_NAME="${PROJECT_NAME}-roblox-ts-dev"
+                      echo "Trying image name: $IMAGE_NAME"
+                      if docker image inspect $IMAGE_NAME >/dev/null 2>&1; then
+                          docker save $IMAGE_NAME | gzip > docker-image.tar.gz
+                      else
+                          echo "Standard naming failed, listing all images..."
+                          docker images --format "table {{.Repository}}:{{.Tag}}\t{{.Size}}\t{{.ID}}"
+                          # Find any image with roblox-ts-dev in the name
+                          FALLBACK_IMAGE=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep roblox-ts-dev | head -1)
+                          if [ -n "$FALLBACK_IMAGE" ]; then
+                              echo "Using fallback image: $FALLBACK_IMAGE"
+                              docker save $FALLBACK_IMAGE | gzip > docker-image.tar.gz
+                          else
+                              echo "ERROR: No roblox-ts-dev image found!"
+                              exit 1
+                          fi
+                      fi
+                  fi
                   ls -la docker-image.tar.gz
+
+            - name: Fix file permissions
+              run: |
+                  # Fix any permission issues that might prevent cleanup
+                  sudo chown -R runner:docker . || true
+                  sudo chmod -R 755 . || true
 
             - name: Upload Docker image artifact
               uses: actions/upload-artifact@v4
