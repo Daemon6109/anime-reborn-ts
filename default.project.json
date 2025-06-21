@@ -1,17 +1,14 @@
 {
-	"name": "roblox-ts-game",
+	"name": "anime-reborn",
 	"emitLegacyScripts": false,
 	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
 	"tree": {
 		"$className": "DataModel",
-		"ServerScriptService": {
+				"ServerScriptService": {
 			"$properties": {
 				"LoadStringEnabled": true
 			},
-			"$className": "ServerScriptService",
-			"TS": {
-				"$path": "out/server"
-			}
+			"$className": "ServerScriptService"
 		},
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
@@ -22,23 +19,47 @@
 					"@rbxts": {
 						"$path": "node_modules/@rbxts"
 					},
-					"@rbxts-js": {
+					"@flamework": {
+						"$path": "node_modules/@flamework"
+					},
+							"@rbxts-js": {
 						"$path": "node_modules/@rbxts-js"
 					},
 					"Project": {
-						"$path": "out"
+						"$className": "Folder",
+						"Common": {
+							"$path": "places/common/out"
+						},
+								"Gameplay": {
+									"$path": "places/gameplay/out"
+								},
+								"Lobby": {
+									"$path": "places/lobby/out"
+								},
+								"AFK": {
+									"$path": "places/afk/out"
+								}
 					}
 				}
-			},
-			"TS_Shared": {
-				"$path": "out/shared"
-			},
-			"TS_Cl": {
-				"$path": "out/client"
+			}
+	},
+		"Workspace": {
+			"$className": "Workspace",
+			"$properties": {
+				"FilteringEnabled": true
 			}
 		},
-		"Workspace": {
-			"$className": "Workspace"
+		"HttpService": {
+			"$className": "HttpService",
+			"$properties": {
+				"HttpEnabled": true
+			}
+		},
+		"SoundService": {
+			"$className": "SoundService",
+			"$properties": {
+				"RespectFilteringEnabled": true
+			}
 		}
 	}
 }

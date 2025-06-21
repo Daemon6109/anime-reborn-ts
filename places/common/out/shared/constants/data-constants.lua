@@ -1,0 +1,14 @@
+-- Compiled with roblox-ts v2.3.0
+-- Data constants for the data service
+local DATA_CONSTANTS = {
+	DATASTORE_NAME = "Production1",
+	MAX_RECEIPT_HISTORY = 100,
+	DISPLAY_COUNT = 100,
+	UPDATE_INTERVAL = 60,
+	UPDATE_MAX_ATTEMPTS = 3,
+	UPDATE_RETRY_PAUSE_CONSTANT = 1,
+	UPDATE_RETRY_PAUSE_EXPONENT_BASE = 2,
+}
+return {
+	DATA_CONSTANTS = DATA_CONSTANTS,
+}

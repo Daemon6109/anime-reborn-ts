@@ -1,9 +1,6 @@
-# Node.js dependencies
-/node_modules
-
-# Build outputs
-/out
-/include
+node_modules
+out
+include
 *.tsbuildinfo
 build
 dist
@@ -60,9 +57,4 @@ ehthumbs.db
 *.tmp
 *.temp
 .cache/
-
-/node_modules
-/places/*/out
-/places/*/include
-/places/*/flamework.build
-*.tsbuildinfo
+flamework.build

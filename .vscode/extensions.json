@@ -8,6 +8,12 @@
 		"ms-python.python",
 		"kampfkarren.selene-vscode",
 		"johnnymorganz.stylua",
-		"johnnymorganz.luau-lsp"
+		"johnnymorganz.luau-lsp",
+		"Gruntfuggly.todo-tree",
+		"JohnnyMorganz.stylua",
+		"foxundermoon.shell-format",
+		"christian-kohler.npm-intellisense",
+		"DavidAnson.vscode-markdownlint",
+		"eamodio.gitlens"
 	]
 }

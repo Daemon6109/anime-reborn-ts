@@ -1,0 +1,42 @@
+{
+	"compilerOptions": {
+		// required
+		"allowSyntheticDefaultImports": true,
+		"downlevelIteration": true,
+		"jsx": "react",
+		"jsxFactory": "Roact.createElement",
+		"jsxFragmentFactory": "Roact.Fragment",
+		"module": "commonjs",
+		"moduleResolution": "Node",
+		"noLib": true,
+		"resolveJsonModule": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"moduleDetection": "force",
+		"strict": true,
+		"target": "ESNext",
+		"skipLibCheck": true,
+		"typeRoots": ["../../node_modules/@rbxts", "../../node_modules/@flamework"],
+
+		// configurable
+		"rootDirs": ["src", "../common/src"],
+		"outDir": "out",
+		"baseUrl": "src",
+		"paths": {
+			"common/*": ["./src/*"]
+		},
+		"incremental": true,
+		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
+
+		"plugins": [
+			{ "transform": "rbxts-transformer-flamework" }
+		]
+	},
+	"exclude": [
+		"node_modules/**",
+		"../../node_modules/**",
+		"out/**",
+		"include/**",
+		"tasks/**"
+	]
+}

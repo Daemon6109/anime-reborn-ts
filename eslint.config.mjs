@@ -15,6 +15,8 @@ export default tseslint.config(
             'out/**',
             'dist/**',
             'node_modules/**',
+            'include/**',
+            'tasks/**',
             'scripts/js/**',
             'jest.config.js',
             'eslint.config.js',

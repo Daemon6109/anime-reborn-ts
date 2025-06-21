@@ -5,9 +5,12 @@ const path = require("path");
 
 // Transform Roblox-TS test files to Node.js compatible Jest tests
 function process(sourceText, sourcePath) {
-	// If this is not a test file, return as-is
+	// If this is not a test file, return as-is (but still as an object with code property)
 	if (!sourcePath.includes("test") && !sourcePath.includes("spec")) {
-		return sourceText;
+		return {
+			code: sourceText,
+			map: null,
+		};
 	}
 
 	// Replace Roblox-TS Jest imports with standard Jest globals
