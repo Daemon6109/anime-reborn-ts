@@ -63,28 +63,30 @@ Due to Jest runtime global conflicts when running multiple places in the same Ro
 
 ### GitHub Actions Workflow
 
-The project uses a two-stage testing approach in CI/CD:
+The project uses a two-stage testing approach in CI/CD with Docker containers that include all necessary tools (rokit, rbxtsc, etc.):
 
 #### 1. Local Tests Job (`test-local`)
 
 - **Purpose**: Fast feedback and comprehensive validation
 - **What it does**:
+  - Builds Docker environment with rokit and all tools
+  - Installs dependencies in Docker container
   - Linting with auto-fix (`npm run lint:fix`)
   - Build verification (`npm run build`)
   - Local Jest execution (all places)
   - Coverage collection and reporting
-- **Speed**: ~2-3 minutes
+- **Speed**: ~3-5 minutes (including Docker build)
 - **Scope**: All places tested with mocked Roblox APIs
 
 #### 2. Cloud Tests Job (`test-cloud`)
 
 - **Purpose**: Roblox environment validation
 - **What it does**:
-  - Runs after local tests pass
+  - Builds Docker environment (runs after local tests pass)
   - Uses `npm run test` (cloud execution)
   - Tests in actual Roblox environment
   - Only tests Common place (see limitations above)
-- **Speed**: ~5-10 minutes
+- **Speed**: ~7-12 minutes (including Docker build and cloud execution)
 - **Scope**: Common place with real Roblox APIs
 
 #### Environment Variables Required
@@ -292,9 +294,9 @@ To mock a new Roblox API:
 
 ### CI/CD Performance
 
-- **Local tests job**: ~2-3 minutes (lint, build, test, coverage)
-- **Cloud tests job**: ~5-10 minutes (build, upload, execute)
-- **Total pipeline**: ~7-13 minutes for full validation
+- **Local tests job**: ~3-5 minutes (Docker build, lint, build, test, coverage)
+- **Cloud tests job**: ~7-12 minutes (Docker build, upload, execute)
+- **Total pipeline**: ~10-17 minutes for full validation
 
 ## Future Improvements
 
