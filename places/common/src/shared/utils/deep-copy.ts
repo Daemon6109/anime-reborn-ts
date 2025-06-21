@@ -11,9 +11,9 @@ export function deepCopy<T>(obj: T): T {
 	// Check if the object is actually an array (Lua array: integer keys starting from 1)
 	if (objType === "table" && isArray(obj)) {
 		const arrCopy = [] as unknown[]; // Initialize as an array
-		for (const [index, item] of ipairs(obj as unknown[])) {
-			// Iterate array elements
-			arrCopy[index - 1] = deepCopy(item); // Push deep copied elements (Lua arrays are 1-indexed)
+		for (const [index, item] of pairs(obj as Record<number, unknown>)) {
+			// Iterate array elements using pairs instead of ipairs
+			arrCopy[(index as number) - 1] = deepCopy(item); // Push deep copied elements (Lua arrays are 1-indexed)
 		}
 		return arrCopy as T;
 	} else {
@@ -32,7 +32,7 @@ function isArray(value: unknown): value is unknown[] {
 	if (typeOf(value) !== "table") return false;
 	let i = 1;
 	for (const _ of pairs(value as object)) {
-		if (!(value as Record<number, unknown>)[i]) {
+		if ((value as Record<number, unknown>)[i] === undefined) {
 			return false;
 		}
 		i++;

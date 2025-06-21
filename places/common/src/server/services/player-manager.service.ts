@@ -29,13 +29,13 @@ export class PlayerManagerService implements OnStart {
 		try {
 			// Open the player's data document
 			const success = await this.dataService.openDocument(player);
-			
+
 			if (success) {
 				print(`Successfully loaded data for ${player.DisplayName}`);
-				
+
 				// Get the player's data
 				const playerData = await this.dataService.getCache(player);
-				
+
 				if (playerData) {
 					print(`Player level: ${playerData.Level}`);
 					print(`Player XP: ${playerData.XP}`);
@@ -51,7 +51,7 @@ export class PlayerManagerService implements OnStart {
 
 	private handlePlayerLeaving(player: Player): void {
 		print(`${player.DisplayName} is leaving...`);
-		
+
 		// Close the player's data document
 		this.dataService.closeDocument(player);
 	}
@@ -62,11 +62,11 @@ export class PlayerManagerService implements OnStart {
 	public async givePlayerXP(player: Player, amount: number): Promise<void> {
 		try {
 			const playerData = await this.dataService.getCache(player);
-			
+
 			if (playerData) {
 				// Update XP
 				playerData.XP += amount;
-				
+
 				// Level up logic (example)
 				const xpNeededForNextLevel = playerData.Level * 100;
 				if (playerData.XP >= xpNeededForNextLevel) {
@@ -89,19 +89,19 @@ export class PlayerManagerService implements OnStart {
 	public async claimDailyReward(player: Player): Promise<boolean> {
 		try {
 			const playerData = await this.dataService.getCache(player);
-			
+
 			if (playerData && playerData.DailyRewardsData.CanClaim) {
 				const currentDay = math.floor(tick() / 86400); // Current day number
 				const lastClaimedDay = playerData.DailyRewardsData.LastClaimedDay;
 
 				// Check if it's a new day
-				if (!lastClaimedDay || currentDay > lastClaimedDay) {
+				if (lastClaimedDay === undefined || currentDay > lastClaimedDay) {
 					// Update daily rewards data
 					playerData.DailyRewardsData.LastClaimedDay = currentDay;
 					playerData.DailyRewardsData.TotalClaimed += 1;
 
 					// Update streak
-					if (lastClaimedDay && currentDay === lastClaimedDay + 1) {
+					if (lastClaimedDay !== undefined && currentDay === lastClaimedDay + 1) {
 						playerData.DailyRewardsData.CurrentStreak += 1;
 					} else {
 						playerData.DailyRewardsData.CurrentStreak = 1;
@@ -113,7 +113,9 @@ export class PlayerManagerService implements OnStart {
 					// Save the data
 					this.dataService.setCache(player, playerData);
 
-					print(`${player.DisplayName} claimed daily reward! Streak: ${playerData.DailyRewardsData.CurrentStreak}`);
+					print(
+						`${player.DisplayName} claimed daily reward! Streak: ${playerData.DailyRewardsData.CurrentStreak}`,
+					);
 					return true;
 				}
 			}
