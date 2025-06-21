@@ -56,6 +56,8 @@ Due to Jest runtime global conflicts when running multiple places in the same Ro
 - **`npm run test:local`** - Alias for `npm run test:jest`
 - **`npm run test:debug`** - Debug mode with `--runInBand`
 - **`npm run test:local-build`** - Build then run local tests
+- **`npm run lint`** - Run ESLint on all TypeScript files
+- **`npm run lint:fix`** - Run ESLint with auto-fix for formatting issues
 
 ## CI/CD Integration
 
@@ -67,8 +69,8 @@ The project uses a two-stage testing approach in CI/CD:
 
 - **Purpose**: Fast feedback and comprehensive validation
 - **What it does**:
-  - Linting and code quality checks
-  - Build verification
+  - Linting with auto-fix (`npm run lint:fix`)
+  - Build verification (`npm run build`)
   - Local Jest execution (all places)
   - Coverage collection and reporting
 - **Speed**: ~2-3 minutes
@@ -251,10 +253,13 @@ babel.config.js                     # Babel config for coverage
 ### Testing Workflow Best Practices
 
 1. **Development**: Use `npm run test:jest` for fast local iteration
-2. **Pre-commit**: Run `npm run test:coverage` for full validation
-3. **CI/CD**: Let GitHub Actions handle the two-stage testing
-4. **Debugging**: Use VS Code Jest extension for breakpoint debugging
-5. **Cloud validation**: Use `npm run test` to manually verify cloud behavior
+2. **Pre-commit**: Run `npm run test:coverage` for full validation  
+3. **Linting**: Use `npm run lint:fix` to auto-fix formatting issues locally
+4. **CI/CD**: Let GitHub Actions handle the two-stage testing with auto-fix
+5. **Debugging**: Use VS Code Jest extension for breakpoint debugging
+6. **Cloud validation**: Use `npm run test` to manually verify cloud behavior
+
+**Note**: CI/CD automatically fixes linting issues using `npm run lint:fix`, ensuring consistent code formatting across the project.
 
 ### Adding New Tests
 

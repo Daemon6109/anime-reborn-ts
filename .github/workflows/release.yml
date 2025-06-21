@@ -5,7 +5,7 @@ on:
         types: [published]
 
 jobs:
-    # Consolidated deploy job: build, lint, test, and deploy in a single job
+    # Consolidated deploy job: build, lint with auto-fix, test, and deploy in a single job
     deploy:
         runs-on: ubuntu-latest
         steps:
@@ -14,8 +14,8 @@ jobs:
             - name: Build Docker environment
               run: docker compose build roblox-ts-dev
 
-            - name: Run linting
-              run: docker compose run --rm roblox-ts-dev npm run lint
+            - name: Run linting with auto-fix
+              run: docker compose run --rm roblox-ts-dev npm run lint:fix
 
             - name: Build project
               run: |

@@ -30,11 +30,11 @@ describe("Additional tests", () => {
 		const isReady = true;
 		const hasPermission = true;
 		const andResult = isReady && hasPermission;
-		
+
 		const hasError = false;
 		const hasBackup = true;
 		const orResult = hasError || hasBackup;
-		
+
 		expect(andResult).toBe(true);
 		expect(orResult).toBe(true);
 	});

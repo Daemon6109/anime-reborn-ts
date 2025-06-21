@@ -33,7 +33,8 @@
 		"docker:logs": "docker compose logs -f roblox-ts-dev || docker-compose logs -f roblox-ts-dev",
 		"docker:down": "docker compose down || docker-compose down",
 		"docker:clean": "(docker compose down -v && docker system prune -f) || (docker-compose down -v && docker system prune -f)",
-		"lint": "eslint src/"
+		"lint": "eslint places/*/src/**/*.ts",
+		"lint:fix": "eslint places/*/src/**/*.ts --fix"
 	},
 	"keywords": [],
 	"author": "",
