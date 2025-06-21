@@ -57,4 +57,20 @@ module.exports = {
 
 	// Setup file to mock Roblox environment for Node.js when using VS Code
 	...(isVSCodeJest ? { setupFilesAfterEnv: ["<rootDir>/scripts/js/jest-setup-roblox-mocks.js"] } : {}),
+
+	// modulePaths: ["<rootDir>/places/common/src"], // Replaced by moduleNameMapper
+	moduleNameMapper: {
+		"^server/(.*)$": "<rootDir>/places/common/src/server/$1",
+		"^common/(.*)$": "<rootDir>/places/common/src/$1",
+		// Add a mapping for shared if needed, e.g., from places/common/src/shared
+		"^shared/(.*)$": "<rootDir>/places/common/src/shared/$1",
+		// Mock @flamework/core itself
+		"^@flamework/core$": "<rootDir>/scripts/js/jest-flamework-mock.js",
+		// Mock @rbxts/services
+		"^@rbxts/services$": "<rootDir>/scripts/js/jest-rbxts-services-mock.js",
+		// Mock @rbxts/profile-store
+		"^@rbxts/profile-store$": "<rootDir>/scripts/js/jest-profile-store-mock.js",
+		// Keep .lua mock for any other direct .lua imports if they occur
+		"\\.lua$": "<rootDir>/scripts/js/jest-empty-mock.js",
+	},
 };

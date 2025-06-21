@@ -119,19 +119,34 @@ export class DataService implements OnInit {
 		const userDataTable = userData as Record<string, unknown>;
 
 		// Add all fields from template
-		for (const [key, templateValue] of pairs(templateTable)) {
-			const userValue = userDataTable[key];
-			if (typeOf(templateValue) === "table") {
-				result[key] = this.deepMergeWithTemplate(userValue, templateValue);
+		for (const [key, templateValueInLoop] of pairs(templateTable)) { // Renamed to avoid conflict
+			const currentTemplateValue = templateValueInLoop; // Use value from iteration
+			const currentUserValue = userDataTable[key];
+
+			if (Array.isArray(currentTemplateValue)) {
+				// If template field is an array, result should also be an array.
+				// User's array takes precedence if it's also an array. Otherwise, use template's array.
+				result[key] = Array.isArray(currentUserValue) ? deepCopy(currentUserValue) : deepCopy(currentTemplateValue);
+			} else if (typeOf(currentTemplateValue) === "table") {
+				// Template field is an object. User's value should also be an object.
+				if (typeOf(currentUserValue) === "table" && !Array.isArray(currentUserValue)) {
+					result[key] = this.deepMergeWithTemplate(currentUserValue, currentTemplateValue);
+				} else {
+					// User value is not a compatible object (e.g., it's primitive, array, or undefined).
+					// Default to template's object structure.
+					result[key] = deepCopy(currentTemplateValue);
+				}
 			} else {
-				result[key] = userValue !== undefined ? userValue : templateValue;
+				// Template field is a primitive. Use user's value if defined, else template's.
+				result[key] = currentUserValue !== undefined ? currentUserValue : currentTemplateValue;
 			}
 		}
 
-		// Add extra fields from userData
+		// Add extra fields from userData (fields not present in the template)
 		for (const [key, userValue] of pairs(userDataTable)) {
 			if (templateTable[key] === undefined) {
-				result[key] = typeOf(userValue) === "table" ? deepCopy(userValue) : userValue;
+				// Only add if it's not in template. If it's a table, deep copy it.
+				result[key] = (typeOf(userValue) === "table") ? deepCopy(userValue) : userValue;
 			}
 		}
 
