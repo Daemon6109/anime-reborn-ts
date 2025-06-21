@@ -18,35 +18,41 @@ jobs:
             - name: Run linting in Docker
               run: docker compose run --rm roblox-ts-dev npm run lint:fix
 
-            - name: Build project in Docker
-              run: docker compose run --rm roblox-ts-dev npm run build
-
-            - name: Run cloud tests in Docker
+            - name: Run cloud tests with proper signal handling
               env:
                   ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_TEST_PLACE_ID }}
               run: |
                   if [ -n "$ROBLOX_API_KEY" ]; then
-                      echo "🔑 API key found - running cloud tests in Docker"
+                      echo "🔑 API key found - running cloud tests with proper signal handling"
                       echo "Debug: GitHub Actions environment variables:"
                       echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
                       echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
-                      # Run shell script directly to get proper exit codes
-                      if docker compose run --rm \
+                      # Start container in detached mode first
+                      docker compose up -d roblox-ts-dev
+                      
+                      # Run the test script inside the running container with proper signal handling
+                      if docker compose exec -T \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
                         -e CI=true \
-                        roblox-ts-dev ./scripts/shell/test.sh; then
+                        roblox-ts-dev bash -c './scripts/shell/test.sh'; then
                           echo "✅ All tests passed!"
-                          exit 0
+                          TEST_EXIT_CODE=0
                       else
                           echo "❌ Tests failed!"
-                          exit 1
+                          TEST_EXIT_CODE=1
                       fi
+                      
+                      # Clean up container
+                      docker compose down
+                      
+                      # Exit with the test result
+                      exit $TEST_EXIT_CODE
                   else
                       echo "⚠️  Roblox API secrets not configured - skipping cloud tests"
                       echo "💡 Configure ROBLOX_API_KEY secret and test environment variables to enable cloud testing"
