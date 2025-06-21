@@ -39,6 +39,10 @@ services:
         environment:
             - NODE_ENV=test
             - CI=true
+            - ROBLOX_COOKIE=${ROBLOX_COOKIE}
+            - ROBLOX_PLACE_ID=${ROBLOX_PLACE_ID}
+            - ROBLOX_API_KEY=${ROBLOX_API_KEY}
+            - ROBLOX_UNIVERSE_ID=${ROBLOX_UNIVERSE_ID}
         command: npm run test
         networks:
             - roblox-dev

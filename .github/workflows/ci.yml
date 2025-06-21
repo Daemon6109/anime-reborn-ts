@@ -1,22 +1,10 @@
-name: CI/CD Pipeline
+name: CI
 
 on:
-    push:
-        branches: [ma                      else
-                          TIMEOUT_EXIT_CODE=$?
-                          echo "$CLOUD_TEST_OUTPUT"
-                          if [ $TIMEOUT_EXIT_CODE -eq 124 ]; then
-                              echo "⏰ Cloud tests timed out after 10 minutes"
-                              echo "� This suggests Jest is hanging - check Jest configuration"
-                          else
-                              echo "�📊 Docker command failed with exit code: $TIMEOUT_EXIT_CODE"
-                          fi
-                          echo "❌ Cloud tests failed!"
-                          echo "🔍 Check test output above for details"
-                          exit 1
-                      fielop]
-    pull_request:
-        branches: [main]
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
 
 jobs:
     # Combined testing job - local tests with coverage + cloud validation
