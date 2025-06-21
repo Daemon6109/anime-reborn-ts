@@ -1,0 +1,19 @@
+local Item = {}
+
+Item.configuration = {
+	TrueName = script.Name :: string,
+	DisplayName = "Oda Blade" :: string,
+	Description = "Used to evolve Oda!" :: string,
+	ViewportCFrame = CFrame.new(0.4, 0.25, -4) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(90)) :: CFrame,
+	PreviewViewport = CFrame.new(0, -1, -6) * CFrame.Angles(math.rad(90), math.rad(0), math.rad(90)) :: CFrame,
+	Rarity = "Mythical" :: string,
+	Usable = false :: boolean,
+	Sort = { "Misc" },
+}
+
+local Tree = require("@pkgs/tree")
+Item.misc = {
+	Model = Tree.Find(game:GetService("ReplicatedStorage").Assets.items, script.Name, "Model") :: Model,
+}
+
+return Item

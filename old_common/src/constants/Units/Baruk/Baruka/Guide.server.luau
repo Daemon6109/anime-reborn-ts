@@ -1,0 +1,1 @@
+-- Put the Rig/Model called Baruka and BarukaPos in workspace and put the local script "Baruka" in Replicatedfirst

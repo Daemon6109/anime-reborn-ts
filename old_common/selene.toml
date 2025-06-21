@@ -1,0 +1,7 @@
+std = "selene_definitions"
+
+[lints]
+unused_variable = "allow"
+mixed_table = "allow"
+incorrect_standard_library_use = "allow"
+unused_import = "allow"
