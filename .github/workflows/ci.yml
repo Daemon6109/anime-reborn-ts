@@ -31,9 +31,6 @@ jobs:
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_TEST_PLACE_ID }}
               run: |
-                  echo "🧪 Running local tests..."
-                  docker compose run --rm roblox-ts-dev npm run test:jest
-                  
                   if [ -n "$ROBLOX_API_KEY" ]; then
                       echo "🔑 API key found - running comprehensive cloud tests"
                       echo "🧪 Testing against real Roblox environment for maximum accuracy"

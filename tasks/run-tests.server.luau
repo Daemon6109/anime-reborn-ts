@@ -79,10 +79,14 @@ for _, place in ipairs(places) do
 		print("\n🏢 Running tests for " .. place.name .. "...")
 		print("-" .. string.rep("-", 30))
 
-		-- Build Jest options for this place
+		-- Build Jest options for this place (optimized for cloud execution)
 		local jestOptions = {
 			verbose = true,
-			ci = false,
+			ci = true, -- Non-interactive mode for cloud
+			forceExit = true, -- Force exit after completion
+			runInBand = true, -- Sequential execution to avoid conflicts
+			testTimeout = 30000, -- 30 second timeout per test
+			bail = 1, -- Exit on first failure to prevent hanging
 		}
 
 		-- Check if TEST_PATTERN was injected and add it to Jest options
