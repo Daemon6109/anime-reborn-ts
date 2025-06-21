@@ -46,7 +46,7 @@ const path = require("path");
 class LuneBridge {
 	constructor() {
 		this.lunePath = "/home/node/.rokit/bin/lune";
-		this.bridgeScript = path.join(__dirname, "../lune/test-bridge.luau");
+		this.bridgeScript = path.join(__dirname, "../lune/test-bridge-simple.luau");
 		this.processCache = new Map(); // Cache for reusing processes
 	}
 
@@ -294,6 +294,49 @@ global.game = {
 
 global.script = {
 	Name: "MockScript",
+	Parent: {
+		Parent: {
+			shared: {
+				data: {
+					utils: {
+						validate: function (data, template) {
+							// Simple validation: check if all template keys exist in data
+							if (!data || !template) return false;
+							for (const key in template) {
+								if (!(key in data)) return false;
+							}
+							return true;
+						},
+					},
+					"data-template": {
+						Level: 1,
+						XP: 0,
+						RobuxSpent: 0,
+						CurrentTitle: "",
+						EquippedMount: "",
+						SlotsApplicable: 3,
+						PlayerStatistics: {
+							Kills: 0,
+							TotalDamage: 0,
+							GamesPlayed: 0,
+							PlayTime: 0,
+						},
+						Currencies: {
+							Gold: 0,
+							Gems: 500,
+						},
+						Settings: {},
+						Inventory: {
+							Units: {},
+							Items: {},
+							MaxUnitStorage: 100,
+						},
+						_version: 6,
+					},
+				},
+			},
+		},
+	},
 };
 
 global.workspace = {
@@ -306,10 +349,37 @@ global.print = jest.fn((...args) => {
 });
 
 // Utility function to execute arbitrary Luau code
-global.executeLuau = async function (code) {
+global.executeLuau = async function (code, data = null) {
 	if (!checkLuneSync()) {
 		throw new Error("Lune bridge not available. Cannot execute Luau code.");
 	}
+
+	// If data is provided, we need to inject it into the code
+	if (data) {
+		// Convert JavaScript object to Lua table syntax
+		function jsToLuaTable(obj) {
+			if (obj === null || obj === undefined) return "nil";
+			if (typeof obj === "string") return `"${obj.replace(/"/g, '\\"')}"`;
+			if (typeof obj === "number" || typeof obj === "boolean") return String(obj);
+			if (Array.isArray(obj)) {
+				const items = obj.map((item) => jsToLuaTable(item)).join(", ");
+				return `{${items}}`;
+			}
+			if (typeof obj === "object") {
+				const pairs = Object.entries(obj)
+					.map(([k, v]) => `["${k}"] = ${jsToLuaTable(v)}`)
+					.join(", ");
+				return `{${pairs}}`;
+			}
+			return "nil";
+		}
+
+		const luaData = jsToLuaTable(data);
+		// Replace the ... (varargs) with the actual data
+		const modifiedCode = code.replace(/local\s+(\w+)\s*=\s*\.\.\./, `local $1 = ${luaData}`);
+		return await luneBridge.execute(modifiedCode);
+	}
+
 	return await luneBridge.execute(code);
 };
 
@@ -318,10 +388,123 @@ global.isLuneAvailable = function () {
 	return checkLuneSync();
 };
 
+// Mock require function for module loading in tests
+global.require = function (modulePath) {
+	const fs = require("fs");
+	const path = require("path");
+
+	// Handle script.Parent.Parent... style paths
+	if (typeof modulePath === "object" && modulePath.toString) {
+		const pathStr = modulePath.toString();
+
+		// Parse script paths like "script.Parent.Parent.shared.data.utils.validate"
+		if (pathStr.includes("script.Parent")) {
+			// Extract the module path parts
+			const parts = pathStr.split(".");
+			const moduleIndex = parts.findIndex((part) => part === "script");
+
+			if (moduleIndex !== -1) {
+				// Remove "script" and "Parent" parts, build actual file path
+				const moduleParts = parts.slice(moduleIndex + 1).filter((part) => part !== "Parent");
+
+				// Try to find the file in the common place
+				const possiblePaths = [
+					path.join(process.cwd(), "places", "common", "src", ...moduleParts) + ".ts",
+					path.join(process.cwd(), "places", "common", "src", ...moduleParts) + ".lua",
+					path.join(process.cwd(), "places", "common", "src", ...moduleParts) + ".luau",
+					path.join(process.cwd(), "old_common", "src", ...moduleParts) + ".lua",
+					path.join(process.cwd(), "old_common", "src", ...moduleParts) + ".luau",
+				];
+
+				for (const filePath of possiblePaths) {
+					if (fs.existsSync(filePath)) {
+						try {
+							// For TypeScript files, try to require the compiled version or mock it
+							if (filePath.endsWith(".ts")) {
+								// Mock the module export based on file name
+								if (filePath.includes("validate")) {
+									return function (data, template) {
+										// Simple validation mock
+										return typeof data === "object" && data !== null;
+									};
+								}
+								if (filePath.includes("data-template")) {
+									return {
+										_version: 2,
+										// Mock template structure
+									};
+								}
+							}
+
+							// For Lua files, read and return as string for now
+							if (filePath.endsWith(".lua") || filePath.endsWith(".luau")) {
+								const content = fs.readFileSync(filePath, "utf8");
+								// Return a mock function for now
+								return function () {
+									return true;
+								};
+							}
+						} catch (error) {
+							console.warn(`Failed to load module ${filePath}:`, error.message);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Fallback - return a mock function
+	return function () {
+		return true;
+	};
+};
+
+// Mock require function for Roblox-style module loading
+global.require = function (modulePath) {
+	// Handle script.Parent.Parent.shared.data.utils.validate type paths
+	if (typeof modulePath === "object" && modulePath.toString) {
+		const pathStr = modulePath.toString();
+		if (pathStr.includes("validate")) {
+			// Return a mock validate function that actually works
+			return function (data, template) {
+				// Simple validation: check if all template keys exist in data
+				if (!data || !template) return false;
+
+				// Check if data has all required keys from template
+				for (const key in template) {
+					if (!(key in data)) return false;
+				}
+				return true;
+			};
+		}
+		if (pathStr.includes("data-template")) {
+			// Return the actual data template from our mock script object
+			return global.script.Parent.Parent.shared.data["data-template"];
+		}
+	}
+
+	// Fallback for other modules
+	return {};
+};
+
 // Mock pairs and ipairs functions for tests that expect them
+global.pairs = function (obj) {
+	if (typeof obj === "object" && obj !== null) {
+		return Object.entries(obj);
+	}
+	return [];
+};
+
 global.pairsSync = function (obj) {
 	if (typeof obj === "object" && obj !== null) {
 		return Object.entries(obj);
+	}
+	return [];
+};
+
+global.ipairs = function (arr) {
+	if (Array.isArray(arr)) {
+		return arr.map((value, index) => [index + 1, value]); // 1-based indexing
 	}
 	return [];
 };

@@ -1,214 +1,146 @@
-// Test suite for DataService functionality
 import { expect, describe, it } from "@rbxts/jest-globals";
+import { DATA_TEMPLATE, DataTemplate } from "shared/data/data-template";
+import { deepCopy } from "shared/utils/deep-copy";
 
-// Test basic functionality that can be verified without complex mocking
-describe("DataService Core Logic", () => {
-	describe("Data Type Validation", () => {
-		it("should correctly identify table types", () => {
-			const isTable = (value: unknown) => typeOf(value) === "table";
+// Extend the global interface for Lune bridge functions
+declare const executeLuau: (
+	code: string,
+	args?: Record<string, unknown>,
+) => Promise<{ success: boolean; result: unknown; error?: string }>;
 
-			expect(isTable({})).toBe(true);
-			expect(isTable([])).toBe(true);
-			expect(isTable("string")).toBe(false);
-			expect(isTable(123)).toBe(false);
-			expect(isTable(undefined)).toBe(false);
+describe("DataService Enhanced Tests", () => {
+	// Test data validation against the new data template
+	describe("Data Template Validation", () => {
+		it("should validate a complete and valid data structure", async () => {
+			const result = await executeLuau(
+				`
+                local validate = require(script.Parent.Parent.shared.data.utils.validate)
+                local data = ...
+                local success, message = pcall(validate, data, script.Parent.Parent.shared.data["data-template"])
+                return { success = success, message = message }
+            `,
+				{ data: deepCopy(DATA_TEMPLATE) },
+			);
+
+			const validationResult = result.result as { success: boolean; message: string };
+			expect(validationResult.success).toBe(true);
 		});
 
-		it("should handle undefined values correctly", () => {
-			const hasValue = (value: unknown) => value !== undefined;
+		it("should reject data with missing top-level fields", async () => {
+			const incompleteData = deepCopy(DATA_TEMPLATE);
+			delete incompleteData.PlayerData; // Remove a required field
 
-			expect(hasValue("test")).toBe(true);
-			expect(hasValue(0)).toBe(true);
-			expect(hasValue(false)).toBe(true);
-			expect(hasValue(undefined)).toBe(false);
-		});
-	});
+			const result = await executeLuau(
+				`
+                local validate = require(script.Parent.Parent.shared.data.utils.validate)
+                local data = ...
+                local success, message = pcall(validate, data, script.Parent.Parent.shared.data["data-template"])
+                return { success = success, message = message }
+            `,
+				{ data: incompleteData },
+			);
 
-	describe("Version Management", () => {
-		it("should handle version comparison correctly", () => {
-			const needsMigration = (currentVersion: number, targetVersion: number) => {
-				return currentVersion < targetVersion;
-			};
-
-			expect(needsMigration(1, 2)).toBe(true);
-			expect(needsMigration(2, 2)).toBe(false);
-			expect(needsMigration(3, 2)).toBe(false);
+			const validationResult = result.result as { success: boolean; message: string };
+			expect(validationResult.success).toBe(false);
 		});
 
-		it("should assign default version when missing", () => {
-			const getVersionOrDefault = (data: Record<string, unknown>, defaultVersion: number) => {
-				return data._version !== undefined ? data._version : defaultVersion;
-			};
+		it("should reject data with incorrect data types", async () => {
+			const corruptedData = deepCopy(DATA_TEMPLATE);
+			corruptedData.Settings.SoundMasterVolume = "not a number" as unknown as number; // Corrupt a field
 
-			const dataWithoutVersion = { PlayerData: { Username: "test" } };
-			const dataWithVersion = { _version: 5, PlayerData: { Username: "test" } };
+			const result = await executeLuau(
+				`
+                local validate = require(script.Parent.Parent.shared.data.utils.validate)
+                local data = ...
+                local success, message = pcall(validate, data, script.Parent.Parent.shared.data["data-template"])
+                return { success = success, message = message }
+            `,
+				{ data: corruptedData },
+			);
 
-			expect(getVersionOrDefault(dataWithoutVersion, 1)).toBe(1);
-			expect(getVersionOrDefault(dataWithVersion, 1)).toBe(5);
-		});
-	});
-
-	describe("Data Structure Validation", () => {
-		it("should validate required data fields", () => {
-			const validatePlayerData = (data: unknown) => {
-				if (typeOf(data) !== "table") return false;
-
-				const dataTable = data as Record<string, unknown>;
-				return (
-					dataTable.PlayerData !== undefined &&
-					dataTable.InventoryData !== undefined &&
-					dataTable.SettingsData !== undefined
-				);
-			};
-
-			const validData = {
-				PlayerData: { Username: "test" },
-				InventoryData: { Items: [] },
-				SettingsData: { Volume: 0.5 },
-			};
-
-			const invalidData1 = { PlayerData: { Username: "test" } };
-			const invalidData2 = "not a table";
-
-			expect(validatePlayerData(validData)).toBe(true);
-			expect(validatePlayerData(invalidData1)).toBe(false);
-			expect(validatePlayerData(invalidData2)).toBe(false);
-		});
-
-		it("should handle missing optional fields", () => {
-			const hasOptionalField = (data: Record<string, unknown>, fieldName: string) => {
-				return data[fieldName] !== undefined;
-			};
-
-			const dataWithField = { testField: "value", otherField: 123 };
-			const dataWithoutField = { otherField: 123 };
-
-			expect(hasOptionalField(dataWithField, "testField")).toBe(true);
-			expect(hasOptionalField(dataWithoutField, "testField")).toBe(false);
+			const validationResult = result.result as { success: boolean; message: string };
+			expect(validationResult.success).toBe(false);
 		});
 	});
 
-	describe("Environment Detection", () => {
-		it("should handle boolean environment checks", () => {
-			const isStudioMode = (studioFlag: boolean) => studioFlag;
-			const chooseStore = (isStudio: boolean) => (isStudio ? "MockStore" : "ProductionStore");
+	// Test data migration logic
+	describe("Data Migration", () => {
+		it("should correctly migrate data from an older version", async () => {
+			const oldData = {
+				_version: 1,
+				PlayerData: { Username: "TestPlayer", Level: 5 },
+				// Missing fields from the latest template
+			};
 
-			expect(isStudioMode(true)).toBe(true);
-			expect(isStudioMode(false)).toBe(false);
-			expect(chooseStore(true)).toBe("MockStore");
-			expect(chooseStore(false)).toBe("ProductionStore");
+			const result = await executeLuau(
+				`
+                local migrations = require(script.Parent.Parent.shared.data.utils.migrations)
+                local data = ...
+                local migratedData = migrations.migrate(data)
+                return { data = migratedData }
+            `,
+				{ data: oldData },
+			);
+
+			const migrationResult = result.result as { data: DataTemplate };
+			expect(migrationResult.data._version).toBe(DATA_TEMPLATE._version);
+			expect((migrationResult.data as unknown as { PlayerData: { Level: number } }).PlayerData.Level).toBe(5);
+			expect(migrationResult.data.Settings).toBeDefined(); // Check for a field added in a later version
+		});
+
+		it("should not modify data that is already up-to-date", async () => {
+			const currentData = deepCopy(DATA_TEMPLATE);
+
+			const result = await executeLuau(
+				`
+                local migrations = require(script.Parent.Parent.shared.data.utils.migrations)
+                local data = ...
+                local migratedData = migrations.migrate(data)
+                return { data = migratedData }
+            `,
+				{ data: currentData },
+			);
+
+			const migrationResult = result.result as { data: DataTemplate };
+			expect(migrationResult.data).toEqual(currentData);
 		});
 	});
 
-	describe("Error Handling", () => {
-		it("should handle assertion-like checks", () => {
-			const assertTableType = (value: unknown) => {
-				return typeOf(value) === "table";
-			};
-
-			expect(assertTableType({})).toBe(true);
-			expect(assertTableType([])).toBe(true);
-			expect(assertTableType("string")).toBe(false);
-			expect(assertTableType(123)).toBe(false);
-		});
-
-		it("should handle promise resolution", async () => {
-			const asyncOperation = () => {
-				return new Promise<string>((resolve) => {
-					resolve("success");
-				});
-			};
-
-			const result = await asyncOperation();
-			expect(result).toBe("success");
-		});
-
-		it("should handle promise rejection", async () => {
-			const failingOperation = () => {
-				return new Promise<void>((_, reject) => {
-					reject("Operation failed");
-				});
-			};
-
-			await expect(failingOperation()).rejects.toBe("Operation failed");
-		});
-	});
-
-	describe("Data Merging Logic", () => {
-		it("should merge objects using spread operator", () => {
-			const baseData = { a: 1, b: 2 };
-			const userData = { b: 3, c: 4 };
-			const merged = { ...baseData, ...userData };
-
-			expect(merged.a).toBe(1);
-			expect(merged.b).toBe(3); // userData overrides baseData
-			expect(merged.c).toBe(4);
-		});
-
-		it("should handle nested object merging", () => {
-			const template = {
-				PlayerData: { Username: "default", Level: 1 },
-				Settings: { Volume: 0.5 },
-			};
-
+	// Test data merging and default value assignment
+	describe("Data Merging and Defaults", () => {
+		it("should correctly merge user data with the template", () => {
 			const userData = {
-				PlayerData: { Username: "custom" },
-				Settings: { Volume: 0.8 },
+				Level: 10,
+				Settings: { SoundMasterVolume: 0.75 },
 			};
 
-			const merged = {
-				...template,
-				PlayerData: { ...template.PlayerData, ...userData.PlayerData },
-				Settings: { ...template.Settings, ...userData.Settings },
+			const mergedData = {
+				...deepCopy(DATA_TEMPLATE),
+				...userData,
 			};
 
-			expect(merged.PlayerData.Username).toBe("custom");
-			expect(merged.PlayerData.Level).toBe(1); // preserved from template
-			expect(merged.Settings.Volume).toBe(0.8);
-		});
-	});
-
-	describe("Performance Considerations", () => {
-		it("should handle large data operations efficiently", () => {
-			const processLargeData = (items: ReadonlyArray<number>) => {
-				let sum = 0;
-				for (let i = 0; i < items.size(); i++) {
-					sum += items[i];
-				}
-				return sum;
-			};
-
-			const largeArray: number[] = [];
-			for (let i = 1; i <= 1000; i++) {
-				largeArray.push(i);
-			}
-
-			const expectedSum = (1000 * 1001) / 2; // Sum of 1 to 1000
-			const actualSum = processLargeData(largeArray);
-
-			expect(actualSum).toBe(expectedSum);
+			expect(mergedData.Level).toBe(10);
+			expect(mergedData.Settings.SoundMasterVolume).toBe(0.75);
+			expect(mergedData.Currencies.Gems).toBe(0); // Check that default values are preserved
 		});
 
-		it("should handle object property access", () => {
-			const original = {
-				level1: {
-					level2: {
-						value: "test",
-					},
+		it("should handle deeply nested data merging", () => {
+			const userData = {
+				PlayerStatistics: {
+					PlayTime: 5000,
 				},
 			};
 
-			// Simple property modification for testing
-			const modified = {
-				level1: {
-					level2: {
-						value: "modified",
-					},
+			const mergedData = {
+				...deepCopy(DATA_TEMPLATE),
+				PlayerStatistics: {
+					...DATA_TEMPLATE.PlayerStatistics,
+					...userData.PlayerStatistics,
 				},
 			};
 
-			expect(original.level1.level2.value).toBe("test");
-			expect(modified.level1.level2.value).toBe("modified");
+			expect(mergedData.PlayerStatistics.PlayTime).toBe(5000);
+			expect(mergedData.PlayerStatistics.Kills).toBe(0); // Check preservation
 		});
 	});
 });

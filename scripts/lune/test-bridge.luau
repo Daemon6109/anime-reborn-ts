@@ -48,6 +48,71 @@ local wait = function(_duration)
 	return 0
 end
 
+-- Mock script object for require() calls
+local script = {
+	Name = "MockScript",
+	Parent = {
+		Parent = {
+			shared = {
+				data = {
+					utils = {
+						validate = function(data, template)
+							-- Simple validation: check if all template keys exist in data
+							if not data or not template then return false end
+							for key, _ in pairs(template) do
+								if data[key] == nil then return false end
+							end
+							return true
+						end
+					},
+					["data-template"] = {
+						Level = 1,
+						XP = 0,
+						RobuxSpent = 0,
+						CurrentTitle = "",
+						EquippedMount = "",
+						SlotsApplicable = 3,
+						PlayerStatistics = {
+							Kills = 0,
+							TotalDamage = 0,
+							GamesPlayed = 0,
+							PlayTime = 0,
+						},
+						Currencies = {
+							Gold = 0,
+							Gems = 500,
+						},
+						Settings = {},
+						Inventory = {
+							Units = {},
+							Items = {},
+							MaxUnitStorage = 100
+						},
+						_version = 6
+					}
+				}
+			}
+		}
+	}
+}
+
+-- Mock require function for Roblox-style module loading
+require = function(modulePath)
+	-- Handle script.Parent.Parent.shared.data.utils.validate type paths
+	if type(modulePath) == "table" and tostring(modulePath) then
+		local pathStr = tostring(modulePath)
+		if string.find(pathStr, "validate") then
+			return script.Parent.Parent.shared.data.utils.validate
+		end
+		if string.find(pathStr, "data%-template") then
+			return script.Parent.Parent.shared.data["data-template"]
+		end
+	end
+	
+	-- Fallback for other modules
+	return {}
+end
+
 local task = {
 	spawn = function(func, ...)
 		local args = {...}

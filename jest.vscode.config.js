@@ -40,6 +40,21 @@ module.exports = {
 			},
 		},
 	},
+	moduleNameMapper: {
+		"^server/(.*)$": "<rootDir>/places/common/src/server/$1",
+		"^common/(.*)$": "<rootDir>/places/common/src/$1",
+		// Add a mapping for shared if needed, e.g., from places/common/src/shared
+		"^shared/(.*)$": "<rootDir>/places/common/src/shared/$1",
+		"^old_common/(.*)$": "<rootDir>/old_common/src/$1",
+		// Mock @flamework/core itself
+		"^@flamework/core$": "<rootDir>/scripts/js/jest-flamework-mock.js",
+		// Mock @rbxts/services
+		"^@rbxts/services$": "<rootDir>/scripts/js/jest-rbxts-services-mock.js",
+		// Mock @rbxts/profile-store
+		"^@rbxts/profile-store$": "<rootDir>/scripts/js/jest-profile-store-mock.js",
+		// Keep .lua mock for any other direct .lua imports if they occur
+		"\\.lua$": "<rootDir>/scripts/js/jest-empty-mock.js",
+	},
 
 	// Coverage - updated paths
 	collectCoverageFrom: ["places/*/src/**/*.(ts|tsx|js|jsx)", "!places/*/src/**/*.d.ts", "!places/*/src/tests/**"],
