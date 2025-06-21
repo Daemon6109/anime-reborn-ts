@@ -46,21 +46,20 @@ jobs:
                       echo "⏰ Adding timeout to prevent hanging..."
                       set -o pipefail  # Ensure we capture failures properly
                       
-                      # Run the command with a timeout and capture output
-                      if CLOUD_TEST_OUTPUT=$(timeout 600 docker compose run --rm \
+                      # Run the command with a timeout, streaming output and saving to log
+                      if timeout 600 docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        roblox-ts-dev npm run test:shell 2>&1); then
-                          echo "$CLOUD_TEST_OUTPUT"
+                        roblox-ts-dev npm run test:shell 2>&1 | tee cloud_test_output.log; then
                           echo "📊 Docker command completed successfully"
                           echo "✅ All cloud tests passed!"
                           echo "🎉 Code is ready for real Roblox deployment"
                       else
                           echo "❌ Cloud tests failed!"
-                          echo "� Last 50 lines of output:"
+                          echo "📄 Last 50 lines of output:"
                           tail -50 cloud_test_output.log || echo "No output log found"
-                          echo "�🔍 Check test output above for details"
+                          echo "🔍 Check test output above for details"
                           exit 1
                       fi
                   else
