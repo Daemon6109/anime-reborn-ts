@@ -79,42 +79,55 @@ for _, place in ipairs(places) do
 		print("\n🏢 Running tests for " .. place.name .. "...")
 		print("-" .. string.rep("-", 30))
 
-		-- Build Jest options for this place (optimized for cloud execution)
-		local jestOptions = {
-			verbose = true,
-			ci = true, -- Non-interactive mode for cloud
-			forceExit = true, -- Force exit after completion
-			runInBand = true, -- Sequential execution to avoid conflicts
-			testTimeout = 30000, -- 30 second timeout per test
-			bail = 1, -- Exit on first failure to prevent hanging
-		}
+		-- Debug: Check if folder exists and what's in it
+		if place.folder then
+			print("📁 Found folder for " .. place.name .. ": " .. tostring(place.folder))
 
-		-- Check if TEST_PATTERN was injected and add it to Jest options
-		if TEST_PATTERN then
-			print("🔍 Filtering tests with pattern: " .. TEST_PATTERN)
-			jestOptions.testNamePattern = TEST_PATTERN
-		end
+			-- Build Jest options for this place (optimized for cloud execution)
+			local jestOptions = {
+				verbose = true,
+				ci = true, -- Non-interactive mode for cloud
+				forceExit = true, -- Force exit after completion
+				runInBand = true, -- Sequential execution to avoid conflicts
+				testTimeout = 15000, -- Reduced to 15 seconds per test
+				bail = 1, -- Exit on first failure to prevent hanging
+				maxWorkers = 1, -- Force single worker
+			}
 
-		-- Run tests for this specific place
-		local status, result = runCLI(place.folder, jestOptions, { place.folder }):awaitStatus()
+			-- Check if TEST_PATTERN was injected and add it to Jest options
+			if TEST_PATTERN then
+				print("🔍 Filtering tests with pattern: " .. TEST_PATTERN)
+				jestOptions.testNamePattern = TEST_PATTERN
+			end
 
-		if status == "Rejected" then
-			print("❌ Error running tests for " .. place.name .. ": " .. tostring(result))
-			totalFailedTestSuites = totalFailedTestSuites + 1
-		elseif status == "Resolved" then
-			-- Accumulate results
-			if result.results then
-				totalFailedTests = totalFailedTests + (result.results.numFailedTests or 0)
-				totalFailedTestSuites = totalFailedTestSuites + (result.results.numFailedTestSuites or 0)
-				totalPassedTests = totalPassedTests + (result.results.numPassedTests or 0)
-				totalTestSuites = totalTestSuites + (result.results.numTestSuites or 0)
+			print("⏳ Starting Jest execution for " .. place.name .. "...")
+			print("🔧 Jest options: " .. tostring(jestOptions))
 
-				if result.results.numFailedTests > 0 or result.results.numFailedTestSuites > 0 then
-					print("❌ " .. place.name .. " tests failed!")
-				else
-					print("✅ " .. place.name .. " tests passed!")
+			-- Run tests for this specific place
+			local status, result = runCLI(place.folder, jestOptions, { place.folder }):awaitStatus()
+
+			print("✅ Jest execution completed for " .. place.name .. " with status: " .. status)
+
+			if status == "Rejected" then
+				print("❌ Error running tests for " .. place.name .. ": " .. tostring(result))
+				totalFailedTestSuites = totalFailedTestSuites + 1
+			elseif status == "Resolved" then
+				-- Accumulate results
+				if result.results then
+					totalFailedTests = totalFailedTests + (result.results.numFailedTests or 0)
+					totalFailedTestSuites = totalFailedTestSuites + (result.results.numFailedTestSuites or 0)
+					totalPassedTests = totalPassedTests + (result.results.numPassedTests or 0)
+					totalTestSuites = totalTestSuites + (result.results.numTestSuites or 0)
+
+					if result.results.numFailedTests > 0 or result.results.numFailedTestSuites > 0 then
+						print("❌ " .. place.name .. " tests failed!")
+					else
+						print("✅ " .. place.name .. " tests passed!")
+					end
 				end
 			end
+		else
+			print("❌ No folder found for " .. place.name)
 		end
 	else
 		print("⚠️  " .. place.name .. " folder not found, skipping...")
