@@ -123,13 +123,19 @@ export class DataService implements OnInit {
 			const currentTemplateValue = templateValueInLoop; // Use value from iteration
 			const currentUserValue = userDataTable[key];
 
-			if (Array.isArray(currentTemplateValue)) {
+			// Check if template value is an array using typeOf and checking for numeric indices
+			const isTemplateArray = typeOf(currentTemplateValue) === "table" && 
+									(currentTemplateValue as Record<string, unknown>)[1] !== undefined;
+			const isUserArray = typeOf(currentUserValue) === "table" && 
+								(currentUserValue as Record<string, unknown>)[1] !== undefined;
+
+			if (isTemplateArray) {
 				// If template field is an array, result should also be an array.
 				// User's array takes precedence if it's also an array. Otherwise, use template's array.
-				result[key] = Array.isArray(currentUserValue) ? deepCopy(currentUserValue) : deepCopy(currentTemplateValue);
+				result[key] = isUserArray ? deepCopy(currentUserValue) : deepCopy(currentTemplateValue);
 			} else if (typeOf(currentTemplateValue) === "table") {
 				// Template field is an object. User's value should also be an object.
-				if (typeOf(currentUserValue) === "table" && !Array.isArray(currentUserValue)) {
+				if (typeOf(currentUserValue) === "table" && !isUserArray) {
 					result[key] = this.deepMergeWithTemplate(currentUserValue, currentTemplateValue);
 				} else {
 					// User value is not a compatible object (e.g., it's primitive, array, or undefined).
@@ -360,7 +366,7 @@ export class DataService implements OnInit {
 					(newData.DailyRewardsData as DailyRewardsData).CurrentStreak = oldDailyData.StreakDays as number;
 				}
 
-				delete newData.DailyRewardData;
+				newData.DailyRewardData = undefined;
 			}
 
 			// Ensure DailyRewardsData exists
@@ -384,11 +390,11 @@ export class DataService implements OnInit {
 						receiptHistory.push(purchaseId as string);
 					}
 				}
-				delete newData.ProductsBought;
+				newData.ProductsBought = undefined;
 			}
 
 			if (newData.FailedPurchases) {
-				delete newData.FailedPurchases;
+				newData.FailedPurchases = undefined;
 			}
 
 			return newData;

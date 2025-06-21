@@ -75,9 +75,9 @@ global.coroutine = {
     create: jest.fn(f => {
         const co = {
             _f: f,
-            _args: [], // Removed 'as any[]'
+            _args: [], // Removed TS type annotation
             _status: "suspended",
-            resume: function(...args) { // Removed ': any[]'
+            resume: function(...args) { // Removed TS type annotation
                 if (this._status === "dead") return [false, "cannot resume dead coroutine"];
                 this._status = "running";
                 try {
@@ -94,13 +94,13 @@ global.coroutine = {
     }),
     wrap: jest.fn(f => {
         const co = global.coroutine.create(f);
-        return (...args) => { // Removed ': any[]'
+        return (...args) => { // Removed TS type annotation
             const result = co.resume(...args);
             if (!result[0]) throw result[1]; // Throw error if resume failed
             return result[1]; // Return the actual result
         };
     }),
-    status: jest.fn((co) => (co as any)?._status ?? "suspended"), // Default status
+    status: jest.fn((co) => co?._status ?? "suspended"), // Default status
 };
 
 // Mock assert

@@ -2,13 +2,10 @@
 
 import { DataTemplate, DEFAULT_DATA_TEMPLATE } from "../types/data-template";
 
-export function validateDataSection<T>(
-	data: unknown,
-	templateFactory: () => T
-): [boolean, string?] {
+export function validateDataSection<T>(data: unknown, templateFactory: () => T): [boolean, string?] {
 	try {
 		const template = templateFactory();
-		
+
 		if (typeOf(data) !== "table") {
 			return [false, "Data must be a table"];
 		}
@@ -19,13 +16,16 @@ export function validateDataSection<T>(
 
 		for (const [key, templateValue] of pairs(templateTable)) {
 			const dataValue = dataTable[key];
-			
+
 			if (dataValue === undefined && templateValue !== undefined) {
 				return [false, `Missing required field: ${key}`];
 			}
 
 			if (dataValue !== undefined && typeOf(dataValue) !== typeOf(templateValue)) {
-				return [false, `Type mismatch for field ${key}: expected ${typeOf(templateValue)}, got ${typeOf(dataValue)}`];
+				return [
+					false,
+					`Type mismatch for field ${key}: expected ${typeOf(templateValue)}, got ${typeOf(dataValue)}`,
+				];
 			}
 		}
 
