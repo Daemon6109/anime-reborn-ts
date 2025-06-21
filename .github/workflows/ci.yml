@@ -40,31 +40,30 @@ jobs:
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
                       
-                      # Run cloud tests using our new test:shell command for maximum accuracy
+                      # Run cloud tests using Docker but with proper output handling
                       echo "🚀 Starting cloud test execution..."
                       echo "📋 Running: docker compose run --rm roblox-ts-dev npm run test:shell"
                       echo "⏰ Adding timeout to prevent hanging..."
-                      set -o pipefail  # Ensure we capture failures properly
                       
-                      # Create log file with proper permissions
-                      LOG_FILE="/tmp/cloud_test_output.log"
-                      touch "$LOG_FILE"
-                      
-                      # Run the command with a timeout, streaming output and saving to log
-                      if timeout 600 docker compose run --rm \
+                      # Run with timeout and proper signal handling
+                      if timeout --signal=TERM 600s docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        roblox-ts-dev npm run test:shell 2>&1 | tee "$LOG_FILE"; then
+                        roblox-ts-dev npm run test:shell; then
                           echo ""
-                          echo "📊 Docker command completed successfully"
+                          echo "📊 Cloud tests completed successfully"
                           echo "✅ All cloud tests passed!"
                           echo "🎉 Code is ready for real Roblox deployment"
                       else
+                          TEST_EXIT_CODE=$?
                           echo ""
-                          echo "❌ Cloud tests failed!"
-                          echo "📄 Last 50 lines of output:"
-                          tail -50 "$LOG_FILE" 2>/dev/null || echo "No output log available"
+                          if [ $TEST_EXIT_CODE -eq 124 ] || [ $TEST_EXIT_CODE -eq 143 ]; then
+                              echo "⏰ Cloud tests timed out after 10 minutes"
+                              echo "🔍 This usually indicates tests are hanging or taking too long"
+                          else
+                              echo "❌ Cloud tests failed with exit code: $TEST_EXIT_CODE"
+                          fi
                           echo "🔍 Check test output above for details"
                           exit 1
                       fi

@@ -143,8 +143,25 @@ def pollForTaskCompletion(api_key, path):
     url = f'https://apis.roblox.com/cloud/v2/{path}'
 
     logging.info("Waiting for task to finish...")
+    
+    # Add timeout - maximum 8 minutes (480 seconds) to allow CI timeout to work
+    max_wait_time = 480  # 8 minutes
+    start_time = time.time()
 
     while True:
+        # Check if we've exceeded the timeout
+        elapsed_time = time.time() - start_time
+        if elapsed_time > max_wait_time:
+            sys.stderr.write('\n')
+            sys.stderr.flush()
+            logging.error(f'Task timed out after {max_wait_time} seconds')
+            print(f"❌ Roblox task execution timed out after {max_wait_time} seconds")
+            print("🔍 This could indicate:")
+            print("  - Tests are taking too long to execute")
+            print("  - Roblox service is slow or unresponsive")
+            print("  - Tests are hanging or in an infinite loop")
+            sys.exit(1)
+        
         try:
             response = makeRequest(url, headers=headers)
         except urllib.error.HTTPError as e:
