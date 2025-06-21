@@ -1,10 +1,10 @@
 name: CI
 
 on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+    push:
+        branches: [main, develop]
+    pull_request:
+        branches: [main, develop]
 
 jobs:
     # Combined testing job - local tests with coverage + cloud validation
@@ -38,12 +38,13 @@ jobs:
                       echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
-                      # Run cloud tests with environment variables passed directly to Docker
+                      # Run Jest directly with environment variables
                       if docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        roblox-ts-dev npm test; then
+                        -e CI=true \
+                        roblox-ts-dev npx jest; then
                           echo "✅ All tests passed!"
                           exit 0
                       else
