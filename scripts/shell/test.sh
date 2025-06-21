@@ -44,21 +44,31 @@ PYTHON_EXIT_CODE=0
 # Run Jest once for all places using the root jest.config.js
 if [ -n "$TEST_PATTERN" ]; then
     echo "Running Jest with test pattern: $TEST_PATTERN"
+    echo "[DEBUG] About to run Python script with test pattern..."
     if command -v python3 &>/dev/null; then
+        echo "[DEBUG] Using python3..."
         python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN"
         PYTHON_EXIT_CODE=$?
+        echo "[DEBUG] Python3 script completed with exit code: $PYTHON_EXIT_CODE"
     else
+        echo "[DEBUG] Using python..."
         python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN"
         PYTHON_EXIT_CODE=$?
+        echo "[DEBUG] Python script completed with exit code: $PYTHON_EXIT_CODE"
     fi
 else
     echo "Running all Jest tests"
+    echo "[DEBUG] About to run Python script without test pattern..."
     if command -v python3 &>/dev/null; then
+        echo "[DEBUG] Using python3..."
         python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau
         PYTHON_EXIT_CODE=$?
+        echo "[DEBUG] Python3 script completed with exit code: $PYTHON_EXIT_CODE"
     else
+        echo "[DEBUG] Using python..."
         python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau
         PYTHON_EXIT_CODE=$?
+        echo "[DEBUG] Python script completed with exit code: $PYTHON_EXIT_CODE"
     fi
 fi
 

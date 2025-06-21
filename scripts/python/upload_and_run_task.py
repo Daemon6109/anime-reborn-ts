@@ -11,9 +11,31 @@ if sys.platform == "win32":
 
 from luau_execution_task import createTask, pollForTaskCompletion, getTaskLogs
 
-ROBLOX_API_KEY = os.environ["ROBLOX_API_KEY"]
-ROBLOX_UNIVERSE_ID = os.environ["ROBLOX_UNIVERSE_ID"]
-ROBLOX_PLACE_ID = os.environ["ROBLOX_PLACE_ID"]
+print("[DEBUG] Python script starting - checking environment variables...")
+
+# Check for required environment variables with proper error handling
+try:
+    ROBLOX_API_KEY = os.environ["ROBLOX_API_KEY"]
+    print("[DEBUG] ROBLOX_API_KEY found")
+except KeyError:
+    print("[ERROR] ROBLOX_API_KEY environment variable not found!")
+    sys.exit(1)
+
+try:
+    ROBLOX_UNIVERSE_ID = os.environ["ROBLOX_UNIVERSE_ID"]
+    print(f"[DEBUG] ROBLOX_UNIVERSE_ID found: {ROBLOX_UNIVERSE_ID}")
+except KeyError:
+    print("[ERROR] ROBLOX_UNIVERSE_ID environment variable not found!")
+    sys.exit(1)
+
+try:
+    ROBLOX_PLACE_ID = os.environ["ROBLOX_PLACE_ID"]
+    print(f"[DEBUG] ROBLOX_PLACE_ID found: {ROBLOX_PLACE_ID}")
+except KeyError:
+    print("[ERROR] ROBLOX_PLACE_ID environment variable not found!")
+    sys.exit(1)
+
+print("[DEBUG] All required environment variables found!")
 
 # Debug: Print environment variables (masking sensitive data)
 print(f"Universe ID: {ROBLOX_UNIVERSE_ID}")
@@ -29,8 +51,12 @@ def read_file(file_path):
 
 
 def upload_place(binary_path, universe_id, place_id, do_publish=False):
+    print("[DEBUG] Entering upload_place function")
     print("Uploading place to Roblox")
     print(f"Uploading to Universe ID: {universe_id}, Place ID: {place_id}")
+    print(f"[DEBUG] Binary path: {binary_path}")
+    print(f"[DEBUG] File exists: {os.path.exists(binary_path)}")
+    
     version_type = "Published" if do_publish else "Saved"
     request_headers = {
         "x-api-key": ROBLOX_API_KEY,
@@ -41,18 +67,26 @@ def upload_place(binary_path, universe_id, place_id, do_publish=False):
     url = f"https://apis.roblox.com/universes/v1/{universe_id}/places/{place_id}/versions?versionType={version_type}"
     print(f"API URL: {url}")
 
+    print("[DEBUG] Reading binary file...")
     buffer = read_file(binary_path)
+    print(f"[DEBUG] File size: {len(buffer)} bytes")
+    
+    print("[DEBUG] Creating HTTP request...")
     req = urllib.request.Request(
         url, data=buffer, headers=request_headers, method="POST"
     )
 
+    print("[DEBUG] Sending request to Roblox API...")
     try:
         with urllib.request.urlopen(req) as response:
+            print(f"[DEBUG] Response status: {response.status}")
             data = json.loads(response.read().decode("utf-8"))
             place_version = data.get("versionNumber")
             print(f"Successfully uploaded! Version: {place_version}")
+            print("[DEBUG] Upload completed successfully")
             return place_version
     except urllib.error.HTTPError as e:
+        print(f"[DEBUG] HTTP Error occurred: {e.code}")
         print(f"HTTP Error {e.code}: {e.reason}")
         if e.code == 404:
             print("ERROR: 404 Not Found - This usually means:")
@@ -77,8 +111,14 @@ def upload_place(binary_path, universe_id, place_id, do_publish=False):
 
 
 def run_luau_task(universe_id, place_id, place_version, script_file, test_pattern=None):
+    print("[DEBUG] Entering run_luau_task function")
     print("Executing Luau task")
+    print(f"[DEBUG] Script file: {script_file}")
+    print(f"[DEBUG] Script file exists: {os.path.exists(script_file)}")
+    
     script_contents = read_file(script_file).decode("utf8")    # If test pattern is provided, inject it into the script
+    print(f"[DEBUG] Script contents length: {len(script_contents)} characters")
+    
     if test_pattern:
         print(f"Test pattern: {test_pattern}")
         # Insert test pattern variable at the beginning of the script (after the first line)
@@ -97,42 +137,69 @@ def run_luau_task(universe_id, place_id, place_version, script_file, test_patter
     else:
         print("No test pattern provided - running all tests")
     
+    print("[DEBUG] Creating Luau execution task...")
     task = createTask(
         ROBLOX_API_KEY, script_contents, universe_id, place_id, place_version
     )
+    print(f"[DEBUG] Task created: {task}")
+    
+    print("[DEBUG] Polling for task completion...")
     task = pollForTaskCompletion(ROBLOX_API_KEY, task["path"])
+    print(f"[DEBUG] Task completed with state: {task['state']}")
+    
+    print("[DEBUG] Getting task logs...")
     logs = getTaskLogs(ROBLOX_API_KEY, task["path"])
+    print(f"[DEBUG] Logs retrieved, length: {len(logs)} characters")
 
     # Print logs with proper Unicode handling
+    print("[DEBUG] Printing task logs...")
     try:
         print(logs)
         sys.stdout.flush()
+        print("[DEBUG] Logs printed successfully")
     except UnicodeEncodeError:
+        print("[DEBUG] Unicode error, trying with error replacement...")
         # If Unicode fails, print with error replacement
         print(logs.encode('utf-8', errors='replace').decode('utf-8'))
         sys.stdout.flush()
     except Exception as e:
+        print(f"[DEBUG] Error printing logs: {e}")
         print(f"Error printing logs: {e}")
         print("Raw logs (may have encoding issues):")
         print(repr(logs))
         sys.stdout.flush()
 
+    print(f"[DEBUG] Task final state: {task['state']}")
     if task["state"] == "COMPLETE":
+        print("[DEBUG] Task completed successfully - exiting with code 0")
         print("Lua task completed successfully")
         exit(0)
     else:
+        print(f"[DEBUG] Task failed with state: {task['state']} - exiting with code 1")
         print("Luau task failed", file=sys.stderr)
         exit(1)
 
 
 if __name__ == "__main__":
+    print("[DEBUG] Starting upload_and_run_task.py")
+    print(f"[DEBUG] Arguments: {sys.argv}")
+    
     universe_id = ROBLOX_UNIVERSE_ID
     place_id = ROBLOX_PLACE_ID
     binary_file = sys.argv[1]
     script_file = sys.argv[2]
     
+    print(f"[DEBUG] Binary file: {binary_file}")
+    print(f"[DEBUG] Script file: {script_file}")
+    
     # Get test pattern from command line argument if provided
     test_pattern = sys.argv[3] if len(sys.argv) > 3 else None
+    print(f"[DEBUG] Test pattern: {test_pattern}")
 
+    print("[DEBUG] About to upload place...")
     place_version = upload_place(binary_file, universe_id, place_id)
+    print(f"[DEBUG] Place uploaded, version: {place_version}")
+    
+    print("[DEBUG] About to run Luau task...")
     run_luau_task(universe_id, place_id, place_version, script_file, test_pattern)
+    print("[DEBUG] Luau task completed successfully")

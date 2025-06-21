@@ -115,6 +115,9 @@ def loadAPIKey(api_key_arg):
         sys.exit(1)
 
 def createTask(api_key, script, universe_id, place_id, place_version):
+    print("[DEBUG] createTask: Starting task creation")
+    print(f"[DEBUG] createTask: Universe ID: {universe_id}, Place ID: {place_id}, Version: {place_version}")
+    
     headers = {
         'Content-Type': 'application/json',
         'x-api-key': api_key
@@ -126,35 +129,55 @@ def createTask(api_key, script, universe_id, place_id, place_version):
     if place_version:
         url += f'versions/{place_version}/'
     url += 'luau-execution-session-tasks'
+    
+    print(f"[DEBUG] createTask: URL: {url}")
+    print(f"[DEBUG] createTask: Script length: {len(script)} characters")
 
     try:
+        print("[DEBUG] createTask: Sending request...")
         response = makeRequest(url, headers=headers, body=json.dumps(data))
+        print(f"[DEBUG] createTask: Response received, status: {response.status}")
     except urllib.error.HTTPError as e:
+        print(f"[DEBUG] createTask: HTTP Error {e.code}: {e.reason}")
         logging.error(f'Create task request failed, response body:\n{e.fp.read()}')
         sys.exit(1)
 
     task = json.loads(response.read())
+    print(f"[DEBUG] createTask: Task created successfully: {task}")
     return task
 
 def pollForTaskCompletion(api_key, path):
+    print("[DEBUG] pollForTaskCompletion: Starting polling")
+    print(f"[DEBUG] pollForTaskCompletion: Task path: {path}")
+    
     headers = {
         'x-api-key': api_key
     }
     url = f'https://apis.roblox.com/cloud/v2/{path}'
+    print(f"[DEBUG] pollForTaskCompletion: Polling URL: {url}")
 
     logging.info("Waiting for task to finish...")
+    poll_count = 0
 
     while True:
+        poll_count += 1
+        print(f"[DEBUG] pollForTaskCompletion: Poll attempt #{poll_count}")
+        
         try:
             response = makeRequest(url, headers=headers)
+            print(f"[DEBUG] pollForTaskCompletion: Poll response status: {response.status}")
         except urllib.error.HTTPError as e:
+            print(f"[DEBUG] pollForTaskCompletion: HTTP Error {e.code}: {e.reason}")
             logging.error(f'Get task request failed, response body:\n{e.fp.read()}')
             sys.exit(1)
 
         task = json.loads(response.read())
+        print(f"[DEBUG] pollForTaskCompletion: Task state: {task['state']}")
+        
         if task['state'] != 'PROCESSING':
             sys.stderr.write('\n')
             sys.stderr.flush()
+            print(f"[DEBUG] pollForTaskCompletion: Task completed with state: {task['state']}")
             return task
         else:
             sys.stderr.write('.')
@@ -162,20 +185,33 @@ def pollForTaskCompletion(api_key, path):
             time.sleep(3)
 
 def getTaskLogs(api_key, task_path):
+    print("[DEBUG] getTaskLogs: Starting log retrieval")
+    print(f"[DEBUG] getTaskLogs: Task path: {task_path}")
+    
     headers = {
         'x-api-key': api_key
     }
     url = f'https://apis.roblox.com/cloud/v2/{task_path}/logs'
+    print(f"[DEBUG] getTaskLogs: Logs URL: {url}")
 
     try:
+        print("[DEBUG] getTaskLogs: Sending request...")
         response = makeRequest(url, headers=headers)
+        print(f"[DEBUG] getTaskLogs: Response status: {response.status}")
     except urllib.error.HTTPError as e:
+        print(f"[DEBUG] getTaskLogs: HTTP Error {e.code}: {e.reason}")
         logging.error(f'Get task logs request failed, response body:\n{e.fp.read()}')
         sys.exit(1)
 
     logs = json.loads(response.read())
+    print(f"[DEBUG] getTaskLogs: Raw logs response: {logs}")
+    
     messages = logs['luauExecutionSessionTaskLogs'][0]['messages']
-    return ''.join([m + '\n' for m in messages])
+    print(f"[DEBUG] getTaskLogs: Found {len(messages)} log messages")
+    
+    result = ''.join([m + '\n' for m in messages])
+    print(f"[DEBUG] getTaskLogs: Final logs length: {len(result)} characters")
+    return result
 
 def handleLogs(task, log_output_file_path, api_key):
     logs = getTaskLogs(api_key, task['path'])
