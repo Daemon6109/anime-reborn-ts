@@ -10,9 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
     python3-venv \
+    python3-certifi \
+    python3-urllib3 \
     sudo \
     unzip \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && update-ca-certificates
 
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
@@ -21,7 +24,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
 RUN npm install -g npm@latest
 
 RUN python3 -m venv /opt/venv \
-    && /opt/venv/bin/pip install --upgrade pip
+    && /opt/venv/bin/pip install --upgrade pip \
+    && /opt/venv/bin/pip install certifi urllib3 \
+    && /opt/venv/bin/python -c "import ssl; print('SSL working:', ssl.create_default_context())"
 
 RUN useradd -ms /bin/bash node \
     && chsh -s /bin/bash node \

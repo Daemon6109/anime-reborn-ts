@@ -2,12 +2,58 @@ import os
 import sys
 import urllib.request
 import json
+import socket
+import ssl
 
 # Set UTF-8 encoding for stdout to handle Unicode characters
 if sys.platform == "win32":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+
+print("[DEBUG] Python script starting - checking network connectivity...")
+print(f"[DEBUG] Python executable: {sys.executable}")
+print(f"[DEBUG] Python version: {sys.version}")
+print(f"[DEBUG] Python path: {sys.path}")
+
+# Check if we're in a virtual environment
+import os
+if 'VIRTUAL_ENV' in os.environ:
+    print(f"[DEBUG] Virtual environment: {os.environ['VIRTUAL_ENV']}")
+else:
+    print("[DEBUG] No virtual environment detected")
+
+# Test basic network connectivity
+try:
+    print("[DEBUG] Testing DNS resolution for apis.roblox.com...")
+    socket.gethostbyname('apis.roblox.com')
+    print("[DEBUG] ✅ DNS resolution successful")
+except Exception as e:
+    print(f"[ERROR] ❌ DNS resolution failed: {e}")
+
+try:
+    print("[DEBUG] Testing HTTPS connection to apis.roblox.com...")
+    # Test basic HTTPS connectivity
+    req = urllib.request.Request('https://apis.roblox.com/', method='HEAD')
+    req.add_header('User-Agent', 'Test/1.0')
+    with urllib.request.urlopen(req, timeout=10) as response:
+        print(f"[DEBUG] ✅ HTTPS connection successful, status: {response.status}")
+except Exception as e:
+    print(f"[ERROR] ❌ HTTPS connection failed: {e}")
+    print(f"[DEBUG] Error type: {type(e).__name__}")
+
+# Check SSL context
+try:
+    print("[DEBUG] Checking SSL context...")
+    ssl_context = ssl.create_default_context()
+    print(f"[DEBUG] SSL context created: {ssl_context}")
+    print(f"[DEBUG] SSL verify mode: {ssl_context.verify_mode}")
+    print(f"[DEBUG] SSL CA certs loaded: {ssl_context.ca_certs}")
+except Exception as e:
+    print(f"[ERROR] SSL context issue: {e}")
+
+print("[DEBUG] Network diagnostics completed")
+print("---")
 
 from luau_execution_task import createTask, pollForTaskCompletion, getTaskLogs
 
@@ -78,7 +124,8 @@ def upload_place(binary_path, universe_id, place_id, do_publish=False):
 
     print("[DEBUG] Sending request to Roblox API...")
     try:
-        with urllib.request.urlopen(req) as response:
+        # Add timeout to prevent hanging
+        with urllib.request.urlopen(req, timeout=60) as response:  # 60 second timeout
             print(f"[DEBUG] Response status: {response.status}")
             data = json.loads(response.read().decode("utf-8"))
             place_version = data.get("versionNumber")
@@ -88,6 +135,14 @@ def upload_place(binary_path, universe_id, place_id, do_publish=False):
     except urllib.error.HTTPError as e:
         print(f"[DEBUG] HTTP Error occurred: {e.code}")
         print(f"HTTP Error {e.code}: {e.reason}")
+    except urllib.error.URLError as e:
+        print(f"[DEBUG] URL Error occurred: {e}")
+        print(f"URL Error: {e}")
+        raise
+    except Exception as e:
+        print(f"[DEBUG] Unexpected error during upload: {e}")
+        print(f"Upload error: {e}")
+        raise
         if e.code == 404:
             print("ERROR: 404 Not Found - This usually means:")
             print("  - The Universe ID or Place ID is incorrect")
@@ -143,7 +198,8 @@ def run_luau_task(universe_id, place_id, place_version, script_file, test_patter
     )
     print(f"[DEBUG] Task created: {task}")
     
-    print("[DEBUG] Polling for task completion...")
+    print("[DEBUG] About to start polling for task completion...")
+    print(f"[DEBUG] Task path for polling: {task['path']}")
     task = pollForTaskCompletion(ROBLOX_API_KEY, task["path"])
     print(f"[DEBUG] Task completed with state: {task['state']}")
     

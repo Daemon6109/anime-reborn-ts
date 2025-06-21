@@ -64,23 +64,50 @@ def parseArgs():
     return parser.parse_args()
 
 def makeRequest(url, headers, body=None):
+    print(f"[DEBUG] makeRequest: URL: {url}")
+    print(f"[DEBUG] makeRequest: Headers: {dict(headers)}")
+    print(f"[DEBUG] makeRequest: Body length: {len(body) if body else 0}")
+    
     data = None
     if body is not None:
         data = body.encode('utf8')
     request = urllib.request.Request(url, data=data, headers=headers, method='GET' if body is None else 'POST')
     max_attempts = 3
     for i in range(max_attempts):
+        attempt_num = i + 1
+        print(f"[DEBUG] makeRequest: Attempt {attempt_num}/{max_attempts}")
         try:
-            return urllib.request.urlopen(request)
+            print(f"[DEBUG] makeRequest: Sending request...")
+            response = urllib.request.urlopen(request, timeout=30)  # 30 second timeout
+            print(f"[DEBUG] makeRequest: Response received successfully")
+            return response
+        except urllib.error.HTTPError as e:
+            print(f"[DEBUG] makeRequest: HTTP Error {e.code}: {e.reason}")
+            if e.code >= 500 and attempt_num < max_attempts:
+                print(f"[DEBUG] makeRequest: Server error, retrying in 2 seconds...")
+                time.sleep(2)
+                continue
+            else:
+                raise e
+        except urllib.error.URLError as e:
+            print(f"[DEBUG] makeRequest: URL Error: {e}")
+            if attempt_num < max_attempts:
+                print(f"[DEBUG] makeRequest: Network error, retrying in 2 seconds...")
+                time.sleep(2)
+                continue
+            else:
+                raise e
         except Exception as e:
+            print(f"[DEBUG] makeRequest: Unexpected error: {e}")
             if 'certificate verify failed' in str(e):
                 logging.error(f'{str(e)} - you may need to install python certificates, see https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error')
                 sys.exit(1)
-            if i == max_attempts - 1:
-                raise e
+            if attempt_num < max_attempts:
+                print(f"[DEBUG] makeRequest: Retrying in 2 seconds...")
+                time.sleep(2)
+                continue
             else:
-                logging.info(f'Retrying error: {str(e)}')
-                time.sleep(1)
+                raise e
 
 def readFileExitOnFailure(path, file_description):
     try:
@@ -158,10 +185,15 @@ def pollForTaskCompletion(api_key, path):
 
     logging.info("Waiting for task to finish...")
     poll_count = 0
+    max_polls = 120  # 6 minutes max (120 * 3 seconds)
 
     while True:
         poll_count += 1
-        print(f"[DEBUG] pollForTaskCompletion: Poll attempt #{poll_count}")
+        print(f"[DEBUG] pollForTaskCompletion: Poll attempt #{poll_count}/{max_polls}")
+        
+        if poll_count > max_polls:
+            print(f"[ERROR] Task polling timed out after {max_polls * 3} seconds")
+            sys.exit(1)
         
         try:
             response = makeRequest(url, headers=headers)
@@ -182,6 +214,9 @@ def pollForTaskCompletion(api_key, path):
         else:
             sys.stderr.write('.')
             sys.stderr.flush()
+            # Print status every 30 seconds (10 polls)
+            if poll_count % 10 == 0:
+                print(f"\n[DEBUG] Still polling... {poll_count * 3} seconds elapsed")
             time.sleep(3)
 
 def getTaskLogs(api_key, task_path):

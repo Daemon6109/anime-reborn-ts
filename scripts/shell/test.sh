@@ -59,6 +59,11 @@ if [ -n "$TEST_PATTERN" ]; then
 else
     echo "Running all Jest tests"
     echo "[DEBUG] About to run Python script without test pattern..."
+    echo "[DEBUG] PATH: $PATH"
+    echo "[DEBUG] Which python3: $(which python3)"
+    echo "[DEBUG] Which python: $(which python)"
+    echo "[DEBUG] Python3 version: $(python3 --version 2>&1 || echo 'python3 not found')"
+    echo "[DEBUG] Python version: $(python --version 2>&1 || echo 'python not found')"
     if command -v python3 &>/dev/null; then
         echo "[DEBUG] Using python3..."
         python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau
