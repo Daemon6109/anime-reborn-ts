@@ -11,13 +11,23 @@ const Service = () => (ctor) => ctor;
 // Assuming it's primarily for type checking.
 const OnInit = {}; // Placeholder, might not be strictly necessary as a runtime mock
 
+// Mock Modding
+const Modding = {
+    registerService: jest.fn(),
+    // Add other Modding methods if needed, e.g., registerDependency, OnInit, OnStart
+    // For the current test, only registerService seems to be directly called on Modding.
+};
+
 // Mock other decorators or functions if they are used and cause errors
 // e.g., OnStart, Dependency, etc.
+const OnStart = () => (ctor) => ctor; // If OnStart is used as a decorator
+const Dependency = () => () => {}; // If Dependency decorator is used
 
 module.exports = {
     Service,
     OnInit,
+    Modding, // Export Modding
+    OnStart, // Export OnStart if used
+    Dependency, // Export Dependency if used
     // Add other exports from @flamework/core if they are directly used and need mocking
-    // For example, if Dependency decorator is used:
-    // Dependency: () => () => {},
 };

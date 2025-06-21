@@ -25,7 +25,10 @@ module.exports = {
 	},
 
 	// Setup file to mock Roblox environment for Node.js with Lune bridge
-	setupFilesAfterEnv: ["<rootDir>/scripts/js/jest-setup-lune.js"],
+	setupFilesAfterEnv: [
+		"<rootDir>/scripts/js/jest-setup-roblox-mocks.js", // Added this line
+		"<rootDir>/scripts/js/jest-setup-lune.js"
+	],
 
 	// No custom runner for VS Code - use default Jest runner
 	// runner: "<rootDir>/scripts/js/jest-runner.js", // DISABLED for VS Code

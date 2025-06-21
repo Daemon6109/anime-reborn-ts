@@ -290,6 +290,11 @@ global.game = {
 			Name: serviceName,
 		};
 	},
+	BindToClose: jest.fn((callback) => {
+		// Store the callback to allow tests to simulate game closing if necessary
+		global.game._closeCallback = callback;
+	}),
+	_closeCallback: undefined, // Placeholder for the BindToClose callback
 };
 
 global.script = {
