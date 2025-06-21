@@ -41,16 +41,26 @@ jobs:
                       echo "---"
                       
                       # Run cloud tests using our new test:shell command for maximum accuracy
-                      if docker compose run --rm \
+                      echo "🚀 Starting cloud test execution..."
+                      echo "📋 Running: docker compose run --rm roblox-ts-dev npm run test:shell"
+                      set -o pipefail  # Ensure we capture failures properly
+                      docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        roblox-ts-dev npm run test:shell; then
+                        roblox-ts-dev npm run test:shell 2>&1 | tee cloud_test_output.log
+                      
+                      DOCKER_EXIT_CODE=${PIPESTATUS[0]}
+                      echo "📊 Docker command exit code: $DOCKER_EXIT_CODE"
+                      
+                      if [ $DOCKER_EXIT_CODE -eq 0 ]; then
                           echo "✅ All cloud tests passed!"
                           echo "🎉 Code is ready for real Roblox deployment"
                       else
                           echo "❌ Cloud tests failed!"
-                          echo "🔍 Check test output above for details"
+                          echo "� Last 50 lines of output:"
+                          tail -50 cloud_test_output.log || echo "No output log found"
+                          echo "�🔍 Check test output above for details"
                           exit 1
                       fi
                   else
