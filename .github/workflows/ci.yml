@@ -28,7 +28,7 @@ jobs:
             - name: Run local Jest tests (fast)
               run: docker compose run --rm roblox-ts-dev npm run test:jest
 
-            - name: Run tests with coverage
+            - name: Run local tests with coverage
               run: docker compose run --rm -v $(pwd)/coverage:/workspace/coverage roblox-ts-dev npm run test:coverage
 
             - name: Upload coverage reports to Codecov
