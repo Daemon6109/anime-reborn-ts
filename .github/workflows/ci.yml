@@ -25,55 +25,37 @@ jobs:
             - name: Build project
               run: docker compose run --rm roblox-ts-dev npm run build
 
-            - name: Run comprehensive tests (local + cloud validation)
+            - name: Run cloud tests in Docker
               env:
                   ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
                   ROBLOX_UNIVERSE_ID: ${{ secrets.ROBLOX_TEST_UNIVERSE_ID }}
                   ROBLOX_PLACE_ID: ${{ secrets.ROBLOX_TEST_PLACE_ID }}
               run: |
                   if [ -n "$ROBLOX_API_KEY" ]; then
-                      echo "🔑 API key found - running comprehensive cloud tests"
-                      echo "🧪 Testing against real Roblox environment for maximum accuracy"
-                      echo "Debug: Environment configuration:"
+                      echo "🔑 API key found - running cloud tests in Docker"
+                      echo "Debug: GitHub Actions environment variables:"
                       echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
                       echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
-                      
-                      # Run cloud tests using Docker but with proper output handling
-                      echo "🚀 Starting cloud test execution..."
-                      echo "📋 Running: docker compose run --rm roblox-ts-dev npm run test:shell"
-                      echo "⏰ Adding timeout to prevent hanging..."
-                      
-                      # Run with timeout and proper signal handling
-                      if timeout --signal=TERM 600s docker compose run --rm \
+                      # Run cloud tests with environment variables passed directly to Docker
+                      if docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
-                        roblox-ts-dev npm run test:shell; then
-                          echo ""
-                          echo "📊 Cloud tests completed successfully"
-                          echo "✅ All cloud tests passed!"
-                          echo "🎉 Code is ready for real Roblox deployment"
+                        roblox-ts-dev npm test; then
+                          echo "✅ All tests passed!"
+                          exit 0
                       else
-                          TEST_EXIT_CODE=$?
-                          echo ""
-                          if [ $TEST_EXIT_CODE -eq 124 ] || [ $TEST_EXIT_CODE -eq 143 ]; then
-                              echo "⏰ Cloud tests timed out after 10 minutes"
-                              echo "🔍 This usually indicates tests are hanging or taking too long"
-                          else
-                              echo "❌ Cloud tests failed with exit code: $TEST_EXIT_CODE"
-                          fi
-                          echo "🔍 Check test output above for details"
+                          echo "❌ Tests failed!"
                           exit 1
                       fi
                   else
                       echo "⚠️  Roblox API secrets not configured - skipping cloud tests"
-                      echo "💡 Configure ROBLOX_API_KEY, ROBLOX_TEST_UNIVERSE_ID, and ROBLOX_TEST_PLACE_ID secrets to enable cloud testing"
-                      echo "🔧 For now, validating test structure and local Jest execution..."
-                      echo "💡 Local tests passed, but cloud validation is recommended before deployment"
+                      echo "💡 Configure ROBLOX_API_KEY secret and test environment variables to enable cloud testing"
+                      # Still validate test structure works
+                      docker compose run --rm roblox-ts-dev npx jest --listTests
                   fi
-
             - name: Fix file permissions for git cleanup
               if: always()
               run: |
