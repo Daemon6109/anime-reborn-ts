@@ -23,6 +23,19 @@ class RobloxTestRunner {
 		this._context = context;
 		this._cloudTestsExecuted = false; // Flag to prevent multiple executions
 		this._cloudTestResults = null; // Store results from cloud execution
+		
+		// Detect if we're being called by VS Code Jest extension or other tools
+		this._isVSCodeJest = this._detectVSCodeJest(globalConfig);
+	}
+
+	_detectVSCodeJest(globalConfig) {
+		// Check for VS Code Jest extension patterns
+		const argv = process.argv;
+		const hasVSCodeReporter = argv.some(arg => arg.includes('vscode-jest') && arg.includes('reporter.js'));
+		const hasTempConfig = argv.some(arg => arg.includes('/tmp/jest_runner_'));
+		const hasVSCodeArgs = argv.includes('default') && argv.length > 5;
+		
+		return hasVSCodeReporter || hasTempConfig || hasVSCodeArgs;
 	}
 
 	// Parse test structure from TypeScript file
@@ -85,6 +98,12 @@ class RobloxTestRunner {
 		}
 	}
 	async runTests(tests, watcher, onStart, onResult, onFailure, options) {
+		// If VS Code Jest extension is calling us, fall back to simpler behavior
+		if (this._isVSCodeJest) {
+			console.log(`Detected VS Code Jest extension - using individual test execution mode`);
+			return this._runTestsForVSCode(tests, watcher, onStart, onResult, onFailure, options);
+		}
+
 		const results = [];
 
 		// Extract test name pattern from Jest's options or context
@@ -671,6 +690,55 @@ class RobloxTestRunner {
 			sourceMaps: {},
 			testFilePath: testPath.path,
 			testResults: parsedResults.testResults,
+		};
+	}
+
+	async _runTestsForVSCode(tests, watcher, onStart, onResult, onFailure, options) {
+		console.log(`VS Code Jest mode: Running ${tests.length} test files individually for better integration`);
+		
+		const results = [];
+
+		// Extract test name pattern from Jest's options or context
+		let testPattern = "";
+
+		// Check multiple possible sources for test pattern
+		if (options.testNamePattern) {
+			testPattern = options.testNamePattern.source || options.testNamePattern;
+		} else if (this._globalConfig.testNamePattern) {
+			testPattern = this._globalConfig.testNamePattern.source || this._globalConfig.testNamePattern;
+		}
+
+		// For VS Code, run each test individually to maintain proper integration
+		for (const test of tests) {
+			onStart(test);
+
+			try {
+				// Run our cloud test pipeline for this specific test
+				const result = await this.runSingleTest(test, testPattern);
+				results.push(result);
+				onResult(test, result);
+			} catch (error) {
+				onFailure(test, error);
+			}
+		}
+
+		return {
+			numTotalTestSuites: tests.length,
+			numPassedTestSuites: results.filter((r) => r.numFailingTests === 0).length,
+			numFailedTestSuites: results.filter((r) => r.numFailingTests > 0).length,
+			numPendingTestSuites: 0,
+			testResults: results,
+			snapshot: {
+				added: 0,
+				fileDeleted: false,
+				matched: 0,
+				unchecked: 0,
+				uncheckedKeys: [],
+				unmatched: 0,
+				updated: 0,
+			},
+			startTime: Date.now(),
+			success: results.every((r) => r.numFailingTests === 0),
 		};
 	}
 }

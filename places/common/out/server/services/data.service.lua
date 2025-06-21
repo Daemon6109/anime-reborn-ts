@@ -425,7 +425,7 @@ do
 	end
 end
 -- (Flamework) DataService decorators
-Reflect.decorate(DataService, "$:flamework@Service", Service, {})
+Reflect.decorate(DataService, "@flamework/core:out/flamework@Service", Service, {})
 return {
 	DataService = DataService,
 }

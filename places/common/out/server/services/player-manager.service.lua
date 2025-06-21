@@ -126,7 +126,7 @@ do
 	end
 end
 -- (Flamework) PlayerManagerService decorators
-Reflect.decorate(PlayerManagerService, "$:flamework@Service", Service, {})
+Reflect.decorate(PlayerManagerService, "@flamework/core:out/flamework@Service", Service, {})
 return {
 	PlayerManagerService = PlayerManagerService,
 }

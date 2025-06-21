@@ -15,5 +15,7 @@
 		"node_modules": true,
 		"out": true,
 		"include": true
-	}
+	},
+	"jest.jestCommandLine": "npm run test:jest --",
+	"jest.runMode": "on-demand"
 }
