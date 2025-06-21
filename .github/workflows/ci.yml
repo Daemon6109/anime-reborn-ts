@@ -83,6 +83,12 @@ jobs:
                   gunzip docker-image.tar.gz
                   docker load < docker-image.tar
 
+            - name: Fix file permissions for linting
+              run: |
+                  # Fix any permission issues that might prevent cleanup
+                  sudo chown -R runner:docker . || true
+                  sudo chmod -R 755 . || true
+
             - name: Install dependencies
               run: docker compose run --rm roblox-ts-dev npm ci
 
@@ -110,8 +116,23 @@ jobs:
             - name: Install dependencies
               run: docker compose run --rm roblox-ts-dev npm ci
 
+            - name: Fix coverage file permissions
+              run: |
+                  # Fix any permission issues that might prevent cleanup
+                  sudo chown -R runner:docker . || true
+                  sudo chmod -R 755 . || true
+                  # Ensure coverage directory exists with proper permissions
+                  mkdir -p coverage
+                  sudo chown -R runner:docker coverage || true
+                  sudo chmod -R 777 coverage || true
+
             - name: Run local tests with coverage
-              run: docker compose run --rm -v $(pwd)/coverage:/workspace/coverage roblox-ts-dev npm run test:coverage
+              run: |
+                  # Run with proper permissions and volume mount
+                  docker compose run --rm \
+                    -v $(pwd)/coverage:/workspace/coverage \
+                    --user "$(id -u):$(id -g)" \
+                    roblox-ts-dev npm run test:coverage
 
             - name: Upload coverage reports to Codecov
               if: github.event_name == 'push'
@@ -137,6 +158,12 @@ jobs:
                   ls -la docker-image.tar.gz
                   gunzip docker-image.tar.gz
                   docker load < docker-image.tar
+
+            - name: Fix file permissions for cloud tests
+              run: |
+                  # Fix any permission issues that might prevent cleanup
+                  sudo chown -R runner:docker . || true
+                  sudo chmod -R 755 . || true
 
             - name: Install dependencies
               run: docker compose run --rm roblox-ts-dev npm ci
