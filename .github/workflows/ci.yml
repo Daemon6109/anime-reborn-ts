@@ -17,7 +17,9 @@ jobs:
               run: docker compose build roblox-ts-dev
 
             - name: Save Docker image
-              run: docker save $(docker compose config --format json | jq -r '.services."roblox-ts-dev".image') | gzip > docker-image.tar.gz
+              run: |
+                  docker save roblox-ts-dev:latest | gzip > docker-image.tar.gz
+                  ls -la docker-image.tar.gz
 
             - name: Upload Docker image artifact
               uses: actions/upload-artifact@v4
@@ -39,7 +41,10 @@ jobs:
                   name: docker-image
 
             - name: Load Docker image
-              run: docker load < docker-image.tar.gz
+              run: |
+                  ls -la docker-image.tar.gz
+                  gunzip docker-image.tar.gz
+                  docker load < docker-image.tar
 
             - name: Install dependencies
               run: docker compose run --rm roblox-ts-dev npm ci
@@ -60,7 +65,10 @@ jobs:
                   name: docker-image
 
             - name: Load Docker image
-              run: docker load < docker-image.tar.gz
+              run: |
+                  ls -la docker-image.tar.gz
+                  gunzip docker-image.tar.gz
+                  docker load < docker-image.tar
 
             - name: Install dependencies
               run: docker compose run --rm roblox-ts-dev npm ci
@@ -88,7 +96,10 @@ jobs:
                   name: docker-image
 
             - name: Load Docker image
-              run: docker load < docker-image.tar.gz
+              run: |
+                  ls -la docker-image.tar.gz
+                  gunzip docker-image.tar.gz
+                  docker load < docker-image.tar
 
             - name: Install dependencies
               run: docker compose run --rm roblox-ts-dev npm ci
