@@ -1,14 +1,13 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
     push:
         branches: [main, develop]
     pull_request:
-        branches: [main, develop]
+        branches: [main]
 
 jobs:
-    # Combined testing job - local tests with coverage + cloud validation
-    test:
+    docker-ci:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
@@ -16,13 +15,10 @@ jobs:
             - name: Build Docker development environment
               run: docker compose build roblox-ts-dev
 
-            - name: Install dependencies
-              run: docker compose run --rm roblox-ts-dev npm ci
-
-            - name: Run linting with auto-fix
+            - name: Run linting in Docker
               run: docker compose run --rm roblox-ts-dev npm run lint:fix
 
-            - name: Build project
+            - name: Build project in Docker
               run: docker compose run --rm roblox-ts-dev npm run build
 
             - name: Run cloud tests in Docker
@@ -38,13 +34,13 @@ jobs:
                       echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
                       echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
                       echo "---"
-                      # Run Jest directly with environment variables
+                      # Run shell script directly to get proper exit codes
                       if docker compose run --rm \
                         -e ROBLOX_API_KEY="$ROBLOX_API_KEY" \
                         -e ROBLOX_UNIVERSE_ID="$ROBLOX_UNIVERSE_ID" \
                         -e ROBLOX_PLACE_ID="$ROBLOX_PLACE_ID" \
                         -e CI=true \
-                        roblox-ts-dev npx jest; then
+                        roblox-ts-dev ./scripts/shell/test.sh; then
                           echo "✅ All tests passed!"
                           exit 0
                       else
@@ -57,9 +53,3 @@ jobs:
                       # Still validate test structure works
                       docker compose run --rm roblox-ts-dev npx jest --listTests
                   fi
-            - name: Fix file permissions for git cleanup
-              if: always()
-              run: |
-                  # Fix ownership of files that may have been changed by Docker
-                  sudo chown -R runner:runner .git/ || true
-                  sudo chown -R runner:runner . || true
