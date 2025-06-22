@@ -1,7 +1,7 @@
-import { Service, OnInit, OnStart } from "@flamework/core";
-import { Players, RunService } from "@rbxts/services";
-import { DataService } from "./data.service"; // Assuming DataService might be needed for player data
-import { PlayerManagerService } from "./player-manager.service"; // Assuming PlayerManagerService might be needed
+import { Service, OnInit, OnStart, Dependency } from "@flamework/core";
+import { Players, RunService, AnalyticsService as RobloxAnalytics } from "@rbxts/services";
+import { DataService } from "@services/data.service";
+import { PlayerManagerService } from "@services/player-manager.service";
 
 interface RobloxAnalyticsService {
 	ReportEvent: (player: Player, eventName: string, eventContext?: unknown, eventSpecificData?: unknown) => void;
@@ -23,18 +23,35 @@ const BATCH_SIZE = 50;
 const BATCH_INTERVAL = 30; // seconds
 const PERFORMANCE_TRACK_INTERVAL = 300; // 5 minutes
 
-@Service({
-	loadOrder: 5, // Matches old script's load order
-})
+@Service()
 export class AnalyticsService implements OnInit, OnStart {
 	private pendingEvents: AnalyticsEvent[] = [];
 	private sessionData = new Map<Player, SessionData>();
+	private robloxAnalytics: RobloxAnalyticsService;
 
 	constructor(
 		private readonly dataService: DataService,
 		private readonly playerManagerService: PlayerManagerService,
-		private readonly robloxAnalytics: RobloxAnalyticsService, // Inject Roblox Analytics Service
-	) {}
+	) {
+		// Use Roblox's built-in AnalyticsService, or a mock if not available (e.g., in tests)
+		let analyticsService: unknown;
+		try {
+			analyticsService = RobloxAnalytics;
+		} catch {
+			analyticsService = undefined;
+		}
+
+		if (analyticsService !== undefined) {
+			this.robloxAnalytics = analyticsService as RobloxAnalyticsService;
+		} else {
+			// Fallback for testing environment
+			this.robloxAnalytics = {
+				ReportEvent: () => {
+					// No-op for tests
+				},
+			};
+		}
+	}
 
 	onInit(): void {
 		Players.PlayerAdded.Connect((player) => this.handlePlayerJoined(player));

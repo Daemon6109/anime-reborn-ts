@@ -324,15 +324,55 @@ export class DataService implements OnInit {
 		migrations.registerMigration(
 			1,
 			(data) => {
-				const newData = { ...data };
+				const newData = { ...data } as Record<string, unknown>;
 
-				if (!newData.SlotsApplicable) {
+				if (newData.SlotsApplicable === undefined || newData.SlotsApplicable === 0) {
 					newData.SlotsApplicable = 3;
+				}
+
+				// Ensure Slotbar structure exists with proper Traits
+				if (newData.Slotbar === undefined) {
+					newData.Slotbar = {};
+				}
+
+				const slotbar = newData.Slotbar as Record<string, unknown>;
+
+				// Ensure all slots have proper structure
+				for (let i = 1; i <= 6; i++) {
+					const slotKey = `Slot${i}`;
+					if (slotbar[slotKey] === undefined) {
+						slotbar[slotKey] = {
+							UUID: "",
+							UnitName: "",
+							Traits: { 1: "", 2: "", 3: "" },
+							Relic: "",
+							Skin: "",
+							Level: 1,
+							XP: 0,
+							AbilityTree: {},
+							StatsPotential: {},
+							StatsTraining: {},
+							Locked: false,
+							Shiny: false,
+						};
+					} else {
+						// Ensure existing slots have proper Traits structure
+						const slot = slotbar[slotKey] as Record<string, unknown>;
+						if (slot.Traits === undefined || typeOf(slot.Traits) !== "table") {
+							slot.Traits = { 1: "", 2: "", 3: "" };
+						} else {
+							// Ensure all trait keys exist
+							const traits = slot.Traits as Record<number, string>;
+							if (traits[1] === undefined) traits[1] = "";
+							if (traits[2] === undefined) traits[2] = "";
+							if (traits[3] === undefined) traits[3] = "";
+						}
+					}
 				}
 
 				return newData;
 			},
-			"Add missing SlotsApplicable field",
+			"Add missing SlotsApplicable field and ensure Slotbar structure",
 		);
 
 		// Migration from version 2 to version 3
@@ -342,7 +382,7 @@ export class DataService implements OnInit {
 				const newData = { ...data };
 
 				// Handle old DailyRewardData structure
-				if (newData.DailyRewardData) {
+				if (newData.DailyRewardData !== undefined) {
 					const oldDailyData = newData.DailyRewardData as Record<string, unknown>;
 
 					newData.DailyRewardsData = {
@@ -353,13 +393,13 @@ export class DataService implements OnInit {
 					} as DailyRewardsData;
 
 					// Preserve meaningful data
-					if (oldDailyData.LastClaimTime && (oldDailyData.LastClaimTime as number) > 0) {
+					if (oldDailyData.LastClaimTime !== undefined && (oldDailyData.LastClaimTime as number) > 0) {
 						(newData.DailyRewardsData as DailyRewardsData).LastClaimedDay = math.floor(
 							(oldDailyData.LastClaimTime as number) / 86400,
 						);
 					}
 
-					if (oldDailyData.StreakDays && (oldDailyData.StreakDays as number) > 0) {
+					if (oldDailyData.StreakDays !== undefined && (oldDailyData.StreakDays as number) > 0) {
 						(newData.DailyRewardsData as DailyRewardsData).CurrentStreak =
 							oldDailyData.StreakDays as number;
 					}
@@ -368,7 +408,7 @@ export class DataService implements OnInit {
 				}
 
 				// Ensure DailyRewardsData exists
-				if (!newData.DailyRewardsData) {
+				if (newData.DailyRewardsData === undefined) {
 					newData.DailyRewardsData = {
 						LastClaimedDay: undefined,
 						CurrentStreak: 0,
@@ -378,20 +418,24 @@ export class DataService implements OnInit {
 				}
 
 				// Handle ReceiptHistory migration
-				newData.ReceiptHistory = newData.ReceiptHistory || [];
-				if (newData.ProductsBought) {
+				newData.ReceiptHistory = newData.ReceiptHistory !== undefined ? newData.ReceiptHistory : [];
+				if (newData.ProductsBought !== undefined) {
 					const productsBought = newData.ProductsBought as unknown[];
 					const receiptHistory = newData.ReceiptHistory as string[];
 
 					for (const purchaseId of productsBought) {
-						if (purchaseId && !receiptHistory.includes(purchaseId as string)) {
+						if (
+							purchaseId !== undefined &&
+							purchaseId !== "" &&
+							!receiptHistory.includes(purchaseId as string)
+						) {
 							receiptHistory.push(purchaseId as string);
 						}
 					}
 					newData.ProductsBought = undefined;
 				}
 
-				if (newData.FailedPurchases) {
+				if (newData.FailedPurchases !== undefined) {
 					newData.FailedPurchases = undefined;
 				}
 
@@ -407,11 +451,15 @@ export class DataService implements OnInit {
 			(data) => {
 				const newData = { ...data };
 
-				if (newData.DailyRewardsData) {
+				if (newData.DailyRewardsData !== undefined) {
 					const dailyData = newData.DailyRewardsData as Record<string, unknown>;
 
 					// Check for old structure
-					if (dailyData.LastDay || dailyData.CurrentDay || dailyData.ClaimedDays) {
+					if (
+						dailyData.LastDay !== undefined ||
+						dailyData.CurrentDay !== undefined ||
+						dailyData.ClaimedDays !== undefined
+					) {
 						const newDailyData: DailyRewardsData = {
 							LastClaimedDay: undefined,
 							CurrentStreak: 0,
@@ -419,15 +467,15 @@ export class DataService implements OnInit {
 							TotalClaimed: 0,
 						};
 
-						if (dailyData.LastDay && (dailyData.LastDay as number) > 0) {
+						if (dailyData.LastDay !== undefined && (dailyData.LastDay as number) > 0) {
 							newDailyData.LastClaimedDay = dailyData.LastDay as number;
 						}
 
-						if (dailyData.CurrentDay && (dailyData.CurrentDay as number) > 1) {
+						if (dailyData.CurrentDay !== undefined && (dailyData.CurrentDay as number) > 1) {
 							newDailyData.CurrentStreak = (dailyData.CurrentDay as number) - 1;
 						}
 
-						if (dailyData.ClaimedDays) {
+						if (dailyData.ClaimedDays !== undefined) {
 							const claimedDays = dailyData.ClaimedDays as Record<string, boolean>;
 							let count = 0;
 							for (const [, claimed] of pairs(claimedDays)) {
@@ -452,7 +500,7 @@ export class DataService implements OnInit {
 			4,
 			(data) => {
 				const newData = { ...data } as Record<string, unknown>; // Use Record<string, unknown> to handle potentially missing fields
-				if (newData.BattlepassData) {
+				if (newData.BattlepassData !== undefined) {
 					const bpData = newData.BattlepassData as Record<string, unknown>;
 					if (bpData.Level === undefined || (bpData.Level as number) < 0) {
 						bpData.Level = 0;
@@ -486,7 +534,7 @@ export class DataService implements OnInit {
 			5,
 			(data) => {
 				const newData = { ...data } as Record<string, unknown>; // Use Record<string, unknown> for flexibility
-				if (newData.AdventCalendarData) {
+				if (newData.AdventCalendarData !== undefined) {
 					const acData = newData.AdventCalendarData as Record<string, unknown>;
 					if (acData.DayNumber === undefined) {
 						acData.DayNumber = 0;

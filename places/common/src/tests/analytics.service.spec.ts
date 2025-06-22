@@ -43,11 +43,7 @@ describe("AnalyticsService", () => {
 		// Create fresh instances for each test
 		dataService = new DataService();
 		playerManagerService = new PlayerManagerService(dataService);
-		analyticsService = new AnalyticsService(
-			dataService,
-			playerManagerService,
-			mockRobloxAnalytics as unknown as RobloxAnalyticsService,
-		);
+		analyticsService = new AnalyticsService(dataService, playerManagerService);
 
 		// Create a mock player object
 		mockPlayer = {

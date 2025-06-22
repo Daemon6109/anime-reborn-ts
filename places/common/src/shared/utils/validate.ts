@@ -12,6 +12,11 @@ export function validateDataSection<T>(data: unknown, template: T): [boolean, st
 				return [false, `Missing required field: ${key}`];
 			}
 
+			// For string fields, empty strings are considered valid
+			if (typeIs(templateValue, "string") && typeIs(dataValue, "string")) {
+				continue; // Empty strings are acceptable for string fields
+			}
+
 			const [isValid, message] = validateDataSection(dataValue, templateValue);
 			if (!isValid) {
 				return [false, `Invalid field ${key}: ${message}`];
