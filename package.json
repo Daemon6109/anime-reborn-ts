@@ -70,6 +70,7 @@
 		"@flamework/components": "^1.2.2",
 		"@flamework/core": "^1.2.2",
 		"@rbxts/jecs": "^0.6.1",
+		"@rbxts/lemon-signal": "^1.2.0",
 		"@rbxts/profile-store": "^1.0.3",
 		"@rbxts/services": "^1.5.5"
 	}

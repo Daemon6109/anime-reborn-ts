@@ -2,7 +2,6 @@ import { expect, describe, it, beforeEach } from "@rbxts/jest-globals";
 import { DATA_TEMPLATE, DataTemplate } from "shared/data/data-template";
 import { deepCopy } from "shared/utils/deep-copy";
 import { validateDataSection } from "shared/utils/validate";
-import { migrations } from "shared/utils/migrations";
 import { DataService } from "server/services/data.service";
 
 describe("DataService Fixed Tests", () => {
@@ -202,8 +201,8 @@ describe("DataService Fixed Tests", () => {
 
 			// Validate structure
 			const [isValid, errorMessage] = validateDataSection(processedData, DATA_TEMPLATE);
-			if (!isValid) {
-				print(`Validation failed with error: ${errorMessage || "Unknown error"}`);
+			if (isValid === false) {
+				print(`Validation failed with error: ${errorMessage !== undefined ? errorMessage : "Unknown error"}`);
 			}
 			expect(isValid).toBe(true);
 		});
