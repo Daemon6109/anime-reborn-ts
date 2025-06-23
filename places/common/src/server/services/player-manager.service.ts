@@ -3,6 +3,7 @@
 import { Service, OnStart } from "@flamework/core";
 import { Players } from "@rbxts/services";
 import { DataService } from "./data.service";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 
 /**
  * Example service showing how to use the DataService
@@ -13,7 +14,7 @@ export class PlayerManagerService implements OnStart {
 
 	public onStart(): void {
 		// Handle player joining
-		Players.PlayerAdded.Connect((player) => {
+		safePlayerAdded((player) => {
 			this.handlePlayerJoined(player);
 		});
 

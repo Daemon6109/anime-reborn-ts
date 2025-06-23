@@ -1,6 +1,7 @@
 import { Service, OnInit } from "@flamework/core";
 import { Players, ReplicatedStorage } from "@rbxts/services";
 import { DataService } from "./data.service";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 
 const version = { major: 1, minor: 0, patch: 0 };
 
@@ -450,7 +451,7 @@ export class MountService implements OnInit {
 		});
 
 		// Handle character respawning
-		Players.PlayerAdded.Connect((player) => {
+		safePlayerAdded((player) => {
 			player.CharacterAdded.Connect(() => {
 				// Re-equip mount if player had one equipped before respawning
 				task.wait(1); // Wait for character to fully load

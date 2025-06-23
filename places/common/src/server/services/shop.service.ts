@@ -9,6 +9,7 @@ import {
 	createEventShopData,
 	createRaidShopData,
 } from "../../shared/data/factories/misc-factories";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 
 const version = { major: 1, minor: 0, patch: 0 };
 
@@ -419,7 +420,7 @@ export class ShopService implements OnInit {
 	 * Setup player joined handler
 	 */
 	private setupPlayerJoinedHandler(): void {
-		Players.PlayerAdded.Connect((player) => {
+		safePlayerAdded((player) => {
 			// Wait a bit for data to load
 			task.wait(1);
 

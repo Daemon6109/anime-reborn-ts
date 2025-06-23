@@ -1,6 +1,7 @@
 import { Service, OnInit } from "@flamework/core";
 import { Players } from "@rbxts/services";
 import { DataService } from "./data.service";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 
 const version = { major: 1, minor: 0, patch: 0 };
 
@@ -41,6 +42,11 @@ export class AdventCalendarService implements OnInit {
 				3: { Gold: 1500, Gems: 15, Items: { SpecialItem: 1 } },
 				// Add more days as needed
 			},
+		});
+
+		// Handle player joining to update advent calendar data
+		safePlayerAdded((player) => {
+			task.spawn(() => this.updateAdventCalendarData(player));
 		});
 
 		print("AdventCalendarService initialized");

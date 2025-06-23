@@ -1,6 +1,7 @@
 import { Service, OnInit } from "@flamework/core";
 import { Players } from "@rbxts/services";
 import { DataService } from "./data.service";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 
 const version = { major: 1, minor: 0, patch: 0 };
 
@@ -334,7 +335,7 @@ export class EffectsService implements OnInit {
 	 * Setup player join/leave handlers
 	 */
 	private setupPlayerHandlers(): void {
-		Players.PlayerAdded.Connect((player) => {
+		safePlayerAdded((player) => {
 			// Initialize effects when player joins
 			task.wait(1); // Wait for data to load
 			this.cleanupExpiredEffects(player);

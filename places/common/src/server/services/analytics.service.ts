@@ -2,6 +2,7 @@ import { Service, OnInit, OnStart, Dependency } from "@flamework/core";
 import { Players, RunService, AnalyticsService as RobloxAnalytics } from "@rbxts/services";
 import { DataService } from "@services/data.service";
 import { PlayerManagerService } from "@services/player-manager.service";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 
 interface RobloxAnalyticsService {
 	ReportEvent: (player: Player, eventName: string, eventContext?: unknown, eventSpecificData?: unknown) => void;
@@ -54,7 +55,7 @@ export class AnalyticsService implements OnInit, OnStart {
 	}
 
 	onInit(): void {
-		Players.PlayerAdded.Connect((player) => this.handlePlayerJoined(player));
+		safePlayerAdded((player) => this.handlePlayerJoined(player));
 		Players.PlayerRemoving.Connect((player) => this.handlePlayerLeft(player));
 
 		// Set up final event processing when the server shuts down
