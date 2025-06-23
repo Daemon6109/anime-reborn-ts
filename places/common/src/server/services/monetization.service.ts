@@ -1,6 +1,6 @@
 import { OnStart, Service } from "@flamework/core";
 import { Players, MarketplaceService, HttpService } from "@rbxts/services";
-import Signal from "@rbxts/signal";
+import { Signal } from "@rbxts/lemon-signal";
 
 // Placeholder types and interfaces (to be properly defined later)
 interface DataCache {

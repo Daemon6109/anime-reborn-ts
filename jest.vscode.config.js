@@ -27,7 +27,7 @@ module.exports = {
 	// Setup file to mock Roblox environment for Node.js with Lune bridge
 	setupFilesAfterEnv: [
 		"<rootDir>/scripts/js/jest-setup-roblox-mocks.js", // Added this line
-		"<rootDir>/scripts/js/jest-setup-lune.js"
+		"<rootDir>/scripts/js/jest-setup-lune.js",
 	],
 
 	// No custom runner for VS Code - use default Jest runner
@@ -55,6 +55,8 @@ module.exports = {
 		"^@rbxts/services$": "<rootDir>/scripts/js/jest-rbxts-services-mock.js",
 		// Mock @rbxts/profile-store
 		"^@rbxts/profile-store$": "<rootDir>/scripts/js/jest-profile-store-mock.js",
+		// Mock @rbxts/lemon-signal
+		"^@rbxts/lemon-signal$": "<rootDir>/scripts/js/jest-lemon-signal-mock.js",
 		// Keep .lua mock for any other direct .lua imports if they occur
 		"\\.lua$": "<rootDir>/scripts/js/jest-empty-mock.js",
 	},

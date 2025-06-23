@@ -22,7 +22,7 @@
 		"test:local-build": "npm run build && jest",
 		"test:shell": "./scripts/shell/test.sh",
 		"test:jest": "bash ./scripts/shell/jest-vscode-wrapper.sh",
-		"test:coverage": "jest --config jest.coverage.config.js",
+		"test:coverage": "npm run test:jest -- --coverage",
 		"test:debug": "jest --runInBand",
 		"docker:build": "docker compose build || docker-compose build",
 		"docker:dev": "docker compose up -d roblox-ts-dev || docker-compose up -d roblox-ts-dev",

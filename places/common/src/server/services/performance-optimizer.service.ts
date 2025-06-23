@@ -181,7 +181,8 @@ export class PerformanceOptimizerService implements OnStart {
 
 		// Batch process analytics events
 		const eventsToProcess = [...this.analyticsEventQueue];
-		this.analyticsEventQueue.clear();
+		// Clear the queue by reassigning to empty array
+		(this as unknown as { analyticsEventQueue: EventData[] }).analyticsEventQueue = [];
 
 		task.spawn(() => {
 			for (const eventData of eventsToProcess) {
@@ -331,9 +332,10 @@ export class PerformanceOptimizerService implements OnStart {
 	 * Clears all queues (useful for testing or emergencies)
 	 */
 	public clearAllQueues(): void {
-		this.dataUpdateQueue.clear();
-		this.analyticsEventQueue.clear();
-		this.effectUpdateQueue.clear();
+		// Clear arrays by reassigning to empty arrays
+		(this as unknown as { dataUpdateQueue: DataUpdateOperation[] }).dataUpdateQueue = [];
+		(this as unknown as { analyticsEventQueue: EventData[] }).analyticsEventQueue = [];
+		(this as unknown as { effectUpdateQueue: EffectUpdateOperation[] }).effectUpdateQueue = [];
 		print("⚡ All performance optimizer queues cleared");
 	}
 
