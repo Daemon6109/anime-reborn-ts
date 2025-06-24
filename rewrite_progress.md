@@ -148,7 +148,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 | **Units** | 271 definitions | 🔄 **In Progress (108/271)** | `shared/data/units-data-clean.ts` |
 | Items | 244 definitions | ❌ **Pending** | `shared/data/game-content/items/` |
 | Maps | 29 configurations | ❌ **Pending** | `shared/data/game-content/maps/` |
-| Enemies | 195 configurations | ❌ **Pending** | `shared/data/game-content/enemies/` |
+| Enemies | 195 configurations | 🔄 **In Progress (16/195)** | `shared/data/game-content/enemies/` |
 | Quests | 116 definitions | ❌ **Pending** | `shared/data/game-content/quests/` |
 | Passives | 219 definitions | ❌ **Pending** | `shared/data/game-content/passives/` |
 | Blessings | 79 definitions | ❌ **Pending** | `shared/data/game-content/blessings/` |
@@ -156,7 +156,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 | Special Abilities | 28 definitions | ❌ **Pending** | `shared/data/game-content/abilities/` |
 
 **Progress: 6/13 major systems migrated (~75%)**
-**Remaining: 900+ game content items still need migration**
+**Remaining: 884+ game content items still need migration (195 enemies - 16 converted = 179 pending, 900 - 16 = 884)**
 
 ### Units Migration Progress
 
