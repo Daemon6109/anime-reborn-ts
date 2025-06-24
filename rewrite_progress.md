@@ -82,9 +82,9 @@ All data factories have been successfully implemented in `places/common/src/shar
 
 ---
 
-### Constants (❌ 1% Complete)
+### Constants (🔄 17% Complete)
 
-**Current Status**: Only `data-constants.ts` exists in `places/common/src/shared/constants/`
+**Current Status**: `data-constants.ts` and `special-abilities-constants.ts` exist in `places/common/src/shared/constants/`
 
 **Critical Missing Constants** (need migration from old Registry system):
 
@@ -96,7 +96,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 - ❌ **Blessings** (79 blessing definitions) → `blessings-constants.ts`
 - ❌ **Enemies** (195 enemy configurations) → `enemies-constants.ts`
 - ❌ **Quests** (116 quest definitions) → `quests-constants.ts`
-- ❌ **Special Abilities** → `special-abilities-constants.ts`
+- ✅ **Special Abilities** → `special-abilities-constants.ts`
 - ❌ **Status Effects** → `status-effects-constants.ts`
 - ❌ **Currencies** → `currencies-constants.ts`
 - ❌ **Buffs** → `buffs-constants.ts`
