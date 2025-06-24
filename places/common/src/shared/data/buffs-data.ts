@@ -80,15 +80,23 @@ export interface BuffData {
 	readonly displayName: string;
 	readonly description: string;
 	readonly duration?: number;
+	readonly type: "Buff" | "Debuff" | "Special";
+	readonly duration?: number;
 	readonly stackable?: boolean;
+	readonly maxStacks?: number;
 	readonly effects: {
 		readonly damageMultiplier?: number;
-		readonly healthMultiplier?: number;
-		readonly speedMultiplier?: number;
-		readonly rangeMultiplier?: number;
-		readonly critChance?: number;
-		readonly critDamage?: number;
+		readonly damageMultiplierPerStack?: number;
+		readonly attackSpeedMultiplier?: number; // Maps to Luau's attackSpeedMultiplier
+		readonly damageReduction?: number;
+		readonly damageReductionPerStack?: number;
+		readonly healthPerSecond?: number; // as a percentage, e.g., 0.02 for 2%
+		readonly damagePerSecondPerStack?: number; // as a percentage
+		readonly damageImmunity?: boolean;
+		// Allow any other string keys for effects from Luau
+		readonly [effectKey: string]: any;
 	};
+	readonly visualEffect?: string;
 }
 
 /**
@@ -99,7 +107,143 @@ export const BuffsRegistry: Record<string, BuffData> = {
 		name: "StatPotentials",
 		displayName: "Stat Potentials",
 		description: "Enhances unit stats based on potential grades",
+		type: "Special", // Added type for consistency
 		effects: {},
+	},
+	strength_buff: {
+		name: "strength_buff",
+		displayName: "Strength",
+		description: "Increases damage output",
+		type: "Buff",
+		duration: 60,
+		stackable: false,
+		effects: {
+			damageMultiplier: 1.25,
+		},
+		visualEffect: "StrengthAura",
+	},
+	rage_buff: {
+		name: "rage_buff",
+		displayName: "Rage",
+		description: "Stacking damage increase",
+		type: "Buff",
+		duration: 30,
+		stackable: true,
+		maxStacks: 10,
+		effects: {
+			damageMultiplierPerStack: 0.05,
+		},
+		visualEffect: "RageParticles",
+	},
+	haste_buff: {
+		name: "haste_buff",
+		displayName: "Haste",
+		description: "Increases attack speed",
+		type: "Buff",
+		duration: 45,
+		stackable: false,
+		effects: {
+			attackSpeedMultiplier: 1.3,
+		},
+		visualEffect: "HasteTrail",
+	},
+	frenzy_buff: {
+		name: "frenzy_buff",
+		displayName: "Frenzy",
+		description: "Dramatically increases attack speed",
+		type: "Buff",
+		duration: 15,
+		stackable: false,
+		effects: {
+			attackSpeedMultiplier: 2.0,
+		},
+		visualEffect: "FrenzyEffect",
+	},
+	shield_buff: {
+		name: "shield_buff",
+		displayName: "Shield",
+		description: "Reduces incoming damage",
+		type: "Buff",
+		duration: 120,
+		stackable: false,
+		effects: {
+			damageReduction: 0.25,
+		},
+		visualEffect: "ShieldGlow",
+	},
+	armor_buff: {
+		name: "armor_buff",
+		displayName: "Armor",
+		description: "Stacking damage reduction",
+		type: "Buff",
+		duration: 90,
+		stackable: true,
+		maxStacks: 5,
+		effects: {
+			damageReductionPerStack: 0.05,
+		},
+		visualEffect: "ArmorPlating",
+	},
+	regeneration_buff: {
+		name: "regeneration_buff",
+		displayName: "Regeneration",
+		description: "Restores health over time",
+		type: "Buff",
+		duration: 60,
+		stackable: false,
+		effects: {
+			healthPerSecond: 0.02, // 2% per second
+		},
+		visualEffect: "HealingAura",
+	},
+	poison_debuff: {
+		name: "poison_debuff",
+		displayName: "Poison",
+		description: "Deals damage over time",
+		type: "Debuff",
+		duration: 30,
+		stackable: true,
+		maxStacks: 3,
+		effects: {
+			damagePerSecondPerStack: 0.01, // 1% per second per stack
+		},
+		visualEffect: "PoisonCloud",
+	},
+	slow_debuff: {
+		name: "slow_debuff",
+		displayName: "Slow",
+		description: "Reduces attack speed",
+		type: "Debuff",
+		duration: 20,
+		stackable: false,
+		effects: {
+			attackSpeedMultiplier: 0.7,
+		},
+		visualEffect: "SlowEffect",
+	},
+	weakness_debuff: {
+		name: "weakness_debuff",
+		displayName: "Weakness",
+		description: "Reduces damage output",
+		type: "Debuff",
+		duration: 40,
+		stackable: false,
+		effects: {
+			damageMultiplier: 0.75,
+		},
+		visualEffect: "WeaknessAura",
+	},
+	invincibility_buff: {
+		name: "invincibility_buff",
+		displayName: "Invincibility",
+		description: "Immune to all damage",
+		type: "Special",
+		duration: 5,
+		stackable: false,
+		effects: {
+			damageImmunity: true,
+		},
+		visualEffect: "InvincibilityGlow",
 	},
 } as const;
 
