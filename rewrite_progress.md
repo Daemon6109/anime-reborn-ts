@@ -201,12 +201,23 @@ All data factories have been successfully implemented in `places/common/src/shar
 **K-Units**: ✅ **Complete** (18/18 units migrated)
 - ✅ All K-units migrated: Kabane, Kaido + [Hybrid], Kakashi, Kale, Kargalgan + [Evo] + [Evo2], KillerB + [Evo], Killua, Kirillin + [Valentines], Kiritsugu + [Evo], Kizaru, Kurapika + [Evo]
 
-**PROGRESS SUMMARY**: 119/271+ units migrated (~44% complete)
+**L-Units**: ✅ **Complete** (12/12 units migrated)
+
+- ✅ All L-units migrated: Law + [Evo], Leopold, Levi, Licht + [Evo], Light, Luck + [Evo], Luffy [DR] + [Evo], Luffy [PTS]
+
+**M-Units**: ✅ **Complete** (18/18 units migrated - 100% Complete)
+
+- ✅ All M-units completed: Magna, Magenta, Mars + [Evo], Mereum + [Evo], Mihawk + [Warlord], Mirko + [Evo], Momo + [Evo], MrMantisShrimp + [Evo], MrSatan, Muichiro + [Evo], Murata
+
+**N-Units**: ⏳ **Ready to Start** (0/X units migrated)
+
+**PROGRESS SUMMARY**: 149/271+ units migrated (~55% complete)
 
 **Next Batches**:
-- L-Units (next target) - Ready to start L-units migration (12 units identified)
-- Remaining: L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z-Units
-- Total remaining: 152+ units across remaining letters
+
+- N-Units (next target) - Ready to begin N-units migration  
+- Remaining: O, P, Q, R, S, T, U, V, W, X, Y, Z-Units
+- Total remaining: 122+ units across remaining letters
 
 ---
 
