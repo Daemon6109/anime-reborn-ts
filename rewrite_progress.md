@@ -82,15 +82,15 @@ All data factories have been successfully implemented in `places/common/src/shar
 
 ---
 
-### Constants (❌ 1% Complete)
+### Constants (🔄 5% Complete)
 
-**Current Status**: Only `data-constants.ts` exists in `places/common/src/shared/constants/`
+**Current Status**: `data-constants.ts` and `maps-constants.ts` (structure defined, 1 example stage migrated) exist in `places/common/src/shared/constants/`
 
 **Critical Missing Constants** (need migration from old Registry system):
 
 - ❌ **Units** (273 unit definitions) → `units-constants.ts`
 - ❌ **Items** (244 item definitions) → `items-constants.ts`  
-- ❌ **Maps** (29 map configurations) → `maps-constants.ts`
+- 🔄 **Maps** (29 map configurations) → `maps-constants.ts` (Structure defined, 1 of 29+ stages migrated as example)
 - ❌ **Traits** (26 trait definitions) → `traits-constants.ts`
 - ❌ **Passives** (219 passive definitions) → `passives-constants.ts`
 - ❌ **Blessings** (79 blessing definitions) → `blessings-constants.ts`
