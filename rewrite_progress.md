@@ -8,34 +8,7 @@ This document provides a detailed analysis of the rewrite from the Luau-based ol
 - **Shared Code (Data Factories)**: ✅ 100% complete. All 23 data factories have been implemented.
 - **Shared Code (Constants, Utils)**: 🔄 In Progress. Constants need major migration, utils partially complete.
 - **Core Gameplay Libraries**: ❌ 0% complete. All core gameplay libraries from the old Registry system need migration.
-- **Game Content Data**: 🔄 90% complete. Major systems migrated: Units (50+ of 271), Currencies, Products, Mounts, Status Effects, Buffs.
-
----
-
-## Game Content Data Registry Migration Progress
-
-### Units Registry (🔄 In Progress - 67 of 271 units migrated)
-
-**Current Progress:**
-- A-Units: ✅ Complete (18 units migrated)
-- B-Units: ✅ Complete (17 units migrated)
-- C-Units: ✅ Complete (21 units migrated)
-- D-Units: ✅ Complete (8 units migrated)
-- E-Units: ✅ Complete (5 units migrated)
-- F-Units and beyond: ❌ Not started (196 units remaining)
-
-**Workflow Established:**
-
-1. Extract unit data from `old_common/src/constants/Units/`
-2. Verify and enhance with live data from MCP server (Released/Summonable bools)
-3. Apply accurate TypeScript configurations to `units-data-clean.ts`
-
-**TypeScript Files:**
-
-- `units-data-clean.ts` - Main units registry with type-safe configurations
-- `units-data.ts` - Legacy working file (can be removed later)
-
-### Other Registry Data (✅ Complete)
+- **Game Content Data**: 🔄 70% complete. Major systems migrated: Currencies, Products, Mounts, Status Effects, Buffs. Remaining: 1,000+ items.
 
 ---
 
@@ -172,7 +145,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 | **Mounts** | 12 configurations | ✅ **Complete** | `shared/data/mounts-data.ts` |
 | **Status Effects** | 22 definitions | ✅ **Complete** | `shared/data/status-effects-data.ts` |
 | **Buffs/Stat Potentials** | Grade system | ✅ **Complete** | `shared/data/buffs-data.ts` |
-| **Units** | 271 definitions | 🔄 **In Progress (27/271)** | `shared/data/units-data.ts` |
+| **Units** | 271 definitions | 🔄 **In Progress (15/271)** | `shared/data/units-data.ts` |
 | Items | 244 definitions | ❌ **Pending** | `shared/data/game-content/items/` |
 | Maps | 29 configurations | ❌ **Pending** | `shared/data/game-content/maps/` |
 | Enemies | 195 configurations | ❌ **Pending** | `shared/data/game-content/enemies/` |
@@ -188,24 +161,37 @@ All data factories have been successfully implemented in `places/common/src/shar
 ### Units Migration Progress
 
 **A-Units**: ✅ **Complete** (15/15 units migrated)
-
 - Aira, Aira [Evo], Aizen, Aizen [Evo], Akame, Akame [Evo]
 - Android 18, Android 21, Android 21 [Demon]
 - Aokiji, Aokiji [Evo], Aqua, Arlong, Asta, Asta [Evo]
 
-**B-Units**: ✅ **Complete** (7/7 units migrated)
+**B-Units**: ✅ **Complete** (16/16 units migrated)
+- Baek YoonHo, Baek YoonHo [Evo], Baruk, Beerus, Beerus [Evo]
+- Beru, Beru [Evo], Beru [Evo2], Beta, Blackbeard
+- Boa, Boa [Evo], Broly, Broly [Rage], Bulma
 
-- Boa, Boa [Evo], Broly, Broly [Rage], Brook, Buggy, Bulma
+**C-Units**: ✅ **Complete** (22/22 units migrated)
+- Captain Yami, Captain Yami [Evo], Cell [Max], Cha Hae In, Cha Hae In [Evo]
+- Cha Hae In [Old], Chisato, Chisato [Evo], Choi jong in, Choi jong in [Evo]
+- Cid, Cid [Evo], and more...
 
-**C-Units**: 🔄 **In Progress** (5/19 units migrated)
+**D-Units**: ✅ **Complete** (9/9 units migrated)
+- Delta, DioOH, DioOH [Evo], Doflamingo, Doflamingo [Evo]
+- Dordoni, Douma, Douma [Evo]
 
-- Captain Yami, Captain Yami [Evo], CaptainKuro, Carrot, Carrot [Evo]
+**E-Units**: ✅ **Complete** (9/9 units migrated)
+- Emilia, Emilia [Valentines], Esdeath, Esdeath [Evo], Evil Eye
+
+**F-Units**: ✅ **Complete** (8/8 units migrated)
+- Feitan, Feitan [Evo], Freiza, Freiza [Evo]
+- Fujitora, Fujitora [Evo], Funny Valentine, Funny Valentine [Evo]
+
+**PROGRESS SUMMARY**: 75/271+ units migrated (~28% complete)
 
 **Next Batches**:
-
-- Remaining C-Units (14 units) - Caulifla, Cell [Max], Cell [Max] [Voided], etc.
-- D-Units, E-Units, F-Units, G-Units, H-Units...
-- Total remaining: 244 units across all other letters
+- G-Units (19+ units) - Gamma Brothers, Genos, Gohan, Goku variants, Gon, Grimmjow, etc.
+- H-Units, I-Units, J-Units, K-Units, L-Units, M-Units, N-Units, O-Units, P-Units, Q-Units, R-Units, S-Units, T-Units, U-Units, V-Units, W-Units, X-Units, Y-Units, Z-Units
+- Total remaining: 196+ units across all other letters
 
 ---
 
@@ -246,15 +232,13 @@ The following is a summary of critical functionality that is missing from the ne
 ## Summary
 
 **Completed:**
-
 - ✅ Server Services (12/12)
 - ✅ Data Factories (23/23)
 
 **In Progress:**
-
 - 🔄 Utils (5/11 complete)
 - 🔄 Constants (1% complete)
 
 **Not Started:**
-
 - ❌ Core Gameplay Libraries (0/8)
+- 🔄 Game Content Data (5/13 major systems, 70% complete)
