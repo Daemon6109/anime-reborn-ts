@@ -84,14 +84,14 @@ All data factories have been successfully implemented in `places/common/src/shar
 
 ### Constants (❌ 1% Complete)
 
-**Current Status**: Only `data-constants.ts` exists in `places/common/src/shared/constants/`
+**Current Status**: `data-constants.ts` and `traits-constants.ts` exist in `places/common/src/shared/constants/`
 
 **Critical Missing Constants** (need migration from old Registry system):
 
 - ❌ **Units** (273 unit definitions) → `units-constants.ts`
 - ❌ **Items** (244 item definitions) → `items-constants.ts`  
 - ❌ **Maps** (29 map configurations) → `maps-constants.ts`
-- ❌ **Traits** (26 trait definitions) → `traits-constants.ts`
+- ✅ **Traits** (26 trait definitions) → `traits-constants.ts` (Initial configuration migrated, needs review for dynamic logic)
 - ❌ **Passives** (219 passive definitions) → `passives-constants.ts`
 - ❌ **Blessings** (79 blessing definitions) → `blessings-constants.ts`
 - ❌ **Enemies** (195 enemy configurations) → `enemies-constants.ts`
@@ -152,11 +152,11 @@ All data factories have been successfully implemented in `places/common/src/shar
 | Quests | 116 definitions | ❌ **Pending** | `shared/data/game-content/quests/` |
 | Passives | 219 definitions | ❌ **Pending** | `shared/data/game-content/passives/` |
 | Blessings | 79 definitions | ❌ **Pending** | `shared/data/game-content/blessings/` |
-| Traits | 26 definitions | ❌ **Pending** | `shared/data/game-content/traits/` |
+| Traits | 26 definitions | ✅ **Complete (Initial Migration)** | `shared/constants/traits-constants.ts` |
 | Special Abilities | 28 definitions | ❌ **Pending** | `shared/data/game-content/abilities/` |
 
-**Progress: 6/13 major systems migrated (~75%)**
-**Remaining: 900+ game content items still need migration**
+**Progress: 7/13 major systems migrated (~77%)**
+**Remaining: ~870+ game content items still need migration**
 
 ### Units Migration Progress
 
@@ -252,8 +252,8 @@ The following is a summary of critical functionality that is missing from the ne
 
 **In Progress:**
 - 🔄 Utils (5/11 complete)
-- 🔄 Constants (1% complete)
+- 🔄 Constants (Trait configs migrated, ~10% complete overall for constants)
 
 **Not Started:**
 - ❌ Core Gameplay Libraries (0/8)
-- 🔄 Game Content Data (5/13 major systems, 70% complete)
+- 🔄 Game Content Data (6/13 major systems, ~77% complete - Traits config done)
