@@ -92,7 +92,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 - ❌ **Items** (244 item definitions) → `items-constants.ts`  
 - ❌ **Maps** (29 map configurations) → `maps-constants.ts`
 - ❌ **Traits** (26 trait definitions) → `traits-constants.ts`
-- ❌ **Passives** (219 passive definitions) → `passives-constants.ts`
+- ✅ **Passives** (219/219 passive definitions converted to TS structure) → `places/common/src/shared/data/game-content/passives/` (Functional implementation pending TODO resolution)
 - ❌ **Blessings** (79 blessing definitions) → `blessings-constants.ts`
 - ❌ **Enemies** (195 enemy configurations) → `enemies-constants.ts`
 - ❌ **Quests** (116 quest definitions) → `quests-constants.ts`
@@ -150,7 +150,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 | Maps | 29 configurations | ❌ **Pending** | `shared/data/game-content/maps/` |
 | Enemies | 195 configurations | ❌ **Pending** | `shared/data/game-content/enemies/` |
 | Quests | 116 definitions | ❌ **Pending** | `shared/data/game-content/quests/` |
-| Passives | 219 definitions | ❌ **Pending** | `shared/data/game-content/passives/` |
+| Passives | 219 definitions | ✅ **Complete (Structure)** | `shared/data/game-content/passives/` (Functional implementation pending TODO resolution) |
 | Blessings | 79 definitions | ❌ **Pending** | `shared/data/game-content/blessings/` |
 | Traits | 26 definitions | ❌ **Pending** | `shared/data/game-content/traits/` |
 | Special Abilities | 28 definitions | ❌ **Pending** | `shared/data/game-content/abilities/` |
