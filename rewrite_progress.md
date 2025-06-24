@@ -145,7 +145,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 | **Mounts** | 12 configurations | ✅ **Complete** | `shared/data/mounts-data.ts` |
 | **Status Effects** | 22 definitions | ✅ **Complete** | `shared/data/status-effects-data.ts` |
 | **Buffs/Stat Potentials** | Grade system | ✅ **Complete** | `shared/data/buffs-data.ts` |
-| **Units** | 271 definitions | 🔄 **In Progress (15/271)** | `shared/data/units-data.ts` |
+| **Units** | 271 definitions | 🔄 **In Progress (108/271)** | `shared/data/units-data-clean.ts` |
 | Items | 244 definitions | ❌ **Pending** | `shared/data/game-content/items/` |
 | Maps | 29 configurations | ❌ **Pending** | `shared/data/game-content/maps/` |
 | Enemies | 195 configurations | ❌ **Pending** | `shared/data/game-content/enemies/` |
@@ -186,12 +186,27 @@ All data factories have been successfully implemented in `places/common/src/shar
 - Feitan, Feitan [Evo], Freiza, Freiza [Evo]
 - Fujitora, Fujitora [Evo], Funny Valentine, Funny Valentine [Evo]
 
-**PROGRESS SUMMARY**: 75/271+ units migrated (~28% complete)
+**G-Units**: ✅ **Complete** (14/14 units migrated)
+- ✅ All G-units migrated: Gamma Brothers + [Evo], Genos, Gohan + [Beast], Gojo [Base], Goku [Evo], GokuSSJ + [Evo], Gon + [Evo], Gordon, Grimmjow + [Evo]
+
+**H-Units**: ✅ **Complete** (5/5 units migrated)
+- ✅ All H-units migrated: Hiei, Hinata, Hisoka + [Evo], Hitto
+
+**I-Units**: ✅ **Complete** (16/16 units migrated)
+- ✅ All I-units migrated: Ichigo + [Bankai] + [Vasto], Igris + [Evo] + [Evo2], Illumi + [Evo], Inosuke + [Valentines], Iron + [Evo] + [Evo2] + [old], Itachi + [Susanoo]
+
+**J-Units**: ✅ **Complete** (7/7 units migrated)
+- ✅ All J-units migrated: Jay, Jinho, Jiren + [Evo], Julius + [Evo], Juvia
+
+**K-Units**: ✅ **Complete** (18/18 units migrated)
+- ✅ All K-units migrated: Kabane, Kaido + [Hybrid], Kakashi, Kale, Kargalgan + [Evo] + [Evo2], KillerB + [Evo], Killua, Kirillin + [Valentines], Kiritsugu + [Evo], Kizaru, Kurapika + [Evo]
+
+**PROGRESS SUMMARY**: 119/271+ units migrated (~44% complete)
 
 **Next Batches**:
-- G-Units (19+ units) - Gamma Brothers, Genos, Gohan, Goku variants, Gon, Grimmjow, etc.
-- H-Units, I-Units, J-Units, K-Units, L-Units, M-Units, N-Units, O-Units, P-Units, Q-Units, R-Units, S-Units, T-Units, U-Units, V-Units, W-Units, X-Units, Y-Units, Z-Units
-- Total remaining: 196+ units across all other letters
+- L-Units (next target) - Ready to start L-units migration (12 units identified)
+- Remaining: L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z-Units
+- Total remaining: 152+ units across remaining letters
 
 ---
 
