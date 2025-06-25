@@ -15,7 +15,6 @@
       "AttackSize": 10,
       "AttackSpeed": 5.5,
       "AttackType": "Circle",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 2475,
       "DisplayName": "Airo",
@@ -27,18 +26,14 @@
             "+1 New Move: Acrobatic Twirls",
             "+1 Passive Upgrade: Power Roll II"
           ],
-          "EvolvesInto": "Aira [Evo]",
           "Requirements": {
             "Items": {
               "AcrobaticMask": 1,
               "PurpleStar": 4,
               "RedStar": 4
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Aira [Evo]",
@@ -121,8 +116,7 @@
           "UpgradePrice": 11100
         }
       ]
-    },
-    "name": "Aira"
+    }
   },
   "Aira [Evo]": {
     "Released": true,
@@ -140,7 +134,6 @@
       "AttackSize": 14,
       "AttackSpeed": 5.5,
       "AttackType": "Circle",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 3285,
       "DisplayName": "Airo [Awoken]",
@@ -232,8 +225,7 @@
           "UpgradePrice": 13870
         }
       ]
-    },
-    "name": "Aira [Evo]"
+    }
   },
   "Aizen": {
     "Released": true,
@@ -330,8 +322,7 @@
           "UpgradePrice": 12222
         }
       ]
-    },
-    "name": "Aizen"
+    }
   },
   "Aizen [Evo]": {
     "Released": true,
@@ -433,8 +424,7 @@
           "UpgradePrice": 17600
         }
       ]
-    },
-    "name": "Aizen [Evo]"
+    }
   },
   "AizenHogyoku": {
     "Released": true,
@@ -522,8 +512,7 @@
           "UpgradePrice": 5850
         }
       ]
-    },
-    "name": "AizenHogyoku"
+    }
   },
   "AizenHogyoku [Evo]": {
     "Released": true,
@@ -622,8 +611,7 @@
           "UpgradePrice": 12500
         }
       ]
-    },
-    "name": "AizenHogyoku [Evo]"
+    }
   },
   "Akame": {
     "Released": true,
@@ -710,8 +698,7 @@
           "UpgradePrice": 9100
         }
       ]
-    },
-    "name": "Akame"
+    }
   },
   "Akame [Evo]": {
     "Released": true,
@@ -803,8 +790,7 @@
           "UpgradePrice": 10700
         }
       ]
-    },
-    "name": "Akame [Evo]"
+    }
   },
   "Android 18": {
     "Released": true,
@@ -889,8 +875,7 @@
           "UpgradePrice": 5100
         }
       ]
-    },
-    "name": "Android 18"
+    }
   },
   "Android 21": {
     "Released": true,
@@ -921,7 +906,6 @@
             "+1 New Move: Death Ball",
             "+1 New Passive: Together we shine"
           ],
-          "EvolvesInto": "Android 21 [Demon]",
           "Requirements": {
             "Items": {
               "BlueStar": 10,
@@ -932,11 +916,8 @@
               "RainbowStar": 2,
               "RedStar": 10
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Android 21 [Demon]",
@@ -1009,8 +990,7 @@
           "UpgradePrice": 13000
         }
       ]
-    },
-    "name": "Android 21"
+    }
   },
   "Android 21 [Demon]": {
     "Released": true,
@@ -1112,8 +1092,7 @@
           "UpgradePrice": 13500
         }
       ]
-    },
-    "name": "Android 21 [Demon]"
+    }
   },
   "Aokiji": {
     "Released": true,
@@ -1208,8 +1187,7 @@
           "UpgradePrice": 8500
         }
       ]
-    },
-    "name": "Aokiji"
+    }
   },
   "Aokiji [Evo]": {
     "Released": true,
@@ -1311,8 +1289,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Aokiji [Evo]"
+    }
   },
   "Aqua": {
     "Released": true,
@@ -1393,8 +1370,7 @@
           "UpgradePrice": 4350
         }
       ]
-    },
-    "name": "Aqua"
+    }
   },
   "Arlong": {
     "Released": false,
@@ -1461,8 +1437,7 @@
           "UpgradePrice": 2000
         }
       ]
-    },
-    "name": "Arlong"
+    }
   },
   "ArlongAwakened": {
     "Released": false,
@@ -1538,8 +1513,7 @@
           "UpgradePrice": 3500
         }
       ]
-    },
-    "name": "ArlongAwakened"
+    }
   },
   "Asta": {
     "Released": true,
@@ -1638,8 +1612,7 @@
           "UpgradePrice": 9000
         }
       ]
-    },
-    "name": "Asta"
+    }
   },
   "Asta [Evo]": {
     "Released": true,
@@ -1660,7 +1633,7 @@
       "AttackType": "Line",
       "CanSell": true,
       "Damage": 1800,
-      "DisplayName": "\"Osta [Anti",
+      "DisplayName": "Osta [Anti-Form]",
       "Element": "Dark",
       "IsSpecialAbilityGlobalCooldown": false,
       "MaxPlacementAmount": 3,
@@ -1745,8 +1718,7 @@
           "UpgradePrice": 11000
         }
       ]
-    },
-    "name": "Asta [Evo]"
+    }
   },
   "Baek YoonHo": {
     "Released": true,
@@ -1813,8 +1785,7 @@
           "UpgradePrice": 2500
         }
       ]
-    },
-    "name": "Baek YoonHo"
+    }
   },
   "Baek YoonHo [Evo]": {
     "Released": true,
@@ -1908,8 +1879,7 @@
           "UpgradePrice": 15000
         }
       ]
-    },
-    "name": "Baek YoonHo [Evo]"
+    }
   },
   "Baruk": {
     "Released": true,
@@ -1927,7 +1897,6 @@
       "AttackSize": 10,
       "AttackSpeed": 5.5,
       "AttackType": "Circle",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 2475,
       "DisplayName": "Baruk",
@@ -2007,8 +1976,7 @@
           "UpgradePrice": 11100
         }
       ]
-    },
-    "name": "Baruk"
+    }
   },
   "Beerus": {
     "Released": true,
@@ -2101,8 +2069,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Beerus"
+    }
   },
   "Beerus [Evo]": {
     "Released": true,
@@ -2204,8 +2171,7 @@
           "UpgradePrice": 12800
         }
       ]
-    },
-    "name": "Beerus [Evo]"
+    }
   },
   "Beru": {
     "Released": true,
@@ -2294,8 +2260,7 @@
           "UpgradePrice": 10760
         }
       ]
-    },
-    "name": "Beru"
+    }
   },
   "Beru [Evo2]": {
     "Released": true,
@@ -2395,8 +2360,7 @@
           "UpgradePrice": 13500
         }
       ]
-    },
-    "name": "Beru [Evo2]"
+    }
   },
   "Beru [Evo]": {
     "Released": true,
@@ -2497,8 +2461,7 @@
           "UpgradePrice": 11850
         }
       ]
-    },
-    "name": "Beru [Evo]"
+    }
   },
   "Beta": {
     "Released": false,
@@ -2508,7 +2471,7 @@
       "walk": "17264216432"
     },
     "configuration": {
-      "Ability": "\"Mana",
+      "Ability": "Mana-Powered Arrow",
       "AttackCriticalChance": 0.05,
       "AttackCriticalDamage": ".3",
       "AttackEffect": "",
@@ -2541,8 +2504,7 @@
           "UpgradePrice": 0
         }
       ]
-    },
-    "name": "Beta"
+    }
   },
   "Blackbeard": {
     "Released": true,
@@ -2628,8 +2590,7 @@
           "UpgradePrice": 7300
         }
       ]
-    },
-    "name": "Blackbeard"
+    }
   },
   "Boa": {
     "Released": true,
@@ -2659,7 +2620,6 @@
             "+1 New Move: Melo Melo Merrow",
             "+1 New Passive: Cold Hearted Empress"
           ],
-          "EvolvesInto": "Boa [Evo]",
           "Requirements": {
             "Items": {
               "OrangeStar": 5,
@@ -2668,11 +2628,8 @@
               "RedStar": 5,
               "RoyalCharm": 1
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Boa [Evo]",
@@ -2740,8 +2697,7 @@
           "UpgradePrice": 10000
         }
       ]
-    },
-    "name": "Boa"
+    }
   },
   "Boa [Evo]": {
     "Released": true,
@@ -2841,8 +2797,7 @@
           "UpgradePrice": 12000
         }
       ]
-    },
-    "name": "Boa [Evo]"
+    }
   },
   "Broly": {
     "Released": true,
@@ -2938,8 +2893,7 @@
           "UpgradePrice": 10100
         }
       ]
-    },
-    "name": "Broly"
+    }
   },
   "Broly [Rage]": {
     "Released": true,
@@ -3042,8 +2996,7 @@
           "UpgradePrice": 15500
         }
       ]
-    },
-    "name": "Broly [Rage]"
+    }
   },
   "Brook": {
     "Released": true,
@@ -3134,8 +3087,7 @@
           "UpgradePrice": 8000
         }
       ]
-    },
-    "name": "Brook"
+    }
   },
   "Buggy": {
     "Released": true,
@@ -3228,8 +3180,7 @@
           "UpgradePrice": 12650
         }
       ]
-    },
-    "name": "Buggy"
+    }
   },
   "Bulma": {
     "Released": true,
@@ -3289,8 +3240,7 @@
           "UpgradePrice": 2500
         }
       ]
-    },
-    "name": "Bulma"
+    }
   },
   "Captain Yami": {
     "Released": true,
@@ -3388,8 +3338,7 @@
           "UpgradePrice": 9150
         }
       ]
-    },
-    "name": "Captain Yami"
+    }
   },
   "Captain Yami [Evo]": {
     "Released": true,
@@ -3494,8 +3443,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Captain Yami [Evo]"
+    }
   },
   "CaptainKuro": {
     "Released": true,
@@ -3583,8 +3531,7 @@
           "UpgradePrice": 8000
         }
       ]
-    },
-    "name": "CaptainKuro"
+    }
   },
   "Carrot": {
     "Released": true,
@@ -3673,8 +3620,7 @@
           "UpgradePrice": 9730
         }
       ]
-    },
-    "name": "Carrot"
+    }
   },
   "Carrot [Evo]": {
     "Released": true,
@@ -3771,8 +3717,7 @@
           "UpgradePrice": 11850
         }
       ]
-    },
-    "name": "Carrot [Evo]"
+    }
   },
   "Caulifla": {
     "Released": true,
@@ -3851,8 +3796,7 @@
           "UpgradePrice": 5150
         }
       ]
-    },
-    "name": "Caulifla"
+    }
   },
   "Cell [Max]": {
     "Released": false,
@@ -3870,7 +3814,6 @@
       "AttackSize": 10,
       "AttackSpeed": 9,
       "AttackType": "Line",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 1850,
       "DisplayName": "Uell [Max]",
@@ -3949,8 +3892,7 @@
           "UpgradePrice": 10200
         }
       ]
-    },
-    "name": "Cell [Max]"
+    }
   },
   "Cell [Max] [Voided]": {
     "Released": false,
@@ -4039,8 +3981,7 @@
           "UpgradePrice": 9500
         }
       ]
-    },
-    "name": "Cell [Max] [Voided]"
+    }
   },
   "Cha Hae In": {
     "Released": true,
@@ -4136,8 +4077,7 @@
           "UpgradePrice": 15000
         }
       ]
-    },
-    "name": "Cha Hae In"
+    }
   },
   "Cha Hae In [Evo]": {
     "Released": true,
@@ -4242,8 +4182,7 @@
           "UpgradePrice": 13750
         }
       ]
-    },
-    "name": "Cha Hae In [Evo]"
+    }
   },
   "Cha Hae In [Old]": {
     "Released": false,
@@ -4280,13 +4219,8 @@
       "UpgradePrice": 3000,
       "UpgradesInfo": [
         {
-          "Ability": "Shadow Clone Rasengan",
           "AttackSize": 5,
-          "AttackSpeed": 4.5,
           "AttackType": "Line",
-          "Damage": 2000,
-          "Range": 5,
-          "UnitType": "Hybrid",
           "UpgradePrice": 600
         },
         {
@@ -4303,7 +4237,6 @@
           "UpgradePrice": 1500
         },
         {
-          "Ability": "Fireball Jutsu",
           "Damage": 11000,
           "UpgradePrice": 2200
         },
@@ -4323,8 +4256,7 @@
           "UpgradePrice": 3000
         }
       ]
-    },
-    "name": "Cha Hae In [Old]"
+    }
   },
   "Chisato": {
     "Released": true,
@@ -4411,8 +4343,7 @@
           "UpgradePrice": 9500
         }
       ]
-    },
-    "name": "Chisato"
+    }
   },
   "Chisato [Evo]": {
     "Released": true,
@@ -4506,8 +4437,7 @@
           "UpgradePrice": 11165
         }
       ]
-    },
-    "name": "Chisato [Evo]"
+    }
   },
   "Choi jong in": {
     "Released": true,
@@ -4600,8 +4530,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Choi jong in"
+    }
   },
   "Choi jong in [Evo]": {
     "Released": true,
@@ -4701,8 +4630,7 @@
           "UpgradePrice": 12800
         }
       ]
-    },
-    "name": "Choi jong in [Evo]"
+    }
   },
   "Chrollo": {
     "Released": true,
@@ -4796,8 +4724,7 @@
           "UpgradePrice": 6540
         }
       ]
-    },
-    "name": "Chrollo"
+    }
   },
   "Chrollo [Evo]": {
     "Released": true,
@@ -4899,8 +4826,7 @@
           "UpgradePrice": 12340
         }
       ]
-    },
-    "name": "Chrollo [Evo]"
+    }
   },
   "Cid": {
     "Released": true,
@@ -4990,8 +4916,7 @@
           "UpgradePrice": 14500
         }
       ]
-    },
-    "name": "Cid"
+    }
   },
   "Cid [Evo]": {
     "Released": true,
@@ -5092,8 +5017,7 @@
           "UpgradePrice": 25000
         }
       ]
-    },
-    "name": "Cid [Evo]"
+    }
   },
   "Delta": {
     "Released": true,
@@ -5163,8 +5087,7 @@
           "UpgradePrice": 6750
         }
       ]
-    },
-    "name": "Delta"
+    }
   },
   "DioOH": {
     "Released": true,
@@ -5183,7 +5106,6 @@
       "AttackSize": 10,
       "AttackSpeed": 6.5,
       "AttackType": "Line",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 2300,
       "DisplayName": "Io from Heaven",
@@ -5267,8 +5189,7 @@
           "UpgradePrice": 17500
         }
       ]
-    },
-    "name": "DioOH"
+    }
   },
   "DioOH [Evo]": {
     "Released": true,
@@ -5287,7 +5208,6 @@
       "AttackSize": 22,
       "AttackSpeed": 9,
       "AttackType": "Circle",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 4750,
       "DisplayName": "Io from Heaven [Perfection]",
@@ -5379,8 +5299,7 @@
           "UpgradePrice": 25000
         }
       ]
-    },
-    "name": "DioOH [Evo]"
+    }
   },
   "Doflamingo": {
     "Released": true,
@@ -5463,8 +5382,7 @@
           "UpgradePrice": 7250
         }
       ]
-    },
-    "name": "Doflamingo"
+    }
   },
   "Doflamingo [Evo]": {
     "Released": true,
@@ -5565,8 +5483,7 @@
           "UpgradePrice": 12500
         }
       ]
-    },
-    "name": "Doflamingo [Evo]"
+    }
   },
   "Dordoni": {
     "Released": true,
@@ -5649,8 +5566,7 @@
           "UpgradePrice": 3850
         }
       ]
-    },
-    "name": "Dordoni"
+    }
   },
   "Douma": {
     "Released": true,
@@ -5749,8 +5665,7 @@
           "UpgradePrice": 9300
         }
       ]
-    },
-    "name": "Douma"
+    }
   },
   "Douma [Evo]": {
     "Released": true,
@@ -5853,8 +5768,7 @@
           "UpgradePrice": 10800
         }
       ]
-    },
-    "name": "Douma [Evo]"
+    }
   },
   "Emilia": {
     "Released": true,
@@ -5921,8 +5835,7 @@
           "UpgradePrice": 1950
         }
       ]
-    },
-    "name": "Emilia"
+    }
   },
   "Emilia [Valentines]": {
     "Released": true,
@@ -5989,8 +5902,7 @@
           "UpgradePrice": 1950
         }
       ]
-    },
-    "name": "Emilia [Valentines]"
+    }
   },
   "Esdeath": {
     "Released": true,
@@ -6088,8 +6000,7 @@
           "UpgradePrice": 9540
         }
       ]
-    },
-    "name": "Esdeath"
+    }
   },
   "Esdeath [Evo]": {
     "Released": true,
@@ -6194,8 +6105,7 @@
           "UpgradePrice": 13400
         }
       ]
-    },
-    "name": "Esdeath [Evo]"
+    }
   },
   "Evil Eye": {
     "Released": true,
@@ -6280,8 +6190,7 @@
           "UpgradePrice": 11200
         }
       ]
-    },
-    "name": "Evil Eye"
+    }
   },
   "Feitan": {
     "Released": true,
@@ -6375,8 +6284,7 @@
           "UpgradePrice": 12750
         }
       ]
-    },
-    "name": "Feitan"
+    }
   },
   "Feitan [Evo]": {
     "Released": true,
@@ -6478,8 +6386,7 @@
           "UpgradePrice": 13000
         }
       ]
-    },
-    "name": "Feitan [Evo]"
+    }
   },
   "Freiza": {
     "Released": true,
@@ -6567,8 +6474,7 @@
           "UpgradePrice": 6000
         }
       ]
-    },
-    "name": "Freiza"
+    }
   },
   "Freiza [Evo]": {
     "Released": true,
@@ -6670,8 +6576,7 @@
           "UpgradePrice": 10500
         }
       ]
-    },
-    "name": "Freiza [Evo]"
+    }
   },
   "Fujitora": {
     "Released": true,
@@ -6758,8 +6663,7 @@
           "UpgradePrice": 9480
         }
       ]
-    },
-    "name": "Fujitora"
+    }
   },
   "Fujitora [Evo]": {
     "Released": true,
@@ -6862,8 +6766,7 @@
           "UpgradePrice": 11850
         }
       ]
-    },
-    "name": "Fujitora [Evo]"
+    }
   },
   "Funny Valentine": {
     "Released": true,
@@ -6881,7 +6784,6 @@
       "AttackSize": 15,
       "AttackSpeed": 6,
       "AttackType": "Circle",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 2875,
       "DisplayName": "Smiling Valentine",
@@ -6894,7 +6796,6 @@
             "+1 New Passive: `Doppelganger`",
             "+1 New Special Ability: `Love Train`"
           ],
-          "EvolvesInto": "Funny Valentine [Evo]",
           "Requirements": {
             "Items": {
               "FierceStone": 20,
@@ -6902,11 +6803,8 @@
               "RainbowStar": 2,
               "RedStar": 10
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Funny Valentine [Evo]",
@@ -6980,8 +6878,7 @@
           "UpgradePrice": 11110
         }
       ]
-    },
-    "name": "Funny Valentine"
+    }
   },
   "Funny Valentine [Evo]": {
     "Released": true,
@@ -6999,7 +6896,6 @@
       "AttackSize": 20,
       "AttackSpeed": 5,
       "AttackType": "Circle",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 3975,
       "DisplayName": "Smiling Valentine [President]",
@@ -7084,8 +6980,7 @@
           "UpgradePrice": 13320
         }
       ]
-    },
-    "name": "Funny Valentine [Evo]"
+    }
   },
   "Gamma Brothers": {
     "Released": true,
@@ -7107,7 +7002,6 @@
       "AttackSize": 10,
       "AttackSpeed": 9,
       "AttackType": "Line",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 1850,
       "DisplayName": "Delta Brothers",
@@ -7187,8 +7081,7 @@
           "UpgradePrice": 10200
         }
       ]
-    },
-    "name": "Gamma Brothers"
+    }
   },
   "Gamma Brothers [Evo]": {
     "Released": true,
@@ -7211,7 +7104,6 @@
       "AttackSize": 10,
       "AttackSpeed": 9,
       "AttackType": "Line",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 2500,
       "DisplayName": "Delta Brothers [Core]",
@@ -7297,8 +7189,7 @@
           "UpgradePrice": 12000
         }
       ]
-    },
-    "name": "Gamma Brothers [Evo]"
+    }
   },
   "Genos": {
     "Released": true,
@@ -7384,8 +7275,7 @@
           "UpgradePrice": 7500
         }
       ]
-    },
-    "name": "Genos"
+    }
   },
   "Gohan": {
     "Released": true,
@@ -7476,8 +7366,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Gohan"
+    }
   },
   "Gohan [Beast]": {
     "Released": true,
@@ -7576,8 +7465,7 @@
           "UpgradePrice": 8450
         }
       ]
-    },
-    "name": "Gohan [Beast]"
+    }
   },
   "Gojo [Base]": {
     "Released": false,
@@ -7665,8 +7553,7 @@
           "UpgradePrice": 100000000000.0
         }
       ]
-    },
-    "name": "Gojo [Base]"
+    }
   },
   "Goku [Evo]": {
     "Released": true,
@@ -7774,8 +7661,7 @@
           "UpgradePrice": 13000
         }
       ]
-    },
-    "name": "Goku [Evo]"
+    }
   },
   "GokuSSJ": {
     "Released": true,
@@ -7869,8 +7755,7 @@
           "UpgradePrice": 12500
         }
       ]
-    },
-    "name": "GokuSSJ"
+    }
   },
   "GokuSSJ [Evo]": {
     "Released": true,
@@ -7973,8 +7858,7 @@
           "UpgradePrice": 16000
         }
       ]
-    },
-    "name": "GokuSSJ [Evo]"
+    }
   },
   "Gon": {
     "Released": true,
@@ -8069,8 +7953,7 @@
           "UpgradePrice": 7500
         }
       ]
-    },
-    "name": "Gon"
+    }
   },
   "Gon [Evo]": {
     "Released": true,
@@ -8173,8 +8056,7 @@
           "UpgradePrice": 16500
         }
       ]
-    },
-    "name": "Gon [Evo]"
+    }
   },
   "Gordon": {
     "Released": true,
@@ -8259,8 +8141,7 @@
           "UpgradePrice": 4775
         }
       ]
-    },
-    "name": "Gordon"
+    }
   },
   "Grimmjow": {
     "Released": false,
@@ -8356,8 +8237,7 @@
           "UpgradePrice": 10100
         }
       ]
-    },
-    "name": "Grimmjow"
+    }
   },
   "Grimmjow [Evo]": {
     "Released": false,
@@ -8458,8 +8338,7 @@
           "UpgradePrice": 11111
         }
       ]
-    },
-    "name": "Grimmjow [Evo]"
+    }
   },
   "Hiei": {
     "Released": true,
@@ -8499,7 +8378,6 @@
       "UpgradePrice": 2500,
       "UpgradesInfo": [
         {
-          "AttackSize": 5,
           "AttackSpeed": 5,
           "Damage": 30,
           "Range": 20,
@@ -8532,8 +8410,7 @@
           "UpgradePrice": 2500
         }
       ]
-    },
-    "name": "Hiei"
+    }
   },
   "Hinata": {
     "Released": true,
@@ -8600,8 +8477,7 @@
           "UpgradePrice": 1500
         }
       ]
-    },
-    "name": "Hinata"
+    }
   },
   "Hisoka": {
     "Released": false,
@@ -8683,8 +8559,7 @@
           "UpgradePrice": 6590
         }
       ]
-    },
-    "name": "Hisoka"
+    }
   },
   "Hisoka [Evo]": {
     "Released": false,
@@ -8779,8 +8654,7 @@
           "UpgradePrice": 13300
         }
       ]
-    },
-    "name": "Hisoka [Evo]"
+    }
   },
   "Hitto": {
     "Released": false,
@@ -8874,8 +8748,7 @@
           "UpgradePrice": 7800
         }
       ]
-    },
-    "name": "Hitto"
+    }
   },
   "Ichigo": {
     "Released": true,
@@ -8948,8 +8821,7 @@
           "UpgradePrice": 1000
         }
       ]
-    },
-    "name": "Ichigo"
+    }
   },
   "Ichigo [Bankai]": {
     "Released": true,
@@ -9044,8 +8916,7 @@
           "UpgradePrice": 6500
         }
       ]
-    },
-    "name": "Ichigo [Bankai]"
+    }
   },
   "Ichigo [Vasto]": {
     "Released": true,
@@ -9149,8 +9020,7 @@
           "UpgradePrice": 11850
         }
       ]
-    },
-    "name": "Ichigo [Vasto]"
+    }
   },
   "Igris": {
     "Released": true,
@@ -9247,8 +9117,7 @@
           "UpgradePrice": 12750
         }
       ]
-    },
-    "name": "Igris"
+    }
   },
   "Igris [Evo2]": {
     "Released": true,
@@ -9353,8 +9222,7 @@
           "UpgradePrice": 15555
         }
       ]
-    },
-    "name": "Igris [Evo2]"
+    }
   },
   "Igris [Evo]": {
     "Released": true,
@@ -9461,8 +9329,7 @@
           "UpgradePrice": 15555
         }
       ]
-    },
-    "name": "Igris [Evo]"
+    }
   },
   "Illumi": {
     "Released": false,
@@ -9554,8 +9421,7 @@
           "UpgradePrice": 6750
         }
       ]
-    },
-    "name": "Illumi"
+    }
   },
   "Illumi [Evo]": {
     "Released": false,
@@ -9659,8 +9525,7 @@
           "UpgradePrice": 13470
         }
       ]
-    },
-    "name": "Illumi [Evo]"
+    }
   },
   "Inosuke": {
     "Released": true,
@@ -9733,8 +9598,7 @@
           "UpgradePrice": 3900
         }
       ]
-    },
-    "name": "Inosuke"
+    }
   },
   "Inosuke [Valentines]": {
     "Released": true,
@@ -9807,8 +9671,7 @@
           "UpgradePrice": 3900
         }
       ]
-    },
-    "name": "Inosuke [Valentines]"
+    }
   },
   "Iron": {
     "Released": true,
@@ -9899,8 +9762,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Iron"
+    }
   },
   "Iron [Evo2]": {
     "Released": true,
@@ -10000,8 +9862,7 @@
           "UpgradePrice": 12895
         }
       ]
-    },
-    "name": "Iron [Evo2]"
+    }
   },
   "Iron [Evo]": {
     "Released": true,
@@ -10104,8 +9965,7 @@
           "UpgradePrice": 12895
         }
       ]
-    },
-    "name": "Iron [Evo]"
+    }
   },
   "Iron [old]": {
     "Released": false,
@@ -10201,8 +10061,7 @@
           "UpgradePrice": 8470
         }
       ]
-    },
-    "name": "Iron [old]"
+    }
   },
   "Itachi": {
     "Released": true,
@@ -10232,7 +10091,6 @@
             "+1 New Move: Fire Slash",
             "+1 New Passive: Burning Carnage II"
           ],
-          "EvolvesInto": "Itachi [Susanoo]",
           "Requirements": {
             "Items": {
               "Naruto": 40,
@@ -10240,11 +10098,8 @@
               "TotsukaBlade": 12,
               "YataMirror": 12
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Itachi [Susanoo]",
@@ -10322,8 +10177,7 @@
           "UpgradePrice": 12500
         }
       ]
-    },
-    "name": "Itachi"
+    }
   },
   "Itachi [Susanoo]": {
     "Released": true,
@@ -10431,8 +10285,7 @@
           "UpgradePrice": 15000
         }
       ]
-    },
-    "name": "Itachi [Susanoo]"
+    }
   },
   "Jay": {
     "Released": false,
@@ -10458,6 +10311,7 @@
       "MaxPlacementAmount": 6,
       "MaxUpgrades": 1,
       "Money": 1,
+      "PlacementPrice": -1000000,
       "PlacementType": "Ground",
       "Range": 30,
       "Rarity": "Exclusive",
@@ -10472,8 +10326,7 @@
           "UpgradePrice": 1
         }
       ]
-    },
-    "name": "Jay"
+    }
   },
   "Jinho": {
     "Released": true,
@@ -10553,8 +10406,7 @@
           "UpgradePrice": 90000
         }
       ]
-    },
-    "name": "Jinho"
+    }
   },
   "Jiren": {
     "Released": true,
@@ -10643,8 +10495,7 @@
           "UpgradePrice": 6400
         }
       ]
-    },
-    "name": "Jiren"
+    }
   },
   "Jiren [Evo]": {
     "Released": true,
@@ -10746,8 +10597,7 @@
           "UpgradePrice": 11200
         }
       ]
-    },
-    "name": "Jiren [Evo]"
+    }
   },
   "Julius": {
     "Released": true,
@@ -10845,8 +10695,7 @@
           "UpgradePrice": 18000
         }
       ]
-    },
-    "name": "Julius"
+    }
   },
   "Julius [Evo]": {
     "Released": true,
@@ -10952,8 +10801,7 @@
           "UpgradePrice": 23000
         }
       ]
-    },
-    "name": "Julius [Evo]"
+    }
   },
   "Juvia": {
     "Released": true,
@@ -11032,8 +10880,7 @@
           "UpgradePrice": 3850
         }
       ]
-    },
-    "name": "Juvia"
+    }
   },
   "Kabane": {
     "Released": true,
@@ -11115,8 +10962,7 @@
           "UpgradePrice": 9000
         }
       ]
-    },
-    "name": "Kabane"
+    }
   },
   "Kaido": {
     "Released": true,
@@ -11135,7 +10981,6 @@
       "AttackSize": 40,
       "AttackSpeed": 6,
       "AttackType": "Cone",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 1900,
       "DisplayName": "Dragon Emperor",
@@ -11214,8 +11059,7 @@
           "UpgradePrice": 26000
         }
       ]
-    },
-    "name": "Kaido"
+    }
   },
   "Kaido [Hybrid]": {
     "Released": true,
@@ -11234,7 +11078,6 @@
       "AttackSize": 40,
       "AttackSpeed": 8,
       "AttackType": "Full",
-      "CameraZoom": 65,
       "CanSell": true,
       "Damage": 3000,
       "DisplayName": "Dragon Emperor [Hybrid]",
@@ -11321,8 +11164,7 @@
           "UpgradePrice": 31000
         }
       ]
-    },
-    "name": "Kaido [Hybrid]"
+    }
   },
   "Kakashi": {
     "Released": true,
@@ -11362,12 +11204,10 @@
       "UpgradePrice": 1850,
       "UpgradesInfo": [
         {
-          "Ability": "Shadow Clone Rasengan",
           "AttackSize": 6,
           "AttackSpeed": 6,
           "Damage": 60,
           "Range": 17,
-          "UnitType": "Hybrid",
           "UpgradePrice": 850
         },
         {
@@ -11399,8 +11239,7 @@
           "UpgradePrice": 1850
         }
       ]
-    },
-    "name": "Kakashi"
+    }
   },
   "Kale": {
     "Released": true,
@@ -11479,8 +11318,7 @@
           "UpgradePrice": 6100
         }
       ]
-    },
-    "name": "Kale"
+    }
   },
   "Kargalgan": {
     "Released": true,
@@ -11570,18 +11408,14 @@
           "UpgradePrice": 10500
         },
         {
-          "Ability": "Chant of the Fire Dragon",
-          "AttackSize": 25,
           "AttackSpeed": 6.5,
-          "AttackType": "Line",
           "Damage": 3000,
           "Range": 35,
           "UnitType": "Hybrid",
           "UpgradePrice": 12200
         }
       ]
-    },
-    "name": "Kargalgan"
+    }
   },
   "Kargalgan [Evo2]": {
     "Released": true,
@@ -11688,8 +11522,7 @@
           "UpgradePrice": 13500
         }
       ]
-    },
-    "name": "Kargalgan [Evo2]"
+    }
   },
   "Kargalgan [Evo]": {
     "Released": true,
@@ -11798,8 +11631,7 @@
           "UpgradePrice": 13500
         }
       ]
-    },
-    "name": "Kargalgan [Evo]"
+    }
   },
   "KillerB": {
     "Released": true,
@@ -11881,8 +11713,7 @@
           "UpgradePrice": 6750
         }
       ]
-    },
-    "name": "KillerB"
+    }
   },
   "KillerB [Evo]": {
     "Released": true,
@@ -11973,8 +11804,7 @@
           "UpgradePrice": 8444
         }
       ]
-    },
-    "name": "KillerB [Evo]"
+    }
   },
   "Killua": {
     "Released": true,
@@ -12048,8 +11878,7 @@
           "UpgradePrice": 2150
         }
       ]
-    },
-    "name": "Killua"
+    }
   },
   "Kirillin": {
     "Released": true,
@@ -12119,8 +11948,7 @@
           "UpgradePrice": 1000
         }
       ]
-    },
-    "name": "Kirillin"
+    }
   },
   "Kirillin [Valentines]": {
     "Released": true,
@@ -12190,8 +12018,7 @@
           "UpgradePrice": 1000
         }
       ]
-    },
-    "name": "Kirillin [Valentines]"
+    }
   },
   "Kiritsugu": {
     "Released": true,
@@ -12277,8 +12104,7 @@
           "UpgradePrice": 7100
         }
       ]
-    },
-    "name": "Kiritsugu"
+    }
   },
   "Kiritsugu [Evo]": {
     "Released": true,
@@ -12368,8 +12194,7 @@
           "UpgradePrice": 8630
         }
       ]
-    },
-    "name": "Kiritsugu [Evo]"
+    }
   },
   "Kizaru": {
     "Released": true,
@@ -12458,8 +12283,7 @@
           "UpgradePrice": 6500
         }
       ]
-    },
-    "name": "Kizaru"
+    }
   },
   "Kurapika": {
     "Released": true,
@@ -12556,8 +12380,7 @@
           "UpgradePrice": 6850
         }
       ]
-    },
-    "name": "Kurapika"
+    }
   },
   "Kurapika [Evo]": {
     "Released": true,
@@ -12661,8 +12484,7 @@
           "UpgradePrice": 10730
         }
       ]
-    },
-    "name": "Kurapika [Evo]"
+    }
   },
   "Law": {
     "Released": true,
@@ -12749,8 +12571,7 @@
           "UpgradePrice": 11000
         }
       ]
-    },
-    "name": "Law"
+    }
   },
   "Law [Evo]": {
     "Released": true,
@@ -12852,8 +12673,7 @@
           "UpgradePrice": 15555
         }
       ]
-    },
-    "name": "Law [Evo]"
+    }
   },
   "Leopold": {
     "Released": true,
@@ -12936,8 +12756,7 @@
           "UpgradePrice": 4775
         }
       ]
-    },
-    "name": "Leopold"
+    }
   },
   "Levi": {
     "Released": true,
@@ -13028,8 +12847,7 @@
           "UpgradePrice": 13000
         }
       ]
-    },
-    "name": "Levi"
+    }
   },
   "Licht": {
     "Released": true,
@@ -13058,9 +12876,6 @@
             "+25% Damage",
             "+1 New Passive: Light Summon"
           ],
-          "EliminationsRequired": 5000,
-          "EvolvesInto": "Licht [Evo]",
-          "LightStone": 30,
           "Requirements": {
             "EliminationsRequired": 5000,
             "Items": {
@@ -13071,11 +12886,8 @@
               "RainbowStar": 3
             },
             "LightStone": 30,
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Licht [Evo]",
@@ -13154,8 +12966,7 @@
           "UpgradePrice": 8750
         }
       ]
-    },
-    "name": "Licht"
+    }
   },
   "Licht [Evo]": {
     "Released": true,
@@ -13257,8 +13068,7 @@
           "UpgradePrice": 11000
         }
       ]
-    },
-    "name": "Licht [Evo]"
+    }
   },
   "Light": {
     "Released": false,
@@ -13316,8 +13126,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Light"
+    }
   },
   "Luck": {
     "Released": true,
@@ -13413,8 +13222,7 @@
           "UpgradePrice": 9500
         }
       ]
-    },
-    "name": "Luck"
+    }
   },
   "Luck [Evo]": {
     "Released": true,
@@ -13518,8 +13326,7 @@
           "UpgradePrice": 11850
         }
       ]
-    },
-    "name": "Luck [Evo]"
+    }
   },
   "Luffy [DR]": {
     "Released": true,
@@ -13606,8 +13413,7 @@
           "UpgradePrice": 3000
         }
       ]
-    },
-    "name": "Luffy [DR]"
+    }
   },
   "Luffy [DR] [Evo]": {
     "Released": true,
@@ -13710,8 +13516,7 @@
           "UpgradePrice": 15000
         }
       ]
-    },
-    "name": "Luffy [DR] [Evo]"
+    }
   },
   "Luffy [PTS]": {
     "Released": true,
@@ -13750,8 +13555,7 @@
       "SpecialAbilityCooldown": 0,
       "TransferStats": true,
       "UnitType": "Ground"
-    },
-    "name": "Luffy [PTS]"
+    }
   },
   "Magenta ": {
     "Released": true,
@@ -13818,8 +13622,7 @@
           "UpgradePrice": 2600
         }
       ]
-    },
-    "name": "Magenta "
+    }
   },
   "Magna": {
     "Released": true,
@@ -13904,8 +13707,7 @@
           "UpgradePrice": 3500
         }
       ]
-    },
-    "name": "Magna"
+    }
   },
   "Mars": {
     "Released": true,
@@ -14004,8 +13806,7 @@
           "UpgradePrice": 10000
         }
       ]
-    },
-    "name": "Mars"
+    }
   },
   "Mars [Evo]": {
     "Released": true,
@@ -14112,8 +13913,7 @@
           "UpgradePrice": 11300
         }
       ]
-    },
-    "name": "Mars [Evo]"
+    }
   },
   "Mereum": {
     "Released": true,
@@ -14209,8 +14009,7 @@
           "UpgradePrice": 6300
         }
       ]
-    },
-    "name": "Mereum"
+    }
   },
   "Mereum [Evo]": {
     "Released": true,
@@ -14316,8 +14115,7 @@
           "UpgradePrice": 9375
         }
       ]
-    },
-    "name": "Mereum [Evo]"
+    }
   },
   "Mihawk": {
     "Released": true,
@@ -14410,8 +14208,7 @@
           "UpgradePrice": 10000
         }
       ]
-    },
-    "name": "Mihawk"
+    }
   },
   "Mihawk [Warlord]": {
     "Released": true,
@@ -14511,8 +14308,7 @@
           "UpgradePrice": 13500
         }
       ]
-    },
-    "name": "Mihawk [Warlord]"
+    }
   },
   "Mirko": {
     "Released": true,
@@ -14599,8 +14395,7 @@
           "UpgradePrice": 8950
         }
       ]
-    },
-    "name": "Mirko"
+    }
   },
   "Mirko [Evo]": {
     "Released": true,
@@ -14694,8 +14489,7 @@
           "UpgradePrice": 12350
         }
       ]
-    },
-    "name": "Mirko [Evo]"
+    }
   },
   "Momo": {
     "Released": true,
@@ -14725,7 +14519,6 @@
             "+1 Passive: Psychic Connection",
             "+1 Passive on 5th upgrade: True Sight"
           ],
-          "EvolvesInto": "Momo [Evo]",
           "Requirements": {
             "Items": {
               "BlueStar": 3,
@@ -14734,11 +14527,8 @@
               "RedStar": 3,
               "SpiritHands": 1
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Momo [Evo]",
@@ -14820,8 +14610,7 @@
           "UpgradePrice": 12111
         }
       ]
-    },
-    "name": "Momo"
+    }
   },
   "Momo [Evo]": {
     "Released": true,
@@ -14932,8 +14721,7 @@
           "UpgradePrice": 13500
         }
       ]
-    },
-    "name": "Momo [Evo]"
+    }
   },
   "MrMantisShrimp": {
     "Released": true,
@@ -14961,7 +14749,6 @@
             "+1 New Move: Salary Uppercut",
             "+1 Passive Upgrade: Shrimp Boxing II"
           ],
-          "EvolvesInto": "MrMantisShrimp [Evo]",
           "Requirements": {
             "Items": {
               "BlueStar": 2,
@@ -14969,11 +14756,8 @@
               "MilkCarton": 1,
               "OrangeStar": 20
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "MrMantisShrimp [Evo]",
@@ -15055,8 +14839,7 @@
           "UpgradePrice": 13450
         }
       ]
-    },
-    "name": "MrMantisShrimp"
+    }
   },
   "MrMantisShrimp [Evo]": {
     "Released": true,
@@ -15163,8 +14946,7 @@
           "UpgradePrice": 15200
         }
       ]
-    },
-    "name": "MrMantisShrimp [Evo]"
+    }
   },
   "MrSatan": {
     "Released": true,
@@ -15234,8 +15016,7 @@
           "UpgradePrice": 1050
         }
       ]
-    },
-    "name": "MrSatan"
+    }
   },
   "Muichiro": {
     "Released": true,
@@ -15326,8 +15107,7 @@
           "UpgradePrice": 7200
         }
       ]
-    },
-    "name": "Muichiro"
+    }
   },
   "Muichiro [Evo]": {
     "Released": true,
@@ -15424,8 +15204,7 @@
           "UpgradePrice": 9145
         }
       ]
-    },
-    "name": "Muichiro [Evo]"
+    }
   },
   "Murata": {
     "Released": true,
@@ -15507,8 +15286,7 @@
           "UpgradePrice": 3500
         }
       ]
-    },
-    "name": "Murata"
+    }
   },
   "Nanami": {
     "Released": true,
@@ -15595,8 +15373,7 @@
           "UpgradePrice": 7750
         }
       ]
-    },
-    "name": "Nanami"
+    }
   },
   "Nanami [Evo]": {
     "Released": true,
@@ -15691,8 +15468,7 @@
           "UpgradePrice": 8150
         }
       ]
-    },
-    "name": "Nanami [Evo]"
+    }
   },
   "Naruto": {
     "Released": true,
@@ -15765,8 +15541,7 @@
           "UpgradePrice": 1150
         }
       ]
-    },
-    "name": "Naruto"
+    }
   },
   "Neji": {
     "Released": true,
@@ -15827,7 +15602,7 @@
           "UpgradePrice": 2700
         },
         {
-          "Ability": "\"8 Trigams",
+          "Ability": "8 Trigams, 64 Palms",
           "AttackSpeed": 6,
           "AttackType": "Full",
           "Damage": 150,
@@ -15835,8 +15610,7 @@
           "UpgradePrice": 3400
         }
       ]
-    },
-    "name": "Neji"
+    }
   },
   "Nel": {
     "Released": true,
@@ -15931,8 +15705,7 @@
           "UpgradePrice": 7500
         }
       ]
-    },
-    "name": "Nel"
+    }
   },
   "Nel [Evo]": {
     "Released": true,
@@ -16035,8 +15808,7 @@
           "UpgradePrice": 10000
         }
       ]
-    },
-    "name": "Nel [Evo]"
+    }
   },
   "Netero": {
     "Released": true,
@@ -16130,8 +15902,7 @@
           "UpgradePrice": 7500
         }
       ]
-    },
-    "name": "Netero"
+    }
   },
   "Netero [Evo]": {
     "Released": true,
@@ -16234,8 +16005,7 @@
           "UpgradePrice": 15100
         }
       ]
-    },
-    "name": "Netero [Evo]"
+    }
   },
   "Nezuko": {
     "Released": false,
@@ -16302,8 +16072,7 @@
           "UpgradePrice": 1940
         }
       ]
-    },
-    "name": "Nezuko"
+    }
   },
   "Nezuko [Valentines]": {
     "Released": false,
@@ -16370,8 +16139,7 @@
           "UpgradePrice": 1940
         }
       ]
-    },
-    "name": "Nezuko [Valentines]"
+    }
   },
   "Noelle": {
     "Released": true,
@@ -16469,8 +16237,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Noelle"
+    }
   },
   "Noelle [Evo]": {
     "Released": true,
@@ -16575,8 +16342,7 @@
           "UpgradePrice": 8200
         }
       ]
-    },
-    "name": "Noelle [Evo]"
+    }
   },
   "Oden": {
     "Released": true,
@@ -16671,8 +16437,7 @@
           "UpgradePrice": 12500
         }
       ]
-    },
-    "name": "Oden"
+    }
   },
   "Oden [Evo]": {
     "Released": true,
@@ -16772,8 +16537,7 @@
           "UpgradePrice": 16000
         }
       ]
-    },
-    "name": "Oden [Evo]"
+    }
   },
   "Okarun": {
     "Released": true,
@@ -16783,7 +16547,7 @@
       "walk": "17264216432"
     },
     "configuration": {
-      "Ability": "\"After",
+      "Ability": "After-Images",
       "AttackCriticalChance": 0.05,
       "AttackCriticalDamage": ".3",
       "AttackEffect": "Paralysis",
@@ -16802,7 +16566,6 @@
             "+1 New Move: Turbo Barrage",
             "+1 New Passive: Careless Acceleration"
           ],
-          "EvolvesInto": "Okarun [Evo]",
           "Requirements": {
             "Items": {
               "BlueStar": 4,
@@ -16812,11 +16575,8 @@
               "RainbowStar": 1,
               "RedStar": 2
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Okarun [Evo]",
@@ -16899,8 +16659,7 @@
           "UpgradePrice": 20000
         }
       ]
-    },
-    "name": "Okarun"
+    }
   },
   "Okarun [Evo]": {
     "Released": true,
@@ -17010,8 +16769,7 @@
           "UpgradePrice": 24000
         }
       ]
-    },
-    "name": "Okarun [Evo]"
+    }
   },
   "OldItachi": {
     "Released": false,
@@ -17048,10 +16806,8 @@
       "UpgradePrice": 3000,
       "UpgradesInfo": [
         {
-          "Ability": "Shadow Clone Rasengan",
           "AttackSpeed": 0,
           "Damage": 50,
-          "UnitType": "Hybrid",
           "UpgradePrice": 600
         },
         {
@@ -17067,7 +16823,6 @@
           "UpgradePrice": 1500
         },
         {
-          "Ability": "Fireball Jutsu",
           "Damage": 11000,
           "UpgradePrice": 2200
         },
@@ -17080,8 +16835,7 @@
           "UpgradePrice": 3000
         }
       ]
-    },
-    "name": "OldItachi"
+    }
   },
   "Orihime": {
     "Released": true,
@@ -17163,8 +16917,7 @@
           "UpgradePrice": 4500
         }
       ]
-    },
-    "name": "Orihime"
+    }
   },
   "Orochimaru": {
     "Released": false,
@@ -17243,8 +16996,7 @@
           "UpgradePrice": 5200
         }
       ]
-    },
-    "name": "Orochimaru"
+    }
   },
   "Pain": {
     "Released": true,
@@ -17338,8 +17090,7 @@
           "UpgradePrice": 9700
         }
       ]
-    },
-    "name": "Pain"
+    }
   },
   "Pain [Chibaku]": {
     "Released": true,
@@ -17440,8 +17191,7 @@
           "UpgradePrice": 13300
         }
       ]
-    },
-    "name": "Pain [Chibaku]"
+    }
   },
   "Pan": {
     "Released": true,
@@ -17511,8 +17261,7 @@
           "UpgradePrice": 1000
         }
       ]
-    },
-    "name": "Pan"
+    }
   },
   "Piccolo Orange": {
     "Released": true,
@@ -17605,8 +17354,7 @@
           "UpgradePrice": 9350
         }
       ]
-    },
-    "name": "Piccolo Orange"
+    }
   },
   "Piccolo Orange [Full Power]": {
     "Released": true,
@@ -17707,8 +17455,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Piccolo Orange [Full Power]"
+    }
   },
   "Placeholder": {
     "Released": false,
@@ -17799,8 +17546,7 @@
           "UpgradePrice": 9250
         }
       ]
-    },
-    "name": "Placeholder"
+    }
   },
   "Purple": {
     "Released": false,
@@ -17851,7 +17597,6 @@
           "UpgradePrice": 1500
         },
         {
-          "Ability": "Fireball Jutsu",
           "Damage": 5500,
           "UpgradePrice": 2200
         },
@@ -17866,8 +17611,7 @@
           "UpgradePrice": 3000
         }
       ]
-    },
-    "name": "Purple"
+    }
   },
   "Ragna": {
     "Released": true,
@@ -17963,8 +17707,7 @@
           "UpgradePrice": 8470
         }
       ]
-    },
-    "name": "Ragna"
+    }
   },
   "Ragna [Evo]": {
     "Released": true,
@@ -18066,8 +17809,7 @@
           "UpgradePrice": 11750
         }
       ]
-    },
-    "name": "Ragna [Evo]"
+    }
   },
   "Rias": {
     "Released": true,
@@ -18096,7 +17838,6 @@
             "+1 New Move: Extinguished Fallen Star",
             "+1 New Passive: Ultimate-Class Devil King"
           ],
-          "EvolvesInto": "Rias [Evo]",
           "Requirements": {
             "Items": {
               "BlueStar": 10,
@@ -18107,11 +17848,8 @@
               "RainbowStar": 2,
               "RedStar": 10
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Rias [Evo]",
@@ -18186,8 +17924,7 @@
           "UpgradePrice": 13750
         }
       ]
-    },
-    "name": "Rias"
+    }
   },
   "Rias [Evo]": {
     "Released": true,
@@ -18289,8 +18026,7 @@
           "UpgradePrice": 15000
         }
       ]
-    },
-    "name": "Rias [Evo]"
+    }
   },
   "Rimuru": {
     "Released": true,
@@ -18386,8 +18122,7 @@
           "UpgradePrice": 21000
         }
       ]
-    },
-    "name": "Rimuru"
+    }
   },
   "Rimuru [Lord]": {
     "Released": true,
@@ -18489,8 +18224,7 @@
           "UpgradePrice": 28650
         }
       ]
-    },
-    "name": "Rimuru [Lord]"
+    }
   },
   "Robin": {
     "Released": true,
@@ -18577,8 +18311,7 @@
           "UpgradePrice": 9000
         }
       ]
-    },
-    "name": "Robin"
+    }
   },
   "Robin [Evo]": {
     "Released": true,
@@ -18672,8 +18405,7 @@
           "UpgradePrice": 17000
         }
       ]
-    },
-    "name": "Robin [Evo]"
+    }
   },
   "Rock Lee": {
     "Released": true,
@@ -18760,8 +18492,7 @@
           "UpgradePrice": 7300
         }
       ]
-    },
-    "name": "Rock Lee"
+    }
   },
   "Roy": {
     "Released": true,
@@ -18850,8 +18581,7 @@
           "UpgradePrice": 6200
         }
       ]
-    },
-    "name": "Roy"
+    }
   },
   "Roy [Evo]": {
     "Released": true,
@@ -18947,8 +18677,7 @@
           "UpgradePrice": 8400
         }
       ]
-    },
-    "name": "Roy [Evo]"
+    }
   },
   "Rukia": {
     "Released": true,
@@ -19036,8 +18765,7 @@
           "UpgradePrice": 6000
         }
       ]
-    },
-    "name": "Rukia"
+    }
   },
   "Saber Alter": {
     "Released": true,
@@ -19124,8 +18852,7 @@
           "UpgradePrice": 7100
         }
       ]
-    },
-    "name": "Saber Alter"
+    }
   },
   "Saber Alter [Evo]": {
     "Released": true,
@@ -19144,7 +18871,7 @@
       "AttackType": "Full",
       "CanSell": true,
       "Damage": 1320,
-      "DisplayName": "\"Sabur [EX",
+      "DisplayName": "Sabur [EX-Phantasm]",
       "Element": "Dark",
       "IsSpecialAbilityGlobalCooldown": false,
       "MaxPlacementAmount": 3,
@@ -19217,8 +18944,7 @@
           "UpgradePrice": 8500
         }
       ]
-    },
-    "name": "Saber Alter [Evo]"
+    }
   },
   "Sabo": {
     "Released": true,
@@ -19290,8 +19016,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Sabo"
+    }
   },
   "Sabo [Evo]": {
     "Released": true,
@@ -19380,8 +19105,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Sabo [Evo]"
+    }
   },
   "Sakomoto": {
     "Released": true,
@@ -19478,8 +19202,7 @@
           "UpgradePrice": 14000
         }
       ]
-    },
-    "name": "Sakomoto"
+    }
   },
   "Sakomoto [Evo]": {
     "Released": true,
@@ -19581,8 +19304,7 @@
           "UpgradePrice": 16500
         }
       ]
-    },
-    "name": "Sakomoto [Evo]"
+    }
   },
   "Sakura": {
     "Released": true,
@@ -19650,8 +19372,7 @@
           "UpgradePrice": 1300
         }
       ]
-    },
-    "name": "Sakura"
+    }
   },
   "Sanji": {
     "Released": true,
@@ -19732,8 +19453,7 @@
           "UpgradePrice": 7250
         }
       ]
-    },
-    "name": "Sanji"
+    }
   },
   "Sanji [Evo]": {
     "Released": true,
@@ -19827,8 +19547,7 @@
           "UpgradePrice": 10000
         }
       ]
-    },
-    "name": "Sanji [Evo]"
+    }
   },
   "Sanji [PTS]": {
     "Released": true,
@@ -19903,8 +19622,7 @@
           "UpgradePrice": 1250
         }
       ]
-    },
-    "name": "Sanji [PTS]"
+    }
   },
   "Sasuke": {
     "Released": true,
@@ -19980,8 +19698,7 @@
           "UpgradePrice": 2100
         }
       ]
-    },
-    "name": "Sasuke"
+    }
   },
   "Seiko": {
     "Released": true,
@@ -20010,18 +19727,14 @@
             "+1 New Move: Charm Nail",
             "+1 New Special Move: `Anti-Spirit Domain`"
           ],
-          "EvolvesInto": "Seiko [Evo]",
           "Requirements": {
             "Items": {
               "ExorcisingBat": 1,
               "PurpleStar": 3,
               "RainbowStar": 1
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Seiko [Evo]",
@@ -20104,8 +19817,7 @@
           "UpgradePrice": 17000
         }
       ]
-    },
-    "name": "Seiko"
+    }
   },
   "Seiko [Evo]": {
     "Released": true,
@@ -20147,7 +19859,7 @@
       "Range": 35,
       "Rarity": "Mythical",
       "SellCost": 100,
-      "SpecialAbility": "\"Anti",
+      "SpecialAbility": "Anti-Spirit Domain",
       "SpecialAbilityCooldown": 0,
       "UnitType": "Hybrid",
       "UpgradePrice": 22000,
@@ -20215,8 +19927,7 @@
           "UpgradePrice": 22000
         }
       ]
-    },
-    "name": "Seiko [Evo]"
+    }
   },
   "Serpo": {
     "Released": true,
@@ -20245,7 +19956,6 @@
             "+1 New Move: Perfect Zone",
             "+1 Passive Upgrade: Alien Technology II"
           ],
-          "EvolvesInto": "Serpo [Evo]",
           "Requirements": {
             "Items": {
               "AlienMask": 1,
@@ -20253,11 +19963,8 @@
               "OrangeStar": 20,
               "RedStar": 3
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "Serpo [Evo]",
@@ -20339,8 +20046,7 @@
           "UpgradePrice": 12800
         }
       ]
-    },
-    "name": "Serpo"
+    }
   },
   "Serpo [Evo]": {
     "Released": true,
@@ -20448,8 +20154,7 @@
           "UpgradePrice": 14000
         }
       ]
-    },
-    "name": "Serpo [Evo]"
+    }
   },
   "Shunko Yoruichi": {
     "Released": false,
@@ -20505,7 +20210,6 @@
           "UpgradePrice": 1500
         },
         {
-          "Ability": "Fireball Jutsu",
           "Damage": 11000,
           "Range": 30,
           "UpgradePrice": 2200
@@ -20528,8 +20232,7 @@
           "UpgradePrice": 3000
         }
       ]
-    },
-    "name": "Shunko Yoruichi"
+    }
   },
   "Sode no shirayuki": {
     "Released": true,
@@ -20613,8 +20316,7 @@
           "UpgradePrice": 9855
         }
       ]
-    },
-    "name": "Sode no shirayuki"
+    }
   },
   "Sode no shirayuki [Evo]": {
     "Released": true,
@@ -20702,8 +20404,7 @@
           "UpgradePrice": 10950
         }
       ]
-    },
-    "name": "Sode no shirayuki [Evo]"
+    }
   },
   "Special Tanjiro Bloodlust": {
     "Released": false,
@@ -20786,8 +20487,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Special Tanjiro Bloodlust"
+    }
   },
   "Speedwagon": {
     "Released": true,
@@ -20861,8 +20561,7 @@
           "UpgradePrice": 10000
         }
       ]
-    },
-    "name": "Speedwagon"
+    }
   },
   "Stark": {
     "Released": true,
@@ -20957,8 +20656,7 @@
           "UpgradePrice": 7500
         }
       ]
-    },
-    "name": "Stark"
+    }
   },
   "Stark [Evo]": {
     "Released": true,
@@ -21061,8 +20759,7 @@
           "UpgradePrice": 12800
         }
       ]
-    },
-    "name": "Stark [Evo]"
+    }
   },
   "Sung Jin Woo": {
     "Released": true,
@@ -21147,8 +20844,7 @@
           "UpgradePrice": 5850
         }
       ]
-    },
-    "name": "Sung Jin Woo"
+    }
   },
   "Sung Jinwoo": {
     "Released": true,
@@ -21218,8 +20914,7 @@
           "UpgradePrice": 1000
         }
       ]
-    },
-    "name": "Sung Jinwoo"
+    }
   },
   "Sung Jinwoo [Evo2]": {
     "Released": true,
@@ -21278,7 +20973,6 @@
           "AttackSpeed": 6.5,
           "Damage": 1800,
           "Range": 35,
-          "UnitType": "Hybrid",
           "UpgradePrice": 4850
         },
         {
@@ -21328,8 +21022,7 @@
           "UpgradePrice": 25000
         }
       ]
-    },
-    "name": "Sung Jinwoo [Evo2]"
+    }
   },
   "Sung Jinwoo [Evo3]": {
     "Released": true,
@@ -21386,7 +21079,6 @@
           "AttackSpeed": 6.5,
           "Damage": 2750,
           "Range": 35,
-          "UnitType": "Hybrid",
           "UpgradePrice": 4850
         },
         {
@@ -21455,8 +21147,7 @@
           "UpgradePrice": 25000
         }
       ]
-    },
-    "name": "Sung Jinwoo [Evo3]"
+    }
   },
   "Sung Jinwoo [Evo]": {
     "Released": true,
@@ -21541,8 +21232,7 @@
           "UpgradePrice": 5850
         }
       ]
-    },
-    "name": "Sung Jinwoo [Evo]"
+    }
   },
   "Tanjiro Bloodlust": {
     "Released": false,
@@ -21625,8 +21315,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Tanjiro Bloodlust"
+    }
   },
   "Ten Ten": {
     "Released": true,
@@ -21699,8 +21388,7 @@
           "UpgradePrice": 1350
         }
       ]
-    },
-    "name": "Ten Ten"
+    }
   },
   "Ten Ten [Valentines]": {
     "Released": true,
@@ -21773,8 +21461,7 @@
           "UpgradePrice": 1350
         }
       ]
-    },
-    "name": "Ten Ten [Valentines]"
+    }
   },
   "Tobirama": {
     "Released": false,
@@ -21864,8 +21551,7 @@
           "UpgradePrice": 10100
         }
       ]
-    },
-    "name": "Tobirama"
+    }
   },
   "Tobirama [Evo]": {
     "Released": false,
@@ -21960,8 +21646,7 @@
           "UpgradePrice": 11500
         }
       ]
-    },
-    "name": "Tobirama [Evo]"
+    }
   },
   "Toji": {
     "Released": true,
@@ -22045,8 +21730,7 @@
           "UpgradePrice": 9100
         }
       ]
-    },
-    "name": "Toji"
+    }
   },
   "Topo": {
     "Released": true,
@@ -22134,8 +21818,7 @@
           "UpgradePrice": 7225
         }
       ]
-    },
-    "name": "Topo"
+    }
   },
   "Topo [Evo]": {
     "Released": true,
@@ -22237,8 +21920,7 @@
           "UpgradePrice": 11750
         }
       ]
-    },
-    "name": "Topo [Evo]"
+    }
   },
   "Toshiro": {
     "Released": true,
@@ -22335,8 +22017,7 @@
           "UpgradePrice": 7600
         }
       ]
-    },
-    "name": "Toshiro"
+    }
   },
   "Toshiro [Evo]": {
     "Released": true,
@@ -22437,8 +22118,7 @@
           "UpgradePrice": 9800
         }
       ]
-    },
-    "name": "Toshiro [Evo]"
+    }
   },
   "TurboGranny": {
     "Released": true,
@@ -22468,8 +22148,6 @@
             "+1 New Move: Turbo Typhoon",
             "+1 New Passive: The Only Speedster"
           ],
-          "EliminationsRequired": 0,
-          "EvolvesInto": "TurboGranny [Evo1]",
           "Requirements": {
             "EliminationsRequired": 0,
             "Items": {
@@ -22478,11 +22156,8 @@
               "RedStar": 2,
               "RightGoldenBall": 1
             },
-            "Units": {},
-            "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
-          },
-          "TransferStats": true,
-          "Value": "amount. The old unit is checked and subtracted from the player's inventory automatically"
+            "Units": {}
+          }
         }
       ],
       "EvolvesInto": "TurboGranny [Evo1]",
@@ -22564,8 +22239,7 @@
           "UpgradePrice": 17000
         }
       ]
-    },
-    "name": "TurboGranny"
+    }
   },
   "TurboGranny [Evo1]": {
     "Released": true,
@@ -22674,8 +22348,7 @@
           "UpgradePrice": 19500
         }
       ]
-    },
-    "name": "TurboGranny [Evo1]"
+    }
   },
   "TurboGranny [Evo2]": {
     "Released": false,
@@ -22781,8 +22454,7 @@
           "UpgradePrice": 14680
         }
       ]
-    },
-    "name": "TurboGranny [Evo2]"
+    }
   },
   "Ulquiorra": {
     "Released": true,
@@ -22878,8 +22550,7 @@
           "UpgradePrice": 4500
         }
       ]
-    },
-    "name": "Ulquiorra"
+    }
   },
   "Ulquiorra [Evo]": {
     "Released": true,
@@ -22983,8 +22654,7 @@
           "UpgradePrice": 15555
         }
       ]
-    },
-    "name": "Ulquiorra [Evo]"
+    }
   },
   "Uraume": {
     "Released": true,
@@ -23078,8 +22748,7 @@
           "UpgradePrice": 8950
         }
       ]
-    },
-    "name": "Uraume"
+    }
   },
   "Uraume [Evo]": {
     "Released": true,
@@ -23180,8 +22849,7 @@
           "UpgradePrice": 10800
         }
       ]
-    },
-    "name": "Uraume [Evo]"
+    }
   },
   "Uryu": {
     "Released": true,
@@ -23266,8 +22934,7 @@
           "UpgradePrice": 7500
         }
       ]
-    },
-    "name": "Uryu"
+    }
   },
   "Usopp [PTS]": {
     "Released": true,
@@ -23337,8 +23004,7 @@
           "UpgradePrice": 1400
         }
       ]
-    },
-    "name": "Usopp [PTS]"
+    }
   },
   "Vegeta": {
     "Released": true,
@@ -23413,8 +23079,7 @@
           "UpgradePrice": 3000
         }
       ]
-    },
-    "name": "Vegeta"
+    }
   },
   "Vegeta [Evo]": {
     "Released": true,
@@ -23518,8 +23183,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Vegeta [Evo]"
+    }
   },
   "VyascheEmul": {
     "Released": true,
@@ -23606,8 +23270,7 @@
           "UpgradePrice": 6200
         }
       ]
-    },
-    "name": "VyascheEmul"
+    }
   },
   "VyascheEmul [Evo]": {
     "Released": true,
@@ -23701,8 +23364,7 @@
           "UpgradePrice": 15000
         }
       ]
-    },
-    "name": "VyascheEmul [Evo]"
+    }
   },
   "Whis": {
     "Released": true,
@@ -23751,8 +23413,7 @@
           "UpgradePrice": 1540
         }
       ]
-    },
-    "name": "Whis"
+    }
   },
   "Whis [Evo]": {
     "Released": true,
@@ -23799,8 +23460,7 @@
           "UpgradePrice": 1540
         }
       ]
-    },
-    "name": "Whis [Evo]"
+    }
   },
   "Whitebeard": {
     "Released": true,
@@ -23897,8 +23557,7 @@
           "UpgradePrice": 8000
         }
       ]
-    },
-    "name": "Whitebeard"
+    }
   },
   "Whitebeard [Yonko]": {
     "Released": true,
@@ -23999,8 +23658,7 @@
           "UpgradePrice": 11000
         }
       ]
-    },
-    "name": "Whitebeard [Yonko]"
+    }
   },
   "Yamcha": {
     "Released": false,
@@ -24067,8 +23725,7 @@
           "UpgradePrice": 1300
         }
       ]
-    },
-    "name": "Yamcha"
+    }
   },
   "Yoruichi": {
     "Released": true,
@@ -24162,8 +23819,7 @@
           "UpgradePrice": 5000
         }
       ]
-    },
-    "name": "Yoruichi"
+    }
   },
   "Yoruichi [Evo]": {
     "Released": true,
@@ -24264,8 +23920,7 @@
           "UpgradePrice": 13750
         }
       ]
-    },
-    "name": "Yoruichi [Evo]"
+    }
   },
   "Yoshina": {
     "Released": true,
@@ -24352,8 +24007,7 @@
           "UpgradePrice": 6500
         }
       ]
-    },
-    "name": "Yoshina"
+    }
   },
   "Yoshina [Evo]": {
     "Released": true,
@@ -24447,8 +24101,7 @@
           "UpgradePrice": 9375
         }
       ]
-    },
-    "name": "Yoshina [Evo]"
+    }
   },
   "Yuno Clover": {
     "Released": true,
@@ -24548,8 +24201,7 @@
           "UpgradePrice": 9900
         }
       ]
-    },
-    "name": "Yuno Clover"
+    }
   },
   "Yuno Clover [Evo]": {
     "Released": true,
@@ -24653,8 +24305,7 @@
           "UpgradePrice": 11900
         }
       ]
-    },
-    "name": "Yuno Clover [Evo]"
+    }
   },
   "Yuno Gassai": {
     "Released": true,
@@ -24750,8 +24401,7 @@
           "UpgradePrice": 9250
         }
       ]
-    },
-    "name": "Yuno Gassai"
+    }
   },
   "Yuno Gassai [Evo]": {
     "Released": true,
@@ -24852,8 +24502,7 @@
           "UpgradePrice": 11000
         }
       ]
-    },
-    "name": "Yuno Gassai [Evo]"
+    }
   },
   "Yusuke": {
     "Released": true,
@@ -24936,8 +24585,7 @@
           "UpgradePrice": 7000
         }
       ]
-    },
-    "name": "Yusuke"
+    }
   },
   "Zenitsu": {
     "Released": true,
@@ -25010,8 +24658,7 @@
           "UpgradePrice": 2100
         }
       ]
-    },
-    "name": "Zenitsu"
+    }
   },
   "Zoro [DR]": {
     "Released": true,
@@ -25091,8 +24738,7 @@
           "UpgradePrice": 9500
         }
       ]
-    },
-    "name": "Zoro [DR]"
+    }
   },
   "Zoro [DR] {Evo]": {
     "Released": true,
@@ -25193,8 +24839,7 @@
           "UpgradePrice": 13000
         }
       ]
-    },
-    "name": "Zoro [DR] {Evo]"
+    }
   },
   "Zoro [PTS]": {
     "Released": true,
@@ -25269,7 +24914,6 @@
           "UpgradePrice": 1500
         }
       ]
-    },
-    "name": "Zoro [PTS]"
+    }
   }
 }

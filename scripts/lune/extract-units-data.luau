@@ -75,6 +75,11 @@ local function parseValue(value, unitName, key)
 		return nil
 	end
 
+	-- Skip CameraZoom and name properties
+	if key == "CameraZoom" or key == "name" then
+		return nil
+	end
+
 	-- Clean the value
 	value = string.gsub(value, "^%s*", "") -- trim start
 	value = string.gsub(value, "%s*$", "") -- trim end
@@ -133,13 +138,32 @@ end
 local function extractGenericTable(tableContent, unitName, tableName)
 	local result = {}
 
-	-- Extract simple key-value pairs
-	for key, value in string.gmatch(tableContent, "([%w_]+)%s*=%s*([^,\n}]+)") do
-		-- Skip nested tables for now, handle them separately
-		if not string.find(value, "{") then
-			local parsedValue = parseValue(value, unitName, key)
-			if parsedValue ~= nil then
-				result[key] = parsedValue
+	-- Split into lines and process each line to avoid extracting from comments
+	local lines = {}
+	for line in string.gmatch(tableContent, "[^\n]+") do
+		table.insert(lines, line)
+	end
+
+	for _, line in ipairs(lines) do
+		-- Skip lines that are just comments or empty
+		local trimmedLine = string.gsub(line, "^%s*", "")
+		if not string.match(trimmedLine, "^%-%-") and trimmedLine ~= "" then
+			-- Extract simple key-value pairs but stop at comments
+			-- First, remove any inline comments (-- and everything after)
+			local lineWithoutComments = string.gsub(line, "%-%-.*", "")
+			local key, value = string.match(lineWithoutComments, "^%s*([%w_]+)%s*=%s*(.+)")
+			if key and value then
+				-- Clean up the value by removing trailing whitespace and commas
+				value = string.gsub(value, "%s*,%s*$", "")
+				value = string.gsub(value, "%s*$", "")
+
+				-- Skip nested tables for now, handle them separately
+				if not string.find(value, "{") then
+					local parsedValue = parseValue(value, unitName, key)
+					if parsedValue ~= nil then
+						result[key] = parsedValue
+					end
+				end
 			end
 		end
 	end
@@ -202,7 +226,9 @@ local function extractEvolveLevel(levelContent, unitName, level)
 	local result = {}
 
 	-- Extract simple key-value pairs
-	for key, value in string.gmatch(levelContent, "([%w_]+)%s*=%s*([^,\n}]+)") do
+	-- First, remove any inline comments (-- and everything after)
+	local contentWithoutComments = string.gsub(levelContent, "%-%-.*", "")
+	for key, value in string.gmatch(contentWithoutComments, "([%w_]+)%s*=%s*([^,\n}]+)") do
 		-- Skip nested tables for now, handle them separately
 		if not string.find(value, "{") then
 			local parsedValue = parseValue(value, unitName, key)
@@ -398,36 +424,41 @@ local function extractConfigurationFromSource(source, unitName)
 		local trimmedLine = string.gsub(line, "^%s*", "")
 		if not string.match(trimmedLine, "^%-%-") and trimmedLine ~= "" then
 			-- Extract key = value pairs, stopping at comments
-			local key, value = string.match(line, "^%s*([%w_]+)%s*=%s*([^-]+)")
+			-- First, remove any inline comments (-- and everything after)
+			local lineWithoutComments = string.gsub(line, "%-%-.*", "")
+			local key, value = string.match(lineWithoutComments, "^%s*([%w_]+)%s*=%s*(.+)")
 			if key and value then
-				-- Clean up the value by removing trailing whitespace and commas
-				value = string.gsub(value, "%s*,%s*$", "")
-				value = string.gsub(value, "%s*$", "")
+				-- Skip CameraZoom and name properties
+				if key ~= "CameraZoom" and key ~= "name" then
+					-- Clean up the value by removing trailing whitespace and commas
+					value = string.gsub(value, "%s*,%s*$", "")
+					value = string.gsub(value, "%s*$", "")
 
-				-- Skip complex patterns and nested tables for now, but allow Enum values
-				if
-					not string.find(value, "CFrame")
-					and not string.find(value, "math%.")
-					and not string.find(value, "script%.")
-					and not string.find(value, "function")
-					and not string.find(value, "{")
-				then
-					local parsedValue = parseValue(value, unitName, key)
-					if parsedValue ~= nil then
-						config[key] = parsedValue
+					-- Skip complex patterns and nested tables for now, but allow Enum values
+					if
+						not string.find(value, "CFrame")
+						and not string.find(value, "math%.")
+						and not string.find(value, "script%.")
+						and not string.find(value, "function")
+						and not string.find(value, "{")
+					then
+						local parsedValue = parseValue(value, unitName, key)
+						if parsedValue ~= nil then
+							config[key] = parsedValue
+						else
+							print("SKIPPED: " .. unitName .. "." .. key .. " = " .. tostring(value))
+						end
 					else
-						print("SKIPPED: " .. unitName .. "." .. key .. " = " .. tostring(value))
+						print(
+							"SKIPPED (complex): "
+								.. unitName
+								.. "."
+								.. key
+								.. " = "
+								.. string.sub(tostring(value), 1, 50)
+								.. "..."
+						)
 					end
-				else
-					print(
-						"SKIPPED (complex): "
-							.. unitName
-							.. "."
-							.. key
-							.. " = "
-							.. string.sub(tostring(value), 1, 50)
-							.. "..."
-					)
 				end
 			end
 		end
@@ -496,7 +527,7 @@ for _, unitEntry in pairs(UnitRegistryFolder:GetChildren()) do
 
 		-- Extract the main data we need
 		local unitData = {
-			name = unitName,
+			-- name = unitName,
 			configuration = extractConfigurationFromSource(scriptSource, unitName),
 			Released = true, -- Default to true as per requirements
 			Summonable = true, -- Default to true as per requirements
