@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach, jest } from "@rbxts/jest-globals";
-import { ReceiptProcessorService, ProductCallback } from "server/services/receipt-processor.service";
-import { DataService } from "server/services/data.service";
+import { ReceiptProcessorService, ProductCallback } from "@server/services/receipt-processor.service";
+import { DataService } from "@server/services/data.service";
 
 describe("ReceiptProcessorService", () => {
 	let service: ReceiptProcessorService;

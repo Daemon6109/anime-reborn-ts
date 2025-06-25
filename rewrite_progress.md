@@ -145,7 +145,7 @@ All data factories have been successfully implemented in `places/common/src/shar
 | **Mounts** | 12 configurations | ✅ **Complete** | `shared/data/mounts-data.ts` |
 | **Status Effects** | 22 definitions | ✅ **Complete** | `shared/data/status-effects-data.ts` |
 | **Buffs/Stat Potentials** | Grade system | ✅ **Complete** | `shared/data/buffs-data.ts` |
-| **Units** | 271 definitions | 🔄 **In Progress (108/271)** | `shared/data/units-data-clean.ts` |
+| **Units** | 271 definitions | 🔄 **In Progress (15/271)** | `shared/data/units-data.ts` |
 | Items | 244 definitions | ❌ **Pending** | `shared/data/game-content/items/` |
 | Maps | 29 configurations | ❌ **Pending** | `shared/data/game-content/maps/` |
 | Enemies | 195 configurations | ❌ **Pending** | `shared/data/game-content/enemies/` |
@@ -161,63 +161,16 @@ All data factories have been successfully implemented in `places/common/src/shar
 ### Units Migration Progress
 
 **A-Units**: ✅ **Complete** (15/15 units migrated)
+
 - Aira, Aira [Evo], Aizen, Aizen [Evo], Akame, Akame [Evo]
 - Android 18, Android 21, Android 21 [Demon]
 - Aokiji, Aokiji [Evo], Aqua, Arlong, Asta, Asta [Evo]
 
-**B-Units**: ✅ **Complete** (16/16 units migrated)
-- Baek YoonHo, Baek YoonHo [Evo], Baruk, Beerus, Beerus [Evo]
-- Beru, Beru [Evo], Beru [Evo2], Beta, Blackbeard
-- Boa, Boa [Evo], Broly, Broly [Rage], Bulma
-
-**C-Units**: ✅ **Complete** (22/22 units migrated)
-- Captain Yami, Captain Yami [Evo], Cell [Max], Cha Hae In, Cha Hae In [Evo]
-- Cha Hae In [Old], Chisato, Chisato [Evo], Choi jong in, Choi jong in [Evo]
-- Cid, Cid [Evo], and more...
-
-**D-Units**: ✅ **Complete** (9/9 units migrated)
-- Delta, DioOH, DioOH [Evo], Doflamingo, Doflamingo [Evo]
-- Dordoni, Douma, Douma [Evo]
-
-**E-Units**: ✅ **Complete** (9/9 units migrated)
-- Emilia, Emilia [Valentines], Esdeath, Esdeath [Evo], Evil Eye
-
-**F-Units**: ✅ **Complete** (8/8 units migrated)
-- Feitan, Feitan [Evo], Freiza, Freiza [Evo]
-- Fujitora, Fujitora [Evo], Funny Valentine, Funny Valentine [Evo]
-
-**G-Units**: ✅ **Complete** (14/14 units migrated)
-- ✅ All G-units migrated: Gamma Brothers + [Evo], Genos, Gohan + [Beast], Gojo [Base], Goku [Evo], GokuSSJ + [Evo], Gon + [Evo], Gordon, Grimmjow + [Evo]
-
-**H-Units**: ✅ **Complete** (5/5 units migrated)
-- ✅ All H-units migrated: Hiei, Hinata, Hisoka + [Evo], Hitto
-
-**I-Units**: ✅ **Complete** (16/16 units migrated)
-- ✅ All I-units migrated: Ichigo + [Bankai] + [Vasto], Igris + [Evo] + [Evo2], Illumi + [Evo], Inosuke + [Valentines], Iron + [Evo] + [Evo2] + [old], Itachi + [Susanoo]
-
-**J-Units**: ✅ **Complete** (7/7 units migrated)
-- ✅ All J-units migrated: Jay, Jinho, Jiren + [Evo], Julius + [Evo], Juvia
-
-**K-Units**: ✅ **Complete** (18/18 units migrated)
-- ✅ All K-units migrated: Kabane, Kaido + [Hybrid], Kakashi, Kale, Kargalgan + [Evo] + [Evo2], KillerB + [Evo], Killua, Kirillin + [Valentines], Kiritsugu + [Evo], Kizaru, Kurapika + [Evo]
-
-**L-Units**: ✅ **Complete** (12/12 units migrated)
-
-- ✅ All L-units migrated: Law + [Evo], Leopold, Levi, Licht + [Evo], Light, Luck + [Evo], Luffy [DR] + [Evo], Luffy [PTS]
-
-**M-Units**: ✅ **Complete** (18/18 units migrated - 100% Complete)
-
-- ✅ All M-units completed: Magna, Magenta, Mars + [Evo], Mereum + [Evo], Mihawk + [Warlord], Mirko + [Evo], Momo + [Evo], MrMantisShrimp + [Evo], MrSatan, Muichiro + [Evo], Murata
-
-**N-Units**: ⏳ **Ready to Start** (0/X units migrated)
-
-**PROGRESS SUMMARY**: 149/271+ units migrated (~55% complete)
-
 **Next Batches**:
 
-- N-Units (next target) - Ready to begin N-units migration  
-- Remaining: O, P, Q, R, S, T, U, V, W, X, Y, Z-Units
-- Total remaining: 122+ units across remaining letters
+- B-Units (20+ units) - in queue
+- C-Units, D-Units, E-Units, F-Units, G-Units, H-Units...
+- Total remaining: 256 units across all other letters
 
 ---
 

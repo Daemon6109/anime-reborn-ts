@@ -1,17 +1,17 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Workspace = game:GetService("Workspace")
 
 -- TEST_PATTERN will be injected here by the Python script when filtering is needed
 local TEST_PATTERN = nil
--- SINGLE_PLACE will be injected here when running a single place
-local SINGLE_PLACE = nil
 
-local runCLI = require(
+local jest = require(
 	ReplicatedStorage:FindFirstChild("rbxts_include")
 		:FindFirstChild("node_modules")
 		:FindFirstChild("@rbxts")
 		:FindFirstChild("jest")
 		:FindFirstChild("src")
-).runCLI
+)
+local runCLI = jest.runCLI
 
 local processServiceExists, ProcessService = pcall(function()
 	return game:GetService("ProcessService")
@@ -29,19 +29,9 @@ if TEST_PATTERN then
 	jestOptions.testNamePattern = TEST_PATTERN
 end
 
-local status, result = runCLI(
-	ReplicatedStorage:FindFirstChild("rbxts_include")
-		:FindFirstChild("node_modules")
-		:FindFirstChild("Project")
-		:FindFirstChild(SINGLE_PLACE),
-	jestOptions,
-	{
-		ReplicatedStorage:FindFirstChild("rbxts_include")
-			:FindFirstChild("node_modules")
-			:FindFirstChild("Project")
-			:FindFirstChild(SINGLE_PLACE),
-	}
-):awaitStatus()
+local status, result = runCLI(Workspace, jestOptions, {
+	Workspace,
+}):awaitStatus()
 
 if status == "Rejected" then
 	print(result)

@@ -64,50 +64,23 @@ def parseArgs():
     return parser.parse_args()
 
 def makeRequest(url, headers, body=None):
-    print(f"[DEBUG] makeRequest: URL: {url}")
-    print(f"[DEBUG] makeRequest: Headers: {dict(headers)}")
-    print(f"[DEBUG] makeRequest: Body length: {len(body) if body else 0}")
-    
     data = None
     if body is not None:
         data = body.encode('utf8')
     request = urllib.request.Request(url, data=data, headers=headers, method='GET' if body is None else 'POST')
     max_attempts = 3
     for i in range(max_attempts):
-        attempt_num = i + 1
-        print(f"[DEBUG] makeRequest: Attempt {attempt_num}/{max_attempts}")
         try:
-            print(f"[DEBUG] makeRequest: Sending request...")
-            response = urllib.request.urlopen(request, timeout=30)  # 30 second timeout
-            print(f"[DEBUG] makeRequest: Response received successfully")
-            return response
-        except urllib.error.HTTPError as e:
-            print(f"[DEBUG] makeRequest: HTTP Error {e.code}: {e.reason}")
-            if e.code >= 500 and attempt_num < max_attempts:
-                print(f"[DEBUG] makeRequest: Server error, retrying in 2 seconds...")
-                time.sleep(2)
-                continue
-            else:
-                raise e
-        except urllib.error.URLError as e:
-            print(f"[DEBUG] makeRequest: URL Error: {e}")
-            if attempt_num < max_attempts:
-                print(f"[DEBUG] makeRequest: Network error, retrying in 2 seconds...")
-                time.sleep(2)
-                continue
-            else:
-                raise e
+            return urllib.request.urlopen(request)
         except Exception as e:
-            print(f"[DEBUG] makeRequest: Unexpected error: {e}")
             if 'certificate verify failed' in str(e):
                 logging.error(f'{str(e)} - you may need to install python certificates, see https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error')
                 sys.exit(1)
-            if attempt_num < max_attempts:
-                print(f"[DEBUG] makeRequest: Retrying in 2 seconds...")
-                time.sleep(2)
-                continue
-            else:
+            if i == max_attempts - 1:
                 raise e
+            else:
+                logging.info(f'Retrying error: {str(e)}')
+                time.sleep(1)
 
 def readFileExitOnFailure(path, file_description):
     try:
@@ -142,9 +115,6 @@ def loadAPIKey(api_key_arg):
         sys.exit(1)
 
 def createTask(api_key, script, universe_id, place_id, place_version):
-    print("[DEBUG] createTask: Starting task creation")
-    print(f"[DEBUG] createTask: Universe ID: {universe_id}, Place ID: {place_id}, Version: {place_version}")
-    
     headers = {
         'Content-Type': 'application/json',
         'x-api-key': api_key
@@ -156,117 +126,56 @@ def createTask(api_key, script, universe_id, place_id, place_version):
     if place_version:
         url += f'versions/{place_version}/'
     url += 'luau-execution-session-tasks'
-    
-    print(f"[DEBUG] createTask: URL: {url}")
-    print(f"[DEBUG] createTask: Script length: {len(script)} characters")
 
     try:
-        print("[DEBUG] createTask: Sending request...")
         response = makeRequest(url, headers=headers, body=json.dumps(data))
-        print(f"[DEBUG] createTask: Response received, status: {response.status}")
     except urllib.error.HTTPError as e:
-        print(f"[DEBUG] createTask: HTTP Error {e.code}: {e.reason}")
         logging.error(f'Create task request failed, response body:\n{e.fp.read()}')
         sys.exit(1)
 
     task = json.loads(response.read())
-    print(f"[DEBUG] createTask: Task created successfully: {task}")
     return task
 
 def pollForTaskCompletion(api_key, path):
-    print("[DEBUG] pollForTaskCompletion: Starting polling")
-    print(f"[DEBUG] pollForTaskCompletion: Task path: {path}")
-    
     headers = {
         'x-api-key': api_key
     }
     url = f'https://apis.roblox.com/cloud/v2/{path}'
-    print(f"[DEBUG] pollForTaskCompletion: Polling URL: {url}")
 
     logging.info("Waiting for task to finish...")
-    poll_count = 0
-    
-    # Check if we're in CI environment (GitHub Actions sets CI=true)
-    is_ci = os.environ.get('CI', '').lower() == 'true'
-    
-    if is_ci:
-        max_polls = 200  # 10 minutes for CI (200 * 3 seconds)
-        print("[DEBUG] CI environment detected - using extended timeout (10 minutes)")
-    else:
-        max_polls = 120  # 6 minutes for local (120 * 3 seconds)
-        print("[DEBUG] Local environment - using standard timeout (6 minutes)")
 
     while True:
-        poll_count += 1
-        print(f"[DEBUG] pollForTaskCompletion: Poll attempt #{poll_count}/{max_polls}")
-        
-        if poll_count > max_polls:
-            timeout_minutes = (max_polls * 3) // 60
-            print(f"[ERROR] Task polling timed out after {timeout_minutes} minutes ({max_polls * 3} seconds)")
-            if is_ci:
-                print("[ERROR] This timeout often occurs in CI environments due to:")
-                print("[ERROR] - Network latency differences")
-                print("[ERROR] - Roblox Cloud API performance variations")
-                print("[ERROR] - Resource constraints in CI runners")
-                print("[ERROR] Consider checking Roblox API status or retrying the build")
-            sys.exit(1)
-        
         try:
             response = makeRequest(url, headers=headers)
-            print(f"[DEBUG] pollForTaskCompletion: Poll response status: {response.status}")
         except urllib.error.HTTPError as e:
-            print(f"[DEBUG] pollForTaskCompletion: HTTP Error {e.code}: {e.reason}")
             logging.error(f'Get task request failed, response body:\n{e.fp.read()}')
             sys.exit(1)
 
         task = json.loads(response.read())
-        print(f"[DEBUG] pollForTaskCompletion: Task state: {task['state']}")
-        
         if task['state'] != 'PROCESSING':
             sys.stderr.write('\n')
             sys.stderr.flush()
-            print(f"[DEBUG] pollForTaskCompletion: Task completed with state: {task['state']}")
             return task
         else:
             sys.stderr.write('.')
             sys.stderr.flush()
-            # Print status every 30 seconds (10 polls)
-            if poll_count % 10 == 0:
-                elapsed_minutes = (poll_count * 3) // 60
-                elapsed_seconds = (poll_count * 3) % 60
-                print(f"\n[DEBUG] Still polling... {elapsed_minutes}m {elapsed_seconds}s elapsed")
-                if is_ci and poll_count > 60:  # After 3 minutes in CI
-                    print(f"[DEBUG] CI: Long polling detected. Roblox Cloud API may be slow.")
             time.sleep(3)
 
 def getTaskLogs(api_key, task_path):
-    print("[DEBUG] getTaskLogs: Starting log retrieval")
-    print(f"[DEBUG] getTaskLogs: Task path: {task_path}")
-    
     headers = {
         'x-api-key': api_key
     }
     url = f'https://apis.roblox.com/cloud/v2/{task_path}/logs'
-    print(f"[DEBUG] getTaskLogs: Logs URL: {url}")
 
     try:
-        print("[DEBUG] getTaskLogs: Sending request...")
         response = makeRequest(url, headers=headers)
-        print(f"[DEBUG] getTaskLogs: Response status: {response.status}")
     except urllib.error.HTTPError as e:
-        print(f"[DEBUG] getTaskLogs: HTTP Error {e.code}: {e.reason}")
         logging.error(f'Get task logs request failed, response body:\n{e.fp.read()}')
         sys.exit(1)
 
     logs = json.loads(response.read())
-    print(f"[DEBUG] getTaskLogs: Raw logs response: {logs}")
-    
     messages = logs['luauExecutionSessionTaskLogs'][0]['messages']
-    print(f"[DEBUG] getTaskLogs: Found {len(messages)} log messages")
-    
-    result = ''.join([m + '\n' for m in messages])
-    print(f"[DEBUG] getTaskLogs: Final logs length: {len(result)} characters")
-    return result
+    return ''.join([m + '\n' for m in messages])
 
 def handleLogs(task, log_output_file_path, api_key):
     logs = getTaskLogs(api_key, task['path'])

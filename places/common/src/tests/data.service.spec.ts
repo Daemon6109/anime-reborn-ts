@@ -1,8 +1,8 @@
 import { expect, describe, it, beforeEach } from "@rbxts/jest-globals";
-import { DATA_TEMPLATE, DataTemplate } from "shared/data/data-template";
-import { deepCopy } from "shared/utils/deep-copy";
-import { validateDataSection } from "shared/utils/validate";
-import { DataService } from "server/services/data.service";
+import { DATA_TEMPLATE, DataTemplate } from "@shared/data/data-template";
+import { deepCopy } from "@shared/utils/deep-copy";
+import { validateDataSection } from "@shared/utils/validate";
+import { DataService } from "@server/services/data.service";
 
 describe("DataService Fixed Tests", () => {
 	let dataService: DataService;

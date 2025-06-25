@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach, jest } from "@rbxts/jest-globals";
-import { MountService } from "server/services/mount.service";
-import { DataService } from "server/services/data.service";
+import { MountService } from "@server/services/mount.service";
+import { DataService } from "@server/services/data.service";
 
 // Mock DataService
 const mockDataService = {

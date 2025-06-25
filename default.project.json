@@ -1,7 +1,7 @@
 {
 	"name": "anime-reborn",
 	"emitLegacyScripts": false,
-	"globIgnorePaths": ["**/package.json", "**/tsconfig.json"],
+	"globIgnorePaths": ["**/build.package.json", "**/tsconfig.json"],
 	"tree": {
 		"$className": "DataModel",
 		"ServerScriptService": {
@@ -12,6 +12,9 @@
 		},
 		"ReplicatedStorage": {
 			"$className": "ReplicatedStorage",
+			"jest_setup": {
+				"$path": "scripts/roblox/jest_setup.luau"
+			},
 			"rbxts_include": {
 				"$path": "include",
 				"node_modules": {
@@ -24,21 +27,6 @@
 					},
 					"@rbxts-js": {
 						"$path": "node_modules/@rbxts-js"
-					},
-					"Project": {
-						"$className": "Folder",
-						"Common": {
-							"$path": "places/common/out"
-						},
-						"Gameplay": {
-							"$path": "places/gameplay/out/gameplay/src"
-						},
-						"Lobby": {
-							"$path": "places/lobby/out/lobby/src"
-						},
-						"AFK": {
-							"$path": "places/afk/out/afk/src"
-						}
 					}
 				}
 			}
@@ -47,7 +35,8 @@
 			"$className": "Workspace",
 			"$properties": {
 				"FilteringEnabled": true
-			}
+			},
+			"$path": "out"
 		},
 		"HttpService": {
 			"$className": "HttpService",

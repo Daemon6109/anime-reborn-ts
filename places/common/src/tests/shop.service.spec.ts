@@ -1,6 +1,6 @@
 import { expect, describe, it, beforeEach, jest } from "@rbxts/jest-globals";
-import { ShopService, ShopType } from "server/services/shop.service";
-import { DataService } from "server/services/data.service";
+import { ShopService, ShopType } from "@server/services/shop.service";
+import { DataService } from "@server/services/data.service";
 
 describe("ShopService", () => {
 	let service: ShopService;

@@ -5,12 +5,12 @@ import { Service, OnInit } from "@flamework/core";
 import { Players, RunService } from "@rbxts/services";
 import ProfileStore from "@rbxts/profile-store";
 
-import { DataTemplate, DATA_TEMPLATE, DailyRewardsData } from "../../shared/data/data-template";
-import { DATA_CONSTANTS } from "../../shared/constants/data-constants";
-import { migrations } from "../../shared/utils/migrations";
-import { performance } from "../../shared/utils/performance";
-import { validateDataSection } from "../../shared/utils/validate";
-import { deepCopy } from "../../shared/utils/deep-copy";
+import { DataTemplate, DATA_TEMPLATE, DailyRewardsData } from "@shared/data/data-template";
+import { DATA_CONSTANTS } from "@shared/constants/data-constants";
+import { migrations } from "@shared/utils/migrations";
+import { performance } from "@shared/utils/performance";
+import { validateDataSection } from "@shared/utils/validate";
+import { deepCopy } from "@shared/utils/deep-copy";
 
 // Let TypeScript infer the types from the actual ProfileStore calls
 type DataProfileStore = ReturnType<typeof ProfileStore.New<DataTemplate>>;

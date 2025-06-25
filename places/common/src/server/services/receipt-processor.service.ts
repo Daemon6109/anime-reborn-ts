@@ -1,7 +1,7 @@
 import { Service, OnInit } from "@flamework/core";
 import { MarketplaceService, Players } from "@rbxts/services";
-import { DataService } from "./data.service";
-import { DATA_CONSTANTS } from "../../shared/constants/data-constants";
+import { DataService } from "@services/data.service";
+import { DATA_CONSTANTS } from "@shared/constants/data-constants";
 
 const version = { major: 1, minor: 0, patch: 0 };
 

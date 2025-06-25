@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach, jest } from "@rbxts/jest-globals";
-import { PerformanceOptimizerService } from "server/services/performance-optimizer.service";
+import { PerformanceOptimizerService } from "@server/services/performance-optimizer.service";
 
 describe("PerformanceOptimizerService", () => {
 	let performanceService: PerformanceOptimizerService;

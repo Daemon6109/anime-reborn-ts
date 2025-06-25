@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach } from "@rbxts/jest-globals";
-import { AnalyticsService } from "server/services/analytics.service";
-import { DataService } from "server/services/data.service";
-import { PlayerManagerService } from "server/services/player-manager.service";
+import { AnalyticsService } from "@server/services/analytics.service";
+import { DataService } from "@server/services/data.service";
+import { PlayerManagerService } from "@server/services/player-manager.service";
 
 // Type interfaces for testing private members
 interface AnalyticsServiceTestable {

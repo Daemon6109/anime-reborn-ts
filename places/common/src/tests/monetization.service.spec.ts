@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach, jest } from "@rbxts/jest-globals";
-import { MonetizationService } from "server/services/monetization.service";
+import { MonetizationService } from "@server/services/monetization.service";
 
 describe("MonetizationService", () => {
 	let monetizationService: MonetizationService;

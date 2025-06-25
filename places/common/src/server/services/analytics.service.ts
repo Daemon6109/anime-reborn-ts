@@ -2,7 +2,7 @@ import { Service, OnInit, OnStart, Dependency } from "@flamework/core";
 import { Players, RunService, AnalyticsService as RobloxAnalytics } from "@rbxts/services";
 import { DataService } from "@services/data.service";
 import { PlayerManagerService } from "@services/player-manager.service";
-import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
+import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 
 interface RobloxAnalyticsService {
 	ReportEvent: (player: Player, eventName: string, eventContext?: unknown, eventSpecificData?: unknown) => void;

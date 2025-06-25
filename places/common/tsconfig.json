@@ -16,14 +16,14 @@
 		"strict": true,
 		"target": "ESNext",
 		"skipLibCheck": true,
-		"typeRoots": ["node_modules/@rbxts", "../../node_modules/@rbxts", "../../node_modules/@flamework"],
+		"typeRoots": ["../../node_modules/@rbxts", "../../node_modules/@flamework"],
 
 		// configurable
-		"rootDirs": ["src", "../../old_common/src"],
+		"rootDirs": ["src"],
 		"outDir": "out",
 		"baseUrl": "src",
 		"paths": {
-			"common/*": ["./src/*"],
+			"@common/*": ["./src/*"],
 			"@services/*": ["./server/services/*"],
 			"@shared/*": ["./shared/*"],
 			"@server/*": ["./server/*"],
@@ -34,5 +34,5 @@
 
 		"plugins": [{ "transform": "rbxts-transformer-flamework" }]
 	},
-	"exclude": ["node_modules/**", "../../node_modules/**", "out/**", "include/**", "tasks/**"]
+	"exclude": ["../../node_modules/**", "out/**", "include/**"]
 }

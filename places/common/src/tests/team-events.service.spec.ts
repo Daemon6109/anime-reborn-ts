@@ -1,5 +1,5 @@
 import { expect, describe, it, beforeEach, jest } from "@rbxts/jest-globals";
-import { TeamEventsService } from "server/services/team-events.service";
+import { TeamEventsService } from "@server/services/team-events.service";
 
 describe("TeamEventsService", () => {
 	let teamEventsService: TeamEventsService;

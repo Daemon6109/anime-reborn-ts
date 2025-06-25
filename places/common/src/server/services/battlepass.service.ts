@@ -1,6 +1,5 @@
 import { Service, OnInit } from "@flamework/core";
-import { Players } from "@rbxts/services";
-import { DataService } from "./data.service";
+import { DataService } from "@services/data.service";
 
 const version = { major: 1, minor: 0, patch: 0 };
 

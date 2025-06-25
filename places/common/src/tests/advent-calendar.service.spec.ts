@@ -1,8 +1,8 @@
 import { expect, describe, it, beforeEach } from "@rbxts/jest-globals";
-import { AdventCalendarService, AdventCalendarConfig } from "server/services/advent-calendar.service";
-import { DataService } from "server/services/data.service";
-import { DATA_TEMPLATE, type DataTemplate } from "shared/data/data-template";
-import { deepCopy } from "shared/utils/deep-copy";
+import { AdventCalendarService, AdventCalendarConfig } from "@server/services/advent-calendar.service";
+import { DataService } from "@server/services/data.service";
+import { DATA_TEMPLATE, type DataTemplate } from "@shared/data/data-template";
+import { deepCopy } from "@shared/utils/deep-copy";
 
 describe("AdventCalendarService", () => {
 	let adventCalendarService: AdventCalendarService;

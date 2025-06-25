@@ -235,7 +235,7 @@ babel.config.js                     # Babel config for coverage
 5. **Cloud tests fail with Jest conflicts**
    - This is expected behavior - only Common place runs in cloud
    - Verify other places pass locally with `npm run test:jest`
-   - Check `/tasks/run-tests.server.luau` for current cloud test configuration
+   - Check `scripts/roblox/run-tests.server.luau` for current cloud test configuration
 
 6. **CI/CD failures**
    - Local tests failing: Check linting, build, and Jest locally

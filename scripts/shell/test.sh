@@ -22,13 +22,13 @@ if [ -f .env ]; then
     fi
 else
     echo "No .env file found, using environment variables..."
+    # Debug: Print environment variables received in Docker container
+    echo "Debug: Environment variables in Docker container:"
+    echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
+    echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
+    echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
 fi
 
-# Debug: Print environment variables received in Docker container
-echo "Debug: Environment variables in Docker container:"
-echo "ROBLOX_API_KEY length: ${#ROBLOX_API_KEY}"
-echo "ROBLOX_UNIVERSE_ID: '$ROBLOX_UNIVERSE_ID'"
-echo "ROBLOX_PLACE_ID: '$ROBLOX_PLACE_ID'"
 echo "---"
 echo "Building all places..."
 npm run build
@@ -42,102 +42,20 @@ echo "Uploading to Roblox..."
 PYTHON_EXIT_CODE=0
 OVERALL_EXIT_CODE=0
 
-# Define the places to test
-PLACES=("Common" "Gameplay" "Lobby" "AFK")
+echo "Running all Jest tests"
 
-# Function to check if a place has test files
-check_place_has_tests() {
-    local place_name="$1"
-    local test_pattern="$2"
-
-    # Convert place name to lowercase for directory matching
-    local place_dir=$(echo "$place_name" | tr '[:upper:]' '[:lower:]')
-    local test_dir="places/$place_dir/src/tests"
-
-    # Check if test directory exists
-    if [ ! -d "$test_dir" ]; then
-        echo "⏭️  Skipping $place_name: no test directory found at $test_dir"
-        return 1
-    fi
-
-    # Check if there are any test files
-    local test_files=$(find "$test_dir" -name "*.spec.ts" -o -name "*.test.ts" 2>/dev/null | wc -l)
-    if [ "$test_files" -eq 0 ]; then
-        echo "⏭️  Skipping $place_name: no test files found in $test_dir"
-        return 1
-    fi
-
-    # If test pattern is specified, check if any test files match
-    if [ -n "$test_pattern" ]; then
-        local matching_files=$(find "$test_dir" -name "*.spec.ts" -o -name "*.test.ts" 2>/dev/null | xargs grep -l "$test_pattern" 2>/dev/null | wc -l)
-        if [ "$matching_files" -eq 0 ]; then
-            echo "⏭️  Skipping $place_name: no test files match pattern '$test_pattern'"
-            return 1
-        fi
-    fi
-
-    return 0
-}
-
-# Run Jest separately for each place to avoid runtime conflicts
-if [ -n "$TEST_PATTERN" ]; then
-    echo "Running Jest with test pattern: $TEST_PATTERN"
-    for PLACE in "${PLACES[@]}"; do
-        echo ""
-        echo "========================================"
-        echo "Checking $PLACE for tests matching pattern: $TEST_PATTERN"
-        echo "========================================"
-
-        # Check if this place has relevant tests
-        if ! check_place_has_tests "$PLACE" "$TEST_PATTERN"; then
-            continue
-        fi
-
-        echo "Running tests for $PLACE with pattern: $TEST_PATTERN"
-
-        if command -v python3 &>/dev/null; then
-            python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN" "$PLACE"
-        else
-            python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "$TEST_PATTERN" "$PLACE"
-        fi
-
-        PYTHON_EXIT_CODE=$?
-        if [ $PYTHON_EXIT_CODE -ne 0 ]; then
-            echo "❌ Tests failed for $PLACE"
-            OVERALL_EXIT_CODE=$PYTHON_EXIT_CODE
-        else
-            echo "✅ Tests passed for $PLACE"
-        fi
-    done
+if command -v python3 &>/dev/null; then
+    python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl scripts/roblox/run-tests.server.luau "$TEST_PATTERN"
 else
-    echo "Running all Jest tests"
-    for PLACE in "${PLACES[@]}"; do
-        echo ""
-        echo "========================================"
-        echo "Checking $PLACE for tests"
-        echo "========================================"
+    python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl scripts/roblox/run-tests.server.luau "$TEST_PATTERN"
+fi
 
-        # Check if this place has any tests
-        if ! check_place_has_tests "$PLACE" ""; then
-            continue
-        fi
-
-        echo "Running tests for $PLACE"
-
-        if command -v python3 &>/dev/null; then
-            python3 "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "" "$PLACE"
-        else
-            python "$PARENT_DIR/python/upload_and_run_task.py" dist.rbxl tasks/run-tests.server.luau "" "$PLACE"
-        fi
-
-        PYTHON_EXIT_CODE=$?
-        if [ $PYTHON_EXIT_CODE -ne 0 ]; then
-            echo "❌ Tests failed for $PLACE"
-            OVERALL_EXIT_CODE=$PYTHON_EXIT_CODE
-        else
-            echo "✅ Tests passed for $PLACE"
-        fi
-    done
+PYTHON_EXIT_CODE=$?
+if [ $PYTHON_EXIT_CODE -ne 0 ]; then
+    echo "❌ Tests failed"
+    OVERALL_EXIT_CODE=$PYTHON_EXIT_CODE
+else
+    echo "✅ Tests passed"
 fi
 
 echo "Cleaning up..."

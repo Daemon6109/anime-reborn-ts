@@ -1,8 +1,8 @@
 import { expect, describe, it, beforeEach } from "@rbxts/jest-globals";
-import { PlayerManagerService } from "server/services/player-manager.service";
-import { DataService } from "server/services/data.service";
-import { DATA_TEMPLATE, type DataTemplate } from "shared/data/data-template";
-import { deepCopy } from "shared/utils/deep-copy";
+import { PlayerManagerService } from "@server/services/player-manager.service";
+import { DataService } from "@server/services/data.service";
+import { DATA_TEMPLATE, type DataTemplate } from "@shared/data/data-template";
+import { deepCopy } from "@shared/utils/deep-copy";
 
 describe("PlayerManagerService", () => {
 	let playerManagerService: PlayerManagerService;
