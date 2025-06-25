@@ -392,7 +392,7 @@ local function extractConfigurationFromSource(source, unitName)
 	for line in string.gmatch(configContent, "[^\n]+") do
 		table.insert(lines, line)
 	end
-	
+
 	for _, line in ipairs(lines) do
 		-- Skip lines that are just comments or empty
 		local trimmedLine = string.gsub(line, "^%s*", "")
@@ -403,7 +403,7 @@ local function extractConfigurationFromSource(source, unitName)
 				-- Clean up the value by removing trailing whitespace and commas
 				value = string.gsub(value, "%s*,%s*$", "")
 				value = string.gsub(value, "%s*$", "")
-				
+
 				-- Skip complex patterns and nested tables for now, but allow Enum values
 				if
 					not string.find(value, "CFrame")
@@ -420,7 +420,13 @@ local function extractConfigurationFromSource(source, unitName)
 					end
 				else
 					print(
-						"SKIPPED (complex): " .. unitName .. "." .. key .. " = " .. string.sub(tostring(value), 1, 50) .. "..."
+						"SKIPPED (complex): "
+							.. unitName
+							.. "."
+							.. key
+							.. " = "
+							.. string.sub(tostring(value), 1, 50)
+							.. "..."
 					)
 				end
 			end
