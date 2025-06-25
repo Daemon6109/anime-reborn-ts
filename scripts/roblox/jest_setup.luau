@@ -6,15 +6,8 @@ local JestGlobals = require(
 		:FindFirstChild("jest-globals")
 		:FindFirstChild("src")
 )
--- local jest = JestGlobals.jest
--- local expect = JestGlobals.expect
-local afterEach = JestGlobals.afterEach
 
--- expect.extend({
--- 	newMatcher = function(self, received, expected)
--- 		-- ...
--- 	end)
--- })
+local afterEach = JestGlobals.afterEach
 
 afterEach(function()
 	for index, _ in _G do
@@ -24,6 +17,4 @@ afterEach(function()
 			end
 		end)
 	end
-	print("🧹 Cleaned up global module scripts")
-	print(_G)
 end)

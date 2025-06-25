@@ -52,10 +52,7 @@ fi
 
 PYTHON_EXIT_CODE=$?
 if [ $PYTHON_EXIT_CODE -ne 0 ]; then
-    echo "❌ Tests failed"
     OVERALL_EXIT_CODE=$PYTHON_EXIT_CODE
-else
-    echo "✅ Tests passed"
 fi
 
 echo "Cleaning up..."

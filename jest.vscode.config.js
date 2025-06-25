@@ -44,11 +44,11 @@ module.exports = {
 		},
 	},
 	moduleNameMapper: {
-		"^server/(.*)$": "<rootDir>/places/common/src/server/$1",
-		"^common/(.*)$": "<rootDir>/places/common/src/$1",
+		"^@server/(.*)$": "<rootDir>/places/common/src/server/$1",
+		"^@common/(.*)$": "<rootDir>/places/common/src/$1",
 		// Add a mapping for shared if needed, e.g., from places/common/src/shared
-		"^shared/(.*)$": "<rootDir>/places/common/src/shared/$1",
-		"^old_common/(.*)$": "<rootDir>/old_common/src/$1",
+		"^@shared/(.*)$": "<rootDir>/places/common/src/shared/$1",
+		"^@old_common/(.*)$": "<rootDir>/old_common/src/$1",
 		// Mock @flamework/core itself
 		"^@flamework/core$": "<rootDir>/scripts/js/jest-flamework-mock.js",
 		// Mock @rbxts/services
