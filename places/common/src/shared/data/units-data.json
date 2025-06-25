@@ -1,0 +1,2753 @@
+{
+  "Aira": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "92067478307647",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aira"
+  },
+  "Aira [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "92067478307647",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aira [Evo]"
+  },
+  "Aizen": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17893593497",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aizen"
+  },
+  "Aizen [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115626504370471",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aizen [Evo]"
+  },
+  "AizenHogyoku": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "86459613094803",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "AizenHogyoku"
+  },
+  "AizenHogyoku [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "116453275247492",
+      "walk": "17264216432",
+      "wings": "124190768688390"
+    },
+    "configuration": {},
+    "name": "AizenHogyoku [Evo]"
+  },
+  "Akame": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134388099837123",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Akame"
+  },
+  "Akame [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134388099837123",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Akame [Evo]"
+  },
+  "Android 18": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134468281047458",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Android 18"
+  },
+  "Android 21": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "18172209224",
+      "idle": "18172212518",
+      "tail": "18172214963",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Android 21"
+  },
+  "Android 21 [Demon]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "18172209224",
+      "idle": "18172212518",
+      "tail": "18172214963",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Android 21 [Demon]"
+  },
+  "Aokiji": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "129945398427940",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aokiji"
+  },
+  "Aokiji [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "129945398427940",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aokiji [Evo]"
+  },
+  "Aqua": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17893593497",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Aqua"
+  },
+  "Arlong": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "94781171912952",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Arlong"
+  },
+  "ArlongAwakened": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98730294358705",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "ArlongAwakened"
+  },
+  "Asta": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hairAnim": "98944742673151",
+      "idle": "93686370326927",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Asta"
+  },
+  "Asta [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hairAnim": "98944742673151",
+      "idle": "93686370326927",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Asta [Evo]"
+  },
+  "Baek YoonHo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "113360220002265",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Baek YoonHo"
+  },
+  "Baek YoonHo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "128321187223716",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Baek YoonHo [Evo]"
+  },
+  "Baruk": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "92067478307647",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Baruk"
+  },
+  "Beerus": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83304444773538",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Beerus"
+  },
+  "Beerus [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83304444773538",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Beerus [Evo]"
+  },
+  "Beru": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "109103009156297"
+    },
+    "configuration": {},
+    "name": "Beru"
+  },
+  "Beru [Evo2]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "109103009156297"
+    },
+    "configuration": {},
+    "name": "Beru [Evo2]"
+  },
+  "Beru [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "109103009156297"
+    },
+    "configuration": {},
+    "name": "Beru [Evo]"
+  },
+  "Beta": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "80338065112304",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Beta"
+  },
+  "Blackbeard": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "cape": "103195226449249",
+      "idle": "124214532787267",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Blackbeard"
+  },
+  "Boa": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "103892206281639",
+      "skirt": "129040131141904",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Boa"
+  },
+  "Boa [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "103892206281639",
+      "skirt": "129040131141904",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Boa [Evo]"
+  },
+  "Broly": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "121684041207619",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Broly"
+  },
+  "Broly [Rage]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "121684041207619",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Broly [Rage]"
+  },
+  "Brook": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114490382465714"
+    },
+    "configuration": {},
+    "name": "Brook"
+  },
+  "Buggy": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "119598471628661"
+    },
+    "configuration": {},
+    "name": "Buggy"
+  },
+  "Bulma": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "120491262077710",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Bulma"
+  },
+  "Captain Yami": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "104833851018124",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Captain Yami"
+  },
+  "Captain Yami [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "133924858571797",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Captain Yami [Evo]"
+  },
+  "CaptainKuro": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83496529191125",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "CaptainKuro"
+  },
+  "Carrot": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "cloth": "100998144606835",
+      "head1": "78793620191393",
+      "idle": "91029949645691"
+    },
+    "configuration": {},
+    "name": "Carrot"
+  },
+  "Carrot [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "cloth": "84056396477200",
+      "head1": "78793620191393",
+      "head2": "121131065991192",
+      "idle": "91029949645691"
+    },
+    "configuration": {},
+    "name": "Carrot [Evo]"
+  },
+  "Caulifla": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "129142329827210",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Caulifla"
+  },
+  "Cell [Max]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "129719213465572",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cell [Max]"
+  },
+  "Cell [Max] [Voided]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18302081944",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cell [Max] [Voided]"
+  },
+  "Cha Hae In": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "Lsomething": "84088711751133",
+      "idle": "124109483162475",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cha Hae In"
+  },
+  "Cha Hae In [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "Lsomething": "84088711751133",
+      "idle": "124109483162475",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cha Hae In [Evo]"
+  },
+  "Cha Hae In [Old]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18145462577",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cha Hae In [Old]"
+  },
+  "Chisato": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "128513756013703",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Chisato"
+  },
+  "Chisato [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "128513756013703",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Chisato [Evo]"
+  },
+  "Choi jong in": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "91404478074728"
+    },
+    "configuration": {},
+    "name": "Choi jong in"
+  },
+  "Choi jong in [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "coat": "86789114189421",
+      "idle": "124881101592369"
+    },
+    "configuration": {},
+    "name": "Choi jong in [Evo]"
+  },
+  "Chrollo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "108919366993004",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Chrollo"
+  },
+  "Chrollo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "108919366993004",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Chrollo [Evo]"
+  },
+  "Cid": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "110963979478234",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cid"
+  },
+  "Cid [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "110963979478234",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Cid [Evo]"
+  },
+  "Delta": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134452293324965",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Delta"
+  },
+  "DioOH": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "diowalk": "100632493399938",
+      "idle": "139461745012713",
+      "walk": "100632493399938"
+    },
+    "configuration": {},
+    "name": "DioOH"
+  },
+  "DioOH [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "diowalk": "100632493399938",
+      "idle": "139461745012713",
+      "walk": "100632493399938"
+    },
+    "configuration": {},
+    "name": "DioOH [Evo]"
+  },
+  "Doflamingo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "cape": "115363681855827",
+      "idle": "100745724831757",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Doflamingo"
+  },
+  "Doflamingo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "cape": "115363681855827",
+      "idle": "100745724831757",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Doflamingo [Evo]"
+  },
+  "Dordoni": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81700767594396",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Dordoni"
+  },
+  "Douma": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81700767594396",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Douma"
+  },
+  "Douma [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81700767594396",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Douma [Evo]"
+  },
+  "Emilia": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "79739401193315",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Emilia"
+  },
+  "Emilia [Valentines]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "79739401193315",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Emilia [Valentines]"
+  },
+  "Esdeath": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98696529098501",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Esdeath"
+  },
+  "Esdeath [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98696529098501",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Esdeath [Evo]"
+  },
+  "Evil Eye": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "130995008781191",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Evil Eye"
+  },
+  "Feitan": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "139686430956563",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Feitan"
+  },
+  "Feitan [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "139686430956563",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Feitan [Evo]"
+  },
+  "Freiza": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "FreizatailIdle": "129875860603930",
+      "idle": "131142285881068",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Freiza"
+  },
+  "Freiza [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "FreizatailIdle": "104511574371062",
+      "idle": "131142285881068",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Freiza [Evo]"
+  },
+  "Fujitora": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115196154965429",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Fujitora"
+  },
+  "Fujitora [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "InsaneCAPE": "131628941543930",
+      "idle": "115196154965429",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Fujitora [Evo]"
+  },
+  "Funny Valentine": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "127390178485043",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Funny Valentine"
+  },
+  "Funny Valentine [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "127390178485043",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Funny Valentine [Evo]"
+  },
+  "Gamma Brothers": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "IdleG1": "100987371000238",
+      "IdleG2": "76242587909173",
+      "idle": "75256281553824",
+      "leftwalk": "86422637935687",
+      "rightwalk": "106582949256031",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gamma Brothers"
+  },
+  "Gamma Brothers [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "IdleG1": "100987371000238",
+      "IdleG2": "76242587909173",
+      "cape": "131092558555940",
+      "idle": "75256281553824",
+      "leftwalk": "86422637935687",
+      "rightwalk": "106582949256031",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gamma Brothers [Evo]"
+  },
+  "Genos": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115901211490689",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Genos"
+  },
+  "Gohan": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "109787707780134",
+      "idle": "139583734439575",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gohan"
+  },
+  "Gohan [Beast]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "89988412288399",
+      "idle": "139583734439575",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gohan [Beast]"
+  },
+  "Gojo [Base]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18451931529",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gojo [Base]"
+  },
+  "Goku [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "80547683773408",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Goku [Evo]"
+  },
+  "GokuSSJ": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "74141329654855",
+      "idle": "121034505739814",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "GokuSSJ"
+  },
+  "GokuSSJ [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "74141329654855",
+      "idle": "121034505739814",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "GokuSSJ [Evo]"
+  },
+  "Gon": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "124432889455195",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gon"
+  },
+  "Gon [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "124432889455195",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gon [Evo]"
+  },
+  "Gordon": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "105470550713778",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Gordon"
+  },
+  "Grimmjow": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "106049146298717",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Grimmjow"
+  },
+  "Grimmjow [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "106049146298717",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Grimmjow [Evo]"
+  },
+  "Hiei": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17396887536",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Hiei"
+  },
+  "Hinata": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "104206899512942",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Hinata"
+  },
+  "Hisoka": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Hisoka"
+  },
+  "Hisoka [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Hisoka [Evo]"
+  },
+  "Hitto": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "97612056143859",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Hitto"
+  },
+  "Ichigo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98730294358705",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Ichigo"
+  },
+  "Ichigo [Bankai]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98730294358705",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Ichigo [Bankai]"
+  },
+  "Ichigo [Vasto]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98730294358705",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Ichigo [Vasto]"
+  },
+  "Igris": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "IIYYYY": "77643382572010",
+      "hair": "122326346049060",
+      "hair1": "122326346049060",
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Igris"
+  },
+  "Igris [Evo2]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "IIYYYY": "86416088113927",
+      "hair": "122326346049060",
+      "hair1": "122326346049060",
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Igris [Evo2]"
+  },
+  "Igris [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "IIYYYY": "86416088113927",
+      "hair": "122326346049060",
+      "hair1": "122326346049060",
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Igris [Evo]"
+  },
+  "Illumi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Illumi"
+  },
+  "Illumi [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "113133337470237",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Illumi [Evo]"
+  },
+  "Inosuke": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "74541816202003",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Inosuke"
+  },
+  "Inosuke [Valentines]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "74541816202003",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Inosuke [Valentines]"
+  },
+  "Iron": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114908875863789",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Iron"
+  },
+  "Iron [Evo2]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114908875863789",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Iron [Evo2]"
+  },
+  "Iron [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114908875863789",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Iron [Evo]"
+  },
+  "Iron [old]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114908875863789"
+    },
+    "configuration": {},
+    "name": "Iron [old]"
+  },
+  "Itachi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "126045946928418",
+      "idle": "122728041508090",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Itachi"
+  },
+  "Itachi [Susanoo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair": "126045946928418",
+      "idle": "122728041508090",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Itachi [Susanoo]"
+  },
+  "Jay": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17893593497",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Jay"
+  },
+  "Jinho": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "78956284811385",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Jinho"
+  },
+  "Jiren": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "EvoIdle": "111457696065004",
+      "idle": "133039843609864",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Jiren"
+  },
+  "Jiren [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "133039843609864",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Jiren [Evo]"
+  },
+  "Julius": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "74170461498457",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Julius"
+  },
+  "Julius [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "74170461498457",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Julius [Evo]"
+  },
+  "Juvia": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115799939428714",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Juvia"
+  },
+  "Kabane": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "130995008781191",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kabane"
+  },
+  "Kaido": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hair_and_cape": "126367547379260",
+      "idle": "107830578194597",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kaido"
+  },
+  "Kaido [Hybrid]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "107830578194597",
+      "tail": "78711655263794",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kaido [Hybrid]"
+  },
+  "Kakashi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17893593497",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kakashi"
+  },
+  "Kale": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115600568891875",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kale"
+  },
+  "Kargalgan": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98147474589165",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kargalgan"
+  },
+  "Kargalgan [Evo2]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98147474589165",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kargalgan [Evo2]"
+  },
+  "Kargalgan [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98147474589165",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kargalgan [Evo]"
+  },
+  "KillerB": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114162951181562",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "KillerB"
+  },
+  "KillerB [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114162951181562",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "KillerB [Evo]"
+  },
+  "Killua": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17381247700",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Killua"
+  },
+  "Kirillin": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83397089753315",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kirillin"
+  },
+  "Kirillin [Valentines]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83397089753315",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kirillin [Valentines]"
+  },
+  "Kiritsugu": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "78581815686128",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kiritsugu"
+  },
+  "Kiritsugu [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "78581815686128",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kiritsugu [Evo]"
+  },
+  "Kizaru": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "129713725373376",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kizaru"
+  },
+  "Kurapika": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "94919223014922",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kurapika"
+  },
+  "Kurapika [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "94919223014922",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Kurapika [Evo]"
+  },
+  "Law": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "120123188805305",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Law"
+  },
+  "Law [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "Browcoat": "110381758328697",
+      "idle": "120123188805305",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Law [Evo]"
+  },
+  "Leopold": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "70969107380221",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Leopold"
+  },
+  "Levi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "114143458409018",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Levi"
+  },
+  "Licht": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "103922394288913",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Licht"
+  },
+  "Licht [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "103922394288913",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Licht [Evo]"
+  },
+  "Light": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17893593497",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Light"
+  },
+  "Luck": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "82855101080920",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Luck"
+  },
+  "Luck [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "82855101080920",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Luck [Evo]"
+  },
+  "Luffy [DR]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83378599502109",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Luffy [DR]"
+  },
+  "Luffy [DR] [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "CustomRig": "98839893777041",
+      "idle": "83378599502109",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Luffy [DR] [Evo]"
+  },
+  "Luffy [PTS]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "102817483571778",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Luffy [PTS]"
+  },
+  "Magenta ": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "109848472988319",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Magenta "
+  },
+  "Magna": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "72679824980823",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Magna"
+  },
+  "Mars": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hairAnim": "98944742673151",
+      "idle": "101661711806199",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Mars"
+  },
+  "Mars [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "hairAnim": "98944742673151",
+      "idle": "101661711806199",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Mars [Evo]"
+  },
+  "Mereum": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "74906617495182",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Mereum"
+  },
+  "Mereum [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "74906617495182",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Mereum [Evo]"
+  },
+  "Mihawk": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "128369429429167",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Mihawk"
+  },
+  "Mihawk [Warlord]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "128369429429167",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Mihawk [Warlord]"
+  },
+  "Mirko": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "90387247750986"
+    },
+    "configuration": {},
+    "name": "Mirko"
+  },
+  "Mirko [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "90387247750986"
+    },
+    "configuration": {},
+    "name": "Mirko [Evo]"
+  },
+  "Momo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "126261527857423",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Momo"
+  },
+  "Momo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "126261527857423",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Momo [Evo]"
+  },
+  "MrMantisShrimp": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "75275715420023"
+    },
+    "configuration": {},
+    "name": "MrMantisShrimp"
+  },
+  "MrMantisShrimp [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "75275715420023"
+    },
+    "configuration": {},
+    "name": "MrMantisShrimp [Evo]"
+  },
+  "MrSatan": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134468281047458",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "MrSatan"
+  },
+  "Muichiro": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "122802058141347",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Muichiro"
+  },
+  "Muichiro [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "122802058141347",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Muichiro [Evo]"
+  },
+  "Murata": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "95775117346176",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Murata"
+  },
+  "Nanami": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "112626968929674",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Nanami"
+  },
+  "Nanami [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "112626968929674",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Nanami [Evo]"
+  },
+  "Naruto": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "108863438781215",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Naruto"
+  },
+  "Neji": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "86684870606596",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Neji"
+  },
+  "Nel": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "119476935664752",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Nel"
+  },
+  "Nel [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81835154824610",
+      "jawwww": "86328237844260",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Nel [Evo]"
+  },
+  "Netero": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81459795574554",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Netero"
+  },
+  "Netero [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81459795574554",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Netero [Evo]"
+  },
+  "Nezuko": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "111277268830665",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Nezuko"
+  },
+  "Nezuko [Valentines]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "111277268830665",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Nezuko [Valentines]"
+  },
+  "Noelle": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "119476935664752",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Noelle"
+  },
+  "Noelle [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "119476935664752",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Noelle [Evo]"
+  },
+  "Oden": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "77185747375005",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Oden"
+  },
+  "Oden [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "77185747375005",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Oden [Evo]"
+  },
+  "Okarun": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "112982144395980",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Okarun"
+  },
+  "Okarun [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "112982144395980",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Okarun [Evo]"
+  },
+  "OldItachi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17070420206",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "OldItachi"
+  },
+  "Orihime": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "89766854637909",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Orihime"
+  },
+  "Orochimaru": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "106444596396341",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Orochimaru"
+  },
+  "Pain": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "105237950545381",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Pain"
+  },
+  "Pain [Chibaku]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "105237950545381",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Pain [Chibaku]"
+  },
+  "Pan": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115799939428714",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Pan"
+  },
+  "Piccolo Orange": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "102343566290153",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Piccolo Orange"
+  },
+  "Piccolo Orange [Full Power]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "102343566290153",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Piccolo Orange [Full Power]"
+  },
+  "Placeholder": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18302081944",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Placeholder"
+  },
+  "Purple": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17893593497",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Purple"
+  },
+  "Ragna": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "79104939815951"
+    },
+    "configuration": {},
+    "name": "Ragna"
+  },
+  "Ragna [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "79104939815951"
+    },
+    "configuration": {},
+    "name": "Ragna [Evo]"
+  },
+  "Rias": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134610752092492",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Rias"
+  },
+  "Rias [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134610752092492",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Rias [Evo]"
+  },
+  "Rimuru": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "140157254130495",
+      "shinycape": "82843659526159",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Rimuru"
+  },
+  "Rimuru [Lord]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "140157254130495",
+      "shinycape": "82843659526159",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Rimuru [Lord]"
+  },
+  "Robin": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "96744903996219"
+    },
+    "configuration": {},
+    "name": "Robin"
+  },
+  "Robin [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "96744903996219"
+    },
+    "configuration": {},
+    "name": "Robin [Evo]"
+  },
+  "Rock Lee": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "127379267343406",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Rock Lee"
+  },
+  "Roy": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "84136356255028",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Roy"
+  },
+  "Roy [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "84136356255028",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Roy [Evo]"
+  },
+  "Rukia": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "115660336622724",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Rukia"
+  },
+  "Saber Alter": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "94641008819552"
+    },
+    "configuration": {},
+    "name": "Saber Alter"
+  },
+  "Saber Alter [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "94641008819552"
+    },
+    "configuration": {},
+    "name": "Saber Alter [Evo]"
+  },
+  "Sabo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81132963348411",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sabo"
+  },
+  "Sabo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "81132963348411",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sabo [Evo]"
+  },
+  "Sakomoto": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "91403717246121",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sakomoto"
+  },
+  "Sakomoto [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "91403717246121",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sakomoto [Evo]"
+  },
+  "Sakura": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18952785768",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sakura"
+  },
+  "Sanji": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "86579607855805",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sanji"
+  },
+  "Sanji [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "86579607855805",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sanji [Evo]"
+  },
+  "Sanji [PTS]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18936650396",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sanji [PTS]"
+  },
+  "Sasuke": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "95385046185816",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sasuke"
+  },
+  "Seiko": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "85937869458086",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Seiko"
+  },
+  "Seiko [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "85937869458086",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Seiko [Evo]"
+  },
+  "Serpo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98820593382978",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Serpo"
+  },
+  "Serpo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "98820593382978",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Serpo [Evo]"
+  },
+  "Shunko Yoruichi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17209457225",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Shunko Yoruichi"
+  },
+  "Sode no shirayuki": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "104670207944130",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sode no shirayuki"
+  },
+  "Sode no shirayuki [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "104670207944130",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sode no shirayuki [Evo]"
+  },
+  "Special Tanjiro Bloodlust": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17881512810",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Special Tanjiro Bloodlust"
+  },
+  "Speedwagon": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "106878732091811",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Speedwagon"
+  },
+  "Stark": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "76261233703804",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Stark"
+  },
+  "Stark [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "cloack": "74305773003243",
+      "idle": "76261233703804",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Stark [Evo]"
+  },
+  "Sung Jin Woo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "73279890757415",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sung Jin Woo"
+  },
+  "Sung Jinwoo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "134844065554246",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sung Jinwoo"
+  },
+  "Sung Jinwoo [Evo2]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "91498798762585",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sung Jinwoo [Evo2]"
+  },
+  "Sung Jinwoo [Evo3]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "95280874014863",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sung Jinwoo [Evo3]"
+  },
+  "Sung Jinwoo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "91498798762585",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Sung Jinwoo [Evo]"
+  },
+  "Tanjiro Bloodlust": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17881512810",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Tanjiro Bloodlust"
+  },
+  "Ten Ten": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18903180992",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Ten Ten"
+  },
+  "Ten Ten [Valentines]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18903180992",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Ten Ten [Valentines]"
+  },
+  "Tobirama": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "110027366394128",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Tobirama"
+  },
+  "Tobirama [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "110027366394128",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Tobirama [Evo]"
+  },
+  "Toji": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "91887253364401",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Toji"
+  },
+  "Topo": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "EvoIdle": "111457696065004",
+      "idle": "114108575638076",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Topo"
+  },
+  "Topo [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "EvoIdle": "111457696065004",
+      "idle": "114108575638076",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Topo [Evo]"
+  },
+  "Toshiro": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "77016121610005",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Toshiro"
+  },
+  "Toshiro [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "77016121610005",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Toshiro [Evo]"
+  },
+  "TurboGranny": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "82962527564512",
+      "walk": "'108507658101181'"
+    },
+    "configuration": {},
+    "name": "TurboGranny"
+  },
+  "TurboGranny [Evo1]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "82962527564512",
+      "walk": "'108507658101181'"
+    },
+    "configuration": {},
+    "name": "TurboGranny [Evo1]"
+  },
+  "TurboGranny [Evo2]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "82962527564512",
+      "walk": "'108507658101181'"
+    },
+    "configuration": {},
+    "name": "TurboGranny [Evo2]"
+  },
+  "Ulquiorra": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "73782328212630",
+      "walk": "17264216432",
+      "wing1": "82672390134143"
+    },
+    "configuration": {},
+    "name": "Ulquiorra"
+  },
+  "Ulquiorra [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "133148731404245",
+      "walk": "17264216432",
+      "wing1": "100030717921366",
+      "wing2": "91269408874621"
+    },
+    "configuration": {},
+    "name": "Ulquiorra [Evo]"
+  },
+  "Uraume": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "79739401193315",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Uraume"
+  },
+  "Uraume [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "79739401193315",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Uraume [Evo]"
+  },
+  "Uryu": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "118037191652670",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Uryu"
+  },
+  "Usopp [PTS]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "18932625313",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Usopp [PTS]"
+  },
+  "Vegeta": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "112043809456767",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Vegeta"
+  },
+  "Vegeta [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "112043809456767",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Vegeta [Evo]"
+  },
+  "VyascheEmul": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "121870689982011"
+    },
+    "configuration": {},
+    "name": "VyascheEmul"
+  },
+  "VyascheEmul [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "121870689982011"
+    },
+    "configuration": {},
+    "name": "VyascheEmul [Evo]"
+  },
+  "Whis": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "101624836608877",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Whis"
+  },
+  "Whis [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "101624836608877",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Whis [Evo]"
+  },
+  "Whitebeard": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "88553641715653",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Whitebeard"
+  },
+  "Whitebeard [Yonko]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "88553641715653",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Whitebeard [Yonko]"
+  },
+  "Yamcha": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "94781171912952",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yamcha"
+  },
+  "Yoruichi": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83496529191125",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yoruichi"
+  },
+  "Yoruichi [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "83496529191125",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yoruichi [Evo]"
+  },
+  "Yoshina": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "127524251906511"
+    },
+    "configuration": {},
+    "name": "Yoshina"
+  },
+  "Yoshina [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "127524251906511"
+    },
+    "configuration": {},
+    "name": "Yoshina [Evo]"
+  },
+  "Yuno Clover": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "85951854414242",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yuno Clover"
+  },
+  "Yuno Clover [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "85951854414242",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yuno Clover [Evo]"
+  },
+  "Yuno Gassai": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "93940973846567",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yuno Gassai"
+  },
+  "Yuno Gassai [Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "93940973846567",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yuno Gassai [Evo]"
+  },
+  "Yusuke": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "17401967745",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Yusuke"
+  },
+  "Zenitsu": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "99267733782446",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Zenitsu"
+  },
+  "Zoro [DR]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "95989952033580",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Zoro [DR]"
+  },
+  "Zoro [DR] {Evo]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "95989952033580",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Zoro [DR] {Evo]"
+  },
+  "Zoro [PTS]": {
+    "Released": true,
+    "Summonable": true,
+    "animations": {
+      "idle": "123129775551770",
+      "walk": "17264216432"
+    },
+    "configuration": {},
+    "name": "Zoro [PTS]"
+  }
+}
