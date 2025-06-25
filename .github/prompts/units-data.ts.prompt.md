@@ -4,34 +4,33 @@ mode: agent
 
 **Objective:**
 
-Create a script to automate the extraction of unit data from the Roblox game environment and update the `places/common/src/shared/data/units-data.ts` file.
+Create a script to automate the extraction of unit data from the Luau source code and make it available to the TypeScript codebase.
 
 **Instructions:**
 
-1.  **Create a new script file:** `scripts/js/sync-units-data.ts`.
+1.  **Create a new Lune script file:** `scripts/lune/extract-units-data.luau`.
 
-2.  **Implement the script logic in `sync-units-data.ts`:**
-
-    a. **Connect to MCP Server:** Establish a connection to the MCP server to interact with the Roblox game instance.
-
-    b. **Extract Unit Data:**
-    _ Use the MCP server to execute Luau code that iterates through each `ModuleScript` in `ReplicatedStorage.Registry.Units`.
-    _ For each module, the Luau script should return a JSON object containing:
+2.  **Implement the Lune script logic in `extract-units-data.luau`:**
+    a. The script should traverse the `old_common/src/constants/Units/` directory.
+    b. For each Luau `ModuleScript` found, it should parse the file to extract the required data:
     _ The unit's name (from the module's name).
     _ The `configuration` table.
     _ The `Released` boolean value (defaulting to `true` if absent).
-    _ The `Summonable` boolean value (defaulting to `true` if absent).
-    _ The `animations` table, if it exists.
-    _ The final result from the MCP server should be a JSON array of these unit objects.
+    _ The `Summonable` boolean value (defaulting to `true` if absent). \* The `animations` table, if it exists.
+    c. Aggregate the data from all unit modules into a single Lua table.
+    d. Serialize the final table into a JSON string.
+    e. Write the JSON string to a new file: `places/common/src/shared/data/units-data.json`.
 
-    c. **Generate TypeScript Code:**
-    _ Read the JSON data returned from the MCP server.
-    _ For each unit object in the JSON array, generate a corresponding TypeScript entry.
+3.  **Update the TypeScript data file:**
+    a. Modify `places/common/src/shared/data/units-data.ts` to directly import the JSON file. The content of the file should be:
+    ```typescript
+    import unitsData from './units-data.json';
 
-    d. **Update `units-data.ts`:**
-    _ Read the existing content of `places/common/src/shared/data/units-data.ts`.
-    _ Locate the `export const unitsData = { ... }` declaration.
-    _ Replace the contents of the `unitsData` object with the newly generated TypeScript entries. Be careful to preserve any other code or comments in the file.
-    _ Write the updated content back to `places/common/src/shared/data/units-data.ts`.
+        export { unitsData };
+        ```
 
-3.  **Execute the script** to perform the synchronization.
+4.  **Ensure TypeScript can import JSON:**
+    a. Check the `places/common/tsconfig.json` file.
+    b. If it's not already present, add `"resolveJsonModule": true` to the `compilerOptions`.
+
+5.  **Execute the Lune script** to generate the `units-data.json` file.

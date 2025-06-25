@@ -49,7 +49,7 @@ module.exports = {
 		? {
 				// Force empty collection to prevent errors
 				collectCoverageFrom: [],
-		  }
+			}
 		: {}),
 
 	// Custom runner that routes to cloud execution (disabled for VS Code Jest)
