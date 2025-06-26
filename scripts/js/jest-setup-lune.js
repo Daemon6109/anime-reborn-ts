@@ -575,19 +575,202 @@ global.typeIs = (value, typeName) => {
 	return false;
 };
 
-global.warn = (...args) => {
-	console.warn(...args);
+// Mock Roblox string library
+global.string = {
+	find: (str, pattern, init, plain) => {
+		if (typeof str !== "string") return [undefined, undefined];
+		init = init || 1;
+		// Convert 1-indexed to 0-indexed
+		const startIndex = Math.max(0, init - 1);
+
+		if (plain) {
+			// Plain text search
+			const index = str.indexOf(pattern, startIndex);
+			if (index === -1) return [undefined, undefined];
+			// Convert back to 1-indexed
+			return [index + 1, index + pattern.length];
+		} else {
+			// Pattern search (simplified - doesn't support full Lua patterns)
+			try {
+				const regex = new RegExp(
+					pattern.replace(/%(.)/g, (match, char) => {
+						switch (char) {
+							case "a":
+								return "[a-zA-Z]";
+							case "d":
+								return "[0-9]";
+							case "l":
+								return "[a-z]";
+							case "u":
+								return "[A-Z]";
+							case "w":
+								return "[a-zA-Z0-9]";
+							case "s":
+								return "\\s";
+							default:
+								return "\\" + char;
+						}
+					}),
+				);
+				const match = str.slice(startIndex).match(regex);
+				if (!match) return [undefined, undefined];
+				const index = startIndex + match.index;
+				return [index + 1, index + match[0].length];
+			} catch (e) {
+				// Fall back to plain search if regex fails
+				const index = str.indexOf(pattern, startIndex);
+				if (index === -1) return [undefined, undefined];
+				return [index + 1, index + pattern.length];
+			}
+		}
+	},
+
+	lower: (str) => {
+		return typeof str === "string" ? str.toLowerCase() : "";
+	},
+
+	upper: (str) => {
+		return typeof str === "string" ? str.toUpperCase() : "";
+	},
+
+	sub: (str, start, end) => {
+		if (typeof str !== "string") return "";
+		start = start || 1;
+		end = end || str.length;
+		// Convert 1-indexed to 0-indexed
+		const startIndex = Math.max(0, start - 1);
+		const endIndex = end < 0 ? str.length + end + 1 : end;
+		return str.slice(startIndex, endIndex);
+	},
+
+	len: (str) => {
+		return typeof str === "string" ? str.length : 0;
+	},
+
+	gsub: (str, pattern, replacement, n) => {
+		if (typeof str !== "string") return ["", 0];
+		n = n || Infinity;
+		let count = 0;
+		let result = str;
+
+		// Simple replacement (doesn't support full Lua patterns)
+		try {
+			const regex = new RegExp(pattern, "g");
+			result = str.replace(regex, (match) => {
+				if (count < n) {
+					count++;
+					return typeof replacement === "function" ? replacement(match) : replacement;
+				}
+				return match;
+			});
+		} catch (e) {
+			// Fall back to simple string replacement
+			while (count < n && result.includes(pattern)) {
+				result = result.replace(pattern, replacement);
+				count++;
+			}
+		}
+
+		return [result, count];
+	},
+
+	match: (str, pattern, init) => {
+		if (typeof str !== "string") return null;
+		init = init || 1;
+		const startIndex = Math.max(0, init - 1);
+
+		try {
+			const regex = new RegExp(pattern);
+			const match = str.slice(startIndex).match(regex);
+			return match ? match.slice(1) : null; // Return captures only
+		} catch (e) {
+			return null;
+		}
+	},
+
+	rep: (str, n) => {
+		if (typeof str !== "string" || typeof n !== "number") return "";
+		return str.repeat(Math.max(0, Math.floor(n)));
+	},
+
+	reverse: (str) => {
+		return typeof str === "string" ? str.split("").reverse().join("") : "";
+	},
+
+	format: (formatStr, ...args) => {
+		if (typeof formatStr !== "string") return "";
+		// Very basic format implementation
+		let result = formatStr;
+		let argIndex = 0;
+		result = result.replace(/%[sdq%]/g, (match) => {
+			switch (match) {
+				case "%s":
+					return String(args[argIndex++] || "");
+				case "%d":
+					return String(Number(args[argIndex++]) || 0);
+				case "%q":
+					return JSON.stringify(args[argIndex++] || "");
+				case "%%":
+					return "%";
+				default:
+					return match;
+			}
+		});
+		return result;
+	},
 };
 
-global.assert = (condition, message) => {
-	if (!condition) {
-		throw new Error(message || "Assertion failed");
-	}
-	return condition;
-};
+// Mock Roblox table library
+global.table = {
+	insert: (arr, pos, value) => {
+		if (!Array.isArray(arr)) return;
+		if (value === undefined) {
+			// table.insert(arr, value) - insert at end
+			arr.push(pos);
+		} else {
+			// table.insert(arr, pos, value) - insert at position
+			arr.splice(pos - 1, 0, value); // Convert 1-indexed to 0-indexed
+		}
+	},
 
-global.print = (...args) => {
-	console.log(...args);
+	remove: (arr, pos) => {
+		if (!Array.isArray(arr)) return undefined;
+		if (pos === undefined) {
+			// Remove last element
+			return arr.pop();
+		} else {
+			// Remove at position
+			const removed = arr.splice(pos - 1, 1); // Convert 1-indexed to 0-indexed
+			return removed[0];
+		}
+	},
+
+	sort: (arr, comp) => {
+		if (!Array.isArray(arr)) return;
+		if (comp) {
+			arr.sort(comp);
+		} else {
+			arr.sort();
+		}
+	},
+
+	concat: (arr, sep, start, end) => {
+		if (!Array.isArray(arr)) return "";
+		sep = sep || "";
+		start = start || 1;
+		end = end || arr.length;
+		// Convert 1-indexed to 0-indexed
+		const slice = arr.slice(start - 1, end);
+		return slice.join(sep);
+	},
+
+	unpack: (arr, start, end) => {
+		if (!Array.isArray(arr)) return [];
+		start = start || 1;
+		end = end || arr.length;
+		// Convert 1-indexed to 0-indexed
+		return arr.slice(start - 1, end);
+	},
 };
 
 console.log("🚀 Jest setup with Lune bridge initialized");

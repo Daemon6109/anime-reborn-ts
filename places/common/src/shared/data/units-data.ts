@@ -9,7 +9,7 @@ export type UnitType = "Ground" | "Hybrid" | "Hill" | "Air";
 
 export type PlacementType = "Ground" | "Hill" | "Air";
 
-export type AttackType = "Circle" | "Single" | "Line" | "AOE" | "Multi";
+export type AttackType = "Circle" | "Single" | "Line" | "AOE" | "Multi" | "Cone";
 
 export type GameType = "Portal" | "Raid" | "Story" | "Infinite" | "Tournament";
 
@@ -49,9 +49,9 @@ export interface MapAffinityBoosts {
 export interface UnitConfiguration {
 	// Basic properties
 	DisplayName?: string;
-	Damage: number;
-	Range: number;
-	AttackSpeed: number;
+	Damage: number | string;
+	Range: number | string;
+	AttackSpeed: number | string;
 	PlacementPrice: number;
 	UpgradePrice: number;
 	SellCost?: number;
@@ -60,7 +60,7 @@ export interface UnitConfiguration {
 
 	// Combat properties
 	AttackType: AttackType;
-	AttackSize?: number;
+	AttackSize?: number | string;
 	AttackCriticalChance?: number;
 	AttackCriticalDamage?: number;
 	AttackEffect?: string;
@@ -88,6 +88,7 @@ export interface UnitConfiguration {
 	EvolvesInto?: string;
 	EvolveData?: EvolveData[];
 	TransferStats?: boolean;
+	EliminationsRequired?: number;
 
 	// Upgrades
 	UpgradesInfo?: UpgradeInfo[];
@@ -101,6 +102,9 @@ export interface UnitConfiguration {
 export interface Unit {
 	Released: boolean;
 	Summonable: boolean;
+	Radius?: number;
+	ShinyTradable?: boolean;
+	Tradable?: boolean;
 	animations: UnitAnimations;
 	configuration: UnitConfiguration;
 }
@@ -109,6 +113,34 @@ export type UnitsData = Record<string, Unit>;
 
 // Cast the imported data with proper typing
 export const unitsData = unitsDataRaw as unknown as UnitsData;
+
+// Extract unit names as literal types for better type safety
+export type UnitName = keyof typeof unitsData;
+
+// Helper type to get a unit with its name
+export type UnitWithName<T extends UnitName = UnitName> = Unit & { name: T };
+
+// Type for getting specific unit data
+export type GetUnitData<T extends UnitName> = (typeof unitsData)[T];
+
+// Type-safe unit getter
+export function getTypedUnit<T extends UnitName>(name: T): GetUnitData<T> | undefined {
+	return unitsData[name];
+}
+
+// Type-safe unit name validation
+export function isValidUnitName(name: string): name is UnitName {
+	return name in unitsData;
+}
+
+// Get all unit names as a strongly typed array
+export function getAllUnitNames(): UnitName[] {
+	const names: UnitName[] = [];
+	for (const [name] of pairs(unitsData)) {
+		names.push(name as UnitName);
+	}
+	return names;
+}
 
 // Utility functions
 export class UnitsDataUtils {
@@ -214,9 +246,10 @@ export class UnitsDataUtils {
 	 * Get units by damage range
 	 */
 	static getUnitsByDamageRange(minDamage: number, maxDamage: number): Array<Unit & { name: string }> {
-		return this.getAllUnits().filter(
-			(unit) => unit.configuration.Damage >= minDamage && unit.configuration.Damage <= maxDamage,
-		);
+		return this.getAllUnits().filter((unit) => {
+			const damage = getUnitDamage(unit);
+			return damage >= minDamage && damage <= maxDamage;
+		});
 	}
 
 	/**
@@ -246,7 +279,7 @@ export class UnitsDataUtils {
 	 */
 	static getHighestDamageUnits(limit: number = 10): Array<Unit & { name: string }> {
 		const units = this.getAllUnits();
-		table.sort(units, (a, b) => a.configuration.Damage > b.configuration.Damage);
+		table.sort(units, (a, b) => getUnitDamage(a) > getUnitDamage(b));
 		const result: Array<Unit & { name: string }> = [];
 		for (let i = 0; i < math.min(limit, units.size()); i++) {
 			result.push(units[i]);
@@ -259,7 +292,7 @@ export class UnitsDataUtils {
 	 */
 	static getLongestRangeUnits(limit: number = 10): Array<Unit & { name: string }> {
 		const units = this.getAllUnits();
-		table.sort(units, (a, b) => a.configuration.Range > b.configuration.Range);
+		table.sort(units, (a, b) => getUnitRange(a) > getUnitRange(b));
 		const result: Array<Unit & { name: string }> = [];
 		for (let i = 0; i < math.min(limit, units.size()); i++) {
 			result.push(units[i]);
@@ -272,7 +305,7 @@ export class UnitsDataUtils {
 	 */
 	static getFastestUnits(limit: number = 10): Array<Unit & { name: string }> {
 		const units = this.getAllUnits();
-		table.sort(units, (a, b) => a.configuration.AttackSpeed < b.configuration.AttackSpeed); // Lower is faster
+		table.sort(units, (a, b) => getUnitAttackSpeed(a) < getUnitAttackSpeed(b)); // Lower is faster
 		const result: Array<Unit & { name: string }> = [];
 		for (let i = 0; i < math.min(limit, units.size()); i++) {
 			result.push(units[i]);
@@ -323,8 +356,8 @@ export class UnitsDataUtils {
 			elementCount[element] = (elementCount[element] !== undefined ? elementCount[element] : 0) + 1;
 
 			// Count types
-			const type = unit.configuration.UnitType;
-			typeCount[type] = (typeCount[type] !== undefined ? typeCount[type] : 0) + 1;
+			const unitType = unit.configuration.UnitType;
+			typeCount[unitType] = (typeCount[unitType] !== undefined ? typeCount[unitType] : 0) + 1;
 		}
 
 		// Calculate averages
@@ -332,9 +365,9 @@ export class UnitsDataUtils {
 		let totalPrice = 0;
 		let totalRange = 0;
 		for (const unit of allUnits) {
-			totalDamage += unit.configuration.Damage;
+			totalDamage += getUnitDamage(unit);
 			totalPrice += unit.configuration.PlacementPrice;
-			totalRange += unit.configuration.Range;
+			totalRange += getUnitRange(unit);
 		}
 
 		return {
@@ -358,7 +391,7 @@ export class UnitsDataUtils {
 	static getDamagePerCostRanking(limit: number = 20): Array<Unit & { name: string; efficiency: number }> {
 		const units = this.getAllUnits().map((unit) => ({
 			...unit,
-			efficiency: unit.configuration.Damage / unit.configuration.PlacementPrice,
+			efficiency: getUnitDamage(unit) / unit.configuration.PlacementPrice,
 		}));
 		table.sort(units, (a, b) => a.efficiency > b.efficiency);
 		const result: Array<Unit & { name: string; efficiency: number }> = [];
@@ -494,8 +527,8 @@ export class UnitsDataUtils {
 			if (filters.rarity && !filters.rarity.includes(unit.configuration.Rarity)) return false;
 			if (filters.element && !filters.element.includes(unit.configuration.Element)) return false;
 			if (filters.unitType && !filters.unitType.includes(unit.configuration.UnitType)) return false;
-			if (filters.minDamage !== undefined && unit.configuration.Damage < filters.minDamage) return false;
-			if (filters.maxDamage !== undefined && unit.configuration.Damage > filters.maxDamage) return false;
+			if (filters.minDamage !== undefined && getUnitDamage(unit) < filters.minDamage) return false;
+			if (filters.maxDamage !== undefined && getUnitDamage(unit) > filters.maxDamage) return false;
 			if (filters.minPrice !== undefined && unit.configuration.PlacementPrice < filters.minPrice) return false;
 			if (filters.maxPrice !== undefined && unit.configuration.PlacementPrice > filters.maxPrice) return false;
 			if (filters.released !== undefined && unit.Released !== filters.released) return false;
@@ -515,36 +548,162 @@ export class UnitsDataUtils {
 	}
 }
 
+// Utility functions for handling string expressions and numbers
+function parseNumericValue(value: number | string): number {
+	if (typeOf(value) === "number") {
+		return value as number;
+	}
+
+	// Handle string expressions like "4700 / 2"
+	const strValue = value as string;
+	const [found] = string.find(strValue, "/");
+	if (found !== undefined) {
+		const parts = string.split(strValue, "/");
+		if (parts.size() === 2) {
+			const numeratorStr = string.gsub(parts[0], "^%s*(.-)%s*$", "%1")[0];
+			const denominatorStr = string.gsub(parts[1], "^%s*(.-)%s*$", "%1")[0];
+			const numerator = tonumber(numeratorStr);
+			const denominator = tonumber(denominatorStr);
+			if (numerator !== undefined && denominator !== undefined && denominator !== 0) {
+				return numerator / denominator;
+			}
+		}
+	}
+
+	// Try to parse as regular number
+	const parsed = tonumber(strValue);
+	return parsed !== undefined ? parsed : 0;
+}
+
+function getUnitDamage(unit: Unit): number {
+	return parseNumericValue(unit.configuration.Damage);
+}
+
+function getUnitRange(unit: Unit): number {
+	return parseNumericValue(unit.configuration.Range);
+}
+
+function getUnitAttackSpeed(unit: Unit): number {
+	return parseNumericValue(unit.configuration.AttackSpeed);
+}
+
 // Export individual utility functions for convenience
-export const {
-	getAllUnits,
-	getReleasedUnits,
-	getSummonableUnits,
-	getUnitsByRarity,
-	getUnitsByElement,
-	getUnitsByType,
-	getUnitsByPlacementType,
-	getEvolvableUnits,
-	getEvolutionChains,
-	getUnitsByPassive,
-	getUnitsByGameTypeAffinity,
-	getUnitsByDamageRange,
-	getUnitsByPriceRange,
-	getMostExpensiveUnits,
-	getHighestDamageUnits,
-	getLongestRangeUnits,
-	getFastestUnits,
-	getUnit,
-	searchUnitsByName,
-	getUnitStats,
-	getDamagePerCostRanking,
-	getUnitsWithSpecialAbilities,
-	getUnitsWithAbilities,
-	getAllPassives,
-	getAllAbilities,
-	getAllMapAffinities,
-	canUnitEvolve,
-	getEvolutionRequirements,
-	getTotalUpgradeCost,
-	getFilteredUnits,
-} = UnitsDataUtils;
+export function getAllUnits() {
+	return UnitsDataUtils.getAllUnits();
+}
+
+export function getReleasedUnits() {
+	return UnitsDataUtils.getReleasedUnits();
+}
+
+export function getSummonableUnits() {
+	return UnitsDataUtils.getSummonableUnits();
+}
+
+export function getUnitsByRarity(rarity: UnitRarity) {
+	return UnitsDataUtils.getUnitsByRarity(rarity);
+}
+
+export function getUnitsByElement(element: UnitElement) {
+	return UnitsDataUtils.getUnitsByElement(element);
+}
+
+export function getUnitsByType(unitType: UnitType) {
+	return UnitsDataUtils.getUnitsByType(unitType);
+}
+
+export function getUnitsByPlacementType(placementType: PlacementType) {
+	return UnitsDataUtils.getUnitsByPlacementType(placementType);
+}
+
+export function getEvolvableUnits() {
+	return UnitsDataUtils.getEvolvableUnits();
+}
+
+export function getEvolutionChains() {
+	return UnitsDataUtils.getEvolutionChains();
+}
+
+export function getUnitsByPassive(passive: string) {
+	return UnitsDataUtils.getUnitsByPassive(passive);
+}
+
+export function getUnitsByGameTypeAffinity(gameType: GameType) {
+	return UnitsDataUtils.getUnitsByGameTypeAffinity(gameType);
+}
+
+export function getUnitsByDamageRange(minDamage: number, maxDamage: number) {
+	return UnitsDataUtils.getUnitsByDamageRange(minDamage, maxDamage);
+}
+
+export function getUnitsByPriceRange(minPrice: number, maxPrice: number) {
+	return UnitsDataUtils.getUnitsByPriceRange(minPrice, maxPrice);
+}
+
+export function getMostExpensiveUnits(limit?: number) {
+	return UnitsDataUtils.getMostExpensiveUnits(limit);
+}
+
+export function getHighestDamageUnits(limit?: number) {
+	return UnitsDataUtils.getHighestDamageUnits(limit);
+}
+
+export function getLongestRangeUnits(limit?: number) {
+	return UnitsDataUtils.getLongestRangeUnits(limit);
+}
+
+export function getFastestUnits(limit?: number) {
+	return UnitsDataUtils.getFastestUnits(limit);
+}
+
+export function getUnit(name: string) {
+	return UnitsDataUtils.getUnit(name);
+}
+
+export function searchUnitsByName(searchTerm: string) {
+	return UnitsDataUtils.searchUnitsByName(searchTerm);
+}
+
+export function getUnitStats() {
+	return UnitsDataUtils.getUnitStats();
+}
+
+export function getDamagePerCostRanking(limit?: number) {
+	return UnitsDataUtils.getDamagePerCostRanking(limit);
+}
+
+export function getUnitsWithSpecialAbilities() {
+	return UnitsDataUtils.getUnitsWithSpecialAbilities();
+}
+
+export function getUnitsWithAbilities() {
+	return UnitsDataUtils.getUnitsWithAbilities();
+}
+
+export function getAllPassives() {
+	return UnitsDataUtils.getAllPassives();
+}
+
+export function getAllAbilities() {
+	return UnitsDataUtils.getAllAbilities();
+}
+
+export function getAllMapAffinities() {
+	return UnitsDataUtils.getAllMapAffinities();
+}
+
+export function canUnitEvolve(unitName: string) {
+	return UnitsDataUtils.canUnitEvolve(unitName);
+}
+
+export function getEvolutionRequirements(unitName: string) {
+	return UnitsDataUtils.getEvolutionRequirements(unitName);
+}
+
+export function getTotalUpgradeCost(unitName: string) {
+	return UnitsDataUtils.getTotalUpgradeCost(unitName);
+}
+
+export function getFilteredUnits(filters: Parameters<typeof UnitsDataUtils.getFilteredUnits>[0]) {
+	return UnitsDataUtils.getFilteredUnits(filters);
+}

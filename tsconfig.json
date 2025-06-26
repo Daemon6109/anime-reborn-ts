@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		// required
+		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"downlevelIteration": true,
 		"jsx": "react",

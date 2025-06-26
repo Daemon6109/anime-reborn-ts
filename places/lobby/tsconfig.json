@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"esModuleInterop": true, // Recommended for default imports
 		// required
 		"allowSyntheticDefaultImports": true,
 		"downlevelIteration": true,
