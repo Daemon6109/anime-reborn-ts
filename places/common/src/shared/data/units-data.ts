@@ -42,8 +42,8 @@ export interface EvolveData {
 }
 
 export interface MapAffinityBoosts {
-	PermanentDamageMulti?: string;
-	[key: string]: string | undefined;
+	PermanentDamageMulti?: number;
+	[key: string]: string | number | undefined;
 }
 
 export interface UnitConfiguration {
@@ -62,7 +62,7 @@ export interface UnitConfiguration {
 	AttackType: AttackType;
 	AttackSize?: number;
 	AttackCriticalChance?: number;
-	AttackCriticalDamage?: string;
+	AttackCriticalDamage?: number;
 	AttackEffect?: string;
 	AttackEffectDuration?: number;
 
@@ -95,7 +95,7 @@ export interface UnitConfiguration {
 	// Misc
 	CanSell?: boolean;
 	Money?: number;
-	PermanentDamageMulti?: string;
+	PermanentDamageMulti?: number;
 }
 
 export interface Unit {

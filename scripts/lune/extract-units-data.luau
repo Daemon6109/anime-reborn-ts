@@ -65,7 +65,7 @@ local function findMatchingBrace(source, startPos)
 end
 
 -- Function to parse a value string into appropriate Lua type
-local function parseValue(value, unitName, key)
+local function parseValue(value, _unitName, key)
 	if not value or value == "" then
 		return nil
 	end
@@ -111,18 +111,55 @@ local function parseValue(value, unitName, key)
 		return false
 	end
 
-	-- Handle numbers
+	-- Handle numbers (including decimals)
 	if string.match(value, "^%d+%.%d+$") then
 		return tonumber(value)
 	elseif string.match(value, "^%-?%d+$") then
 		return tonumber(value)
 	end
 
-	-- Handle quoted strings
+	-- Handle decimal strings that might represent numbers (like ".3", ".1")
+	if string.match(value, '^"%.%d+"$') or string.match(value, "^'%.%d+'$") then
+		local numStr = string.match(value, "^[\"'](%.%d+)[\"']$")
+		return tonumber(numStr)
+	end
+
+	-- Handle decimal strings without quotes (like .3, .1)
+	if string.match(value, "^%.%d+$") then
+		return tonumber(value)
+	end
+
+	-- Handle quoted strings but convert specific fields to numbers
+	local stringValue = nil
 	if string.match(value, '^"(.-)"$') then
-		return string.match(value, '^"(.-)"$')
+		stringValue = string.match(value, '^"(.-)"$')
 	elseif string.match(value, "^'(.-)'$") then
-		return string.match(value, "^'(.-)'$")
+		stringValue = string.match(value, "^'(.-)'$")
+	end
+
+	-- Convert specific string fields to numbers
+	if stringValue and (key == "AttackCriticalDamage" or key == "PermanentDamageMulti") then
+		local numValue = tonumber(stringValue)
+		if numValue then
+			return numValue
+		end
+	end
+
+	-- Convert animation IDs from strings to integers (not floats)
+	if
+		stringValue
+		and (key == "idle" or key == "walk" or key == "wings" or key == "hair" or key == "tail" or key == "hairAnim")
+	then
+		local numValue = tonumber(stringValue)
+		if numValue then
+			-- For very large numbers, ensure they stay as integers in JSON
+			return math.floor(numValue + 0.5) -- Round to nearest integer
+		end
+	end
+
+	-- Return the string value if we extracted one
+	if stringValue then
+		return stringValue
 	end
 
 	-- Handle arrays in curly braces
@@ -491,6 +528,40 @@ local function extractConfigurationFromSource(source, unitName)
 	return config
 end
 
+-- Function to extract top-level Unit properties like Radius, Tradable, ShinyTradable
+local function extractUnitProperties(source, unitName)
+	local properties = {}
+
+	-- Extract Unit.Radius
+	local radiusPattern = "Unit%.Radius%s*=%s*([%d%.]+)"
+	local radiusValue = string.match(source, radiusPattern)
+	if radiusValue then
+		properties.Radius = tonumber(radiusValue)
+	else
+		print("ERROR: No Unit.Radius found for unit " .. unitName .. " - this should be present on all units")
+	end
+
+	-- Extract Unit.Tradable (default to false if not found)
+	local tradablePattern = "Unit%.Tradable%s*=%s*(%w+)"
+	local tradableValue = string.match(source, tradablePattern)
+	if tradableValue then
+		properties.Tradable = tradableValue == "true"
+	else
+		properties.Tradable = false -- Default value
+	end
+
+	-- Extract Unit.ShinyTradable (default to false if not found)
+	local shinyTradablePattern = "Unit%.ShinyTradable%s*=%s*(%w+)"
+	local shinyTradableValue = string.match(source, shinyTradablePattern)
+	if shinyTradableValue then
+		properties.ShinyTradable = shinyTradableValue == "true"
+	else
+		properties.ShinyTradable = false -- Default value
+	end
+
+	return properties
+end
+
 -- Function to extract animations table from source code
 local function extractAnimationsFromSource(source)
 	-- Look for Unit.animations = { ... }
@@ -502,9 +573,14 @@ local function extractAnimationsFromSource(source)
 	end
 
 	local result = {}
-	-- Extract key-value pairs from animations table
+	-- Extract key-value pairs from animations table and convert IDs to numbers
 	for key, value in string.gmatch(animationsContent, "([%w_]+)%s*=%s*[\"']([^\"']*)[\"']") do
-		result[key] = value
+		local numValue = tonumber(value)
+		if numValue then
+			result[key] = numValue
+		else
+			result[key] = value
+		end
 	end
 
 	return result
@@ -512,7 +588,6 @@ end
 
 -- Collect all unit data
 local unitsData = {}
-local processedCount = 0
 
 print("Starting to process units...")
 
@@ -533,6 +608,13 @@ for _, unitEntry in pairs(UnitRegistryFolder:GetChildren()) do
 			Summonable = true, -- Default to true as per requirements
 			animations = extractAnimationsFromSource(scriptSource),
 		}
+
+		-- Extract additional Unit properties
+		local unitProperties = extractUnitProperties(scriptSource, unitName)
+		-- Add the extracted properties to unitData
+		for key, value in pairs(unitProperties) do
+			unitData[key] = value
+		end
 
 		-- Check Released and Summonable from BoolValue children (not source code)
 		local releasedChild = unitEntry:FindFirstChild("Released")
@@ -571,6 +653,9 @@ print("With warnings: " .. warningCount)
 -- Convert to JSON
 local jsonString = serde.encode("json", unitsData, true) -- true for pretty printing
 
+-- Post-process to fix animation ID formatting (remove .0 from large integers)
+jsonString = string.gsub(jsonString, "(%d+)%.0([,%s%}%]])", "%1%2")
+
 -- Ensure the target directory exists
 local targetDir = "places/common/src/shared/data"
 if not fs.isDir(targetDir) then
@@ -589,15 +674,5 @@ end
 fs.writeFile(jsonPath, jsonString)
 
 print("Units data JSON written to: " .. jsonPath)
-
--- Create the TypeScript wrapper file
-local tsContent = [[import unitsData from './units-data.json';
-
-export { unitsData };
-]]
-
-local tsPath = targetDir .. "/units-data.ts"
-fs.writeFile(tsPath, tsContent)
-
-print("TypeScript wrapper created at: " .. tsPath)
-print("Extraction complete!")
+print("Extraction complete! TypeScript file preserved.")
+print("Note: units-data.ts was NOT overwritten to preserve custom utility functions.")

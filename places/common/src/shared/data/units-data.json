@@ -1,15 +1,18 @@
 {
   "Aira": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "92067478307647",
-      "walk": "17264216432"
+      "idle": 92067478307647,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ballerina Swish",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -43,7 +46,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
@@ -51,7 +54,7 @@
       "Passives": [
         "Power Roll"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1455,
       "PlacementType": "Ground",
       "Range": 28,
@@ -119,16 +122,19 @@
     }
   },
   "Aira [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "92067478307647",
-      "walk": "17264216432"
+      "idle": 92067478307647,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Acrobatic Twirls",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 14,
@@ -144,7 +150,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
@@ -152,7 +158,7 @@
       "Passives": [
         "Power Roll II"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1455,
       "PlacementType": "Ground",
       "Range": 30,
@@ -228,16 +234,19 @@
     }
   },
   "Aizen": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "17893593497",
-      "walk": "17264216432"
+      "idle": 17893593497,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Spiritual Pressure",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -325,16 +334,19 @@
     }
   },
   "Aizen [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "115626504370471",
-      "walk": "17264216432"
+      "idle": 115626504370471,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Spiritual Pressure",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -427,16 +439,19 @@
     }
   },
   "AizenHogyoku": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "86459613094803",
-      "walk": "17264216432"
+      "idle": 86459613094803,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Imaginary Flames",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -515,17 +530,20 @@
     }
   },
   "AizenHogyoku [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "116453275247492",
-      "walk": "17264216432",
-      "wings": "124190768688390"
+      "idle": 116453275247492,
+      "walk": 17264216432,
+      "wings": 124190768688390
     },
     "configuration": {
       "Ability": "Flame Release",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 25,
@@ -614,16 +632,19 @@
     }
   },
   "Akame": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "134388099837123",
-      "walk": "17264216432"
+      "idle": 134388099837123,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Murasame",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 25,
       "AttackSize": 9,
@@ -701,16 +722,19 @@
     }
   },
   "Akame [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "134388099837123",
-      "walk": "17264216432"
+      "idle": 134388099837123,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Murasame",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 25,
       "AttackSize": 9,
@@ -793,16 +817,19 @@
     }
   },
   "Android 18": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "134468281047458",
-      "walk": "17264216432"
+      "idle": 134468281047458,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Energy Blast",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 6,
       "AttackSize": 9,
@@ -878,18 +905,21 @@
     }
   },
   "Android 21": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hair": "18172209224",
-      "idle": "18172212518",
-      "tail": "18172214963",
-      "walk": "17264216432"
+      "hair": 18172209224,
+      "idle": 18172212518,
+      "tail": 18172214963,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Raging Ki Explosion",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -993,18 +1023,21 @@
     }
   },
   "Android 21 [Demon]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hair": "18172209224",
-      "idle": "18172212518",
-      "tail": "18172214963",
-      "walk": "17264216432"
+      "hair": 18172209224,
+      "idle": 18172212518,
+      "tail": 18172214963,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Death Ball",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -1095,16 +1128,19 @@
     }
   },
   "Aokiji": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "129945398427940",
-      "walk": "17264216432"
+      "idle": 129945398427940,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ice Ball",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -1190,16 +1226,19 @@
     }
   },
   "Aokiji [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "129945398427940",
-      "walk": "17264216432"
+      "idle": 129945398427940,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ice Age",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 13,
@@ -1292,16 +1331,19 @@
     }
   },
   "Aqua": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "17893593497",
-      "walk": "17264216432"
+      "idle": 17893593497,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sacred Create Water",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -1373,16 +1415,19 @@
     }
   },
   "Arlong": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "94781171912952",
-      "walk": "17264216432"
+      "idle": 94781171912952,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Shark Bite",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 5,
@@ -1440,16 +1485,19 @@
     }
   },
   "ArlongAwakened": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "98730294358705",
-      "walk": "17264216432"
+      "idle": 98730294358705,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Tail Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 22,
@@ -1516,17 +1564,20 @@
     }
   },
   "Asta": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "hairAnim": "98944742673151",
-      "idle": "93686370326927",
-      "walk": "17264216432"
+      "hairAnim": 98944742673151,
+      "idle": 93686370326927,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Black Hurricane",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -1615,17 +1666,20 @@
     }
   },
   "Asta [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hairAnim": "98944742673151",
-      "idle": "93686370326927",
-      "walk": "17264216432"
+      "hairAnim": 98944742673151,
+      "idle": 93686370326927,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Black Divider",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -1721,16 +1775,19 @@
     }
   },
   "Baek YoonHo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "113360220002265",
-      "walk": "17264216432"
+      "idle": 113360220002265,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Tiger Punches",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -1788,16 +1845,19 @@
     }
   },
   "Baek YoonHo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "128321187223716",
-      "walk": "17264216432"
+      "idle": 128321187223716,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Tiger Slashes",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -1882,16 +1942,19 @@
     }
   },
   "Baruk": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "92067478307647",
-      "walk": "17264216432"
+      "idle": 92067478307647,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ballerina Swish",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -1907,12 +1970,12 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
       "Money": 0,
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1455,
       "PlacementType": "Ground",
       "Range": 28,
@@ -1979,16 +2042,19 @@
     }
   },
   "Beerus": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "83304444773538",
-      "walk": "17264216432"
+      "idle": 83304444773538,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Cataclysmic Orbs",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -2072,16 +2138,19 @@
     }
   },
   "Beerus [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "83304444773538",
-      "walk": "17264216432"
+      "idle": 83304444773538,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sphere of Destruction",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Fear",
       "AttackEffectDuration": 9999999,
       "AttackSize": 15,
@@ -2174,15 +2243,18 @@
     }
   },
   "Beru": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "109103009156297"
+      "idle": 109103009156297
     },
     "configuration": {
       "Ability": "Toxin Spit",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 7,
       "AttackSize": 19,
@@ -2263,15 +2335,18 @@
     }
   },
   "Beru [Evo2]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "109103009156297"
+      "idle": 109103009156297
     },
     "configuration": {
       "Ability": "Impalation",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 7,
       "AttackSize": 16,
@@ -2363,15 +2438,18 @@
     }
   },
   "Beru [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "109103009156297"
+      "idle": 109103009156297
     },
     "configuration": {
       "Ability": "Impalation",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 7,
       "AttackSize": 16,
@@ -2464,16 +2542,19 @@
     }
   },
   "Beta": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "80338065112304",
-      "walk": "17264216432"
+      "idle": 80338065112304,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Mana-Powered Arrow",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 5,
@@ -2507,17 +2588,20 @@
     }
   },
   "Blackbeard": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "cape": "103195226449249",
-      "idle": "124214532787267",
-      "walk": "17264216432"
+      "cape": 103195226449249,
+      "idle": 124214532787267,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Black Hole",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 8,
       "AttackSize": 6,
@@ -2593,17 +2677,20 @@
     }
   },
   "Boa": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "103892206281639",
-      "skirt": "129040131141904",
-      "walk": "17264216432"
+      "idle": 103892206281639,
+      "skirt": 129040131141904,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Smiting Arrow",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -2700,17 +2787,20 @@
     }
   },
   "Boa [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "103892206281639",
-      "skirt": "129040131141904",
-      "walk": "17264216432"
+      "idle": 103892206281639,
+      "skirt": 129040131141904,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Melo Melo Merrow",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 55,
@@ -2800,16 +2890,19 @@
     }
   },
   "Broly": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "121684041207619",
-      "walk": "17264216432"
+      "idle": 121684041207619,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Energy Beam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
@@ -2896,16 +2989,19 @@
     }
   },
   "Broly [Rage]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "121684041207619",
-      "walk": "17264216432"
+      "idle": 121684041207619,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Unstable barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
@@ -2999,15 +3095,18 @@
     }
   },
   "Brook": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "114490382465714"
+      "idle": 114490382465714
     },
     "configuration": {
       "Ability": "Expected Mortal Slash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 25,
@@ -3090,15 +3189,18 @@
     }
   },
   "Buggy": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "119598471628661"
+      "idle": 119598471628661
     },
     "configuration": {
       "Ability": "Missile Blast",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 7,
       "AttackSize": 18,
@@ -3183,16 +3285,19 @@
     }
   },
   "Bulma": {
+    "Radius": 4,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "120491262077710",
-      "walk": "17264216432"
+      "idle": 120491262077710,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Capsule Corp",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 0,
@@ -3243,16 +3348,19 @@
     }
   },
   "Captain Yami": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "104833851018124",
-      "walk": "17264216432"
+      "idle": 104833851018124,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dark Thrust",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -3341,16 +3449,19 @@
     }
   },
   "Captain Yami [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "133924858571797",
-      "walk": "17264216432"
+      "idle": 133924858571797,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dimension Slash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -3446,16 +3557,19 @@
     }
   },
   "CaptainKuro": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "83496529191125",
-      "walk": "17264216432"
+      "idle": 83496529191125,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Brutal Strike",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 25,
@@ -3534,17 +3648,20 @@
     }
   },
   "Carrot": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "cloth": "100998144606835",
-      "head1": "78793620191393",
-      "idle": "91029949645691"
+      "cloth": 100998144606835,
+      "head1": 78793620191393,
+      "idle": 91029949645691
     },
     "configuration": {
       "Ability": "Lightning Onslaught",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 20,
@@ -3623,18 +3740,21 @@
     }
   },
   "Carrot [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "cloth": "84056396477200",
-      "head1": "78793620191393",
-      "head2": "121131065991192",
-      "idle": "91029949645691"
+      "cloth": 84056396477200,
+      "head1": 78793620191393,
+      "head2": 121131065991192,
+      "idle": 91029949645691
     },
     "configuration": {
       "Ability": "Lightning Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 2,
       "AttackSize": 22,
@@ -3720,16 +3840,19 @@
     }
   },
   "Caulifla": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "129142329827210",
-      "walk": "17264216432"
+      "idle": 129142329827210,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Destructive Orbs",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 17,
@@ -3799,16 +3922,19 @@
     }
   },
   "Cell [Max]": {
+    "Radius": 3,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "129719213465572",
-      "walk": "17264216432"
+      "idle": 129719213465572,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "MAX Energy Orb",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -3895,16 +4021,19 @@
     }
   },
   "Cell [Max] [Voided]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "18302081944",
-      "walk": "17264216432"
+      "idle": 18302081944,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Quake of Provocation",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 14,
@@ -3984,17 +4113,20 @@
     }
   },
   "Cha Hae In": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "Lsomething": "84088711751133",
-      "idle": "124109483162475",
-      "walk": "17264216432"
+      "Lsomething": 84088711751133,
+      "idle": 124109483162475,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sword of Light",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 32,
@@ -4080,12 +4212,15 @@
     }
   },
   "Cha Hae In [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "Lsomething": "84088711751133",
-      "idle": "124109483162475",
-      "walk": "17264216432"
+      "Lsomething": 84088711751133,
+      "idle": 124109483162475,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sword of Light",
@@ -4185,16 +4320,19 @@
     }
   },
   "Cha Hae In [Old]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "18145462577",
-      "walk": "17264216432"
+      "idle": 18145462577,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Glorious Sword Dance",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -4259,16 +4397,19 @@
     }
   },
   "Chisato": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "128513756013703",
-      "walk": "17264216432"
+      "idle": 128513756013703,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Air Bullets",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 10,
       "AttackSize": 8,
@@ -4346,16 +4487,19 @@
     }
   },
   "Chisato [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "128513756013703",
-      "walk": "17264216432"
+      "idle": 128513756013703,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Grenade",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 10,
       "AttackSize": 10,
@@ -4440,10 +4584,13 @@
     }
   },
   "Choi jong in": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "91404478074728"
+      "idle": 91404478074728
     },
     "configuration": {
       "Ability": "Flame Dragon",
@@ -4533,11 +4680,14 @@
     }
   },
   "Choi jong in [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "coat": "86789114189421",
-      "idle": "124881101592369"
+      "coat": 86789114189421,
+      "idle": 124881101592369
     },
     "configuration": {
       "Ability": "Flame Dragon",
@@ -4633,16 +4783,19 @@
     }
   },
   "Chrollo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "108919366993004",
-      "walk": "17264216432"
+      "idle": 108919366993004,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Bone Fish",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 14,
@@ -4727,16 +4880,19 @@
     }
   },
   "Chrollo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "108919366993004",
-      "walk": "17264216432"
+      "idle": 108919366993004,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Indoor Fish",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 20,
@@ -4829,16 +4985,19 @@
     }
   },
   "Cid": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "110963979478234",
-      "walk": "17264216432"
+      "idle": 110963979478234,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Shadow Ambush",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -4919,16 +5078,19 @@
     }
   },
   "Cid [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "110963979478234",
-      "walk": "17264216432"
+      "idle": 110963979478234,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Atomic",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -5020,16 +5182,19 @@
     }
   },
   "Delta": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "134452293324965",
-      "walk": "17264216432"
+      "idle": 134452293324965,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sphere of Domination",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Weak Point",
       "AttackEffectDuration": 3,
       "AttackSize": 12,
@@ -5090,17 +5255,20 @@
     }
   },
   "DioOH": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "diowalk": "100632493399938",
-      "idle": "139461745012713",
-      "walk": "100632493399938"
+      "diowalk": 100632493399938,
+      "idle": 139461745012713,
+      "walk": 100632493399938
     },
     "configuration": {
       "Ability": "Lightning Arc",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 5,
       "AttackSize": 10,
@@ -5192,17 +5360,20 @@
     }
   },
   "DioOH [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "diowalk": "100632493399938",
-      "idle": "139461745012713",
-      "walk": "100632493399938"
+      "diowalk": 100632493399938,
+      "idle": 139461745012713,
+      "walk": 100632493399938
     },
     "configuration": {
       "Ability": "Heavenly Punishment",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "DioScar",
       "AttackEffectDuration": 4,
       "AttackSize": 22,
@@ -5302,17 +5473,20 @@
     }
   },
   "Doflamingo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "cape": "115363681855827",
-      "idle": "100745724831757",
-      "walk": "17264216432"
+      "cape": 115363681855827,
+      "idle": 100745724831757,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Pillar Eruption",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 6,
       "AttackSize": 12.5,
@@ -5385,17 +5559,20 @@
     }
   },
   "Doflamingo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "cape": "115363681855827",
-      "idle": "100745724831757",
-      "walk": "17264216432"
+      "cape": 115363681855827,
+      "idle": 100745724831757,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Birdcage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 6,
       "AttackSize": 35,
@@ -5486,16 +5663,19 @@
     }
   },
   "Dordoni": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "81700767594396",
-      "walk": "17264216432"
+      "idle": 81700767594396,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Tornado Blitz",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 22,
@@ -5569,16 +5749,19 @@
     }
   },
   "Douma": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "81700767594396",
-      "walk": "17264216432"
+      "idle": 81700767594396,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Wintry Icicles",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frost Bite",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -5668,16 +5851,19 @@
     }
   },
   "Douma [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "81700767594396",
-      "walk": "17264216432"
+      "idle": 81700767594396,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Wintry Icicles",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frost Bite",
       "AttackEffectDuration": 4,
       "AttackSize": 10,
@@ -5771,16 +5957,19 @@
     }
   },
   "Emilia": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "79739401193315",
-      "walk": "17264216432"
+      "idle": 79739401193315,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "IceFall",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -5838,16 +6027,19 @@
     }
   },
   "Emilia [Valentines]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "79739401193315",
-      "walk": "17264216432"
+      "idle": 79739401193315,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "IceFall",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -5905,16 +6097,19 @@
     }
   },
   "Esdeath": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "98696529098501",
-      "walk": "17264216432"
+      "idle": 98696529098501,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Icicle Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -6003,16 +6198,19 @@
     }
   },
   "Esdeath [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "98696529098501",
-      "walk": "17264216432"
+      "idle": 98696529098501,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ice Meteor",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -6108,16 +6306,19 @@
     }
   },
   "Evil Eye": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "130995008781191",
-      "walk": "17264216432"
+      "idle": 130995008781191,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Grudge Ball",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Weak Point",
       "AttackEffectDuration": 1,
       "AttackSize": 15,
@@ -6193,16 +6394,19 @@
     }
   },
   "Feitan": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "139686430956563",
-      "walk": "17264216432"
+      "idle": 139686430956563,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Blazing Slice",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -6287,16 +6491,19 @@
     }
   },
   "Feitan [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "139686430956563",
-      "walk": "17264216432"
+      "idle": 139686430956563,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rising Sun",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 5,
       "AttackSize": 42,
@@ -6389,17 +6596,20 @@
     }
   },
   "Freiza": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "FreizatailIdle": "129875860603930",
-      "idle": "131142285881068",
-      "walk": "17264216432"
+      "FreizatailIdle": 129875860603930,
+      "idle": 131142285881068,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Death Ball",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 17,
@@ -6477,17 +6687,20 @@
     }
   },
   "Freiza [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "FreizatailIdle": "104511574371062",
-      "idle": "131142285881068",
-      "walk": "17264216432"
+      "FreizatailIdle": 104511574371062,
+      "idle": 131142285881068,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Supernova",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Dark Flames",
       "AttackEffectDuration": 5,
       "AttackSize": 20,
@@ -6579,16 +6792,19 @@
     }
   },
   "Fujitora": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "115196154965429",
-      "walk": "17264216432"
+      "idle": 115196154965429,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Meteor Strike",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -6666,17 +6882,20 @@
     }
   },
   "Fujitora [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "InsaneCAPE": "131628941543930",
-      "idle": "115196154965429",
-      "walk": "17264216432"
+      "InsaneCAPE": 131628941543930,
+      "idle": 115196154965429,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Meteor Shower",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 6,
       "AttackSize": 31,
@@ -6769,16 +6988,19 @@
     }
   },
   "Funny Valentine": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "127390178485043",
-      "walk": "17264216432"
+      "idle": 127390178485043,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Patriot Slam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -6881,16 +7103,19 @@
     }
   },
   "Funny Valentine [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "127390178485043",
-      "walk": "17264216432"
+      "idle": 127390178485043,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dirty Deeds Done Dirt Cheap",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -6983,20 +7208,23 @@
     }
   },
   "Gamma Brothers": {
+    "Radius": 3,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "IdleG1": "100987371000238",
-      "IdleG2": "76242587909173",
-      "idle": "75256281553824",
-      "leftwalk": "86422637935687",
-      "rightwalk": "106582949256031",
-      "walk": "17264216432"
+      "IdleG1": 100987371000238,
+      "IdleG2": 76242587909173,
+      "idle": 75256281553824,
+      "leftwalk": 86422637935687,
+      "rightwalk": 106582949256031,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Super Delta Blast",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -7084,21 +7312,24 @@
     }
   },
   "Gamma Brothers [Evo]": {
+    "Radius": 3,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "IdleG1": "100987371000238",
-      "IdleG2": "76242587909173",
-      "cape": "131092558555940",
-      "idle": "75256281553824",
-      "leftwalk": "86422637935687",
-      "rightwalk": "106582949256031",
-      "walk": "17264216432"
+      "IdleG1": 100987371000238,
+      "IdleG2": 76242587909173,
+      "cape": 131092558555940,
+      "idle": 75256281553824,
+      "leftwalk": 86422637935687,
+      "rightwalk": 106582949256031,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Super Delta Blast",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -7192,16 +7423,19 @@
     }
   },
   "Genos": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "115901211490689",
-      "walk": "17264216432"
+      "idle": 115901211490689,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Jet Drive Arrow",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 5,
       "AttackSize": 6,
@@ -7278,17 +7512,20 @@
     }
   },
   "Gohan": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "hair": "109787707780134",
-      "idle": "139583734439575",
-      "walk": "17264216432"
+      "hair": 109787707780134,
+      "idle": 139583734439575,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Energy Beam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -7369,17 +7606,20 @@
     }
   },
   "Gohan [Beast]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "hair": "89988412288399",
-      "idle": "139583734439575",
-      "walk": "17264216432"
+      "hair": 89988412288399,
+      "idle": 139583734439575,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Spiral Beast Cannon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -7468,16 +7708,19 @@
     }
   },
   "Gojo [Base]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "18451931529",
-      "walk": "17264216432"
+      "idle": 18451931529,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Hollow Purple",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Dark Flames",
       "AttackEffectDuration": 8,
       "AttackSize": 10,
@@ -7500,7 +7743,7 @@
       "SpecialAbilityCooldown": 0,
       "SpecialAbilityCooldownGroup": "Domains",
       "UnitType": "Hybrid",
-      "UpgradePrice": 100000000000.0,
+      "UpgradePrice": 100000000000,
       "UpgradesInfo": [
         {
           "AttackSize": 15,
@@ -7550,22 +7793,25 @@
         {
           "Damage": 9999999,
           "Range": 150,
-          "UpgradePrice": 100000000000.0
+          "UpgradePrice": 100000000000
         }
       ]
     }
   },
   "Goku [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "80547683773408",
-      "walk": "17264216432"
+      "idle": 80547683773408,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Super Spirit Bomb",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 18,
@@ -7664,17 +7910,20 @@
     }
   },
   "GokuSSJ": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "hair": "74141329654855",
-      "idle": "121034505739814",
-      "walk": "17264216432"
+      "hair": 74141329654855,
+      "idle": 121034505739814,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Kame Beam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
@@ -7758,17 +8007,20 @@
     }
   },
   "GokuSSJ [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hair": "74141329654855",
-      "idle": "121034505739814",
-      "walk": "17264216432"
+      "hair": 74141329654855,
+      "idle": 121034505739814,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Spirit Bomb",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 19,
@@ -7861,16 +8113,19 @@
     }
   },
   "Gon": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "124432889455195",
-      "walk": "17264216432"
+      "idle": 124432889455195,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Jajaken Paper",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 14,
@@ -7956,16 +8211,19 @@
     }
   },
   "Gon [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "124432889455195",
-      "walk": "17264216432"
+      "idle": 124432889455195,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Stone Flip",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 20,
@@ -8059,16 +8317,19 @@
     }
   },
   "Gordon": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "105470550713778",
-      "walk": "17264216432"
+      "idle": 105470550713778,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Poison Gas",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 25,
       "AttackSize": 30,
@@ -8144,16 +8405,19 @@
     }
   },
   "Grimmjow": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "106049146298717",
-      "walk": "17264216432"
+      "idle": 106049146298717,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Xero",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -8240,16 +8504,19 @@
     }
   },
   "Grimmjow [Evo]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "106049146298717",
-      "walk": "17264216432"
+      "idle": 106049146298717,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Xero",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -8341,16 +8608,19 @@
     }
   },
   "Hiei": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "17396887536",
-      "walk": "17264216432"
+      "idle": 17396887536,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sword Dash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -8413,16 +8683,19 @@
     }
   },
   "Hinata": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "104206899512942",
-      "walk": "17264216432"
+      "idle": 104206899512942,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Gentle Fist",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -8480,16 +8753,19 @@
     }
   },
   "Hisoka": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Card Slice",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 14,
@@ -8562,16 +8838,19 @@
     }
   },
   "Hisoka [Evo]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Bungee Whip",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 14,
@@ -8657,16 +8936,19 @@
     }
   },
   "Hitto": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "97612056143859",
-      "walk": "17264216432"
+      "idle": 97612056143859,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dynamic Retribution",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -8751,16 +9033,19 @@
     }
   },
   "Ichigo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "98730294358705",
-      "walk": "17264216432"
+      "idle": 98730294358705,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Getsuga Tenshou",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 5,
@@ -8824,16 +9109,19 @@
     }
   },
   "Ichigo [Bankai]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "98730294358705",
-      "walk": "17264216432"
+      "idle": 98730294358705,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Devastation Swing",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -8919,16 +9207,19 @@
     }
   },
   "Ichigo [Vasto]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "98730294358705",
-      "walk": "17264216432"
+      "idle": 98730294358705,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Hollowfied Beam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 25,
@@ -9023,19 +9314,22 @@
     }
   },
   "Igris": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "IIYYYY": "77643382572010",
-      "hair": "122326346049060",
-      "hair1": "122326346049060",
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "IIYYYY": 77643382572010,
+      "hair": 122326346049060,
+      "hair1": 122326346049060,
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Knights Vengeance",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 5,
       "AttackSize": 20,
@@ -9120,19 +9414,22 @@
     }
   },
   "Igris [Evo2]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "IIYYYY": "86416088113927",
-      "hair": "122326346049060",
-      "hair1": "122326346049060",
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "IIYYYY": 86416088113927,
+      "hair": 122326346049060,
+      "hair1": 122326346049060,
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Crimson Rampage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 3,
       "AttackSize": 20,
@@ -9225,19 +9522,22 @@
     }
   },
   "Igris [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "IIYYYY": "86416088113927",
-      "hair": "122326346049060",
-      "hair1": "122326346049060",
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "IIYYYY": 86416088113927,
+      "hair": 122326346049060,
+      "hair1": 122326346049060,
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Crimson Rampage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 3,
       "AttackSize": 20,
@@ -9332,16 +9632,19 @@
     }
   },
   "Illumi": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Needle Throw",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 34,
@@ -9424,16 +9727,19 @@
     }
   },
   "Illumi [Evo]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "113133337470237",
-      "walk": "17264216432"
+      "idle": 113133337470237,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Needle Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 35,
@@ -9528,16 +9834,19 @@
     }
   },
   "Inosuke": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "74541816202003",
-      "walk": "17264216432"
+      "idle": 74541816202003,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Boar Rush",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -9601,16 +9910,19 @@
     }
   },
   "Inosuke [Valentines]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "74541816202003",
-      "walk": "17264216432"
+      "idle": 74541816202003,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Boar Rush",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -9674,16 +9986,19 @@
     }
   },
   "Iron": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "114908875863789",
-      "walk": "17264216432"
+      "idle": 114908875863789,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rampage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -9765,16 +10080,19 @@
     }
   },
   "Iron [Evo2]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "114908875863789",
-      "walk": "17264216432"
+      "idle": 114908875863789,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "War Scream",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 18,
@@ -9865,16 +10183,19 @@
     }
   },
   "Iron [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "114908875863789",
-      "walk": "17264216432"
+      "idle": 114908875863789,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "War Scream",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 18,
@@ -9968,15 +10289,18 @@
     }
   },
   "Iron [old]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "114908875863789"
+      "idle": 114908875863789
     },
     "configuration": {
       "Ability": "War Scream",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -10064,17 +10388,20 @@
     }
   },
   "Itachi": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "hair": "126045946928418",
-      "idle": "122728041508090",
-      "walk": "17264216432"
+      "hair": 126045946928418,
+      "idle": 122728041508090,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Incomplete Susanoo",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
       "AttackSize": 16,
@@ -10180,17 +10507,20 @@
     }
   },
   "Itachi [Susanoo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hair": "126045946928418",
-      "idle": "122728041508090",
-      "walk": "17264216432"
+      "hair": 126045946928418,
+      "idle": 122728041508090,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fire Slash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Dark Flames",
       "AttackEffectDuration": 6,
       "AttackSize": 9,
@@ -10288,16 +10618,19 @@
     }
   },
   "Jay": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "17893593497",
-      "walk": "17264216432"
+      "idle": 17893593497,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 0,
@@ -10329,16 +10662,19 @@
     }
   },
   "Jinho": {
+    "Radius": 1,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "78956284811385",
-      "walk": "17264216432"
+      "idle": 78956284811385,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Upgrade1",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 0,
@@ -10409,17 +10745,20 @@
     }
   },
   "Jiren": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "EvoIdle": "111457696065004",
-      "idle": "133039843609864",
-      "walk": "17264216432"
+      "EvoIdle": 111457696065004,
+      "idle": 133039843609864,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Justice Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 14,
@@ -10498,16 +10837,19 @@
     }
   },
   "Jiren [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "133039843609864",
-      "walk": "17264216432"
+      "idle": 133039843609864,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Justice Explosion",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 31,
@@ -10600,16 +10942,19 @@
     }
   },
   "Julius": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "74170461498457",
-      "walk": "17264216432"
+      "idle": 74170461498457,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Time Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 35,
@@ -10698,16 +11043,19 @@
     }
   },
   "Julius [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "74170461498457",
-      "walk": "17264216432"
+      "idle": 74170461498457,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Time Crush",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 14,
@@ -10804,16 +11152,19 @@
     }
   },
   "Juvia": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "115799939428714",
-      "walk": "17264216432"
+      "idle": 115799939428714,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Water Magic",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -10883,16 +11234,19 @@
     }
   },
   "Kabane": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "130995008781191",
-      "walk": "17264216432"
+      "idle": 130995008781191,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Blood Thirsty Dive",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Weak Point",
       "AttackEffectDuration": 1,
       "AttackSize": 12,
@@ -10965,17 +11319,20 @@
     }
   },
   "Kaido": {
+    "Radius": 3,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hair_and_cape": "126367547379260",
-      "idle": "107830578194597",
-      "walk": "17264216432"
+      "hair_and_cape": 126367547379260,
+      "idle": 107830578194597,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Skysplitting Impact",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 40,
@@ -11062,17 +11419,20 @@
     }
   },
   "Kaido [Hybrid]": {
+    "Radius": 3,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "107830578194597",
-      "tail": "78711655263794",
-      "walk": "17264216432"
+      "idle": 107830578194597,
+      "tail": 78711655263794,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Emperor's Roar",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 40,
@@ -11167,16 +11527,19 @@
     }
   },
   "Kakashi": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "17893593497",
-      "walk": "17264216432"
+      "idle": 17893593497,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fireball Jutsu",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -11242,16 +11605,19 @@
     }
   },
   "Kale": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "115600568891875",
-      "walk": "17264216432"
+      "idle": 115600568891875,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ravaging Orbs",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -11321,16 +11687,19 @@
     }
   },
   "Kargalgan": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "98147474589165",
-      "walk": "17264216432"
+      "idle": 98147474589165,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Chant of Giants",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -11418,16 +11787,19 @@
     }
   },
   "Kargalgan [Evo2]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "98147474589165",
-      "walk": "17264216432"
+      "idle": 98147474589165,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Chant of the Fire Dragon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 25,
@@ -11525,16 +11897,19 @@
     }
   },
   "Kargalgan [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "98147474589165",
-      "walk": "17264216432"
+      "idle": 98147474589165,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Chant of the Fire Dragon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 25,
@@ -11634,16 +12009,19 @@
     }
   },
   "KillerB": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "114162951181562",
-      "walk": "17264216432"
+      "idle": 114162951181562,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Sword Pierce",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -11716,16 +12094,19 @@
     }
   },
   "KillerB [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "114162951181562",
-      "walk": "17264216432"
+      "idle": 114162951181562,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Finishing Sting",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -11807,16 +12188,19 @@
     }
   },
   "Killua": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "17381247700",
-      "walk": "17264216432"
+      "idle": 17381247700,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Thunderbolt",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Stun",
       "AttackEffectDuration": 1.5,
       "AttackSize": 7,
@@ -11881,16 +12265,19 @@
     }
   },
   "Kirillin": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "83397089753315",
-      "walk": "17264216432"
+      "idle": 83397089753315,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Destructo Disc",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 12,
@@ -11951,16 +12338,19 @@
     }
   },
   "Kirillin [Valentines]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "83397089753315",
-      "walk": "17264216432"
+      "idle": 83397089753315,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Destructo Disc",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 12,
@@ -12021,16 +12411,19 @@
     }
   },
   "Kiritsugu": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "78581815686128",
-      "walk": "17264216432"
+      "idle": 78581815686128,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Calico",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 30,
@@ -12107,16 +12500,19 @@
     }
   },
   "Kiritsugu [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "78581815686128",
-      "walk": "17264216432"
+      "idle": 78581815686128,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Calico",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 30,
@@ -12197,16 +12593,19 @@
     }
   },
   "Kizaru": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "129713725373376",
-      "walk": "17264216432"
+      "idle": 129713725373376,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Light Jewels",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 12,
@@ -12286,16 +12685,19 @@
     }
   },
   "Kurapika": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "94919223014922",
-      "walk": "17264216432"
+      "idle": 94919223014922,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Chain Slam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 2,
       "AttackSize": 29,
@@ -12383,16 +12785,19 @@
     }
   },
   "Kurapika [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "94919223014922",
-      "walk": "17264216432"
+      "idle": 94919223014922,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Chain Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 2,
       "AttackSize": 31,
@@ -12487,16 +12892,19 @@
     }
   },
   "Law": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "120123188805305",
-      "walk": "17264216432"
+      "idle": 120123188805305,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Surgeon Cuts",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
       "AttackSize": 15,
@@ -12574,17 +12982,20 @@
     }
   },
   "Law [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "Browcoat": "110381758328697",
-      "idle": "120123188805305",
-      "walk": "17264216432"
+      "Browcoat": 110381758328697,
+      "idle": 120123188805305,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Room",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
       "AttackSize": "32/2",
@@ -12676,16 +13087,19 @@
     }
   },
   "Leopold": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "70969107380221",
-      "walk": "17264216432"
+      "idle": 70969107380221,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Spiral Flames",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 3,
       "AttackSize": 30,
@@ -12759,16 +13173,19 @@
     }
   },
   "Levi": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "114143458409018",
-      "walk": "17264216432"
+      "idle": 114143458409018,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Relentless Slashes",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 26,
@@ -12850,16 +13267,19 @@
     }
   },
   "Licht": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "103922394288913",
-      "walk": "17264216432"
+      "idle": 103922394288913,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Arrows Of Judgement",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 1,
@@ -12969,16 +13389,19 @@
     }
   },
   "Licht [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "103922394288913",
-      "walk": "17264216432"
+      "idle": 103922394288913,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Arrows Of Judgement",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 1,
@@ -13071,16 +13494,19 @@
     }
   },
   "Light": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "17893593497",
-      "walk": "17264216432"
+      "idle": 17893593497,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 0,
@@ -13129,16 +13555,19 @@
     }
   },
   "Luck": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "82855101080920",
-      "walk": "17264216432"
+      "idle": 82855101080920,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Lightning Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Stun",
       "AttackEffectDuration": 3,
       "AttackSize": 8,
@@ -13225,16 +13654,19 @@
     }
   },
   "Luck [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "82855101080920",
-      "walk": "17264216432"
+      "idle": 82855101080920,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Kernos",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Stun",
       "AttackEffectDuration": 3,
       "AttackSize": 8,
@@ -13329,16 +13761,19 @@
     }
   },
   "Luffy [DR]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "83378599502109",
-      "walk": "17264216432"
+      "idle": 83378599502109,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Giant Pistol",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 6,
       "AttackSize": "36/2",
@@ -13416,17 +13851,20 @@
     }
   },
   "Luffy [DR] [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "CustomRig": "98839893777041",
-      "idle": "83378599502109",
-      "walk": "17264216432"
+      "CustomRig": 98839893777041,
+      "idle": 83378599502109,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "King Kong Gun",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 6,
       "AttackSize": 25,
@@ -13519,16 +13957,19 @@
     }
   },
   "Luffy [PTS]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "102817483571778",
-      "walk": "17264216432"
+      "idle": 102817483571778,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Gum Pistol",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 3,
@@ -13558,16 +13999,19 @@
     }
   },
   "Magenta ": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "109848472988319",
-      "walk": "17264216432"
+      "idle": 109848472988319,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Uppercut",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -13625,16 +14069,19 @@
     }
   },
   "Magna": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "72679824980823",
-      "walk": "17264216432"
+      "idle": 72679824980823,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fireball Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 25,
       "AttackSize": 8,
@@ -13710,17 +14157,20 @@
     }
   },
   "Mars": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hairAnim": "98944742673151",
-      "idle": "101661711806199",
-      "walk": "17264216432"
+      "hairAnim": 98944742673151,
+      "idle": 101661711806199,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Crystal Strike",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 9,
@@ -13809,17 +14259,20 @@
     }
   },
   "Mars [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "hairAnim": "98944742673151",
-      "idle": "101661711806199",
-      "walk": "17264216432"
+      "hairAnim": 98944742673151,
+      "idle": 101661711806199,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Crystal Sword",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 12,
@@ -13916,16 +14369,19 @@
     }
   },
   "Mereum": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "74906617495182",
-      "walk": "17264216432"
+      "idle": 74906617495182,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "King Cannon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 18,
@@ -14012,16 +14468,19 @@
     }
   },
   "Mereum [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "74906617495182",
-      "walk": "17264216432"
+      "idle": 74906617495182,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ant Liberation",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 24,
@@ -14118,16 +14577,19 @@
     }
   },
   "Mihawk": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "128369429429167",
-      "walk": "17264216432"
+      "idle": 128369429429167,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Energy blade",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -14211,16 +14673,19 @@
     }
   },
   "Mihawk [Warlord]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "128369429429167",
-      "walk": "17264216432"
+      "idle": 128369429429167,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Triple energy blade",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 30,
@@ -14311,15 +14776,18 @@
     }
   },
   "Mirko": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "90387247750986"
+      "idle": 90387247750986
     },
     "configuration": {
       "Ability": "Luna Kick",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 18,
@@ -14398,15 +14866,18 @@
     }
   },
   "Mirko [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "90387247750986"
+      "idle": 90387247750986
     },
     "configuration": {
       "Ability": "Luna Fall",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 24,
@@ -14492,16 +14963,19 @@
     }
   },
   "Momo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "126261527857423",
-      "walk": "17264216432"
+      "idle": 126261527857423,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Esper Clap",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -14538,7 +15012,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
@@ -14546,7 +15020,7 @@
       "Passives": [
         "Psychic Surge"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1266,
       "PlacementType": "Ground",
       "Range": 29,
@@ -14613,16 +15087,19 @@
     }
   },
   "Momo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "126261527857423",
-      "walk": "17264216432"
+      "idle": 126261527857423,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Esper Slam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -14638,7 +15115,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
@@ -14648,7 +15125,7 @@
         "Psychic Surge",
         "Psychic Connection"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1550,
       "PlacementType": "Ground",
       "Range": 32,
@@ -14724,15 +15201,18 @@
     }
   },
   "MrMantisShrimp": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "75275715420023"
+      "idle": 75275715420023
     },
     "configuration": {
       "Ability": "Jet Punch",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
       "AttackSize": 15,
@@ -14767,7 +15247,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -14775,7 +15255,7 @@
       "Passives": [
         "Shrimp Boxing I"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1400,
       "PlacementType": "Ground",
       "Range": 29,
@@ -14842,15 +15322,18 @@
     }
   },
   "MrMantisShrimp [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "75275715420023"
+      "idle": 75275715420023
     },
     "configuration": {
       "Ability": "Salary Uppercut",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 16.5,
@@ -14866,7 +15349,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -14874,7 +15357,7 @@
       "Passives": [
         "Shrimp Boxing II"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1400,
       "PlacementType": "Ground",
       "Range": 29,
@@ -14949,16 +15432,19 @@
     }
   },
   "MrSatan": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "134468281047458",
-      "walk": "17264216432"
+      "idle": 134468281047458,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "KICKKKK!",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -15019,16 +15505,19 @@
     }
   },
   "Muichiro": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "122802058141347",
-      "walk": "17264216432"
+      "idle": 122802058141347,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dispersing Mist",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -15110,16 +15599,19 @@
     }
   },
   "Muichiro [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "122802058141347",
-      "walk": "17264216432"
+      "idle": 122802058141347,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Haze Cloud Sea",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -15207,16 +15699,19 @@
     }
   },
   "Murata": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "95775117346176",
-      "walk": "17264216432"
+      "idle": 95775117346176,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Waterfall",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -15289,16 +15784,19 @@
     }
   },
   "Nanami": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "112626968929674",
-      "walk": "17264216432"
+      "idle": 112626968929674,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ratio Technique",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Weak Point",
       "AttackEffectDuration": 10,
       "AttackSize": 10,
@@ -15376,16 +15874,19 @@
     }
   },
   "Nanami [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "112626968929674",
-      "walk": "17264216432"
+      "idle": 112626968929674,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dark Flash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Weak Point",
       "AttackEffectDuration": 10,
       "AttackSize": 8,
@@ -15471,16 +15972,19 @@
     }
   },
   "Naruto": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "108863438781215",
-      "walk": "17264216432"
+      "idle": 108863438781215,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rasengan",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -15544,16 +16048,19 @@
     }
   },
   "Neji": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "86684870606596",
-      "walk": "17264216432"
+      "idle": 86684870606596,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "8 Trigams, 64 Palms",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 1.5,
       "AttackSize": 5,
@@ -15613,16 +16120,19 @@
     }
   },
   "Nel": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "119476935664752",
-      "walk": "17264216432"
+      "idle": 119476935664752,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Lance Throw",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 25,
       "AttackSize": 22,
@@ -15708,17 +16218,20 @@
     }
   },
   "Nel [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "81835154824610",
-      "jawwww": "86328237844260",
-      "walk": "17264216432"
+      "idle": 81835154824610,
+      "jawwww": 86328237844260,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Cero Blast",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 25,
       "AttackSize": 38,
@@ -15811,16 +16324,19 @@
     }
   },
   "Netero": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "81459795574554",
-      "walk": "17264216432"
+      "idle": 81459795574554,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Divine Punishment",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -15905,16 +16421,19 @@
     }
   },
   "Netero [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "81459795574554",
-      "walk": "17264216432"
+      "idle": 81459795574554,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Divine Reckoning",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 24,
@@ -16008,16 +16527,19 @@
     }
   },
   "Nezuko": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "111277268830665",
-      "walk": "17264216432"
+      "idle": 111277268830665,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Exploding Blood",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 3,
       "AttackSize": 5,
@@ -16075,16 +16597,19 @@
     }
   },
   "Nezuko [Valentines]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "111277268830665",
-      "walk": "17264216432"
+      "idle": 111277268830665,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Exploding Blood",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 3,
       "AttackSize": 5,
@@ -16142,16 +16667,19 @@
     }
   },
   "Noelle": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "119476935664752",
-      "walk": "17264216432"
+      "idle": 119476935664752,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Water Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 25,
       "AttackSize": 12,
@@ -16240,16 +16768,19 @@
     }
   },
   "Noelle [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "119476935664752",
-      "walk": "17264216432"
+      "idle": 119476935664752,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Water Dragon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 25,
       "AttackSize": 10,
@@ -16345,16 +16876,19 @@
     }
   },
   "Oden": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "77185747375005",
-      "walk": "17264216432"
+      "idle": 77185747375005,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Haki Cross Lunge",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 17,
@@ -16440,16 +16974,19 @@
     }
   },
   "Oden [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "77185747375005",
-      "walk": "17264216432"
+      "idle": 77185747375005,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Samurai's Revenge",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 17,
@@ -16540,16 +17077,19 @@
     }
   },
   "Okarun": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "112982144395980",
-      "walk": "17264216432"
+      "idle": 112982144395980,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "After-Images",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
       "AttackSize": 18,
@@ -16586,7 +17126,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -16594,7 +17134,7 @@
       "Passives": [
         "Turbocharger"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1860,
       "PlacementType": "Ground",
       "Range": 34,
@@ -16662,16 +17202,19 @@
     }
   },
   "Okarun [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "112982144395980",
-      "walk": "17264216432"
+      "idle": 112982144395980,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Turbo Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
       "AttackSize": 20,
@@ -16687,7 +17230,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -16696,7 +17239,7 @@
         "Turbocharger",
         "Careless Acceleration"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1860,
       "PlacementType": "Ground",
       "Range": 35,
@@ -16772,16 +17315,19 @@
     }
   },
   "OldItachi": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "17070420206",
-      "walk": "17264216432"
+      "idle": 17070420206,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Amaterasu",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -16838,16 +17384,19 @@
     }
   },
   "Orihime": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "89766854637909",
-      "walk": "17264216432"
+      "idle": 89766854637909,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Energy Burst",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 19,
@@ -16920,16 +17469,19 @@
     }
   },
   "Orochimaru": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "106444596396341",
-      "walk": "17264216432"
+      "idle": 106444596396341,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fire Wave",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 3,
       "AttackSize": 5,
@@ -16999,16 +17551,19 @@
     }
   },
   "Pain": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "105237950545381",
-      "walk": "17264216432"
+      "idle": 105237950545381,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Shinra Tensei",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 6,
       "AttackEffectDurationFromPassive": 3,
@@ -17093,16 +17648,19 @@
     }
   },
   "Pain [Chibaku]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "105237950545381",
-      "walk": "17264216432"
+      "idle": 105237950545381,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Chibaku Tensei",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
       "AttackEffectDurationFromPassive": 3,
@@ -17194,16 +17752,19 @@
     }
   },
   "Pan": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "115799939428714",
-      "walk": "17264216432"
+      "idle": 115799939428714,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rock Throw",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 5,
@@ -17264,16 +17825,19 @@
     }
   },
   "Piccolo Orange": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "102343566290153",
-      "walk": "17264216432"
+      "idle": 102343566290153,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Special Energy Cannon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -17357,16 +17921,19 @@
     }
   },
   "Piccolo Orange [Full Power]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "102343566290153",
-      "walk": "17264216432"
+      "idle": 102343566290153,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Gigantification",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 14,
@@ -17458,16 +18025,19 @@
     }
   },
   "Placeholder": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "18302081944",
-      "walk": "17264216432"
+      "idle": 18302081944,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "MP5",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 5,
       "AttackSize": 8,
@@ -17549,16 +18119,19 @@
     }
   },
   "Purple": {
+    "Radius": 7,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "17893593497",
-      "walk": "17264216432"
+      "idle": 17893593497,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 30,
@@ -17614,15 +18187,18 @@
     }
   },
   "Ragna": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "79104939815951"
+      "idle": 79104939815951
     },
     "configuration": {
       "Ability": "Twin Hunting Blade",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -17710,15 +18286,18 @@
     }
   },
   "Ragna [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "79104939815951"
+      "idle": 79104939815951
     },
     "configuration": {
       "Ability": "Silverine Slashes",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 10,
@@ -17812,16 +18391,19 @@
     }
   },
   "Rias": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "134610752092492",
-      "walk": "17264216432"
+      "idle": 134610752092492,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Purgatory",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 14,
@@ -17927,16 +18509,19 @@
     }
   },
   "Rias [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "134610752092492",
-      "walk": "17264216432"
+      "idle": 134610752092492,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Extinguished Fallen Star",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -18029,17 +18614,20 @@
     }
   },
   "Rimuru": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "140157254130495",
-      "shinycape": "82843659526159",
-      "walk": "17264216432"
+      "idle": 140157254130495,
+      "shinycape": 82843659526159,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Gluttony",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 26,
@@ -18125,17 +18713,20 @@
     }
   },
   "Rimuru [Lord]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "140157254130495",
-      "shinycape": "82843659526159",
-      "walk": "17264216432"
+      "idle": 140157254130495,
+      "shinycape": 82843659526159,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Gluttony",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 26,
@@ -18227,15 +18818,18 @@
     }
   },
   "Robin": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "96744903996219"
+      "idle": 96744903996219
     },
     "configuration": {
       "Ability": "Crushing Fall",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 1.5,
       "AttackSize": 18,
@@ -18314,15 +18908,18 @@
     }
   },
   "Robin [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "96744903996219"
+      "idle": 96744903996219
     },
     "configuration": {
       "Ability": "Ground Breaker",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 1.5,
       "AttackSize": 26,
@@ -18408,16 +19005,19 @@
     }
   },
   "Rock Lee": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "127379267343406",
-      "walk": "17264216432"
+      "idle": 127379267343406,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Leaf Typhoon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
@@ -18495,16 +19095,19 @@
     }
   },
   "Roy": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "84136356255028",
-      "walk": "17264216432"
+      "idle": 84136356255028,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Bombardment",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 5,
       "AttackSize": 10,
@@ -18584,16 +19187,19 @@
     }
   },
   "Roy [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "84136356255028",
-      "walk": "17264216432"
+      "idle": 84136356255028,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Flame Pillar",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 5,
       "AttackSize": 10,
@@ -18680,16 +19286,19 @@
     }
   },
   "Rukia": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "115660336622724",
-      "walk": "17264216432"
+      "idle": 115660336622724,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "White Moon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frozen",
       "AttackEffectDuration": 3,
       "AttackSize": 5,
@@ -18768,15 +19377,18 @@
     }
   },
   "Saber Alter": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "94641008819552"
+      "idle": 94641008819552
     },
     "configuration": {
       "Ability": "Present Crash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -18855,15 +19467,18 @@
     }
   },
   "Saber Alter [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "94641008819552"
+      "idle": 94641008819552
     },
     "configuration": {
       "Ability": "Present Crash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -18947,16 +19562,19 @@
     }
   },
   "Sabo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "81132963348411",
-      "walk": "17264216432"
+      "idle": 81132963348411,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Pipe Smash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
       "AttackSize": "11/2",
@@ -19019,16 +19637,19 @@
     }
   },
   "Sabo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "81132963348411",
-      "walk": "17264216432"
+      "idle": 81132963348411,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fire Dragon King",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
       "AttackSize": 28,
@@ -19108,16 +19729,19 @@
     }
   },
   "Sakomoto": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "91403717246121",
-      "walk": "17264216432"
+      "idle": 91403717246121,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Assassin Awakening",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -19205,16 +19829,19 @@
     }
   },
   "Sakomoto [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "91403717246121",
-      "walk": "17264216432"
+      "idle": 91403717246121,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Assassin Awakening",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "SakomotoSpecialDoTEffect",
       "AttackEffectDuration": 5,
       "AttackSize": 18,
@@ -19307,16 +19934,19 @@
     }
   },
   "Sakura": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "18952785768",
-      "walk": "17264216432"
+      "idle": 18952785768,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Slash",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -19375,16 +20005,19 @@
     }
   },
   "Sanji": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "86579607855805",
-      "walk": "17264216432"
+      "idle": 86579607855805,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Concasser Crush",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
       "AttackSize": "(36 / 2) / 2",
@@ -19456,16 +20089,19 @@
     }
   },
   "Sanji [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "86579607855805",
-      "walk": "17264216432"
+      "idle": 86579607855805,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Kick Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
       "AttackSize": 18.5,
@@ -19550,16 +20186,19 @@
     }
   },
   "Sanji [PTS]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "18936650396",
-      "walk": "17264216432"
+      "idle": 18936650396,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Line Kick",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 1.2,
       "AttackSize": 6,
@@ -19625,16 +20264,19 @@
     }
   },
   "Sasuke": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "95385046185816",
-      "walk": "17264216432"
+      "idle": 95385046185816,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fire Jutsu",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDamageMultiplier": 1,
       "AttackEffectDuration": 6,
@@ -19701,16 +20343,19 @@
     }
   },
   "Seiko": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "85937869458086",
-      "walk": "17264216432"
+      "idle": 85937869458086,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Cursed Nail",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 14,
@@ -19744,7 +20389,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -19752,7 +20397,7 @@
       "Passives": [
         "Helping Hand"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1750,
       "PlacementType": "Ground",
       "Range": 32,
@@ -19820,16 +20465,19 @@
     }
   },
   "Seiko [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "85937869458086",
-      "walk": "17264216432"
+      "idle": 85937869458086,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Charm Nail",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 16,
@@ -19845,7 +20493,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -19853,7 +20501,7 @@
       "Passives": [
         "Helping Hand"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1700,
       "PlacementType": "Ground",
       "Range": 35,
@@ -19930,16 +20578,19 @@
     }
   },
   "Serpo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "98820593382978",
-      "walk": "17264216432"
+      "idle": 98820593382978,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Alien Grammetry",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 14,
@@ -19974,7 +20625,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
@@ -19982,7 +20633,7 @@
       "Passives": [
         "Alien Technology I"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1690,
       "PlacementType": "Air",
       "Range": 38,
@@ -20049,16 +20700,19 @@
     }
   },
   "Serpo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "98820593382978",
-      "walk": "17264216432"
+      "idle": 98820593382978,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Perfect Zone",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -20074,7 +20728,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 3,
       "MaxUpgrades": 5,
@@ -20082,7 +20736,7 @@
       "Passives": [
         "Alien Technology II"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1700,
       "PlacementType": "Air",
       "Range": 39,
@@ -20157,16 +20811,19 @@
     }
   },
   "Shunko Yoruichi": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "17209457225",
-      "walk": "17264216432"
+      "idle": 17209457225,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Thunder Bolt",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -20235,16 +20892,19 @@
     }
   },
   "Sode no shirayuki": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "104670207944130",
-      "walk": "17264216432"
+      "idle": 104670207944130,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ice Manifesto",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frozen",
       "AttackEffectDuration": 3,
       "AttackSize": 11,
@@ -20319,16 +20979,19 @@
     }
   },
   "Sode no shirayuki [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "104670207944130",
-      "walk": "17264216432"
+      "idle": 104670207944130,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ice Manifesto",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frozen",
       "AttackEffectDuration": 3,
       "AttackSize": 11,
@@ -20407,16 +21070,19 @@
     }
   },
   "Special Tanjiro Bloodlust": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "17881512810",
-      "walk": "17264216432"
+      "idle": 17881512810,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dance Of The Fire God",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Sun Burn",
       "AttackEffectDuration": 5,
       "AttackSize": 10,
@@ -20490,16 +21156,19 @@
     }
   },
   "Speedwagon": {
+    "Radius": 4,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "106878732091811",
-      "walk": "17264216432"
+      "idle": 106878732091811,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Conglomerate",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 0,
@@ -20564,16 +21233,19 @@
     }
   },
   "Stark": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "76261233703804",
-      "walk": "17264216432"
+      "idle": 76261233703804,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Coyote Rampage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 18,
@@ -20659,17 +21331,20 @@
     }
   },
   "Stark [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "cloack": "74305773003243",
-      "idle": "76261233703804",
-      "walk": "17264216432"
+      "cloack": 74305773003243,
+      "idle": 76261233703804,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Materella",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 28,
@@ -20762,16 +21437,19 @@
     }
   },
   "Sung Jin Woo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "73279890757415",
-      "walk": "17264216432"
+      "idle": 73279890757415,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Arise: Korgolgon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -20847,16 +21525,19 @@
     }
   },
   "Sung Jinwoo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "134844065554246",
-      "walk": "17264216432"
+      "idle": 134844065554246,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "X Slash",
-      "AttackCriticalChance": ".05",
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalChance": 0.05,
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -20917,16 +21598,19 @@
     }
   },
   "Sung Jinwoo [Evo2]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "91498798762585",
-      "walk": "17264216432"
+      "idle": 91498798762585,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Arise: Igros",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 45,
@@ -21025,16 +21709,19 @@
     }
   },
   "Sung Jinwoo [Evo3]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "95280874014863",
-      "walk": "17264216432"
+      "idle": 95280874014863,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rapid Slashes",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 27.5,
@@ -21150,16 +21837,19 @@
     }
   },
   "Sung Jinwoo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "91498798762585",
-      "walk": "17264216432"
+      "idle": 91498798762585,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Arise: Korgolgon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
@@ -21235,16 +21925,19 @@
     }
   },
   "Tanjiro Bloodlust": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "17881512810",
-      "walk": "17264216432"
+      "idle": 17881512810,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Dance Of The Fire God",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Sun Burn",
       "AttackEffectDuration": 5,
       "AttackSize": 10,
@@ -21318,16 +22011,19 @@
     }
   },
   "Ten Ten": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "18903180992",
-      "walk": "17264216432"
+      "idle": 18903180992,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rising Dragons",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
@@ -21391,16 +22087,19 @@
     }
   },
   "Ten Ten [Valentines]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "18903180992",
-      "walk": "17264216432"
+      "idle": 18903180992,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Rising Dragons",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
@@ -21464,16 +22163,19 @@
     }
   },
   "Tobirama": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "110027366394128",
-      "walk": "17264216432"
+      "idle": 110027366394128,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Shadow Clones",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 11,
@@ -21554,16 +22256,19 @@
     }
   },
   "Tobirama [Evo]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "110027366394128",
-      "walk": "17264216432"
+      "idle": 110027366394128,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Shadow Clones",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 11,
@@ -21649,16 +22354,19 @@
     }
   },
   "Toji": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "91887253364401",
-      "walk": "17264216432"
+      "idle": 91887253364401,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Murasame",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Poison",
       "AttackEffectDuration": 25,
       "AttackSize": 9,
@@ -21733,17 +22441,20 @@
     }
   },
   "Topo": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "EvoIdle": "111457696065004",
-      "idle": "114108575638076",
-      "walk": "17264216432"
+      "EvoIdle": 111457696065004,
+      "idle": 114108575638076,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Justice Beam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 12,
@@ -21821,17 +22532,20 @@
     }
   },
   "Topo [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "EvoIdle": "111457696065004",
-      "idle": "114108575638076",
-      "walk": "17264216432"
+      "EvoIdle": 111457696065004,
+      "idle": 114108575638076,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Justice Reborn",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 15,
@@ -21923,16 +22637,19 @@
     }
   },
   "Toshiro": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "77016121610005",
-      "walk": "17264216432"
+      "idle": 77016121610005,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Hail Dragon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -22020,16 +22737,19 @@
     }
   },
   "Toshiro [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "77016121610005",
-      "walk": "17264216432"
+      "idle": 77016121610005,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Hail Dragon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -22121,16 +22841,19 @@
     }
   },
   "TurboGranny": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "82962527564512",
-      "walk": "108507658101181"
+      "idle": 82962527564512,
+      "walk": 108507658101181
     },
     "configuration": {
       "Ability": "Cursed Hands",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 15,
@@ -22167,7 +22890,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -22175,7 +22898,7 @@
       "Passives": [
         "True Sight"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1740,
       "PlacementType": "Ground",
       "Range": 31,
@@ -22242,16 +22965,19 @@
     }
   },
   "TurboGranny [Evo1]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "82962527564512",
-      "walk": "108507658101181"
+      "idle": 82962527564512,
+      "walk": 108507658101181
     },
     "configuration": {
       "Ability": "Turbo Typhoon",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 15,
@@ -22267,7 +22993,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -22276,7 +23002,7 @@
         "True Sight",
         "The only speedster"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1740,
       "PlacementType": "Ground",
       "Range": 33,
@@ -22351,16 +23077,19 @@
     }
   },
   "TurboGranny [Evo2]": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "82962527564512",
-      "walk": "108507658101181"
+      "idle": 82962527564512,
+      "walk": 108507658101181
     },
     "configuration": {
       "Ability": "Cursed Hands",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 3,
       "AttackSize": 15,
@@ -22376,7 +23105,7 @@
       "IsSpecialAbilityGlobalCooldown": false,
       "MapAffnity": "Ghost Tunnel",
       "MapAffnityBoosts": {
-        "PermanentDamageMulti": ".1"
+        "PermanentDamageMulti": 0.1
       },
       "MaxPlacementAmount": 2,
       "MaxUpgrades": 5,
@@ -22385,7 +23114,7 @@
         "True Sight",
         "Shared Sight"
       ],
-      "PermanentDamageMulti": ".1",
+      "PermanentDamageMulti": 0.1,
       "PlacementPrice": 1740,
       "PlacementType": "Ground",
       "Range": 31,
@@ -22457,17 +23186,20 @@
     }
   },
   "Ulquiorra": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "73782328212630",
-      "walk": "17264216432",
-      "wing1": "82672390134143"
+      "idle": 73782328212630,
+      "walk": 17264216432,
+      "wing1": 82672390134143
     },
     "configuration": {
       "Ability": "Thunder Spear",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 25,
@@ -22553,18 +23285,21 @@
     }
   },
   "Ulquiorra [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": true,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "133148731404245",
-      "walk": "17264216432",
-      "wing1": "100030717921366",
-      "wing2": "91269408874621"
+      "idle": 133148731404245,
+      "walk": 17264216432,
+      "wing1": 100030717921366,
+      "wing2": 91269408874621
     },
     "configuration": {
       "Ability": "Dark Zero",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 32,
@@ -22657,16 +23392,19 @@
     }
   },
   "Uraume": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": true,
     "animations": {
-      "idle": "79739401193315",
-      "walk": "17264216432"
+      "idle": 79739401193315,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Frost Calm",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frozen",
       "AttackEffectDuration": 3,
       "AttackSize": 10,
@@ -22751,16 +23489,19 @@
     }
   },
   "Uraume [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "79739401193315",
-      "walk": "17264216432"
+      "idle": 79739401193315,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ice Fall",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Frozen",
       "AttackEffectDuration": 3,
       "AttackSize": 13,
@@ -22852,16 +23593,19 @@
     }
   },
   "Uryu": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "118037191652670",
-      "walk": "17264216432"
+      "idle": 118037191652670,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Licht Regen",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 6,
       "AttackSize": 11,
@@ -22937,16 +23681,19 @@
     }
   },
   "Usopp [PTS]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "18932625313",
-      "walk": "17264216432"
+      "idle": 18932625313,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Fire Bird Star",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 6,
@@ -23007,16 +23754,19 @@
     }
   },
   "Vegeta": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "112043809456767",
-      "walk": "17264216432"
+      "idle": 112043809456767,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Lucora Gun",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 1.5,
       "AttackSize": 7,
@@ -23082,16 +23832,19 @@
     }
   },
   "Vegeta [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "112043809456767",
-      "walk": "17264216432"
+      "idle": 112043809456767,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Final Explosion",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 40,
@@ -23186,15 +23939,18 @@
     }
   },
   "VyascheEmul": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "121870689982011"
+      "idle": 121870689982011
     },
     "configuration": {
       "Ability": "Bunny Refinement",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 24,
@@ -23273,15 +24029,18 @@
     }
   },
   "VyascheEmul [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "121870689982011"
+      "idle": 121870689982011
     },
     "configuration": {
       "Ability": "Hammer Impact",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 28,
@@ -23367,16 +24126,19 @@
     }
   },
   "Whis": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "101624836608877",
-      "walk": "17264216432"
+      "idle": 101624836608877,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 16,
@@ -23416,16 +24178,19 @@
     }
   },
   "Whis [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "101624836608877",
-      "walk": "17264216432"
+      "idle": 101624836608877,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 5,
       "AttackSize": 16,
@@ -23463,16 +24228,19 @@
     }
   },
   "Whitebeard": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "88553641715653",
-      "walk": "17264216432"
+      "idle": 88553641715653,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ground Shatter",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 25,
@@ -23560,16 +24328,19 @@
     }
   },
   "Whitebeard [Yonko]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "88553641715653",
-      "walk": "17264216432"
+      "idle": 88553641715653,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Ground Shatter",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 4,
       "AttackSize": 25,
@@ -23661,16 +24432,19 @@
     }
   },
   "Yamcha": {
+    "Radius": 2.5,
     "Released": false,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "94781171912952",
-      "walk": "17264216432"
+      "idle": 94781171912952,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Kame Beam",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 5,
@@ -23728,16 +24502,19 @@
     }
   },
   "Yoruichi": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "83496529191125",
-      "walk": "17264216432"
+      "idle": 83496529191125,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Wind Burst",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 27,
@@ -23822,16 +24599,19 @@
     }
   },
   "Yoruichi [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "83496529191125",
-      "walk": "17264216432"
+      "idle": 83496529191125,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Heavy Impact",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 27,
@@ -23923,15 +24703,18 @@
     }
   },
   "Yoshina": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "127524251906511"
+      "idle": 127524251906511
     },
     "configuration": {
       "Ability": "Ice Barrage",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 15.5,
@@ -24010,15 +24793,18 @@
     }
   },
   "Yoshina [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "127524251906511"
+      "idle": 127524251906511
     },
     "configuration": {
       "Ability": "Ice Spikes",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 7,
       "AttackSize": 17,
@@ -24104,16 +24890,19 @@
     }
   },
   "Yuno Clover": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "85951854414242",
-      "walk": "17264216432"
+      "idle": 85951854414242,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Elf's Breath",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Suffocation",
       "AttackEffectDuration": 15,
       "AttackSize": 8,
@@ -24204,16 +24993,19 @@
     }
   },
   "Yuno Clover [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "85951854414242",
-      "walk": "17264216432"
+      "idle": 85951854414242,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Spirit Storm",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Suffocation",
       "AttackEffectDuration": 15,
       "AttackSize": 8,
@@ -24308,16 +25100,19 @@
     }
   },
   "Yuno Gassai": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "93940973846567",
-      "walk": "17264216432"
+      "idle": 93940973846567,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "MP5",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 5,
       "AttackSize": 8,
@@ -24404,16 +25199,19 @@
     }
   },
   "Yuno Gassai [Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": true,
     "animations": {
-      "idle": "93940973846567",
-      "walk": "17264216432"
+      "idle": 93940973846567,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "MP5",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 5,
       "AttackSize": 8,
@@ -24505,16 +25303,19 @@
     }
   },
   "Yusuke": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "17401967745",
-      "walk": "17264216432"
+      "idle": 17401967745,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Big Spirit Gun",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 15,
@@ -24588,16 +25389,19 @@
     }
   },
   "Zenitsu": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "99267733782446",
-      "walk": "17264216432"
+      "idle": 99267733782446,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Thunderclap",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 8,
@@ -24661,16 +25465,19 @@
     }
   },
   "Zoro [DR]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "95989952033580",
-      "walk": "17264216432"
+      "idle": 95989952033580,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Billion Fold",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 6,
       "AttackSize": "(28/2) / 2",
@@ -24741,16 +25548,19 @@
     }
   },
   "Zoro [DR] {Evo]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": false,
+    "Tradable": false,
     "animations": {
-      "idle": "95989952033580",
-      "walk": "17264216432"
+      "idle": 95989952033580,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Six Paths",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 6,
       "AttackSize": "32/2",
@@ -24842,16 +25652,19 @@
     }
   },
   "Zoro [PTS]": {
+    "Radius": 2.5,
     "Released": true,
+    "ShinyTradable": false,
     "Summonable": true,
+    "Tradable": false,
     "animations": {
-      "idle": "123129775551770",
-      "walk": "17264216432"
+      "idle": 123129775551770,
+      "walk": 17264216432
     },
     "configuration": {
       "Ability": "Tatsumaki",
       "AttackCriticalChance": 0.05,
-      "AttackCriticalDamage": ".3",
+      "AttackCriticalDamage": 0.3,
       "AttackEffect": "Bleed",
       "AttackEffectDuration": 0,
       "AttackSize": 7,
