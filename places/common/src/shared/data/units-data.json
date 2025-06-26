@@ -6808,10 +6808,10 @@
       "AttackEffect": "",
       "AttackEffectDuration": 0,
       "AttackSize": 20,
-      "AttackSpeed": "10 / 2",
+      "AttackSpeed": 5,
       "AttackType": "Circle",
       "CanSell": true,
-      "Damage": "5000 / 2",
+      "Damage": 2500,
       "DisplayName": "Gravity Mage",
       "Element": "Wind",
       "EvolvesInto": "Fujitora [Evo]",
@@ -6834,47 +6834,47 @@
       "UpgradePrice": 9480,
       "UpgradesInfo": [
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "2343.75 / 2",
-          "Range": "24 / 2",
+          "AttackSpeed": 6,
+          "Damage": 1171.875,
+          "Range": 12,
           "UpgradePrice": 2650
         },
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "3125 / 2",
-          "Range": "24 / 2",
+          "AttackSpeed": 6,
+          "Damage": 1562.5,
+          "Range": 12,
           "UpgradePrice": 3500
         },
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "3781.25 / 2",
-          "Range": "26 / 2",
+          "AttackSpeed": 6,
+          "Damage": 1890.625,
+          "Range": 13,
           "UpgradePrice": 5000
         },
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "4687.5 / 2",
-          "Range": "26 / 2",
+          "AttackSpeed": 6,
+          "Damage": 2343.75,
+          "Range": 13,
           "UpgradePrice": 5425
         },
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "5000 / 2",
-          "Range": "27 / 2",
+          "AttackSpeed": 6,
+          "Damage": 2500,
+          "Range": 13.5,
           "UpgradePrice": 6450
         },
         {
           "Ability": "Meteor Strike",
           "AttackSize": 20,
-          "AttackSpeed": "11 / 2",
+          "AttackSpeed": 5.5,
           "AttackType": "Circle",
-          "Damage": "5250 / 2",
+          "Damage": 2625,
           "Range": 30,
           "UpgradePrice": 7825
         },
         {
-          "AttackSpeed": "10 / 2",
-          "Damage": "5000 / 2",
+          "AttackSpeed": 5,
+          "Damage": 2500,
           "Range": 31,
           "UpgradePrice": 9480
         }
@@ -12908,10 +12908,10 @@
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
       "AttackSize": 15,
-      "AttackSpeed": "10 / 2",
+      "AttackSpeed": 5,
       "AttackType": "Circle",
       "CanSell": true,
-      "Damage": "5750 / 2",
+      "Damage": 2875,
       "DisplayName": "Agent [Heart]",
       "Element": "Water",
       "EvolvesInto": "Law [Evo]",
@@ -12934,47 +12934,47 @@
       "UpgradePrice": 11000,
       "UpgradesInfo": [
         {
-          "AttackSpeed": "11 / 2",
-          "Damage": "1800 / 2",
-          "Range": "23 / 2",
+          "AttackSpeed": 5.5,
+          "Damage": 900,
+          "Range": 11.5,
           "UpgradePrice": 2500
         },
         {
-          "AttackSpeed": "11 / 2",
-          "Damage": "2750 / 2",
-          "Range": "23 / 2",
+          "AttackSpeed": 5.5,
+          "Damage": 1375,
+          "Range": 11.5,
           "UpgradePrice": 3750
         },
         {
-          "AttackSpeed": "11 / 2",
-          "Damage": "3500 / 2",
-          "Range": "25 / 2",
+          "AttackSpeed": 5.5,
+          "Damage": 1750,
+          "Range": 12.5,
           "UpgradePrice": 5000
         },
         {
-          "AttackSpeed": "11 / 2",
-          "Damage": "4000 / 2",
-          "Range": "28 / 2",
+          "AttackSpeed": 5.5,
+          "Damage": 2000,
+          "Range": 14,
           "UpgradePrice": 6500
         },
         {
           "Ability": "Surgeon Cuts",
           "AttackSize": 15,
-          "AttackSpeed": "11 / 2",
+          "AttackSpeed": 5.5,
           "AttackType": "Circle",
-          "Damage": "4500 / 2",
-          "Range": "30 / 2",
+          "Damage": 2250,
+          "Range": 15,
           "UpgradePrice": 8000
         },
         {
-          "AttackSpeed": "10.5 / 2",
-          "Damage": "5250 / 2",
+          "AttackSpeed": 5.25,
+          "Damage": 2625,
           "Range": 15,
           "UpgradePrice": 9500
         },
         {
-          "AttackSpeed": "10 / 2",
-          "Damage": "5750 / 2",
+          "AttackSpeed": 5,
+          "Damage": 2875,
           "Range": 15,
           "UpgradePrice": 11000
         }
@@ -12998,7 +12998,7 @@
       "AttackCriticalDamage": 0.3,
       "AttackEffect": "Paralysis",
       "AttackEffectDuration": 3,
-      "AttackSize": "32/2",
+      "AttackSize": 16,
       "AttackSpeed": 7.3,
       "AttackType": "Circle",
       "CanSell": true,
@@ -13049,7 +13049,7 @@
         },
         {
           "Ability": "Takt",
-          "AttackSize": "30/2",
+          "AttackSize": 15,
           "AttackSpeed": 11,
           "AttackType": "Circle",
           "Damage": 4500,
@@ -13070,7 +13070,7 @@
         },
         {
           "Ability": "Room",
-          "AttackSize": "32/2",
+          "AttackSize": 16,
           "AttackSpeed": 10,
           "AttackType": "Circle",
           "Damage": 6200,
@@ -13776,7 +13776,7 @@
       "AttackCriticalDamage": 0.3,
       "AttackEffect": "Slow",
       "AttackEffectDuration": 6,
-      "AttackSize": "36/2",
+      "AttackSize": 18,
       "AttackSpeed": 4.5,
       "AttackType": "Line",
       "CanSell": true,
@@ -13822,7 +13822,7 @@
         },
         {
           "Ability": "Giant Pistol",
-          "AttackSize": "36/2",
+          "AttackSize": 18,
           "AttackSpeed": 6,
           "AttackType": "Line",
           "Damage": 450,
@@ -13912,7 +13912,7 @@
         },
         {
           "Ability": "King Kong Impact",
-          "AttackSize": "28/2",
+          "AttackSize": 14,
           "AttackSpeed": 10.5,
           "AttackType": "Circle",
           "Damage": 3000,
@@ -19577,7 +19577,7 @@
       "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
-      "AttackSize": "11/2",
+      "AttackSize": 5.5,
       "AttackSpeed": 9.5,
       "AttackType": "Circle",
       "CanSell": true,
@@ -20020,11 +20020,11 @@
       "AttackCriticalDamage": 0.3,
       "AttackEffect": "Burning",
       "AttackEffectDuration": 6,
-      "AttackSize": "(36 / 2) / 2",
-      "AttackSpeed": "9.5 / 2",
+      "AttackSize": 9,
+      "AttackSpeed": 4.75,
       "AttackType": "Circle",
       "CanSell": true,
-      "Damage": "4950 / 2",
+      "Damage": 2475,
       "DisplayName": "Sijin [Chef]",
       "Element": "Fire",
       "EvolvesInto": "Sanji [Evo]",
@@ -20037,7 +20037,7 @@
       ],
       "PlacementPrice": 1000,
       "PlacementType": "Ground",
-      "Range": "38 / 2",
+      "Range": 19,
       "Rarity": "Legendary",
       "SellCost": 100,
       "SpecialAbility": "",
@@ -20047,42 +20047,42 @@
       "UpgradePrice": 7250,
       "UpgradesInfo": [
         {
-          "AttackSpeed": "11.5 / 2",
-          "Damage": "1700 / 2",
-          "Range": "32 / 2",
+          "AttackSpeed": 5.75,
+          "Damage": 850,
+          "Range": 16,
           "UpgradePrice": 2000
         },
         {
-          "AttackSpeed": "10.5 / 2",
-          "Damage": "2100 / 2",
-          "Range": "34 / 2",
+          "AttackSpeed": 5.25,
+          "Damage": 1050,
+          "Range": 17,
           "UpgradePrice": 2500
         },
         {
-          "AttackSpeed": "10.5 / 2",
-          "Damage": "2850 / 2",
-          "Range": "35 / 2",
+          "AttackSpeed": 5.25,
+          "Damage": 1425,
+          "Range": 17.5,
           "UpgradePrice": 5500
         },
         {
           "Ability": "Concasser Crush",
-          "AttackSize": "(36 / 2) / 2",
-          "AttackSpeed": "10 / 2",
+          "AttackSize": 9,
+          "AttackSpeed": 5,
           "AttackType": "Circle",
-          "Damage": "3550 / 2",
-          "Range": "36 / 2",
+          "Damage": 1775,
+          "Range": 18,
           "UpgradePrice": 6500
         },
         {
-          "AttackSpeed": "10 / 2",
-          "Damage": "4100 / 2",
-          "Range": "37 / 2",
+          "AttackSpeed": 5,
+          "Damage": 2050,
+          "Range": 18.5,
           "UpgradePrice": 7000
         },
         {
-          "AttackSpeed": "9.5 / 2",
-          "Damage": "4950 / 2",
-          "Range": "38 / 2",
+          "AttackSpeed": 4.75,
+          "Damage": 2475,
+          "Range": 19,
           "UpgradePrice": 7250
         }
       ]
@@ -25480,11 +25480,11 @@
       "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 6,
-      "AttackSize": "(28/2) / 2",
-      "AttackSpeed": "11 / 2",
+      "AttackSize": 7,
+      "AttackSpeed": 5.5,
       "AttackType": "Line",
       "CanSell": true,
-      "Damage": "4700 / 2",
+      "Damage": 2350,
       "DisplayName": "Zero [Evo]",
       "Element": "Wind",
       "IsSpecialAbilityGlobalCooldown": false,
@@ -25496,7 +25496,7 @@
       ],
       "PlacementPrice": 1000,
       "PlacementType": "Ground",
-      "Range": "30 / 2",
+      "Range": 15,
       "Rarity": "Legendary",
       "SellCost": 100,
       "SpecialAbility": "",
@@ -25506,42 +25506,42 @@
       "UpgradePrice": 9500,
       "UpgradesInfo": [
         {
-          "AttackSpeed": "12.5 / 2",
-          "Damage": "1562.5 / 2",
-          "Range": "23 / 2",
+          "AttackSpeed": 6.25,
+          "Damage": 781.25,
+          "Range": 11.5,
           "UpgradePrice": 2500
         },
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "2187.5 / 2",
-          "Range": "23.5 / 2",
+          "AttackSpeed": 6,
+          "Damage": 1093.75,
+          "Range": 11.75,
           "UpgradePrice": 3750
         },
         {
-          "AttackSpeed": "12 / 2",
-          "Damage": "2500 / 2",
-          "Range": "25 / 2",
+          "AttackSpeed": 6,
+          "Damage": 1250,
+          "Range": 12.5,
           "UpgradePrice": 5000
         },
         {
-          "AttackSpeed": "11.5 / 2",
-          "Damage": "3125 / 2",
-          "Range": "11.5 / 2",
+          "AttackSpeed": 5.75,
+          "Damage": 1562.5,
+          "Range": 5.75,
           "UpgradePrice": 6500
         },
         {
-          "AttackSpeed": "11.5 / 2",
-          "Damage": "4250 / 2",
-          "Range": "28 / 2",
+          "AttackSpeed": 5.75,
+          "Damage": 2125,
+          "Range": 14,
           "UpgradePrice": 8000
         },
         {
           "Ability": "Billion Fold",
-          "AttackSize": "(28/2) / 2",
-          "AttackSpeed": "11 / 2",
+          "AttackSize": 7,
+          "AttackSpeed": 5.5,
           "AttackType": "Line",
-          "Damage": "4700 / 2",
-          "Range": "30 / 2",
+          "Damage": 2350,
+          "Range": 15,
           "UpgradePrice": 9500
         }
       ]
@@ -25563,7 +25563,7 @@
       "AttackCriticalDamage": 0.3,
       "AttackEffect": "Scar",
       "AttackEffectDuration": 6,
-      "AttackSize": "32/2",
+      "AttackSize": 16,
       "AttackSpeed": 7.3,
       "AttackType": "Line",
       "CanSell": true,
@@ -25614,7 +25614,7 @@
         },
         {
           "Ability": "Billion Fold",
-          "AttackSize": "28/2",
+          "AttackSize": 14,
           "AttackSpeed": 11.5,
           "AttackType": "Line",
           "Damage": 4250,
@@ -25635,7 +25635,7 @@
         },
         {
           "Ability": "Six Paths",
-          "AttackSize": "32/2",
+          "AttackSize": 16,
           "AttackSpeed": 10.5,
           "AttackType": "Line",
           "Damage": 5750,

@@ -64,6 +64,85 @@ local function findMatchingBrace(source, startPos)
 	return nil
 end
 
+-- Function to evaluate simple mathematical expressions
+local function evaluateMathExpression(expr)
+	-- Remove all whitespace
+	expr = string.gsub(expr, "%s+", "")
+
+	-- Handle expressions with parentheses like (36/2)/2 or (28/2)/2
+	local parenExpr, operator, rightOperand = string.match(expr, "^%(([^%)]+)%)([%+%-%*/^])(%d+%.?%d*)$")
+	if parenExpr and operator and rightOperand then
+		-- Recursively evaluate the expression in parentheses
+		local parenResult = evaluateMathExpression(parenExpr)
+		local rightNum = tonumber(rightOperand)
+		if parenResult and rightNum then
+			if operator == "/" and rightNum ~= 0 then
+				return parenResult / rightNum
+			elseif operator == "*" then
+				return parenResult * rightNum
+			elseif operator == "+" then
+				return parenResult + rightNum
+			elseif operator == "-" then
+				return parenResult - rightNum
+			elseif operator == "^" then
+				return parenResult ^ rightNum
+			end
+		end
+	end
+
+	-- Handle simple division operations (most common case)
+	local numerator, denominator = string.match(expr, "^(%d+%.?%d*)/(%d+%.?%d*)$")
+	if numerator and denominator then
+		local num = tonumber(numerator)
+		local den = tonumber(denominator)
+		if num and den and den ~= 0 then
+			return num / den
+		end
+	end
+
+	-- Handle simple multiplication
+	local factor1, factor2 = string.match(expr, "^(%d+%.?%d*)%*(%d+%.?%d*)$")
+	if factor1 and factor2 then
+		local f1 = tonumber(factor1)
+		local f2 = tonumber(factor2)
+		if f1 and f2 then
+			return f1 * f2
+		end
+	end
+
+	-- Handle simple addition
+	local addend1, addend2 = string.match(expr, "^(%d+%.?%d*)%+(%d+%.?%d*)$")
+	if addend1 and addend2 then
+		local a1 = tonumber(addend1)
+		local a2 = tonumber(addend2)
+		if a1 and a2 then
+			return a1 + a2
+		end
+	end
+
+	-- Handle simple subtraction
+	local minuend, subtrahend = string.match(expr, "^(%d+%.?%d*)%-(%d+%.?%d*)$")
+	if minuend and subtrahend then
+		local m = tonumber(minuend)
+		local s = tonumber(subtrahend)
+		if m and s then
+			return m - s
+		end
+	end
+
+	-- Handle simple power operations (using ^ symbol)
+	local base, exponent = string.match(expr, "^(%d+%.?%d*)%^(%d+%.?%d*)$")
+	if base and exponent then
+		local b = tonumber(base)
+		local e = tonumber(exponent)
+		if b and e then
+			return b ^ e
+		end
+	end
+
+	return nil
+end
+
 -- Function to parse a value string into appropriate Lua type
 local function parseValue(value, _unitName, key)
 	if not value or value == "" then
@@ -111,6 +190,12 @@ local function parseValue(value, _unitName, key)
 		return false
 	end
 
+	-- Try to evaluate mathematical expressions first (before checking for simple numbers)
+	local mathResult = evaluateMathExpression(value)
+	if mathResult then
+		return mathResult
+	end
+
 	-- Handle numbers (including decimals)
 	if string.match(value, "^%d+%.%d+$") then
 		return tonumber(value)
@@ -129,7 +214,7 @@ local function parseValue(value, _unitName, key)
 		return tonumber(value)
 	end
 
-	-- Handle quoted strings but convert specific fields to numbers
+	-- Handle quoted strings but convert specific fields to numbers or evaluate math expressions
 	local stringValue = nil
 	if string.match(value, '^"(.-)"$') then
 		stringValue = string.match(value, '^"(.-)"$')
@@ -137,28 +222,31 @@ local function parseValue(value, _unitName, key)
 		stringValue = string.match(value, "^'(.-)'$")
 	end
 
-	-- Convert specific string fields to numbers
-	if stringValue and (key == "AttackCriticalDamage" or key == "PermanentDamageMulti") then
-		local numValue = tonumber(stringValue)
-		if numValue then
-			return numValue
-		end
-	end
-
-	-- Convert animation IDs from strings to integers (not floats)
-	if
-		stringValue
-		and (key == "idle" or key == "walk" or key == "wings" or key == "hair" or key == "tail" or key == "hairAnim")
-	then
-		local numValue = tonumber(stringValue)
-		if numValue then
-			-- For very large numbers, ensure they stay as integers in JSON
-			return math.floor(numValue + 0.5) -- Round to nearest integer
-		end
-	end
-
-	-- Return the string value if we extracted one
 	if stringValue then
+		-- Try to evaluate math expressions in quoted strings
+		local quotedMathResult = evaluateMathExpression(stringValue)
+		if quotedMathResult then
+			return quotedMathResult
+		end
+
+		-- Convert specific string fields to numbers
+		if key == "AttackCriticalDamage" or key == "PermanentDamageMulti" then
+			local numValue = tonumber(stringValue)
+			if numValue then
+				return numValue
+			end
+		end
+
+		-- Convert animation IDs from strings to integers (not floats)
+		if key == "idle" or key == "walk" or key == "wings" or key == "hair" or key == "tail" or key == "hairAnim" then
+			local numValue = tonumber(stringValue)
+			if numValue then
+				-- For very large numbers, ensure they stay as integers in JSON
+				return math.floor(numValue + 0.5) -- Round to nearest integer
+			end
+		end
+
+		-- Return the string value if we couldn't convert it
 		return stringValue
 	end
 

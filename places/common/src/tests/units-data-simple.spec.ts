@@ -19,7 +19,7 @@ describe("Units Data", () => {
 			let unitCount = 0;
 			for (const [name, unit] of pairs(unitsData)) {
 				unitCount += 1;
-
+				print(name);
 				// Test basic properties
 				expect(typeOf(unit.Released)).toBe("boolean");
 				expect(typeOf(unit.Summonable)).toBe("boolean");
@@ -28,6 +28,7 @@ describe("Units Data", () => {
 
 				// Test configuration structure
 				const config = unit.configuration;
+				print(config);
 				expect(typeOf(config.Damage)).toBe("number");
 				expect(typeOf(config.Range)).toBe("number");
 				expect(typeOf(config.AttackSpeed)).toBe("number");
@@ -55,15 +56,15 @@ describe("Units Data", () => {
 				const validUnitTypes: UnitType[] = ["Ground", "Hybrid", "Hill", "Air"];
 				const validPlacementTypes: PlacementType[] = ["Ground", "Hill", "Air"];
 				const validAttackTypes: AttackType[] = ["Circle", "Single", "Line", "AOE", "Multi"];
-
+				print(config.Rarity);
 				expect(validRarities.includes(config.Rarity as UnitRarity)).toBe(true);
 				expect(validElements.includes(config.Element as UnitElement)).toBe(true);
 				expect(validUnitTypes.includes(config.UnitType as UnitType)).toBe(true);
 				expect(validPlacementTypes.includes(config.PlacementType as PlacementType)).toBe(true);
 				expect(validAttackTypes.includes(config.AttackType as AttackType)).toBe(true);
 
-				// Stop after checking first few units to avoid timeout
-				if (unitCount >= 10) break;
+				// // Stop after checking first few units to avoid timeout
+				// if (unitCount >= 10) break;
 			}
 
 			expect(unitCount).toBeGreaterThan(0);
