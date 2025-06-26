@@ -1,19 +1,9 @@
 import unitsDataRaw from "./units-data.json";
 
 // Type definitions
-export type UnitRarity = "Common" | "Rare" | "Epic" | "Legendary" | "Mythical" | "Secret" | "Exclusive";
+export type UnitRarity = "Rare" | "Epic" | "Legendary" | "Mythical" | "Secret" | "Reborn" | "Exclusive";
 
-export type UnitElement =
-	| "Light"
-	| "Dark"
-	| "Wind"
-	| "Fire"
-	| "Water"
-	| "Earth"
-	| "Fierce"
-	| "Nature"
-	| "Electric"
-	| "Ice";
+export type UnitElement = "Light" | "Dark" | "Wind" | "Fire" | "Water" | "Fierce" | "Ice";
 
 export type UnitType = "Ground" | "Hybrid" | "Hill" | "Air";
 
@@ -183,7 +173,7 @@ export class UnitsDataUtils {
 	 */
 	static getEvolvableUnits(): Array<Unit & { name: string }> {
 		return this.getAllUnits().filter(
-			(unit) => unit.configuration.EvolveData && unit.configuration.EvolveData.length > 0,
+			(unit) => unit.configuration.EvolveData !== undefined && unit.configuration.EvolveData.size() > 0,
 		);
 	}
 
@@ -193,9 +183,9 @@ export class UnitsDataUtils {
 	static getEvolutionChains(): Record<string, string[]> {
 		const chains: Record<string, string[]> = {};
 
-		for (const [name, unit] of Object.entries(unitsData)) {
-			if (unit.configuration.EvolvesInto) {
-				const baseName = name.replace(/\s*\[.*?\]$/, ""); // Remove [Evo] suffix
+		for (const [name, unit] of pairs(unitsData)) {
+			if (unit.configuration.EvolvesInto !== undefined && unit.configuration.EvolvesInto !== "") {
+				const baseName = string.gsub(name, "%s*%[.*%]$", "")[0]; // Remove [Evo] suffix
 				if (!chains[baseName]) {
 					chains[baseName] = [name];
 				}
@@ -242,36 +232,52 @@ export class UnitsDataUtils {
 	 * Get the most expensive units to place
 	 */
 	static getMostExpensiveUnits(limit: number = 10): Array<Unit & { name: string }> {
-		return this.getAllUnits()
-			.sort((a, b) => b.configuration.PlacementPrice - a.configuration.PlacementPrice)
-			.slice(0, limit);
+		const units = this.getAllUnits();
+		table.sort(units, (a, b) => a.configuration.PlacementPrice > b.configuration.PlacementPrice);
+		const result: Array<Unit & { name: string }> = [];
+		for (let i = 0; i < math.min(limit, units.size()); i++) {
+			result.push(units[i]);
+		}
+		return result;
 	}
 
 	/**
 	 * Get the highest damage units
 	 */
 	static getHighestDamageUnits(limit: number = 10): Array<Unit & { name: string }> {
-		return this.getAllUnits()
-			.sort((a, b) => b.configuration.Damage - a.configuration.Damage)
-			.slice(0, limit);
+		const units = this.getAllUnits();
+		table.sort(units, (a, b) => a.configuration.Damage > b.configuration.Damage);
+		const result: Array<Unit & { name: string }> = [];
+		for (let i = 0; i < math.min(limit, units.size()); i++) {
+			result.push(units[i]);
+		}
+		return result;
 	}
 
 	/**
 	 * Get the longest range units
 	 */
 	static getLongestRangeUnits(limit: number = 10): Array<Unit & { name: string }> {
-		return this.getAllUnits()
-			.sort((a, b) => b.configuration.Range - a.configuration.Range)
-			.slice(0, limit);
+		const units = this.getAllUnits();
+		table.sort(units, (a, b) => a.configuration.Range > b.configuration.Range);
+		const result: Array<Unit & { name: string }> = [];
+		for (let i = 0; i < math.min(limit, units.size()); i++) {
+			result.push(units[i]);
+		}
+		return result;
 	}
 
 	/**
 	 * Get the fastest attack speed units
 	 */
 	static getFastestUnits(limit: number = 10): Array<Unit & { name: string }> {
-		return this.getAllUnits()
-			.sort((a, b) => a.configuration.AttackSpeed - b.configuration.AttackSpeed) // Lower is faster
-			.slice(0, limit);
+		const units = this.getAllUnits();
+		table.sort(units, (a, b) => a.configuration.AttackSpeed < b.configuration.AttackSpeed); // Lower is faster
+		const result: Array<Unit & { name: string }> = [];
+		for (let i = 0; i < math.min(limit, units.size()); i++) {
+			result.push(units[i]);
+		}
+		return result;
 	}
 
 	/**
@@ -285,11 +291,13 @@ export class UnitsDataUtils {
 	 * Search units by partial name match
 	 */
 	static searchUnitsByName(searchTerm: string): Array<Unit & { name: string }> {
-		const lowerSearchTerm = searchTerm.toLowerCase();
+		const lowerSearchTerm = string.lower(searchTerm);
 		return this.getAllUnits().filter(
 			(unit) =>
-				unit.name.toLowerCase().includes(lowerSearchTerm) ||
-				unit.configuration.DisplayName?.toLowerCase().includes(lowerSearchTerm),
+				string.find(string.lower(unit.name), lowerSearchTerm, 1, true)[0] !== undefined ||
+				(unit.configuration.DisplayName !== undefined &&
+					string.find(string.lower(unit.configuration.DisplayName), lowerSearchTerm, 1, true)[0] !==
+						undefined),
 		);
 	}
 
@@ -308,29 +316,39 @@ export class UnitsDataUtils {
 		for (const unit of allUnits) {
 			// Count rarities
 			const rarity = unit.configuration.Rarity;
-			rarityCount[rarity] = (rarityCount[rarity] || 0) + 1;
+			rarityCount[rarity] = (rarityCount[rarity] !== undefined ? rarityCount[rarity] : 0) + 1;
 
 			// Count elements
 			const element = unit.configuration.Element;
-			elementCount[element] = (elementCount[element] || 0) + 1;
+			elementCount[element] = (elementCount[element] !== undefined ? elementCount[element] : 0) + 1;
 
 			// Count types
 			const type = unit.configuration.UnitType;
-			typeCount[type] = (typeCount[type] || 0) + 1;
+			typeCount[type] = (typeCount[type] !== undefined ? typeCount[type] : 0) + 1;
+		}
+
+		// Calculate averages
+		let totalDamage = 0;
+		let totalPrice = 0;
+		let totalRange = 0;
+		for (const unit of allUnits) {
+			totalDamage += unit.configuration.Damage;
+			totalPrice += unit.configuration.PlacementPrice;
+			totalRange += unit.configuration.Range;
 		}
 
 		return {
-			total: allUnits.length,
-			released: releasedUnits.length,
-			summonable: summonableUnits.length,
-			unreleased: allUnits.length - releasedUnits.length,
-			nonSummonable: allUnits.length - summonableUnits.length,
+			total: allUnits.size(),
+			released: releasedUnits.size(),
+			summonable: summonableUnits.size(),
+			unreleased: allUnits.size() - releasedUnits.size(),
+			nonSummonable: allUnits.size() - summonableUnits.size(),
 			rarityDistribution: rarityCount,
 			elementDistribution: elementCount,
 			typeDistribution: typeCount,
-			averageDamage: allUnits.reduce((sum, u) => sum + u.configuration.Damage, 0) / allUnits.length,
-			averagePrice: allUnits.reduce((sum, u) => sum + u.configuration.PlacementPrice, 0) / allUnits.length,
-			averageRange: allUnits.reduce((sum, u) => sum + u.configuration.Range, 0) / allUnits.length,
+			averageDamage: totalDamage / allUnits.size(),
+			averagePrice: totalPrice / allUnits.size(),
+			averageRange: totalRange / allUnits.size(),
 		};
 	}
 
@@ -338,13 +356,16 @@ export class UnitsDataUtils {
 	 * Get damage per cost efficiency ranking
 	 */
 	static getDamagePerCostRanking(limit: number = 20): Array<Unit & { name: string; efficiency: number }> {
-		return this.getAllUnits()
-			.map((unit) => ({
-				...unit,
-				efficiency: unit.configuration.Damage / unit.configuration.PlacementPrice,
-			}))
-			.sort((a, b) => b.efficiency - a.efficiency)
-			.slice(0, limit);
+		const units = this.getAllUnits().map((unit) => ({
+			...unit,
+			efficiency: unit.configuration.Damage / unit.configuration.PlacementPrice,
+		}));
+		table.sort(units, (a, b) => a.efficiency > b.efficiency);
+		const result: Array<Unit & { name: string; efficiency: number }> = [];
+		for (let i = 0; i < math.min(limit, units.size()); i++) {
+			result.push(units[i]);
+		}
+		return result;
 	}
 
 	/**
@@ -352,7 +373,7 @@ export class UnitsDataUtils {
 	 */
 	static getUnitsWithSpecialAbilities(): Array<Unit & { name: string }> {
 		return this.getAllUnits().filter(
-			(unit) => unit.configuration.SpecialAbility && unit.configuration.SpecialAbility.length > 0,
+			(unit) => unit.configuration.SpecialAbility !== undefined && unit.configuration.SpecialAbility !== "",
 		);
 	}
 
@@ -360,7 +381,9 @@ export class UnitsDataUtils {
 	 * Get units with abilities
 	 */
 	static getUnitsWithAbilities(): Array<Unit & { name: string }> {
-		return this.getAllUnits().filter((unit) => unit.configuration.Ability && unit.configuration.Ability.length > 0);
+		return this.getAllUnits().filter(
+			(unit) => unit.configuration.Ability !== undefined && unit.configuration.Ability !== "",
+		);
 	}
 
 	/**
@@ -373,7 +396,12 @@ export class UnitsDataUtils {
 				unit.configuration.Passives.forEach((passive) => passives.add(passive));
 			}
 		}
-		return Array.from(passives).sort();
+		const result: string[] = [];
+		for (const passive of passives) {
+			result.push(passive);
+		}
+		table.sort(result);
+		return result;
 	}
 
 	/**
@@ -382,14 +410,19 @@ export class UnitsDataUtils {
 	static getAllAbilities(): string[] {
 		const abilities = new Set<string>();
 		for (const unit of this.getAllUnits()) {
-			if (unit.configuration.Ability && unit.configuration.Ability.length > 0) {
+			if (unit.configuration.Ability !== undefined && unit.configuration.Ability !== "") {
 				abilities.add(unit.configuration.Ability);
 			}
-			if (unit.configuration.SpecialAbility && unit.configuration.SpecialAbility.length > 0) {
+			if (unit.configuration.SpecialAbility !== undefined && unit.configuration.SpecialAbility !== "") {
 				abilities.add(unit.configuration.SpecialAbility);
 			}
 		}
-		return Array.from(abilities).sort();
+		const result: string[] = [];
+		for (const ability of abilities) {
+			result.push(ability);
+		}
+		table.sort(result);
+		return result;
 	}
 
 	/**
@@ -398,11 +431,16 @@ export class UnitsDataUtils {
 	static getAllMapAffinities(): string[] {
 		const maps = new Set<string>();
 		for (const unit of this.getAllUnits()) {
-			if (unit.configuration.MapAffnity && unit.configuration.MapAffnity.length > 0) {
+			if (unit.configuration.MapAffnity !== undefined && unit.configuration.MapAffnity !== "") {
 				maps.add(unit.configuration.MapAffnity);
 			}
 		}
-		return Array.from(maps).sort();
+		const result: string[] = [];
+		for (const map of maps) {
+			result.push(map);
+		}
+		table.sort(result);
+		return result;
 	}
 
 	/**
@@ -410,16 +448,16 @@ export class UnitsDataUtils {
 	 */
 	static canUnitEvolve(unitName: string): boolean {
 		const unit = this.getUnit(unitName);
-		return !!(unit?.configuration.EvolveData && unit.configuration.EvolveData.length > 0);
+		return !!(unit?.configuration.EvolveData && unit.configuration.EvolveData.size() > 0);
 	}
 
 	/**
 	 * Get evolution requirements for a unit
 	 */
-	static getEvolutionRequirements(unitName: string): EvolveRequirements | null {
+	static getEvolutionRequirements(unitName: string): EvolveRequirements | undefined {
 		const unit = this.getUnit(unitName);
 		if (!unit?.configuration.EvolveData?.[0]) {
-			return null;
+			return undefined;
 		}
 		return unit.configuration.EvolveData[0].Requirements;
 	}
@@ -456,15 +494,15 @@ export class UnitsDataUtils {
 			if (filters.rarity && !filters.rarity.includes(unit.configuration.Rarity)) return false;
 			if (filters.element && !filters.element.includes(unit.configuration.Element)) return false;
 			if (filters.unitType && !filters.unitType.includes(unit.configuration.UnitType)) return false;
-			if (filters.minDamage && unit.configuration.Damage < filters.minDamage) return false;
-			if (filters.maxDamage && unit.configuration.Damage > filters.maxDamage) return false;
-			if (filters.minPrice && unit.configuration.PlacementPrice < filters.minPrice) return false;
-			if (filters.maxPrice && unit.configuration.PlacementPrice > filters.maxPrice) return false;
+			if (filters.minDamage !== undefined && unit.configuration.Damage < filters.minDamage) return false;
+			if (filters.maxDamage !== undefined && unit.configuration.Damage > filters.maxDamage) return false;
+			if (filters.minPrice !== undefined && unit.configuration.PlacementPrice < filters.minPrice) return false;
+			if (filters.maxPrice !== undefined && unit.configuration.PlacementPrice > filters.maxPrice) return false;
 			if (filters.released !== undefined && unit.Released !== filters.released) return false;
 			if (filters.summonable !== undefined && unit.Summonable !== filters.summonable) return false;
-			if (filters.hasEvolution && !(unit.configuration.EvolveData && unit.configuration.EvolveData.length > 0))
+			if (filters.hasEvolution && !(unit.configuration.EvolveData && unit.configuration.EvolveData.size() > 0))
 				return false;
-			if (filters.hasPassives && !(unit.configuration.Passives && unit.configuration.Passives.length > 0))
+			if (filters.hasPassives && !(unit.configuration.Passives && unit.configuration.Passives.size() > 0))
 				return false;
 			if (
 				filters.gameTypeAffinity &&
