@@ -773,4 +773,40 @@ global.table = {
 	},
 };
 
+// Mock Roblox math library
+global.math = {
+	random: (min, max) => {
+		if (min === undefined && max === undefined) {
+			// math.random() - returns [0, 1)
+			return Math.random();
+		} else if (max === undefined) {
+			// math.random(m) - returns [1, m]
+			return Math.floor(Math.random() * min) + 1;
+		} else {
+			// math.random(m, n) - returns [m, n]
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+	},
+	floor: Math.floor,
+	ceil: Math.ceil,
+	abs: Math.abs,
+	min: Math.min,
+	max: Math.max,
+	sqrt: Math.sqrt,
+	pow: Math.pow,
+	sin: Math.sin,
+	cos: Math.cos,
+	tan: Math.tan,
+	asin: Math.asin,
+	acos: Math.acos,
+	atan: Math.atan,
+	atan2: Math.atan2,
+	exp: Math.exp,
+	log: Math.log,
+	deg: (radians) => radians * (180 / Math.PI),
+	rad: (degrees) => degrees * (Math.PI / 180),
+	pi: Math.PI,
+	huge: Infinity,
+};
+
 console.log("🚀 Jest setup with Lune bridge initialized");
