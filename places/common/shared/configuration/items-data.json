@@ -1,0 +1,2864 @@
+{
+  "100% Egg": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "100% Egg, I wonder what I can do with them..",
+      "DisplayName": "100% Egg",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "20% Egg": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "20% Egg, I wonder what I can do with them..",
+      "DisplayName": "20% Egg",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "40% Egg": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "40% Egg, I wonder what I can do with them..",
+      "DisplayName": "40% Egg",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "60% Egg": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "60% Egg, I wonder what I can do with them..",
+      "DisplayName": "60% Egg",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "80% Egg": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "80% Egg, I wonder what I can do with them..",
+      "DisplayName": "80% Egg",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "AcrobaticMask": {
+    "configuration": {
+      "Description": "Used to evolve Airo!",
+      "DisplayName": "Acrobatic Mask",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "AkaBrace": {
+    "configuration": {
+      "Description": "Used to evolve Akume!",
+      "DisplayName": "Aka Brace",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "AlienMask": {
+    "configuration": {
+      "Description": "Used to evolve Spiral!",
+      "DisplayName": "Alien Mask",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Angelic Staff": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Angel Scepter",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "AntFace": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "AntFace",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "BasicLuckPotion": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Grants the player a 20% banner luck boost",
+      "DisplayIcon": "rbxassetid://114034975822906",
+      "DisplayName": "Basic Luck Potion",
+      "Rarity": "Epic",
+      "Sort": [
+        "Potions"
+      ],
+      "Usable": true
+    }
+  },
+  "Black Heart": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Solo Woo [MONARCH]!",
+      "DisplayName": "Black Heart",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "BloodDemonCapsule": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Unlockable soon",
+      "DisplayIcon": "rbxassetid://130577771455565",
+      "DisplayName": "Blood Demon Capsule",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "BlueBlaster": {
+    "configuration": {
+      "Description": "Used to evolve Delta Brothers!",
+      "DisplayName": "Blue Blaster",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "BlueStar": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Blue Star",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stars"
+      ],
+      "Usable": false
+    }
+  },
+  "BowTie": {
+    "configuration": {
+      "Description": "Used to evolve Chisota!",
+      "DisplayName": "Bow Tie",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "BrokenLimiter": {
+    "configuration": {
+      "Description": "Used to evolve Brolio!",
+      "DisplayName": "Broken Limiter",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Buddha Statue": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Buddha Statue",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "CandyKey": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to play Winter Mayhem Mode!",
+      "DisplayName": "Candy Key",
+      "Rarity": "Rare",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "CardTotem": {
+    "Limit": 10,
+    "configuration": {
+      "Description": "Buffs damage by 15% in Quimera Continent. (stacks)",
+      "DisplayName": "Hunter Totem",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ChakraRod": {
+    "configuration": {
+      "Description": "Used to evolve Payne!",
+      "DisplayName": "Chakra rod",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "CidSword": {
+    "configuration": {
+      "Description": "Used to evolve Cod!",
+      "DisplayName": "Cod's Sword",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Clawed Gauntlet": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Clawed Gauntlet",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Clover": {
+    "configuration": {
+      "Description": "Used to evolve various units!",
+      "DisplayName": "Clover",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Concentrated Blast": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Concentrated Blast",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Cosmic Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Cosmic Energy Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "CrossNecklace": {
+    "configuration": {
+      "Description": "Used to evolve Hawk Eyes!",
+      "DisplayName": "Cross Necklace",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Crystals": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "I wonder what I can do with those..",
+      "DisplayName": "Crystals",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Cupcake": {
+    "configuration": {
+      "Description": "Used to evolve Twenty One!",
+      "DisplayName": "Cupcake",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "CursedKnife": {
+    "configuration": {
+      "Description": "Used to evolve Nonomi!",
+      "DisplayName": "Cursed Knife",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Damaged Cape": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Sinji's Ret",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Damaged Cape [2]": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Damaged Cape",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dark Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dark Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dark Heart": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dark Heart",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dark Soul": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dark Soul",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DarkGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Yamo!",
+      "DisplayName": "Dark Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DarkStone": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Dark Stone",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stones"
+      ],
+      "Usable": false
+    }
+  },
+  "DeltaCapsule": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Unlockable soon",
+      "DisplayIcon": "rbxassetid://130577771455565",
+      "DisplayName": "Dolta Capsule",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Demon Book": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Demon Book",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Demon King's Longsword": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Igres!",
+      "DisplayName": "Blood Knight's Longsword",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DemonFan": {
+    "configuration": {
+      "Description": "Used to evolve Domau!",
+      "DisplayName": "Demon Fan",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DemonGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Osta!",
+      "DisplayName": "Demon Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DemonWings": {
+    "configuration": {
+      "Description": "Used to evolve Rise!",
+      "DisplayName": "Demon Wings",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DevilExtract": {
+    "configuration": {
+      "Description": "Used to evolve Sidea!",
+      "DisplayName": "Devil Extract",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DiamondGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Mercury!",
+      "DisplayName": "Diamond Grimoire",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DiosDiary": {
+    "configuration": {
+      "Description": "Used to evolve Io from Heaven!",
+      "DisplayName": "Io's Heaven Diary",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Divine Nail": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Divine Pin",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (1)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [1 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (2)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [2 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (3)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [3 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (4)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [4 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (5)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [5 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (6)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [6 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Dragon Ball (7)": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Dragon Sphere [7 Star]",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DragonCapsule": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Summon once from the Beast Event!",
+      "DisplayIcon": "rbxassetid://130577771455565",
+      "DisplayName": "Dragon Capsule",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "DragonFruit": {
+    "configuration": {
+      "Description": "Used to evolve Dragon Emperor!",
+      "DisplayName": "Dragon Fruit",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DragonSword": {
+    "configuration": {
+      "Description": "Used to evolve Tashrio!",
+      "DisplayName": "Dragon Sword",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "DreamKey": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Used to access the dream place!",
+      "DisplayName": "Dream Key",
+      "Rarity": "Rare",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Easter Bunny": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Bunny",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Easter Moon": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Moon",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Easter Shades": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Shades",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Emu Book": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Emu Book",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "EnchantedCandyKey": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to play Winter Mayhem Mode & Earn 2x Rewards!",
+      "DisplayName": "Enchanted Candy Key",
+      "Rarity": "Epic",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "EpicPresent": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "An Epic present with gifts inside!",
+      "DisplayName": "Winter Present (Epic)",
+      "Rarity": "Epic",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "EventPresent": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "An hourly present with gifts inside!",
+      "DisplayName": "Event Present",
+      "Rarity": "Exclusive",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "ExorcisingBat": {
+    "configuration": {
+      "Description": "Used to evolve Saiko!",
+      "DisplayName": "Exorcising Bat",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ExpPotion": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Grants the player a 50% (PLAYER EXP BOOST)",
+      "DisplayIcon": "rbxassetid://100748281662589",
+      "DisplayName": "Experience Potion",
+      "Rarity": "Epic",
+      "Sort": [
+        "Potions"
+      ],
+      "Usable": true
+    }
+  },
+  "Fierce Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Fierce Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "FierceStone": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Fierce Stone",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stones"
+      ],
+      "Usable": false
+    }
+  },
+  "Fire Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Fire Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "FireStone": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Fire Stone",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stones"
+      ],
+      "Usable": false
+    }
+  },
+  "Fish Stick": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Fishing Rod",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Flamingo Shades": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Flamingo Shades",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Freiza Halo": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Halo",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "FrostKey": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to lock stats when rerolling potential stats for units!",
+      "DisplayName": "Frost Key",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "FurCoat": {
+    "configuration": {
+      "Description": "Used to evolve Dragon Emperor!",
+      "DisplayName": "Fur Coat",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "GaleStone": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Wind Stone",
+      "Rarity": "Epic",
+      "Sort": [
+        "Stones"
+      ],
+      "Usable": false
+    }
+  },
+  "GlacierBundle": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Grants the player a 20% banner luck boost",
+      "DisplayIcon": "rbxassetid://114034975822906",
+      "DisplayName": "Glacier Bundle",
+      "ProductId": 2658299208,
+      "Rarity": "Epic",
+      "Sort": [
+        "Bundle"
+      ],
+      "Usable": true
+    }
+  },
+  "GoldJewel": {
+    "configuration": {
+      "Description": "Used to evolve Time King!",
+      "DisplayName": "Gold Jewel",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "GoldenMarble": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Golden Marble",
+      "FoodXP": 150,
+      "Rarity": "Rare",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "Gravity Cane": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Gravity Cane",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "GreenJewel": {
+    "configuration": {
+      "Description": "Used to evolve Time King!",
+      "DisplayName": "Green Jewel",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "GreenStar": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Green Star",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stars"
+      ],
+      "Usable": false
+    }
+  },
+  "GrimoirePages": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Ancient pages, I wonder what I can do with them..",
+      "DisplayName": "Grimoire Pages",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "GromjawMask": {
+    "configuration": {
+      "Description": "Used to evolve Gromjaw!",
+      "DisplayName": "Gromjaw Mask",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Hakai": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Hakai",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Halo": {
+    "configuration": {
+      "Description": "Used to evolve Gohu!",
+      "DisplayName": "Halo",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "HeartPresent": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "An hourly present with gifts inside!",
+      "DisplayName": "Heart Present",
+      "Rarity": "Exclusive",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "HogoyokuFragment": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Hogoyoku Fragment",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Hogyoku": {
+    "configuration": {
+      "Description": "Used to evolve Aizon!",
+      "DisplayName": "Spiritual Core",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "HollowMask": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Hollow Mask",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "HornsofSalvation": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Horns Of Salvation",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Ice Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Ice Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "IceFruit": {
+    "configuration": {
+      "Description": "Used to evolve Aokojo!",
+      "DisplayName": "Ice Fruit",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Iron Axe": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Metal!",
+      "DisplayName": "Metal Axe",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Joker Card": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "...",
+      "DisplayName": "Joker Card",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Kamish's Wrath": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Solo Woo [DARK]!",
+      "DisplayName": "Kamich's Wrath",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Kasaka's Venom Fang": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Solo Woo!",
+      "DisplayName": "Frost Daggers",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Katana": {
+    "configuration": {
+      "Description": "Used to evolve Yune Gossi!",
+      "DisplayName": "Katana",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "KiritsuguPisol": {
+    "configuration": {
+      "Description": "Used to evolve Kirit!",
+      "DisplayName": "Kirit's Gun",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Kitchen Knife": {
+    "configuration": {}
+  },
+  "KuraWeaponChains": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Goora Chains",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Lanzar": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Lanzar",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LaughfyEvoItem": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Head Helmet",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LaughfyEvoItem [2]": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Giant Helmet",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LeftGoldenBall": {
+    "configuration": {
+      "Description": "Used to evolve Oktawalk!",
+      "DisplayName": "Left Golden Ball",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LegendaryPresent": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "A Legendary present with gifts inside!",
+      "DisplayName": "Winter Present (Legendary)",
+      "Rarity": "Legendary",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "LegendsPotion": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Grants the player a 2x drop chance boost for (unit) in Legend Stages",
+      "DisplayIcon": "rbxassetid://132445499585525",
+      "DisplayName": "Legend's Potion",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Potions"
+      ],
+      "Usable": true
+    }
+  },
+  "Light Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Light Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LightGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Light!",
+      "DisplayName": "Light Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LightSpear": {
+    "configuration": {
+      "Description": "Used to evolve Light!",
+      "DisplayName": "Light Spear",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LightStone": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Light Stone",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stones"
+      ],
+      "Usable": false
+    }
+  },
+  "LightningGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Lucky one!",
+      "DisplayName": "Lightning Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "LightningShunko": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Lightning Shunko",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MageStone": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "An ancient mana crystal, used as a food item!",
+      "DisplayName": "Mage Stone",
+      "FoodXP": 125,
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc",
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "MagicMask": {
+    "configuration": {
+      "Description": "Used to evolve King Rimura!",
+      "DisplayName": "Magic Mask",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MagicNecklace": {
+    "Limit": 10,
+    "configuration": {
+      "Description": "Buffs damage by 15% in Ancient Dungeon. (stacks)",
+      "DisplayName": "Magic Necklaces",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ManaCrystals": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Mana crystals, I wonder what I can do with them..",
+      "DisplayName": "Mana Crystals",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ManaHeart": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Mana Heart",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MarkOfPride": {
+    "configuration": {
+      "Description": "Used to evolve Pikkora Yellow!",
+      "DisplayName": "Mark of Pride",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Meat": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to craft items to evolve units! Also used as a food item.",
+      "DisplayName": "Meat",
+      "FoodXP": 80,
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc",
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "MenosMask": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Menos Mask",
+      "FoodXP": 175,
+      "Rarity": "Legendary",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "Mera Mera": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Mera Fruit",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MilkCarton": {
+    "configuration": {
+      "Description": "Used to evolve Mr. Shrimpy!",
+      "DisplayName": "Milk Carton",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MistKatana": {
+    "configuration": {
+      "Description": "Used to evolve Muichori!",
+      "DisplayName": "Mist Katana",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MustangLighter": {
+    "configuration": {
+      "Description": "Used to evolve Ray!",
+      "DisplayName": "Ray's Lighter",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "MythicPresent": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "A Mythic present with gifts inside!",
+      "DisplayName": "Winter Present (Mythic)",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Naruto": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Naruto",
+      "FoodXP": 40,
+      "Rarity": "Rare",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "NekoTalisman": {
+    "configuration": {
+      "Description": "Used to evolve Turbo Grandmother!",
+      "DisplayName": "Neko Talisman",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "NewYearCrate": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Can be used inside the World Collision Event Shop!",
+      "DisplayName": "New Year Crate",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Ocre Skull": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Ocre Skull",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "OdaBlade": {
+    "configuration": {
+      "Description": "Used to evolve Oda!",
+      "DisplayName": "Oda Blade",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "OnePieceDungeonToken": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Belli Coin, I wonder what I can do with them..",
+      "DisplayName": "Belli Coin",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Ope Ope": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Ope Fruit",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "OrangeStar": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Orange Star",
+      "Rarity": "Epic",
+      "Sort": [
+        "Stars"
+      ],
+      "Usable": false
+    }
+  },
+  "Orb of Avarice": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Chui!",
+      "DisplayName": "Sphere Of Flame",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "OrihimeHeart": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Orihime's Heart",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "PatrioticFlag": {
+    "configuration": {
+      "Description": "Used to evolve Smiling Valentine!",
+      "DisplayName": "Patriotic Flag",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "PotentialKey": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to reroll potential stats for units!",
+      "DisplayIcon": "rbxassetid://108419160714054",
+      "DisplayIconSize": "UDim2.fromScale(0.8,0.8)",
+      "DisplayName": "Potential Key",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Prince Armor": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Prince Armor",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Pudding": {
+    "configuration": {
+      "Description": "Used to evolve Beruus!",
+      "DisplayName": "Pudding",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "PurpleStar": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Purple Star",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stars"
+      ],
+      "Usable": false
+    }
+  },
+  "QuakeFruit": {
+    "configuration": {
+      "Description": "Used to evolve Greybeard!",
+      "DisplayName": "Quake Fruit",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RainbowStar": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Rainbow Star",
+      "ItemGradient": "Rainbow",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Stars"
+      ],
+      "Usable": false
+    }
+  },
+  "RarePresent": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "A Rare present with gifts inside!",
+      "DisplayName": "Winter Present (Rare)",
+      "Rarity": "Rare",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "ReaperPart": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Reaper Part",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Red Umbrella": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Umbrella",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RedBlaster": {
+    "configuration": {
+      "Description": "Used to evolve Delta Brothers!",
+      "DisplayName": "Red Blaster",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RedJewel": {
+    "configuration": {
+      "Description": "Used to evolve Time King!",
+      "DisplayName": "Red Jewel",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RedStar": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Red Star",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Stars"
+      ],
+      "Usable": false
+    }
+  },
+  "RedeemableCandyCaneBroomstick": {
+    "configuration": {
+      "Description": "Redeem this item to gain the <Candy Cane Broomstick> mount!",
+      "DisplayName": "Redeemable Candy Cane Broomstick",
+      "Rarity": "Mythical",
+      "RedeemItem": "CandyCaneBroomstick",
+      "RedeemItemType": "Mount",
+      "Sort": [
+        "Misc",
+        "Redeemable"
+      ],
+      "Usable": true
+    }
+  },
+  "RedeemableCandyHoverboard": {
+    "configuration": {
+      "Description": "Redeem this item to gain the <Candy Hoverboard> mount!",
+      "DisplayName": "Redeemable Candy Hoverboard",
+      "Rarity": "Mythical",
+      "RedeemItem": "CandyHoverboard",
+      "RedeemItemType": "Mount",
+      "Sort": [
+        "Misc",
+        "Redeemable"
+      ],
+      "Usable": true
+    }
+  },
+  "RedeemableCandySleigh": {
+    "configuration": {
+      "Description": "Redeem this item to gain the <Candy Sleigh> mount!",
+      "DisplayName": "Redeemable Candy Sleigh",
+      "Rarity": "Mythical",
+      "RedeemItem": "CandySleigh",
+      "RedeemItemType": "Mount",
+      "Sort": [
+        "Misc",
+        "Redeemable"
+      ],
+      "Usable": true
+    }
+  },
+  "RedeemableHoverCar": {
+    "configuration": {
+      "Description": "Redeem this item to gain the <Hover Car> mount!",
+      "DisplayName": "Redeemable Hover Car",
+      "Rarity": "Mythical",
+      "RedeemItem": "HoverCar",
+      "RedeemItemType": "Mount",
+      "Sort": [
+        "Misc",
+        "Redeemable"
+      ],
+      "Usable": true
+    }
+  },
+  "RedeemableIceSkates": {
+    "configuration": {
+      "Description": "Redeem this item to gain the <Ice Skates> mount!",
+      "DisplayName": "Redeemable Ice Skates",
+      "Rarity": "Mythical",
+      "RedeemItem": "IceSkates",
+      "RedeemItemType": "Mount",
+      "Sort": [
+        "Misc",
+        "Redeemable"
+      ],
+      "Usable": true
+    }
+  },
+  "Redstone": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to brew potions",
+      "DisplayIcon": "rbxassetid://100271666848832",
+      "DisplayName": "Red Stone",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RetiredGlasses": {
+    "configuration": {
+      "Description": "Used to evolve Retired Hitman!",
+      "DisplayName": "Retired Glasses",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RiatsuBlaster": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Riatsu Blaster",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RiatsuGyzer": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Riatsu Gyzer",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RightGoldenBall": {
+    "configuration": {
+      "Description": "Used to evolve Turbo Grandmother!",
+      "DisplayName": "Right Golden Ball",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RoyalCharm": {
+    "configuration": {
+      "Description": "Used to evolve Bao!",
+      "DisplayName": "Royal Charm",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "RuneStone": {
+    "Limit": 10,
+    "configuration": {
+      "Description": "Buffs damage by 15% in Golden Dungeon. (stacks)",
+      "DisplayName": "Rune Stones",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Saber": {
+    "configuration": {
+      "Description": "Used to evolve Sabur!",
+      "DisplayName": "Saber",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SenzuBean": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Green Bean",
+      "FoodXP": 100,
+      "Rarity": "Rare",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "Shadow Protector": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Shadow Protector",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ShinyDeltaCapsule": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Unlockable soon",
+      "DisplayIcon": "rbxassetid://130577771455565",
+      "DisplayName": "Shiny Dolta Capsule",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "ShinyPotion": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Grants the player a 10% banner shiny luck boost, (stacks with Shiny hunter)",
+      "DisplayIcon": "rbxassetid://139517965516468",
+      "DisplayName": "Shiny Potion",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Potions"
+      ],
+      "Usable": true
+    }
+  },
+  "SilverSword": {
+    "configuration": {
+      "Description": "Used to evolve Rogan!",
+      "DisplayName": "Silver Sword",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SkyShell": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Sky Shell (Dial)",
+      "FoodXP": 60,
+      "Rarity": "Rare",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "SlotsCapsule": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Unlockable after the completion of infinite castle season 2!",
+      "DisplayIcon": "rbxassetid://130577771455565",
+      "DisplayName": "Slots Capsule",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SmallCapsule": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Small Capsule",
+      "FoodXP": 20,
+      "Rarity": "Rare",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "SmileFruit": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to craft items to evolve units! Also used as a food item.",
+      "DisplayName": "Smile Fruit",
+      "FoodXP": 80,
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc",
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "SmileFruitFood": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "An ancient fruit, used as a food item!",
+      "DisplayName": "Smile Fruit",
+      "FoodXP": 150,
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc",
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "Snowflake": {
+    "configuration": {
+      "Description": "Used to evolve Urane!",
+      "DisplayName": "Snowflake",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Soul": {
+    "Limit": 50,
+    "configuration": {
+      "Description": "Real scary... Like, really. You just don't know.",
+      "DisplayName": "Soul",
+      "Rarity": "Exclusive",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SoulEssense": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Soul Essense",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Spaghetti": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Used to level up your unit!",
+      "DisplayName": "Spaghetti",
+      "FoodXP": 200,
+      "Rarity": "Rare",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "SpecialBeam": {
+    "configuration": {
+      "Description": "Used to evolve Gohun!",
+      "DisplayName": "Special Beam",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SpecialCrate": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Can be used inside the World Collision Event Shop!",
+      "DisplayName": "Special Crate",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SpecialEye": {
+    "configuration": {
+      "Description": "Used to evolve Itaha!",
+      "DisplayName": "Special Eye",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SpikedClub": {
+    "configuration": {
+      "Description": "Used to evolve Dragon Emperor!",
+      "DisplayName": "Spiked Club",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SpiritBomb": {
+    "configuration": {
+      "Description": "Used to evolve Super Gohu!",
+      "DisplayName": "Spirit Bomb",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "SpiritHands": {
+    "configuration": {
+      "Description": "Used to evolve Mimi!",
+      "DisplayName": "Spirit Hands",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Story Skip (Clover Kingdom)": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Use to skip Clover Kingdom!",
+      "DisplayName": "Story Skip (Clover Kingdom)",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Story Skip (Fujishima Island)": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Use to skip Fujishima Island!",
+      "DisplayName": "Story Skip (Fujishima Island)",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Story Skip (Land of the Sky)": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Use to skip Land of the Sky!",
+      "DisplayName": "Story Skip (Land of the Sky)",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Story Skip (Leaf Village)": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Use to skip Leaf Village!",
+      "DisplayName": "Story Skip (Leaf Village)",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Story Skip (Red Army HQ)": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Use to skip Red Army HQ!",
+      "DisplayName": "Story Skip (Red Army HQ)",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Story Skip (West City)": {
+    "Limit": 1,
+    "configuration": {
+      "Description": "Use to skip West City!",
+      "DisplayName": "Story Skip (West City)",
+      "Rarity": "Secret",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": true
+    }
+  },
+  "Suit": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Suit",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Sword Shield": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Sword Shield",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Sword of Light": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve Cho Heo In!",
+      "DisplayName": "Sword of Light",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "T10_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T10 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T11_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T11 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T12_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T12 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T13_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T13 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T14_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T14 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T15_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T15 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T1_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T1 Bunny Village Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T1_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T1 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T1_GhostPortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T1 Ghost Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T1_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T1 Ruined Ant Cave Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T2_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T2 Bunny Village Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T2_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T2 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T2_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T2 Ruined Ant Cave Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T3_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T3 Bunny Village Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T3_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T3 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T3_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T3 Ruined Ant Cave Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T4_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T4 Bunny Village Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T4_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T4 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T4_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T4 Ruined Ant Cave Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T5_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T5 Bunny Village Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T5_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T5 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T5_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T5 Ruined Ant Cave Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T6_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T6 Bunny Village Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T6_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T6 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T6_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T6 Ruined Ant Cave Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T7_BunnyVillagePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T7 Bunny Village Portal",
+      "Rarity": "Secret",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T7_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T7 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T7_RuinedAntCavePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T7 Ruined Ant Cave Portal",
+      "Rarity": "Secret",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T8_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T8 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "T9_FestivePortal": {
+    "configuration": {
+      "Description": "Use to open",
+      "DisplayName": "T9 Festive Portal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Portal"
+      ],
+      "Usable": true
+    }
+  },
+  "TimeGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Time King!",
+      "DisplayName": "Time Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "TotsukaBlade": {
+    "configuration": {
+      "Description": "Used to evolve Itaha!",
+      "DisplayName": "Totsuka Blade",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "TraitCrystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to reroll traits for units!",
+      "DisplayIcon": "rbxassetid://124476779622214",
+      "DisplayIconSize": "UDim2.fromScale(0.8,0.8)",
+      "DisplayName": "Trait Crystal",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Trophies": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "I wonder what I can do with those..",
+      "DisplayName": "Trophies",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "TuskMask": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "TuskMask",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "UniversalRaidToken": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Universal Shards, I wonder what I can do with them..",
+      "DisplayName": "Universal Shards",
+      "Rarity": "Legendary",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ValentineCrate": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Can be used inside the Valentine Event Shop!",
+      "DisplayName": "Valentine Crate",
+      "Rarity": "Mythical",
+      "RequestAmountOnUsage": true,
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Vyasche Item": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Vyasche Item",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Water Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Water Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "WaterArmor": {
+    "configuration": {
+      "Description": "Used to evolve Toboramo!",
+      "DisplayName": "Water Armor",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "WaterGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Noille!",
+      "DisplayName": "Water Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "WaterStone": {
+    "configuration": {
+      "Description": "Used to craft items to evolve units!",
+      "DisplayName": "Water Stone",
+      "Rarity": "Epic",
+      "Sort": [
+        "Stones"
+      ],
+      "Usable": false
+    }
+  },
+  "WaterWand": {
+    "configuration": {
+      "Description": "Used to evolve Noille!",
+      "DisplayName": "Water Wand",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "Wind Crystal": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Wind Concentrated Crystal",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "WindGrimoire": {
+    "configuration": {
+      "Description": "Used to evolve Yano!",
+      "DisplayName": "Wind Grimoire",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "YataMirror": {
+    "configuration": {
+      "Description": "Used to evolve Itaha!",
+      "DisplayName": "Yata Mirror",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "YinYang": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Yin Tokens",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ZoroEvoItem": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Headband",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "ZoroEvoItem [2]": {
+    "Limit": "inf",
+    "configuration": {
+      "Description": "Used to evolve a special unit!",
+      "DisplayName": "Purple Sword",
+      "Rarity": "Mythical",
+      "Sort": [
+        "Misc"
+      ],
+      "Usable": false
+    }
+  },
+  "bloodexpdrop": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Levels a unit to 50% the level cap",
+      "DisplayIcon": "rbxassetid://85886977542964",
+      "DisplayName": "Blood XP Drop",
+      "FoodXP": 100,
+      "FoodXPPercent": 50,
+      "Rarity": "Mythical",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  },
+  "bloodexpvile": {
+    "Limit": 5000,
+    "configuration": {
+      "Description": "Levels a unit to the level cap",
+      "DisplayIcon": "rbxassetid://90069901255429",
+      "DisplayName": "Demon Blood Vial",
+      "FoodXP": 100,
+      "FoodXPPercent": 100,
+      "Rarity": "Secret",
+      "Sort": [
+        "Food"
+      ],
+      "Usable": false
+    }
+  }
+}
