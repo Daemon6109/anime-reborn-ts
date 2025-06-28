@@ -426,7 +426,7 @@ local jsonString = serde.encode("json", itemsData, true) -- true for pretty prin
 jsonString = string.gsub(jsonString, "(%d+)%.0([,%s%}%]])", "%1%2")
 
 -- Ensure the target directory exists
-local targetDir = "places/common/shared/configuration"
+local targetDir = "places/common/src/shared/configuration"
 if not fs.isDir(targetDir) then
 	fs.writeDir(targetDir)
 end
