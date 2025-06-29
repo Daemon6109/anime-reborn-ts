@@ -1,0 +1,26 @@
+	Name = "Tusk"; -- The owner of the dialogue's name
+	PlayerID = script; -- The player id of whos avatar to display
+	Animation = 000000; -- The animation to play for the model. Can be (make it 000000 as default if non existent)
+	BannerColor = Color3.fromRGB(21, 21, 21); -- The color of the banner. Defaults to Color3.fromRGB(21,21,21)
+
+	[1] = { -- The index is the tree, aka the push
+		Text = "Hello!"; -- The message to display. Can be a function that returns a message
+		WaitTime = 4; -- The time to wait after the message has been displayed
+		Push = 0; -- The next tree to automatically go to. This or Responses must exist
+
+		Responses = {
+			[1] = {
+				Text = "Hey!"; -- The Text to display
+				Push = 0; -- The next tree to go to. If nil, it'll rely on Callback to progress
+
+				Callback = function() -- The function to run after it's clicked. Parameters are: the dialogue window module and the dialogue data (this table basically)
+					
+				end,
+			};
+
+			[2] = {
+				Text = "Bye";
+				Push = 0;
+			}
+		}
+	}
