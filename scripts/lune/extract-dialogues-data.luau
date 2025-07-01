@@ -198,7 +198,7 @@ local function parseDialogue(source)
 	return data
 end
 
-local function parseConditionalDialogue(source)
+local function parseGetDialogue(source)
 	local data = {}
 	local conditionalTrees = {}
 
@@ -243,7 +243,7 @@ local function parseConditionalDialogue(source)
 		local content = source:sub(openBrace, closeBrace)
 
 		-- A simple heuristic to check if this is a dialogue table
-		if content:find("OwnerName") and content:find("Text") then
+		if content:find("OwnerName") then
 			local success, treeData = pcall(parseDialogue, "return " .. content)
 			if success and treeData and next(treeData.Trees) ~= nil then
 				conditionalTrees[condition] = treeData.Trees
@@ -279,8 +279,8 @@ for _, dialogueEntry in pairs(DialogueRegistryFolder:GetChildren()) do
 		totalProcessed = totalProcessed + 1
 
 		-- Check if the script uses the GetDialogue function
-		if scriptSource:find("function%s+Dialogue:GetDialogue()") then
-			local success, data = pcall(parseConditionalDialogue, scriptSource)
+		if scriptSource:find("function%s+.-:GetDialogue()") then
+			local success, data = pcall(parseGetDialogue, scriptSource)
 			if success and data then
 				dialoguesData[dialogueName] = data
 				successCount = successCount + 1

@@ -55,21 +55,23 @@
     "BannerColor": "Color3.fromRGB(181, 96, 255)",
     "Name": "Besus",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Text": "Yes"
-          },
-          {
-            "Push": 0,
-            "Text": "No"
-          }
-        ],
-        "Text": "Oh, greetings mortal, crafting something, are we? Looks like you need to evolve your units. Go ahead. ",
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Speech": [
+        {
+          "Responses": [
+            {
+              "Text": "Yes"
+            },
+            {
+              "Push": 0,
+              "Text": "No"
+            }
+          ],
+          "Text": "Oh, greetings mortal, crafting something, are we? Looks like you need to evolve your units. Go ahead. ",
+          "WaitTime": 2
+        }
+      ]
+    }
   },
   "CurrencyExchanger": {
     "Animation": 0,
@@ -96,143 +98,71 @@
     "BannerColor": "Color3.fromRGB(255, 10, 55)",
     "Name": "Laughfy [Gear 4]",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Text": "[View Shop]"
-          },
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "Hello there, I got some items in my shop that might come in handy...",
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Speech": [
+        {
+          "Responses": [
+            {
+              "Text": "[View Shop]"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Hello there, I got some items in my shop that might come in handy...",
+          "WaitTime": 2
+        }
+      ]
+    }
   },
   "Easter2025": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(226, 152, 255)",
     "Name": "Karrot [Easter]",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Text": "Sure yo!"
-          },
-          {
-            "Push": 0,
-            "Text": "Nah just tp me"
-          },
-          {
-            "Push": 0,
-            "Text": "Lol you're funny im out"
-          }
-        ],
-        "Text": "Hehe! Yoo-hoo! Wanna hop on over to Bunny Village? I've got the fluffiest portals just for you! And guess what, it's only 100 gems! Carroto-rific deal, huh?",
-        "WaitTime": 4
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "bro you didn't have to tell me it like that"
-          }
-        ],
-        "Text": "Yo bruh you broke as hell",
-        "WaitTime": 4
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "W mans"
-          }
-        ],
-        "Text": "Here you go man!! go craazy",
-        "WaitTime": 4
-      }
-    ]
+    "Trees": []
   },
   "Easter2025Fountain": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(178, 53, 255)",
     "Name": "Easter Fountain",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Push": 2,
-            "Text": "Check Progress"
-          },
-          {
-            "Text": "Consume"
-          },
-          {
-            "Push": 0,
-            "Text": "Go Home"
-          }
-        ],
-        "Text": "...",
-        "WaitTime": 4
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "...",
-        "WaitTime": 4
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "You need atleast 20% to consume.",
-        "WaitTime": 4
-      }
-    ]
+    "Trees": []
   },
   "ElementalCavernsInfo": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(255,100,0)",
     "Name": "Voidless",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 2,
-        "Text": "If a cavern is called Fierce, all Fierce units get a 150% boost.",
-        "WaitTime": 3
-      },
-      {
-        "Push": 3,
-        "Text": "All other elements get a -100% debuff, making them way weaker.",
-        "WaitTime": 3
-      },
-      {
-        "Push": 4,
-        "Text": "This works the same for every cavern,",
-        "WaitTime": 3
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "whatever element the cavern is named after gets powered up, and the rest are weakened by -100%."
-      }
-    ]
+    "Trees": {
+      "speech": [
+        {
+          "Push": 2,
+          "Text": "If a cavern is called Fierce, all Fierce units get a 150% boost.",
+          "WaitTime": 3
+        },
+        {
+          "Push": 3,
+          "Text": "All other elements get a -100% debuff, making them way weaker.",
+          "WaitTime": 3
+        },
+        {
+          "Push": 4,
+          "Text": "This works the same for every cavern,",
+          "WaitTime": 3
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "whatever element the cavern is named after gets powered up, and the rest are weakened by -100%."
+        }
+      ]
+    }
   },
   "EventDialogue": {
     "Animation": 0,
@@ -259,27 +189,36 @@
     "BannerColor": "Color3.fromRGB(255,100,0)",
     "Name": "Builder",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 2,
-        "Text": "Raids are finally open!",
-        "WaitTime": 3
-      },
-      {
-        "Push": 3,
-        "Text": "Oh, you're wondering what happened to my friend? Oh well, he got fired. Deserved, to be honest..",
-        "WaitTime": 3
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "Anyways I'm rich now, here's a little something!"
-      }
-    ]
+    "Trees": {
+      "Claimed": [
+        {
+          "Push": 0,
+          "Text": "What you waitin' for? Enjoy the new build!",
+          "WaitTime": 3
+        }
+      ],
+      "Unclaimed": [
+        {
+          "Push": 2,
+          "Text": "Raids are finally open!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 3,
+          "Text": "Oh, you're wondering what happened to my friend? Oh well, he got fired. Deserved, to be honest..",
+          "WaitTime": 3
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Anyways I'm rich now, here's a little something!"
+        }
+      ]
+    }
   },
   "GroupPrize": {
     "Animation": 0,
@@ -360,30 +299,59 @@
     "BannerColor": "Color3.fromRGB(206, 58, 255)",
     "Name": "Olkuiorra",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 0,
-        "Text": "You have already completed the Quests!",
-        "WaitTime": 3
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0
-          },
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "You currently have "
-      },
-      {
-        "Push": 0,
-        "Text": "Ok, here you go!",
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Return": [
+        {
+          "Responses": [
+            {
+              "Push": 2,
+              "Text": "Reapers"
+            },
+            {
+              "Push": 3,
+              "Text": "Quests"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "What do you want?"
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "You currently have "
+        },
+        {
+          "Push": 0,
+          "Text": "Ok, here you go!",
+          "WaitTime": 2
+        }
+      ],
+      "Return2": [
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "Quests"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "What do you want?"
+        }
+      ]
+    }
   },
   "HellTower": {
     "Animation": 0,
@@ -470,143 +438,231 @@
     "BannerColor": "Color3.fromRGB(206, 58, 255)",
     "Name": "Orihame",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 0,
-        "Text": "Complete all Hallow Quests, then talk to me!",
-        "WaitTime": 3
-      }
-    ]
+    "Trees": {
+      "Return": [
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "Ok"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "I have been waiting for you, here is my heart, use it wisely!"
+        }
+      ]
+    }
   },
   "RaidDialogue": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(255, 10, 55)",
     "Name": "Yose",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Text": "[View Shop]"
-          },
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "Hello there, I got some items in my shop that might come in handy...",
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Speech": [
+        {
+          "Responses": [
+            {
+              "Text": "[View Shop]"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Hello there, I got some items in my shop that might come in handy...",
+          "WaitTime": 2
+        }
+      ]
+    }
   },
   "RebornQuester": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(206, 58, 255)",
     "Name": "Ascended Quester",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Push": 2,
-            "Text": "Yes"
-          },
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "Yes"
-      },
-      {
-        "Push": 0,
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Return": [
+        {
+          "Responses": [
+            {
+              "Push": 2,
+              "Text": "Yes"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Yes"
+        },
+        {
+          "Push": 0,
+          "WaitTime": 2
+        }
+      ]
+    }
   },
   "SoloWoo": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(152, 35, 255)",
     "Name": "Solo Woo",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "Good luck...",
-        "WaitTime": 4
-      },
-      {
-        "Responses": [
-          {
-            "Push": 3,
-            "Text": "Alright."
-          }
-        ],
-        "Text": "Check your quests. Got something special for you.",
-        "WaitTime": 3
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "Got it."
-          }
-        ],
-        "Text": "Finish them, and you’ll get something good.",
-        "WaitTime": 4
-      }
-    ]
+    "Trees": {
+      "ActiveDialogue": [
+        {
+          "Responses": [
+            {
+              "Text": "Crates"
+            },
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Hello!",
+          "WaitTime": 4
+        }
+      ],
+      "FinalDialogue": [
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Good luck...",
+          "WaitTime": 4
+        }
+      ],
+      "HasUnitDialogue": [
+        {
+          "Responses": [
+            {
+              "Text": "Crates?"
+            },
+            {
+              "Push": 2,
+              "Text": "Quests?"
+            },
+            {
+              "Push": 0,
+              "Text": "Nope."
+            }
+          ],
+          "Text": "Hey, need a quick favor."
+        },
+        {
+          "Responses": [
+            {
+              "Push": 3,
+              "Text": "Alright."
+            }
+          ],
+          "Text": "Check your quests. Got something special for you.",
+          "WaitTime": 3
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "Got it."
+            }
+          ],
+          "Text": "Finish them, and you’ll get something good.",
+          "WaitTime": 4
+        }
+      ],
+      "NoUnitDialogue": [
+        {
+          "Push": 0,
+          "Text": "I don’t have time for this...",
+          "WaitTime": 3
+        }
+      ]
+    }
   },
   "SoloWooFinal": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(152, 35, 255)",
     "Name": "Solo Woo",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "...",
-        "WaitTime": 4
-      }
-    ]
+    "Trees": {
+      "ActiveDialogue": [
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "...",
+          "WaitTime": 4
+        }
+      ],
+      "NoUnitDialogue": [
+        {
+          "Push": 0,
+          "Text": "...",
+          "WaitTime": 3
+        }
+      ]
+    }
   },
   "SoulsDialogue": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(255, 110, 144)",
     "Name": "Mimi",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 0,
-        "Text": "The event is over!!",
-        "WaitTime": 3
-      },
-      {
-        "Push": 0,
-        "Text": "Uh oh! You don't have any souls! Be back when you have more!",
-        "WaitTime": 3
-      },
-      {
-        "Push": 0,
-        "Text": "Yay! You've sacrificed this amount of souls!! Thank you, be sure to come back when you have more!!",
-        "WaitTime": 3
-      },
-      {
-        "Push": 0,
-        "Text": "Hey dude, pick a valid amount..",
-        "WaitTime": 3
-      }
-    ]
+    "Trees": {
+      "Cooldown": [
+        {
+          "Push": 0,
+          "Text": "You're on cooldown! Come back in less than a minute!!",
+          "WaitTime": 3
+        }
+      ],
+      "EventOver": [
+        {
+          "Push": 0,
+          "Text": "The event is over!!",
+          "WaitTime": 3
+        }
+      ],
+      "Main": [
+        {
+          "Responses": [
+            {
+              "Text": "YA!"
+            },
+            {
+              "Push": 0,
+              "Text": "NO! NO, NO!"
+            }
+          ],
+          "Text": "Heyyyyy! You can sacrifice your <Souls> here! Do you wanna do so?!"
+        },
+        {
+          "Push": 0,
+          "Text": "Uh oh! You don't have any souls! Be back when you have more!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 0,
+          "Text": "Yay! You've sacrificed this amount of souls!! Thank you, be sure to come back when you have more!!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 0,
+          "Text": "Hey dude, pick a valid amount..",
+          "WaitTime": 3
+        }
+      ]
+    }
   },
   "StatTransfer": {
     "Animation": 0,
@@ -653,94 +709,114 @@
     "BannerColor": "Color3.fromRGB(73, 73, 255)",
     "Name": "The Strongest Shaman",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 2,
-        "Text": "Oh hey! You must be new around here, huh?",
-        "WaitTime": 3
-      },
-      {
-        "Push": 3,
-        "Text": "I am The Strongest. I can amplify your units, using Trait Crystals!",
-        "WaitTime": 2
-      },
-      {
-        "Responses": [
-          {
-            "Text": "..."
-          }
-        ],
-        "Text": "Here are some to get you started!"
-      }
-    ]
+    "Trees": {
+      "Claimed": [
+        {
+          "Responses": [
+            {
+              "Text": "Yes"
+            },
+            {
+              "Push": 0,
+              "Text": "No"
+            }
+          ],
+          "Text": "Your units are strong, but I'm stronger. Wanna amplify them?"
+        }
+      ],
+      "Unclaimed": [
+        {
+          "Push": 2,
+          "Text": "Oh hey! You must be new around here, huh?",
+          "WaitTime": 3
+        },
+        {
+          "Push": 3,
+          "Text": "I am The Strongest. I can amplify your units, using Trait Crystals!",
+          "WaitTime": 2
+        },
+        {
+          "Responses": [
+            {
+              "Text": "..."
+            }
+          ],
+          "Text": "Here are some to get you started!"
+        }
+      ]
+    }
   },
   "Tutorial": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(255, 210, 30)",
     "Name": "Tutorial",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Push": 2,
-            "Text": "Sure!"
-          }
-        ],
-        "Text": "Welcome to Anime Reborn! Before you start your adventure, you need to choose a starter unit to join you in battle!",
-        "WaitTime": 5
-      },
-      {
-        "Responses": [
-          {
-            "Push": 3,
-            "Text": "Okay!"
-          }
-        ],
-        "Text": "There are much more powerful units you can acquire from banner summonings and from beating certain stages...",
-        "WaitTime": 2
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "Definitely!"
-          }
-        ],
-        "Text": "You can choose between the following three starter units. Think you can handle it?",
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Speech": [
+        {
+          "Responses": [
+            {
+              "Push": 2,
+              "Text": "Sure!"
+            }
+          ],
+          "Text": "Welcome to Anime Reborn! Before you start your adventure, you need to choose a starter unit to join you in battle!",
+          "WaitTime": 5
+        },
+        {
+          "Responses": [
+            {
+              "Push": 3,
+              "Text": "Okay!"
+            }
+          ],
+          "Text": "There are much more powerful units you can acquire from banner summonings and from beating certain stages...",
+          "WaitTime": 2
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "Definitely!"
+            }
+          ],
+          "Text": "You can choose between the following three starter units. Think you can handle it?",
+          "WaitTime": 2
+        }
+      ]
+    }
   },
   "UnitIndex": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(129, 173, 255)",
     "Name": "Wheeze",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Responses": [
-          {
-            "Push": 2,
-            "Text": "Greetings."
-          }
-        ],
-        "Text": "Ah, a mortal approaches! Greetings to you too.",
-        "WaitTime": 2
-      },
-      {
-        "Responses": [
-          {
-            "Text": "Yes"
-          },
-          {
-            "Push": 0,
-            "Text": "No"
-          }
-        ],
-        "Text": "I sense your curiosity about the units you've collected. You might even get rewards out of it.",
-        "WaitTime": 2
-      }
-    ]
+    "Trees": {
+      "Speech": [
+        {
+          "Responses": [
+            {
+              "Push": 2,
+              "Text": "Greetings."
+            }
+          ],
+          "Text": "Ah, a mortal approaches! Greetings to you too.",
+          "WaitTime": 2
+        },
+        {
+          "Responses": [
+            {
+              "Text": "Yes"
+            },
+            {
+              "Push": 0,
+              "Text": "No"
+            }
+          ],
+          "Text": "I sense your curiosity about the units you've collected. You might even get rewards out of it.",
+          "WaitTime": 2
+        }
+      ]
+    }
   }
 }
