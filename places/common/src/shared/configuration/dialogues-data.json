@@ -286,27 +286,74 @@
     "BannerColor": "Color3.fromRGB(255, 85, 0)",
     "Name": "Mozking",
     "PlayerID": 0,
-    "Trees": [
-      {
-        "Push": 2,
-        "Text": "Oh hey! You're in our group!",
-        "WaitTime": 3
-      },
-      {
-        "Push": 3,
-        "Text": "Thanks for your support! Make sure to like the game too!",
-        "WaitTime": 3
-      },
-      {
-        "Responses": [
-          {
-            "Push": 0,
-            "Text": "..."
-          }
-        ],
-        "Text": "Here's a little something for you, my friend!"
-      }
-    ]
+    "Trees": {
+      "CCUnclaimed": [
+        {
+          "Push": 2,
+          "Text": "Oh hey! You're in our group!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 3,
+          "Text": "Thanks for your support! Make sure to like the game too!",
+          "WaitTime": 3
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Here's a little something for you, my friend!"
+        }
+      ],
+      "Claimed": [
+        {
+          "Push": 0,
+          "Text": "Thanks for joining the group!",
+          "WaitTime": 3
+        }
+      ],
+      "Decline": [
+        {
+          "Push": 2,
+          "Text": "Hey there!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 3,
+          "Text": "Did you know? You can gain amazing prizes for joining our group!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 0,
+          "Text": "Come back when you've joined!",
+          "WaitTime": 3
+        }
+      ],
+      "Unclaimed": [
+        {
+          "Push": 2,
+          "Text": "Oh hey! You're in our group!",
+          "WaitTime": 3
+        },
+        {
+          "Push": 3,
+          "Text": "Thanks for your support! Make sure to like the game too!",
+          "WaitTime": 3
+        },
+        {
+          "Responses": [
+            {
+              "Push": 0,
+              "Text": "..."
+            }
+          ],
+          "Text": "Here's a little something for you, my friend!"
+        }
+      ]
+    }
   },
   "HallowKing": {
     "Animation": 0,

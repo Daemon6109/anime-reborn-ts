@@ -198,6 +198,72 @@ local function parseDialogue(source)
 	return data
 end
 
+local function parseConditionalDialogue(source)
+	local data = {}
+	local conditionalTrees = {}
+
+	-- Extract base properties from the first dialogue table found
+	local dialogueName = source:match('OwnerName%s*=%s*"(.-)"') or source:match("OwnerName%s*=%s*'(.-)'")
+	data.Name = dialogueName
+	data.PlayerID = 0
+	data.Animation = 0
+	local bannerColor = source:match("BannerColor%s*=%s*Color3.fromRGB%((.-)%)")
+	if bannerColor then
+		data.BannerColor = "Color3.fromRGB(" .. bannerColor .. ")"
+	end
+
+	-- Find all dialogue tables (Claimed, Decline, etc.)
+	local i = 1
+	while i <= #source do
+		-- Pattern to find "local <var> = {" or "<var> = {"
+		local _, endP, condition = source:find("local%s+(%w+)%s*=%s*{", i)
+		if not endP then
+			_, endP, condition = source:find("(%w+)%s*=%s*{", i)
+		end
+
+		if not endP then
+			break -- No more matches
+		end
+
+		local openBrace = endP
+		local closeBrace = findMatchingBrace(source, openBrace)
+
+		if not closeBrace then
+			-- This could happen with malformed source, prevent infinite loop
+			i = endP + 1
+			print(
+				"[WARNING] Could not find matching brace for condition "
+					.. (condition or "unknown")
+					.. " starting at "
+					.. openBrace
+			)
+			continue
+		end
+
+		local content = source:sub(openBrace, closeBrace)
+
+		-- A simple heuristic to check if this is a dialogue table
+		if content:find("OwnerName") and content:find("Text") then
+			local success, treeData = pcall(parseDialogue, "return " .. content)
+			if success and treeData and next(treeData.Trees) ~= nil then
+				conditionalTrees[condition] = treeData.Trees
+			else
+				print(
+					"[WARNING] Failed to parse conditional tree "
+						.. condition
+						.. " in dialogue "
+						.. (dialogueName or "unknown")
+				)
+			end
+		end
+
+		i = closeBrace + 1
+	end
+
+	data.Trees = conditionalTrees
+	return data
+end
+
 -- Collect all dialogue data
 local dialoguesData = {}
 
@@ -212,12 +278,23 @@ for _, dialogueEntry in pairs(DialogueRegistryFolder:GetChildren()) do
 		local scriptSource = dialogueEntry.Source
 		totalProcessed = totalProcessed + 1
 
-		local success, data = pcall(parseDialogue, scriptSource)
-		if success and data then
-			dialoguesData[dialogueName] = data
-			successCount = successCount + 1
+		-- Check if the script uses the GetDialogue function
+		if scriptSource:find("function%s+Dialogue:GetDialogue()") then
+			local success, data = pcall(parseConditionalDialogue, scriptSource)
+			if success and data then
+				dialoguesData[dialogueName] = data
+				successCount = successCount + 1
+			else
+				print("[WARNING] Failed to parse conditional dialogue: " .. dialogueName .. "\n" .. tostring(data))
+			end
 		else
-			print("[WARNING] Failed to parse dialogue: " .. dialogueName .. "\n" .. tostring(data))
+			local success, data = pcall(parseDialogue, scriptSource)
+			if success and data then
+				dialoguesData[dialogueName] = data
+				successCount = successCount + 1
+			else
+				print("[WARNING] Failed to parse dialogue: " .. dialogueName .. "\n" .. tostring(data))
+			end
 		end
 	end
 end
@@ -231,8 +308,8 @@ local jsonString = serde.encode("json", dialoguesData, true)
 
 -- Post-process to fix number formatting (remove .0 from integers)
 jsonString = string.gsub(jsonString, "(%d+)%.0([,%s%}%]])", "%1%2")
--- Post-process to fix empty Trees tables
-jsonString = string.gsub(jsonString, '"Trees": {}', '"Trees": []')
+-- Post-process to fix empty Trees tables for simple dialogues
+jsonString = string.gsub(jsonString, '("Trees":)%s*{}', "%1 []")
 
 -- Ensure the target directory exists
 local targetDir = "places/common/src/shared/configuration"
