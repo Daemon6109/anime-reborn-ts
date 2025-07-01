@@ -15,6 +15,11 @@ if not DialogueRegistryFolder then
 	error("Dialogues folder not found in Registry!")
 end
 
+-- Collect all dialogue data
+local dialoguesData = {}
+local totalProcessed = 0
+local successCount = 0
+
 -- Function to find matching closing brace accounting for nested braces, strings, and comments
 local function findMatchingBrace(source, startPos)
 	local braceCount = 1
@@ -63,9 +68,11 @@ end
 local function parseTree(treeContent)
 	local treeData = {}
 	-- Use non-greedy match for text to avoid consuming the whole string if it contains quotes
-	treeData.Text = treeContent:match('Text%s*=%s*"(.-)"')
+	treeData.Text = (
+		treeContent:match('Text%s*=%s*"(.-)"')
 		or treeContent:match("Text%s*=%s*'(.-)'")
 		or treeContent:match("Text%s*=%s*`([^`]*)`")
+	)
 	local waitTime = treeContent:match("WaitTime%s*=%s*(%d+)")
 	if waitTime then
 		treeData.WaitTime = tonumber(waitTime)
@@ -198,7 +205,7 @@ local function parseDialogue(source)
 	return data
 end
 
-local function parseGetDialogue(source)
+local function parseConditionalDialogue(source)
 	local data = {}
 	local conditionalTrees = {}
 
@@ -264,13 +271,41 @@ local function parseGetDialogue(source)
 	return data
 end
 
+local function parseGetDialogue(source)
+	local data = {}
+	-- Extract the content of the table returned by GetDialogue
+	local dialogueContent = source:match("return%s*({(.-)});", 1)
+	if not dialogueContent then
+		-- Fallback for dialogues that define tables and then return them conditionally
+		return parseConditionalDialogue(source)
+	end
+
+	-- To parse the Luau code statically, we need to remove or simplify
+	-- any actual code logic.
+
+	-- 1. Remove Callback functions entirely.
+	dialogueContent = dialogueContent:gsub("Callback%s*=%s*function%(.-)end,", "")
+
+	-- 2. Simplify conditional assignments.
+	-- Replace any complex assignment to "Push" with a default value like 0.
+	dialogueContent = dialogueContent:gsub("(Push%s*=%s*)[^,;]+", "%1 0")
+
+	-- 3. Replace interpolated strings with simple empty strings.
+	dialogueContent = dialogueContent:gsub("`[^`]*`", '""')
+
+	-- Now, try to parse the cleaned-up string as a dialogue table.
+	local success, dialogueData = pcall(parseDialogue, dialogueContent)
+	if success and dialogueData then
+		data = dialogueData
+	else
+		print("[WARNING] Failed to parse dialogue from return statement: " .. tostring(dialogueData))
+	end
+
+	return data
+end
+
 -- Collect all dialogue data
-local dialoguesData = {}
-
 print("Starting to process dialogues...")
-
-local totalProcessed = 0
-local successCount = 0
 
 for _, dialogueEntry in pairs(DialogueRegistryFolder:GetChildren()) do
 	if dialogueEntry:IsA("ModuleScript") then

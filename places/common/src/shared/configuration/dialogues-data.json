@@ -299,59 +299,13 @@
     "BannerColor": "Color3.fromRGB(206, 58, 255)",
     "Name": "Olkuiorra",
     "PlayerID": 0,
-    "Trees": {
-      "Return": [
-        {
-          "Responses": [
-            {
-              "Push": 2,
-              "Text": "Reapers"
-            },
-            {
-              "Push": 3,
-              "Text": "Quests"
-            },
-            {
-              "Push": 0,
-              "Text": "..."
-            }
-          ],
-          "Text": "What do you want?"
-        },
-        {
-          "Responses": [
-            {
-              "Push": 0
-            },
-            {
-              "Push": 0,
-              "Text": "..."
-            }
-          ],
-          "Text": "You currently have "
-        },
-        {
-          "Push": 0,
-          "Text": "Ok, here you go!",
-          "WaitTime": 2
-        }
-      ],
-      "Return2": [
-        {
-          "Responses": [
-            {
-              "Push": 0,
-              "Text": "Quests"
-            },
-            {
-              "Push": 0,
-              "Text": "..."
-            }
-          ],
-          "Text": "What do you want?"
-        }
-      ]
-    }
+    "Trees": [
+      {
+        "Push": 0,
+        "Text": "You need me as a unit to talk to me!",
+        "WaitTime": 3
+      }
+    ]
   },
   "HellTower": {
     "Animation": 0,
@@ -438,23 +392,13 @@
     "BannerColor": "Color3.fromRGB(206, 58, 255)",
     "Name": "Orihame",
     "PlayerID": 0,
-    "Trees": {
-      "Return": [
-        {
-          "Responses": [
-            {
-              "Push": 0,
-              "Text": "Ok"
-            },
-            {
-              "Push": 0,
-              "Text": "..."
-            }
-          ],
-          "Text": "I have been waiting for you, here is my heart, use it wisely!"
-        }
-      ]
-    }
+    "Trees": [
+      {
+        "Push": 0,
+        "Text": "Thank you for setting me free!",
+        "WaitTime": 3
+      }
+    ]
   },
   "RaidDialogue": {
     "Animation": 0,
