@@ -21,7 +21,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [x] Items
 - [ ] Potions
 - [ ] EventShopItems
-- [ ] Difficulties
+- [x] Difficulties
 - [ ] Traits
 - [ ] Maps
 - [ ] Abstracts

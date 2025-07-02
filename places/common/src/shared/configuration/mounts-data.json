@@ -1,0 +1,178 @@
+{
+	"DemonWings": {
+		"configuration": {
+			"DisplayName": "Demon Wing",
+			"Description": "What better way to fly around than these?",
+			"MaxSpeed": 45,
+			"JumpHeight": 14,
+			"Acceleration": 44.12,
+			"PriceInGems": 2250,
+			"Rarity": "Legendary"
+		},
+		"animations": {
+			"idle": 84536523195656,
+			"walk": 131383125495707,
+			"custom": 135346370939217
+		}
+	},
+	"FairyWings": {
+		"configuration": {
+			"DisplayName": "Fairy Wings",
+			"Description": "What better way to fly around than these?",
+			"MaxSpeed": 45,
+			"JumpHeight": 14,
+			"Acceleration": 44.12,
+			"PriceInGems": 2250,
+			"Rarity": "Rare"
+		},
+		"animations": {
+			"idle": 84536523195656,
+			"walk": 131383125495707
+		}
+	},
+	"CrazyBike": {
+		"configuration": {
+			"DisplayName": "Crazy Bike",
+			"Description": "With great performance and great looks, the Crazy Bike is suitable for many mages.",
+			"MaxSpeed": 60,
+			"JumpHeight": 8,
+			"Acceleration": 39.22,
+			"PriceInGems": 10000,
+			"Rarity": "Legendary"
+		},
+		"animations": {
+			"idle": 134849489568369,
+			"walk": 127154542263408,
+			"jump": 110335166175469,
+			"doubleJump": 111601390034038
+		}
+	},
+	"CandyCaneBroomstick": {
+		"configuration": {
+			"DisplayName": "Candy Cane Broomstick",
+			"Description": "Delicious magic.",
+			"MaxSpeed": 60,
+			"JumpHeight": 14,
+			"Acceleration": 54,
+			"Rarity": "Exclusive"
+		},
+		"animations": {
+			"idle": 86743507188786,
+			"walk": 85593691387979,
+			"jump": 77692552523420,
+			"doubleJump": 108031991860179
+		}
+	},
+	"HoverCar": {
+		"configuration": {
+			"DisplayName": "Hover Car",
+			"Description": "Definitely creates traffic.",
+			"MaxSpeed": 70,
+			"JumpHeight": 18,
+			"Acceleration": 58,
+			"Rarity": "Exclusive"
+		},
+		"animations": {
+			"idle": 122737879607336,
+			"walk": 129976927486593,
+			"jump": 75070882414014,
+			"doubleJump": 93771811596735
+		}
+	},
+	"CandySleigh": {
+		"configuration": {
+			"DisplayName": "Candy Sleigh",
+			"Description": "Seriously? Who made this..",
+			"MaxSpeed": 65,
+			"JumpHeight": 15,
+			"Acceleration": 42,
+			"Rarity": "Exclusive"
+		},
+		"animations": {
+			"idle": 124614346524326,
+			"walk": 121321767790039,
+			"jump": 101471326733202,
+			"doubleJump": 123249440421779
+		}
+	},
+	"HoverChair": {
+		"configuration": {
+			"DisplayName": "Hover Chair",
+			"Description": "What better way to fly around than these?",
+			"MaxSpeed": 55,
+			"JumpHeight": 14,
+			"Acceleration": 59.12,
+			"PriceInGems": 15000,
+			"Rarity": "Legendary"
+		},
+		"animations": {
+			"idle": 84536523195656,
+			"walk": 131383125495707,
+			"custom": 135346370939217
+		}
+	},
+	"StrangeCloud": {
+		"configuration": {
+			"DisplayName": "Strange Cloud",
+			"Description": "Does not rain.",
+			"MaxSpeed": 50,
+			"JumpHeight": 12,
+			"Acceleration": 49.02,
+			"PriceInGems": 5000,
+			"Rarity": "Epic"
+		},
+		"animations": {
+			"idle": 124190013010214,
+			"walk": 87555884482177,
+			"jump": 75822811139607,
+			"doubleJump": 90908897491682
+		}
+	},
+	"DemonSlayer": {
+		"configuration": {
+			"DisplayName": "Monster Slayer",
+			"Description": "Despite how heavy this sword is, it offers amazing travelling qualities. They claim the fuel of this sword is Dark Magic..",
+			"MaxSpeed": 55,
+			"JumpHeight": 10,
+			"Acceleration": 53.92,
+			"PriceInGems": 12399,
+			"Rarity": "Mythical"
+		},
+		"animations": {
+			"idle": 110139661929681,
+			"walk": 136686227484848,
+			"jump": 75822811139607,
+			"doubleJump": 90908897491682
+		}
+	},
+	"CandyHoverboard": {
+		"configuration": {
+			"DisplayName": "Candy Hoverboard",
+			"Description": "Unfortunately non-magical.",
+			"MaxSpeed": 55,
+			"JumpHeight": 0,
+			"Acceleration": 46,
+			"Rarity": "Exclusive"
+		},
+		"animations": {
+			"idle": 128459754997755,
+			"walk": 119682363126300
+		}
+	},
+	"IceSkates": {
+		"configuration": {
+			"DisplayName": "Ice Skates",
+			"Description": "Cold... Like, seriously cold.",
+			"MaxSpeed": 40,
+			"JumpHeight": 7.2,
+			"Acceleration": 50,
+			"Rarity": "Exclusive"
+		},
+		"animations": {
+			"idle": 130309540918082,
+			"walk": 78354774427096,
+			"jump": 98602785444714,
+			"doubleJump": 103743115325154
+		}
+	}
+}
