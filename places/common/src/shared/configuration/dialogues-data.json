@@ -121,14 +121,92 @@
     "BannerColor": "Color3.fromRGB(226, 152, 255)",
     "Name": "Karrot [Easter]",
     "PlayerID": 0,
-    "Trees": []
+    "Trees": [
+      {
+        "Responses": [
+          {
+            "Push": 0,
+            "Text": "Sure yo!"
+          },
+          {
+            "Push": 0,
+            "Text": "Nah just tp me"
+          },
+          {
+            "Push": 0,
+            "Text": "Lol you're funny im out"
+          }
+        ],
+        "Text": "Hehe! Yoo-hoo! Wanna hop on over to Bunny Village? I've got the fluffiest portals just for you! And guess what, it's only 100 gems! Carroto-rific deal, huh?",
+        "WaitTime": 4
+      },
+      {
+        "Responses": [
+          {
+            "Push": 0,
+            "Text": "bro you didn't have to tell me it like that"
+          }
+        ],
+        "Text": "Yo bruh you broke as hell",
+        "WaitTime": 4
+      },
+      {
+        "Responses": [
+          {
+            "Push": 0,
+            "Text": "W mans"
+          }
+        ],
+        "Text": "Here you go man!! go craazy",
+        "WaitTime": 4
+      }
+    ]
   },
   "Easter2025Fountain": {
     "Animation": 0,
     "BannerColor": "Color3.fromRGB(178, 53, 255)",
     "Name": "Easter Fountain",
     "PlayerID": 0,
-    "Trees": []
+    "Trees": [
+      {
+        "Responses": [
+          {
+            "Push": 0,
+            "Text": "Check Progress"
+          },
+          {
+            "Push": 0,
+            "Text": "Consume"
+          },
+          {
+            "Push": 0,
+            "Text": "Go Home"
+          }
+        ],
+        "Text": "...",
+        "WaitTime": 4
+      },
+      {
+        "Responses": [
+          {
+            "Push": 0,
+            "Text": "..."
+          }
+        ],
+        "Text": "",
+        "WaitTime": 4
+      },
+      {
+        "Responses": [
+          {
+            "Push": 0,
+            "Text": "..."
+          }
+        ],
+        "Text": "You need atleast 20% to consume.",
+        "WaitTime": 4
+      }
+    ]
   },
   "ElementalCavernsInfo": {
     "Animation": 0,
@@ -395,7 +473,7 @@
     "Trees": [
       {
         "Push": 0,
-        "Text": "Thank you for setting me free!",
+        "Text": "Complete all Hallow Quests, then talk to me!",
         "WaitTime": 3
       }
     ]

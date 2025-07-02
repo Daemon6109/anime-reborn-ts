@@ -272,11 +272,9 @@ local function parseConditionalDialogue(source)
 end
 
 local function parseGetDialogue(source)
-	local data = {}
-	-- Extract the content of the table returned by GetDialogue
-	local dialogueContent = source:match("return%s*({(.-)});", 1)
+	local dialogueContent = source:match("function.-:GetDialogue.-return%s*({.-})%s*end")
+
 	if not dialogueContent then
-		-- Fallback for dialogues that define tables and then return them conditionally
 		return parseConditionalDialogue(source)
 	end
 
@@ -284,7 +282,7 @@ local function parseGetDialogue(source)
 	-- any actual code logic.
 
 	-- 1. Remove Callback functions entirely.
-	dialogueContent = dialogueContent:gsub("Callback%s*=%s*function%(.-)end,", "")
+	dialogueContent = dialogueContent:gsub("Callback%s*=%s*function%b()end,", "")
 
 	-- 2. Simplify conditional assignments.
 	-- Replace any complex assignment to "Push" with a default value like 0.
@@ -294,14 +292,13 @@ local function parseGetDialogue(source)
 	dialogueContent = dialogueContent:gsub("`[^`]*`", '""')
 
 	-- Now, try to parse the cleaned-up string as a dialogue table.
-	local success, dialogueData = pcall(parseDialogue, dialogueContent)
+	local success, dialogueData = pcall(parseDialogue, "return {" .. dialogueContent .. "}")
 	if success and dialogueData then
-		data = dialogueData
+		return dialogueData
 	else
-		print("[WARNING] Failed to parse dialogue from return statement: " .. tostring(dialogueData))
+		print("[WARNING] Failed to parse dialogue from GetDialogue function: " .. tostring(dialogueData))
+		return parseConditionalDialogue(source) -- Fallback
 	end
-
-	return data
 end
 
 -- Collect all dialogue data
