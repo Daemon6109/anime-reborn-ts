@@ -4,7 +4,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 
 ## Checklist
 
-- [ ] MapOrder
+- [x] MapOrder
 - [x] Titles
 - [ ] Passives
 - [ ] StatusEffects

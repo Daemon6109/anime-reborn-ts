@@ -1,0 +1,47 @@
+{
+	"InfoForQuests": {
+		"Ghost Tunnel": 7,
+		"Land of the Sky": 3,
+		"Clover Kingdom": 6,
+		"West City": 1,
+		"Fujishima Island": 4,
+		"Soul Desert": 9,
+		"Dorasoza": 10,
+		"Ant Cave": 8,
+		"Leaf Village": 2,
+		"Red Army HQ": 5
+	},
+	"DungeonInfo": {
+		"Dorasoza (Destroyed)": 1
+	},
+	"Info": {
+		"Ghost Tunnel": 7,
+		"Land of the Sky": 3,
+		"Clover Kingdom": 6,
+		"JJK": 12,
+		"Burned York": 11,
+		"West City": 1,
+		"Fujishima Island": 4,
+		"Soul Desert": 9,
+		"Dorasoza": 10,
+		"Ant Cave": 8,
+		"Leaf Village": 2,
+		"Red Army HQ": 5
+	},
+	"ElementalsInfo": {
+		"Six": 6,
+		"Two": 2,
+		"One": 1,
+		"Four": 4,
+		"Five": 5,
+		"Three": 3
+	},
+	"RaidInfo": {
+		"Golden Dungeon": 2,
+		"Quimera Continent": 3,
+		"Ancient Dungeon": 1
+	},
+	"AdventureInfo": {
+		"Winter Mayhem": 1
+	}
+}
