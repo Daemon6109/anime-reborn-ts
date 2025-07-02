@@ -11,7 +11,6 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] Skins
 - [ ] Recipes
 - [x] Buffs
-- [ ] GradientAnimations
 - [x] Currency
 - [x] ElementalModifiers
 - [x] Dialogues
@@ -29,7 +28,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [x] LeaderboardSeasons
 - [ ] CollisionEventItems
 - [x] BingoQuests
-- [ ] SpecialAbilities
+- [x] SpecialAbilities
 - [x] Pools
 - [x] Modes
 - [ ] Enemies
@@ -37,7 +36,6 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] EnemyTypes
 - [ ] Challenges
 - [ ] TowerRewards
-- [ ] Blessings
 - [ ] TournamentRewards
 - [ ] DungeonShopItems
 - [x] Units
