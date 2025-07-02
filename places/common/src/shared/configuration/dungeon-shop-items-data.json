@@ -1,0 +1,22 @@
+{
+	"Dorasoza (Destroyed)": {
+		"BlueStar": { "Price": 350, "Quantity": 20, "LayoutOrder": 4 },
+		"PotentialKey": { "Price": 825, "Quantity": 50, "LayoutOrder": 6 },
+		"PurpleStar": { "Price": 400, "Quantity": 20, "LayoutOrder": 3 },
+		"OrangeStar": { "Price": 450, "Quantity": 20, "LayoutOrder": 5 },
+		"Damaged Cape": { "Price": 3000, "Quantity": 5, "LayoutOrder": 4 },
+		"TraitCrystal": { "Price": 900, "Quantity": 100, "LayoutOrder": 8 },
+		"LaughfyEvoItem [2]": { "Price": 10000, "Quantity": 5, "LayoutOrder": 4 },
+		"ZoroEvoItem": { "Price": 3000, "Quantity": 5, "LayoutOrder": 4 },
+		"Mera Mera": { "Price": 10000, "Quantity": 5, "LayoutOrder": 4 },
+		"RedStar": { "Price": 350, "Quantity": 20, "LayoutOrder": 1 },
+		"Damaged Cape [2]": { "Price": 10000, "Quantity": 5, "LayoutOrder": 4 },
+		"Ope Ope": { "Price": 10000, "Quantity": 5, "LayoutOrder": 4 },
+		"FrostKey": { "Price": 650, "Quantity": 25, "LayoutOrder": 7 },
+		"ZoroEvoItem [2]": { "Price": 10000, "Quantity": 5, "LayoutOrder": 4 },
+		"Flamingo Shades": { "Price": 10000, "Quantity": 5, "LayoutOrder": 4 },
+		"Gravity Cane": { "Price": 7000, "Quantity": 5, "LayoutOrder": 4 },
+		"RainbowStar": { "Price": 500, "Quantity": 5, "LayoutOrder": 0 },
+		"GreenStar": { "Price": 350, "Quantity": 20, "LayoutOrder": 2 }
+	}
+}

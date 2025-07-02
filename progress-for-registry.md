@@ -4,7 +4,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 
 ## Checklist
 
-> **Progress: 17/35 (48.6%)**
+> **Progress: 18/35 (51.4%)**
 
 - [x] Abstracts
 - [x] BingoQuests
