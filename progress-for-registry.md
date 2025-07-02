@@ -5,7 +5,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 ## Checklist
 
 - [ ] MapOrder
-- [ ] Titles
+- [x] Titles
 - [ ] Passives
 - [ ] StatusEffects
 - [ ] StarMissions
@@ -14,25 +14,24 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] Buffs
 - [ ] GradientAnimations
 - [x] Currency
-- [ ] Caps
 - [ ] ElementalModifiers
 - [x] Dialogues
 - [ ] Quests
 - [x] Items
-- [ ] Potions
+- [x] Potions
 - [ ] EventShopItems
 - [x] Difficulties
 - [ ] Traits
 - [ ] Maps
 - [ ] Abstracts
 - [ ] RaidShopItems
-- [ ] Mounts
+- [x] Mounts
 - [ ] Portals
 - [ ] LeaderboardSeasons
 - [ ] CollisionEventItems
 - [ ] BingoQuests
 - [ ] SpecialAbilities
-- [ ] Pools
+- [x] Pools
 - [ ] Modes
 - [ ] Enemies
 - [ ] TeamEventShopItems

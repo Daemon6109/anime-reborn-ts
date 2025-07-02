@@ -1,0 +1,74 @@
+{
+	"ShinyPotion": {
+		"Recipe": {
+			"1": {
+				"Name": "FierceStone",
+				"Cost": 5
+			},
+			"2": {
+				"Name": "RedStar",
+				"Cost": 5
+			},
+			"3": {
+				"Name": "SmileFruit",
+				"Cost": 5
+			}
+		},
+		"RedstoneCost": 5,
+		"LevelRequirement": 10,
+		"ApplyEffect": "ShinyBoost",
+		"Duration": 1800
+	},
+	"ExpPotion": {
+		"Recipe": {
+			"1": {
+				"Name": "BlueStar",
+				"Cost": 5
+			},
+			"2": {
+				"Name": "WaterStone",
+				"Cost": 5
+			}
+		},
+		"RedstoneCost": 3,
+		"LevelRequirement": 5,
+		"ApplyEffect": "50%Exp",
+		"Duration": 3600
+	},
+	"BasicLuckPotion": {
+		"Recipe": {
+			"1": {
+				"Name": "GreenStar",
+				"Cost": 3
+			},
+			"2": {
+				"Name": "GaleStone",
+				"Cost": 3
+			}
+		},
+		"RedstoneCost": 2,
+		"LevelRequirement": 0,
+		"ApplyEffect": "BasicLuck",
+		"Duration": 1800
+	},
+	"LegendsPotion": {
+		"Recipe": {
+			"1": {
+				"Name": "LightStone",
+				"Cost": 5
+			},
+			"2": {
+				"Name": "OrangeStar",
+				"Cost": 5
+			},
+			"3": {
+				"Name": "SmileFruit",
+				"Cost": 5
+			}
+		},
+		"RedstoneCost": 5,
+		"LevelRequirement": 8,
+		"ApplyEffect": "LegendsBoost",
+		"Duration": 3600
+	}
+}

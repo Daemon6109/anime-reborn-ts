@@ -1,0 +1,351 @@
+{
+	"EpicPresent": {
+		"Items": {
+			"PotentialKey": {
+				"Quantity": 1,
+				"Chance": 45
+			},
+			"BasicLuckPotion": {
+				"Quantity": 1,
+				"Chance": 5
+			}
+		},
+		"Currencies": {
+			"Candy Cane": {
+				"Quantity": [200, 300],
+				"Chance": 5
+			},
+			"Gems": {
+				"Quantity": [50, 100],
+				"Chance": 45
+			}
+		}
+	},
+	"LegendaryPresent": {
+		"Items": {
+			"RainbowStar": {
+				"Quantity": 1,
+				"Chance": 5
+			},
+			"FrostKey": {
+				"Quantity": 1,
+				"Chance": 23.5
+			},
+			"PotentialKey": {
+				"Quantity": 1,
+				"Chance": 23.5
+			},
+			"RedeemableIceSkates": {
+				"Quantity": 1,
+				"Chance": 1
+			}
+		},
+		"Currencies": {
+			"Candy Cane": {
+				"Quantity": [350, 500],
+				"Chance": 45
+			},
+			"Gems": {
+				"Quantity": [100, 150],
+				"Chance": 2
+			}
+		}
+	},
+	"SpecialCrate": {
+		"Skins": {
+			"Metal (Mad)": {
+				"Quantity": 1,
+				"Chance": 50
+			},
+			"Igres (Mad)": {
+				"Quantity": 1,
+				"Chance": 35
+			},
+			"Igres (Dark)": {
+				"Quantity": 1,
+				"Chance": 20
+			},
+			"Kargalgan (Mad)": {
+				"Quantity": 1,
+				"Chance": 5
+			},
+			"Baek (Elite)": {
+				"Quantity": 1,
+				"Chance": 2.5
+			},
+			"Igres (Revealed)": {
+				"Quantity": 1,
+				"Chance": 0.5
+			}
+		},
+		"Items": {
+			"TraitCrystal": {
+				"Quantity": [1, 3],
+				"Chance": 10
+			},
+			"PotentialKey": {
+				"Quantity": [1, 3],
+				"Chance": 10
+			},
+			"RandomStar": {
+				"Rewards": {
+					"OrangeStar": {
+						"Quantity": [2, 4],
+						"Chance": 25
+					},
+					"BlueStar": {
+						"Quantity": [2, 4],
+						"Chance": 50
+					},
+					"GreenStar": {
+						"Quantity": [2, 4],
+						"Chance": 50
+					},
+					"PurpleStar": {
+						"Quantity": [2, 4],
+						"Chance": 50
+					},
+					"RedStar": {
+						"Quantity": [2, 4],
+						"Chance": 50
+					},
+					"RainbowStar": {
+						"Quantity": [1, 2],
+						"Chance": 5
+					}
+				},
+				"Chance": 10
+			}
+		}
+	},
+	"ValentineCrate": {
+		"Units": {
+			"Kirillin": {
+				"Quantity": 1,
+				"Chance": 42.195
+			},
+			"Ten Ten": {
+				"Quantity": 1,
+				"Chance": 41.32
+			},
+			"Inosuke": {
+				"Quantity": 1,
+				"Chance": 5.125
+			},
+			"Nezuko": {
+				"Quantity": 1,
+				"Chance": 5.125
+			},
+			"Emilia": {
+				"Quantity": 1,
+				"Chance": 5.125
+			},
+			"Juvia": {
+				"Quantity": 1,
+				"Chance": 1
+			},
+			"Funny Valentine": {
+				"Quantity": 1,
+				"Chance": 0.1
+			},
+			"Rias": {
+				"Quantity": 1,
+				"Chance": 0.05
+			}
+		},
+		"SellInfo": ["Gems", 25],
+		"Pity": {
+			"SecretPity": {
+				"Reward": {
+					"Rias": 1
+				},
+				"Cost": 4000
+			},
+			"MythicalPity": {
+				"Reward": {
+					"Funny Valentine": 1
+				},
+				"Cost": 1000
+			},
+			"LegendaryPity": {
+				"Reward": {
+					"Juvia": 1
+				},
+				"Cost": 100
+			}
+		}
+	},
+	"MythicPresent": {
+		"Units": {
+			"Douma": {
+				"Quantity": 1,
+				"Chance": 5
+			},
+			"Saber Alter": {
+				"Quantity": 1,
+				"Chance": 5
+			}
+		},
+		"Items": {
+			"TraitCrystal": {
+				"Quantity": 1,
+				"Chance": 43
+			},
+			"RedeemableCandyCaneBroomstick": {
+				"Quantity": 1,
+				"Chance": 1
+			},
+			"RedeemableCandyHoverboard": {
+				"Quantity": 1,
+				"Chance": 3
+			}
+		},
+		"Currencies": {
+			"Candy Cane": {
+				"Quantity": [500, 1000],
+				"Chance": 43
+			}
+		}
+	},
+	"EventPresent": {
+		"Currencies": {
+			"Gems": {
+				"Quantity": [200, 500],
+				"Chance": 49
+			},
+			"Candy Cane": {
+				"Quantity": [200, 500],
+				"Chance": 49
+			}
+		},
+		"Units": {
+			"Ragna": {
+				"Quantity": 1,
+				"Chance": 0.75
+			}
+		},
+		"Items": {
+			"RedeemableHoverCar": {
+				"Quantity": 1,
+				"Chance": 0.625
+			},
+			"RedeemableCandySleigh": {
+				"Quantity": 1,
+				"Chance": 0.75
+			}
+		}
+	},
+	"HeartPresent": {
+		"Currencies": {
+			"Gems": {
+				"Quantity": [100, 300],
+				"Chance": 4.98
+			}
+		},
+		"Units": {
+			"Boa": {
+				"Quantity": 1,
+				"Chance": 0.01
+			}
+		},
+		"Skins": {
+			"Beast Of Love Gohun": {
+				"Quantity": 1,
+				"Chance": 0.01
+			},
+			"Kirillin Tuxedo": {
+				"Quantity": 1,
+				"Chance": 40
+			},
+			"Ten Ten Tuxedo": {
+				"Quantity": 1,
+				"Chance": 40
+			},
+			"Emilia Tuxedo": {
+				"Quantity": 1,
+				"Chance": 5
+			},
+			"Inosuke Tuxedo": {
+				"Quantity": 1,
+				"Chance": 5
+			},
+			"Nezuko Tuxedo": {
+				"Quantity": 1,
+				"Chance": 5
+			}
+		}
+	},
+	"RarePresent": {
+		"Guaranteed": {
+			"Currencies": {
+				"Gems": [10, 15],
+				"Gold": [30, 50],
+				"Candy Cane": [125, 140]
+			}
+		}
+	},
+	"NewYearCrate": {
+		"Units": {
+			"Yamcha": {
+				"Quantity": 1,
+				"Chance": 88.55
+			},
+			"Arlong": {
+				"Quantity": 1,
+				"Chance": 5.125
+			},
+			"Nezuko": {
+				"Quantity": 1,
+				"Chance": 5.125
+			},
+			"Orochimaru": {
+				"Quantity": 1,
+				"Chance": 1
+			},
+			"Grimmjow": {
+				"Quantity": 1,
+				"Chance": 0.2
+			},
+			"Beerus": {
+				"Quantity": 1,
+				"Chance": 0.025
+			},
+			"Aizen": {
+				"Quantity": 1,
+				"Chance": 0.025
+			},
+			"Cid": {
+				"Quantity": 1,
+				"Chance": 0.01
+			}
+		},
+		"SellInfo": ["New Year Coin", 25],
+		"Pity": {
+			"ExclusivePity": {
+				"Reward": {
+					"Cid": 0.01
+				},
+				"Cost": 2000
+			},
+			"SecretPity": {
+				"Reward": {
+					"Beerus": 0.05,
+					"Aizen": 0.05
+				},
+				"Cost": 1800
+			},
+			"MythicalPity": {
+				"Reward": {
+					"Grimmjow": 0.2
+				},
+				"Cost": 400
+			},
+			"LegendaryPity": {
+				"Reward": {
+					"Orochimaru": 1
+				},
+				"Cost": 50
+			}
+		}
+	}
+}

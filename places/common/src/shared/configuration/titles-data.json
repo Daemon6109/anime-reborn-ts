@@ -1,0 +1,80 @@
+{
+	"Developer": {
+		"Description": "Helped develop the game."
+	},
+	"Access": {
+		"Description": "Allowed access to the game."
+	},
+	"Early Bird": {
+		"Description": "Have joined the group in the early stages of development."
+	},
+	"Moderator": {
+		"Description": "Title given to those with the supreme power of the banhammer."
+	},
+	"Tester": {
+		"Description": "Helps test upcoming releases and updates."
+	},
+	"Closed Tester": {
+		"Description": "[CLOSED] Helps test upcoming releases and updates."
+	},
+	"Developer+": {
+		"Description": "Absolute legends"
+	},
+	"Samurai": {
+		"Description": "Completed all acts of Fujishima Island in both Normal and Hard difficulty."
+	},
+	"Top 100 Leaderboards": {
+		"Description": "You ranked top 100 in the leaderboards!"
+	},
+	"Sky Lord": {
+		"Description": "Completed all acts of Land of the Sky in both Normal and Hard difficulty."
+	},
+	"Project Leader": {
+		"Description": "Future Gazzilionnaire."
+	},
+	"Co-Owner": {
+		"Description": "Big boy sage"
+	},
+	"Top 50 Leaderboards": {
+		"Description": "You ranked top 50 in the leaderboards!"
+	},
+	"Beast Hunter": {
+		"Description": "???"
+	},
+	"Top 25 Leaderboards": {
+		"Description": "You ranked top 25 in the leaderboards!"
+	},
+	"Owner": {
+		"Description": "From the screen to the ring to the pen to the king."
+	},
+	"Top 10 Leaderboards": {
+		"Description": "You ranked top 10 in the leaderboards! Wow!"
+	},
+	"Vault Hunter": {
+		"Description": "Spend a total of 1,000,000 gold."
+	},
+	"Slime King": {
+		"Description": "Has obtained Secret King Rimura."
+	},
+	"Baller": {
+		"Description": "Spend a total of 1,000,000 Gems."
+	},
+	"Admin": {
+		"Description": "The power of Admin has been passed down generations."
+	},
+	"Contributor": {
+		"Description": "Thank you for your contribution"
+	},
+	"Android": {
+		"Description": "Completed all acts of West City in both Normal and Hard difficulty."
+	},
+	"The Emperor": {
+		"Description": "Has obtained Secret Dragon Emperor."
+	},
+	"Shinobi": {
+		"Description": "Completed all acts of Leaf Village in both Normal and Hard difficulty."
+	},
+	"Content Creator": {
+		"Description": "You are the reason the game is successful!"
+	}
+}
