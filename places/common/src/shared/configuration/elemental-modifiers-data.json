@@ -1,0 +1,30 @@
+{
+	"Water": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	},
+	"Wind": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	},
+	"Fierce": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	},
+	"Light": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	},
+	"Fire": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	},
+	"Dark": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	},
+	"Ice": {
+		"DamageBuff": 0,
+		"DamageDebuff": 0
+	}
+}

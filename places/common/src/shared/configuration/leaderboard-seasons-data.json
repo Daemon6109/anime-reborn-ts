@@ -1,0 +1,401 @@
+{
+	"0": {
+		"Number": {
+			"1": {
+				"Requirement": [1, 1],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 5000
+					},
+					"Items": {
+						"TraitCrystal": 50,
+						"Trophies": 50
+					},
+					"Units": {},
+					"ShinyUnits": {},
+					"Titles": {}
+				}
+			},
+			"2": {
+				"Requirement": [2, 15],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 4000
+					},
+					"Items": {
+						"TraitCrystal": 40,
+						"Trophies": 40
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			}
+		},
+		"Percent": {
+			"1": {
+				"Requirement": [0, 29.99],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 3500
+					},
+					"Items": {
+						"TraitCrystal": 35,
+						"Trophies": 35
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			},
+			"2": {
+				"Requirement": [30, 49.99],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 3000
+					},
+					"Items": {
+						"TraitCrystal": 30,
+						"Trophies": 30
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			},
+			"3": {
+				"Requirement": [50, 64.99],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 2750
+					},
+					"Items": {
+						"TraitCrystal": 25,
+						"Trophies": 25
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			},
+			"4": {
+				"Requirement": [65, 79.99],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 2225
+					},
+					"Items": {
+						"TraitCrystal": 20,
+						"Trophies": 20
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			},
+			"5": {
+				"Requirement": [80, 89.99],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 2000
+					},
+					"Items": {
+						"TraitCrystal": 15,
+						"Trophies": 15
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			},
+			"6": {
+				"Requirement": [90, 99.99],
+				"Rewards": {
+					"Currencies": {
+						"Gems": 1000
+					},
+					"Items": {
+						"TraitCrystal": 10,
+						"Trophies": 10
+					},
+					"Units": {},
+					"ShinyUnits": {}
+				}
+			}
+		}
+	},
+	"1": {
+		"Rewards": {
+			"[1,10]": {
+				"Items": {
+					"TraitCrystal": 250
+				},
+				"Titles": ["Top 10"],
+				"Currencies": {
+					"Gems": 10000
+				},
+				"ShinyUnits": {
+					"Sode no shirayuki": 1
+				}
+			},
+			"[11,25]": {
+				"Items": {
+					"TraitCrystal": 100
+				},
+				"Titles": ["Top 25"],
+				"Currencies": {
+					"Gems": 5000
+				},
+				"ShinyUnits": {
+					"Sode no shirayuki": 1
+				}
+			},
+			"[26,50]": {
+				"Items": {
+					"TraitCrystal": 50
+				},
+				"Titles": ["Top 50"],
+				"Currencies": {
+					"Gems": 2000
+				},
+				"Units": {
+					"Sode no shirayuki": 1
+				}
+			},
+			"[51,100]": {
+				"Items": {
+					"TraitCrystal": 25
+				},
+				"Titles": ["Top 100"],
+				"Currencies": {
+					"Gems": 1000
+				},
+				"Units": {
+					"Sode no shirayuki": 1
+				}
+			}
+		}
+	},
+	"2": {
+		"Rewards": {
+			"[1,10]": {
+				"Items": {
+					"TraitCrystal": 250,
+					"ShinyDeltaCapsule": 1
+				},
+				"Titles": ["Top 10"],
+				"Currencies": {
+					"Gems": 20000
+				},
+				"ShinyUnits": {}
+			},
+			"[11,25]": {
+				"Items": {
+					"TraitCrystal": 150,
+					"ShinyDeltaCapsule": 1
+				},
+				"Titles": ["Top 25"],
+				"Currencies": {
+					"Gems": 15000
+				},
+				"ShinyUnits": {}
+			},
+			"[26,50]": {
+				"Items": {
+					"TraitCrystal": 75,
+					"DeltaCapsule": 1
+				},
+				"Titles": ["Top 50"],
+				"Currencies": {},
+				"Units": {}
+			},
+			"[51,100]": {
+				"Items": {
+					"TraitCrystal": 50,
+					"DeltaCapsule": 1
+				},
+				"Titles": ["Top 100"],
+				"Currencies": {
+					"Gems": 5000
+				},
+				"Units": {}
+			}
+		}
+	},
+	"3": {
+		"Rewards": {
+			"[1,10]": {
+				"Items": {
+					"TraitCrystal": 250
+				},
+				"Titles": ["Top 10"],
+				"Currencies": {
+					"Gems": 10000
+				},
+				"ShinyUnits": {}
+			},
+			"[11,25]": {
+				"Items": {
+					"TraitCrystal": 100
+				},
+				"Titles": ["Top 25"],
+				"Currencies": {
+					"Gems": 5000
+				},
+				"ShinyUnits": {}
+			},
+			"[26,50]": {
+				"Items": {
+					"TraitCrystal": 50
+				},
+				"Titles": ["Top 50"],
+				"Currencies": {
+					"Gems": 2000
+				},
+				"Units": {}
+			},
+			"[51,100]": {
+				"Items": {
+					"TraitCrystal": 25
+				},
+				"Titles": ["Top 100"],
+				"Currencies": {
+					"Gems": 1000
+				},
+				"Units": {}
+			}
+		}
+	},
+	"4": {
+		"Rewards": {
+			"[1,10]": {
+				"Items": {
+					"TraitCrystal": 250
+				},
+				"Titles": ["Top 10"],
+				"Currencies": {
+					"Gems": 10000
+				},
+				"ShinyUnits": {
+					"CaptainKuro": 1
+				}
+			},
+			"[11,25]": {
+				"Items": {
+					"TraitCrystal": 100
+				},
+				"Titles": ["Top 25"],
+				"Currencies": {
+					"Gems": 5000
+				},
+				"Units": {
+					"CaptainKuro": 1
+				},
+				"ShinyUnits": {}
+			},
+			"[26,50]": {
+				"Items": {
+					"TraitCrystal": 50
+				},
+				"Titles": ["Top 50"],
+				"Currencies": {
+					"Gems": 2000
+				},
+				"Units": {}
+			},
+			"[51,100]": {
+				"Items": {
+					"TraitCrystal": 25
+				},
+				"Titles": ["Top 100"],
+				"Currencies": {
+					"Gems": 1000
+				},
+				"Units": {}
+			}
+		}
+	},
+	"5": {
+		"Rewards": {
+			"[1,10]": {
+				"Items": {
+					"TraitCrystal": 250
+				},
+				"Titles": ["Top 10"],
+				"Currencies": {
+					"Gems": 10000
+				},
+				"ShinyUnits": {
+					"Levi": 1
+				}
+			},
+			"[11,25]": {
+				"Items": {
+					"TraitCrystal": 100
+				},
+				"Titles": ["Top 25"],
+				"Currencies": {
+					"Gems": 5000
+				},
+				"Units": {
+					"Levi": 1
+				},
+				"ShinyUnits": {}
+			},
+			"[26,50]": {
+				"Items": {
+					"TraitCrystal": 50
+				},
+				"Titles": ["Top 50"],
+				"Currencies": {
+					"Gems": 2000
+				},
+				"Units": {}
+			},
+			"[51,100]": {
+				"Items": {
+					"TraitCrystal": 25
+				},
+				"Titles": ["Top 100"],
+				"Currencies": {
+					"Gems": 1000
+				},
+				"Units": {}
+			}
+		}
+	},
+	"Default": {
+		"Rewards": {
+			"[1,10]": {
+				"Items": {
+					"TraitCrystal": 250
+				},
+				"Titles": ["Top 10"],
+				"Currencies": {
+					"Gems": 10000
+				}
+			},
+			"[11,25]": {
+				"Items": {
+					"TraitCrystal": 100
+				},
+				"Titles": ["Top 25"],
+				"Currencies": {
+					"Gems": 5000
+				}
+			},
+			"[26,50]": {
+				"Items": {
+					"TraitCrystal": 50
+				},
+				"Titles": ["Top 50"],
+				"Currencies": {
+					"Gems": 2000
+				}
+			},
+			"[51,100]": {
+				"Items": {
+					"TraitCrystal": 25
+				},
+				"Titles": ["Top 100"],
+				"Currencies": {
+					"Gems": 1000
+				}
+			}
+		}
+	}
+}

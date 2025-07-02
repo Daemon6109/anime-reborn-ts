@@ -14,7 +14,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [x] Buffs
 - [ ] GradientAnimations
 - [x] Currency
-- [ ] ElementalModifiers
+- [x] ElementalModifiers
 - [x] Dialogues
 - [ ] Quests
 - [x] Items
@@ -27,7 +27,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] RaidShopItems
 - [x] Mounts
 - [ ] Portals
-- [ ] LeaderboardSeasons
+- [x] LeaderboardSeasons
 - [ ] CollisionEventItems
 - [ ] BingoQuests
 - [ ] SpecialAbilities
