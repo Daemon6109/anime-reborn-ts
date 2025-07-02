@@ -1,0 +1,34 @@
+{
+	"SpiritHands": {
+		"Price": 150,
+		"LayoutOrder": 2
+	},
+	"ExorcisingBat": {
+		"Price": 150,
+		"LayoutOrder": 2
+	},
+	"AcrobaticMask": {
+		"Price": 150,
+		"LayoutOrder": 2
+	},
+	"LeftGoldenBall": {
+		"Price": 300,
+		"LayoutOrder": -2
+	},
+	"RightGoldenBall": {
+		"Price": 150,
+		"LayoutOrder": 2
+	},
+	"AlienMask": {
+		"Price": 150,
+		"LayoutOrder": 2
+	},
+	"MilkCarton": {
+		"Price": 150,
+		"LayoutOrder": 2
+	},
+	"NekoTalisman": {
+		"Price": 150,
+		"LayoutOrder": 2
+	}
+}

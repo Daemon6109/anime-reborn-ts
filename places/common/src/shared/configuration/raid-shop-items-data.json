@@ -1,0 +1,147 @@
+{
+	"Golden Dungeon": {
+		"Kamish's Wrath": {
+			"Price": 500,
+			"LayoutOrder": 1
+		},
+		"RuneStone": {
+			"Price": 50,
+			"LayoutOrder": 7
+		},
+		"Demon King's Longsword": {
+			"Price": 250,
+			"LayoutOrder": 3
+		},
+		"Sword of Light": {
+			"Price": 350,
+			"LayoutOrder": 2
+		},
+		"Kasaka's Venom Fang": {
+			"Price": 100,
+			"LayoutOrder": 6
+		},
+		"Iron Axe": {
+			"Price": 250,
+			"LayoutOrder": 5
+		},
+		"Orb of Avarice": {
+			"Price": 250,
+			"LayoutOrder": 4
+		}
+	},
+	"Quimera Continent": {
+		"Buddha Statue": {
+			"Price": 250,
+			"LayoutOrder": 4
+		},
+		"Fish Stick": {
+			"Price": 350,
+			"LayoutOrder": 2
+		},
+		"CardTotem": {
+			"Price": 50,
+			"LayoutOrder": 7
+		},
+		"Red Umbrella": {
+			"Price": 250,
+			"LayoutOrder": 3
+		},
+		"KuraWeaponChains": {
+			"Price": 250,
+			"LayoutOrder": 5
+		},
+		"YinYang": {
+			"Price": 250,
+			"LayoutOrder": 7
+		},
+		"Demon Book": {
+			"Price": 500,
+			"LayoutOrder": 1
+		}
+	},
+	"Universal": {
+		"FrostKey": {
+			"Price": 325,
+			"Quantity": 25,
+			"LayoutOrder": 7
+		},
+		"BlueStar": {
+			"Price": 150,
+			"Quantity": 20,
+			"LayoutOrder": 4
+		},
+		"PotentialKey": {
+			"Price": 275,
+			"Quantity": 50,
+			"LayoutOrder": 6
+		},
+		"RedStar": {
+			"Price": 150,
+			"Quantity": 20,
+			"LayoutOrder": 1
+		},
+		"OrangeStar": {
+			"Price": 125,
+			"Quantity": 20,
+			"LayoutOrder": 5
+		},
+		"RainbowStar": {
+			"Price": 200,
+			"Quantity": 5,
+			"LayoutOrder": 0
+		},
+		"TraitCrystal": {
+			"Price": 50,
+			"Quantity": 350,
+			"LayoutOrder": 8
+		},
+		"PurpleStar": {
+			"Price": 150,
+			"Quantity": 20,
+			"LayoutOrder": 3
+		},
+		"GreenStar": {
+			"Price": 150,
+			"Quantity": 20,
+			"LayoutOrder": 2
+		}
+	},
+	"Ancient Dungeon": {
+		"DarkGrimoire": {
+			"Price": 350,
+			"LayoutOrder": 2
+		},
+		"WindGrimoire": {
+			"Price": 350,
+			"LayoutOrder": 2
+		},
+		"LightGrimoire": {
+			"Price": 350,
+			"LayoutOrder": -1
+		},
+		"MagicNecklace": {
+			"Price": 50,
+			"LayoutOrder": 8
+		},
+		"LightningGrimoire": {
+			"Price": 350,
+			"LayoutOrder": 1
+		},
+		"TimeGrimoire": {
+			"Price": 1000,
+			"LayoutOrder": -1
+		},
+		"DiamondGrimoire": {
+			"Price": 450,
+			"LayoutOrder": 4
+		},
+		"DemonGrimoire": {
+			"Price": 350,
+			"LayoutOrder": 0
+		},
+		"WaterGrimoire": {
+			"Price": 350,
+			"LayoutOrder": 2
+		}
+	}
+}

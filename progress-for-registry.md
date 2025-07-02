@@ -4,7 +4,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 
 ## Checklist
 
-> **Progress: 20/35 (57.1%)**
+> **Progress: 24/35 (68.5%)**
 
 - [x] Abstracts
 - [x] BingoQuests
@@ -18,7 +18,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [x] ElementalModifiers
 - [ ] Enemies
 - [ ] EnemyTypes
-- [ ] EventShopItems
+- [x] EventShopItems
 - [x] Items
 - [x] LeaderboardSeasons
 - [ ] Maps
@@ -30,14 +30,14 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] Portals
 - [x] Potions
 - [ ] Quests
-- [ ] RaidShopItems
+- [x] RaidShopItems
 - [ ] Recipes
 - [ ] Skins
 - [x] SpecialAbilities
 - [x] StatusEffects
-- [ ] TeamEventShopItems
+- [x] TeamEventShopItems
 - [x] Titles
-- [ ] TowerRewards
+- [x] TowerRewards
 - [ ] Traits
 - [ ] TournamentRewards
 - [x] Units

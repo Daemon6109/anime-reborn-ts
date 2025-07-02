@@ -1,0 +1,60 @@
+{
+	"FrostKey": {
+		"Price": 1000,
+		"LayoutOrder": 6,
+		"Quantity": 100
+	},
+	"T1_FestivePortal": {
+		"Price": 500,
+		"LayoutOrder": -3
+	},
+	"DiosDiary": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"IceFruit": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"EnchantedCandyKey": {
+		"Price": 2000,
+		"LayoutOrder": -1
+	},
+	"Snowflake": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"CandyKey": {
+		"Price": 500,
+		"LayoutOrder": -2
+	},
+	"DemonFan": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"DevilExtract": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"DragonSword": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"MistKatana": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"TraitCrystal": {
+		"Price": 1250,
+		"LayoutOrder": 6,
+		"Quantity": 50
+	},
+	"SilverSword": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	},
+	"Saber": {
+		"Price": 10000,
+		"LayoutOrder": 4
+	}
+}
