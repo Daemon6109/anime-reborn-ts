@@ -1,0 +1,20 @@
+{
+	"BattlepassExp": {
+		"DisplayName": "Battlepass Exp",
+		"Image": "rbxassetid://111054083389383",
+		"Description": "Use battlepass exp to level up your battle pass!",
+		"Rarity": "Mythical",
+		"Gradient": [
+			{
+				"r": 182,
+				"g": 37,
+				"b": 255
+			},
+			{
+				"r": 255,
+				"g": 98,
+				"b": 255
+			}
+		]
+	}
+}

@@ -4,38 +4,40 @@ This file tracks the progress of porting the configuration files from the Roblox
 
 ## Checklist
 
-- [x] MapOrder
-- [x] Titles
-- [ ] Passives
-- [x] StatusEffects
-- [ ] Skins
-- [ ] Recipes
-- [x] Buffs
-- [x] Currency
-- [x] ElementalModifiers
-- [x] Dialogues
-- [ ] Quests
-- [x] Items
-- [x] Potions
-- [ ] EventShopItems
-- [x] Difficulties
-- [ ] Traits
-- [ ] Maps
-- [ ] Abstracts
-- [ ] RaidShopItems
-- [x] Mounts
-- [ ] Portals
-- [x] LeaderboardSeasons
-- [ ] CollisionEventItems
+> **Progress: 17/35 (48.6%)**
+
+- [x] Abstracts
 - [x] BingoQuests
-- [x] SpecialAbilities
-- [x] Pools
-- [x] Modes
-- [ ] Enemies
-- [ ] TeamEventShopItems
-- [ ] EnemyTypes
+- [x] Buffs
 - [ ] Challenges
-- [ ] TowerRewards
-- [ ] TournamentRewards
+- [ ] CollisionEventItems
+- [x] Currency
+- [x] Dialogues
+- [x] Difficulties
 - [ ] DungeonShopItems
+- [x] ElementalModifiers
+- [ ] Enemies
+- [ ] EnemyTypes
+- [ ] EventShopItems
+- [x] Items
+- [x] LeaderboardSeasons
+- [ ] Maps
+- [x] MapOrder
+- [x] Modes
+- [x] Mounts
+- [ ] Passives
+- [x] Pools
+- [ ] Portals
+- [x] Potions
+- [ ] Quests
+- [ ] RaidShopItems
+- [ ] Recipes
+- [ ] Skins
+- [x] SpecialAbilities
+- [x] StatusEffects
+- [ ] TeamEventShopItems
+- [x] Titles
+- [ ] TowerRewards
+- [ ] Traits
+- [ ] TournamentRewards
 - [x] Units
