@@ -4,17 +4,17 @@ This file tracks the progress of porting the configuration files from the Roblox
 
 ## Checklist
 
-> **Progress: 18/35 (51.4%)**
+> **Progress: 20/35 (57.1%)**
 
 - [x] Abstracts
 - [x] BingoQuests
 - [x] Buffs
 - [ ] Challenges
-- [ ] CollisionEventItems
+- [x] CollisionEventItems
 - [x] Currency
 - [x] Dialogues
 - [x] Difficulties
-- [ ] DungeonShopItems
+- [x] DungeonShopItems
 - [x] ElementalModifiers
 - [ ] Enemies
 - [ ] EnemyTypes

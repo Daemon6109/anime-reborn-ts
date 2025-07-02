@@ -1,0 +1,10 @@
+{
+	"GromjawMask": {
+		"Price": 10000,
+		"LayoutOrder": -1
+	},
+	"SpecialCrate": {
+		"Price": 100,
+		"LayoutOrder": -2
+	}
+}
