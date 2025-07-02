@@ -7,7 +7,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [x] MapOrder
 - [x] Titles
 - [ ] Passives
-- [ ] StatusEffects
+- [x] StatusEffects
 - [ ] StarMissions
 - [ ] Skins
 - [ ] Recipes

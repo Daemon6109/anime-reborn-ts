@@ -1,0 +1,116 @@
+{
+	"931258600": {
+		"Type": "Gamepass",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "Extra 50 Storage",
+		"AlsoAward": 1932432112,
+		"GradientName": "Rare"
+	},
+
+	"931598388": {
+		"Type": "Gamepass",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "Shiny Hunter",
+		"AlsoAward": 1932432116,
+		"GradientName": "Mythical"
+	},
+
+	"887686872": {
+		"Type": "Gamepass",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "VIP",
+		"AlsoAward": 1932432115,
+		"GradientName": "Legendary"
+	},
+
+	"931436143": {
+		"Type": "Gamepass",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "Display All Units",
+		"AlsoAward": 1932432113,
+		"GradientName": "Rare"
+	},
+
+	"1932432112": {
+		"Type": "Product",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "Extra 50 Storage",
+		"AlsoAward": 931258600,
+		"GradientName": "Rare"
+	},
+
+	"2660208988": {
+		"Type": "Product",
+		"BuyLimit": 7,
+		"Giftable": true,
+		"Name": "Extra 50 Storage",
+		"GradientName": "Rare"
+	},
+
+	"1932432116": {
+		"Type": "Product",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "Shiny Hunter",
+		"AlsoAward": 931598388,
+		"GradientName": "Mythical"
+	},
+
+	"1932432115": {
+		"Type": "Product",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "VIP",
+		"AlsoAward": 887686872,
+		"GradientName": "Legendary"
+	},
+
+	"1932432113": {
+		"Type": "Product",
+		"BuyLimit": 1,
+		"Giftable": true,
+		"Name": "Display All Units",
+		"AlsoAward": 931436143,
+		"GradientName": "Rare"
+	},
+
+	"1932432122": {
+		"Type": "Product",
+		"Giftable": true,
+		"Name": "500 Gems",
+		"GradientName": "Gems"
+	},
+
+	"1932432120": {
+		"Type": "Product",
+		"Giftable": true,
+		"Name": "1,250 Gems",
+		"GradientName": "Gems"
+	},
+
+	"1932432119": {
+		"Type": "Product",
+		"Giftable": true,
+		"Name": "2,500 Gems",
+		"GradientName": "Gems"
+	},
+
+	"1932432118": {
+		"Type": "Product",
+		"Giftable": true,
+		"Name": "6,000 Gems",
+		"GradientName": "Gems"
+	},
+
+	"1932432117": {
+		"Type": "Product",
+		"Giftable": true,
+		"Name": "25,000 Gems",
+		"GradientName": "Gems"
+	}
+}
