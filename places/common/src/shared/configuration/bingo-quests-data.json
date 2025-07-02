@@ -1,0 +1,47 @@
+{
+	"MythicalSummons": {
+		"MaxProgress": 3,
+		"MinProgress": 0,
+		"Name": "Summon 3 Mythical Units"
+	},
+	"InfiniteModeWaves": {
+		"MaxProgress": 100,
+		"MinProgress": 0,
+		"Name": "Clear 100 waves in infinite mode"
+	},
+	"JayShop": {
+		"MaxProgress": 25000,
+		"MinProgress": 0,
+		"Name": "Spend 25,000 gold at jay's shop"
+	},
+	"Enemy": {
+		"MaxProgress": 25000,
+		"MinProgress": 0,
+		"Name": "Kill 25,000 enemies"
+	},
+	"Summon": {
+		"MaxProgress": 50,
+		"MinProgress": 0,
+		"Name": "Summon 50 Units"
+	},
+	"StoryModeWaves": {
+		"MaxProgress": 100,
+		"MinProgress": 0,
+		"Name": "Clear 100 waves in story mode"
+	},
+	"Craft": {
+		"MaxProgress": 3,
+		"MinProgress": 0,
+		"Name": "Craft 3 items"
+	},
+	"Challenges": {
+		"MaxProgress": 10,
+		"MinProgress": 0,
+		"Name": "Clear 10 challenges"
+	},
+	"Bosses": {
+		"MaxProgress": 10,
+		"MinProgress": 0,
+		"Name": "Defeat 10 Bosses"
+	}
+}

@@ -8,7 +8,6 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [x] Titles
 - [ ] Passives
 - [x] StatusEffects
-- [ ] StarMissions
 - [ ] Skins
 - [ ] Recipes
 - [x] Buffs
@@ -29,7 +28,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] Portals
 - [x] LeaderboardSeasons
 - [ ] CollisionEventItems
-- [ ] BingoQuests
+- [x] BingoQuests
 - [ ] SpecialAbilities
 - [x] Pools
 - [x] Modes
