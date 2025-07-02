@@ -1,0 +1,22 @@
+{
+	"Story": {
+		"WaitTime": 30,
+		"MaximumPlayers": 4,
+		"MinimumPlayers": 1
+	},
+	"Raid": {
+		"WaitTime": 30,
+		"MaximumPlayers": 4,
+		"MinimumPlayers": 1
+	},
+	"Challenges": {
+		"WaitTime": 30,
+		"MaximumPlayers": 4,
+		"MinimumPlayers": 1
+	},
+	"Adventure": {
+		"WaitTime": 30,
+		"MaximumPlayers": 4,
+		"MinimumPlayers": 1
+	}
+}

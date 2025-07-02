@@ -11,7 +11,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] StarMissions
 - [ ] Skins
 - [ ] Recipes
-- [ ] Buffs
+- [x] Buffs
 - [ ] GradientAnimations
 - [x] Currency
 - [ ] ElementalModifiers
@@ -32,7 +32,7 @@ This file tracks the progress of porting the configuration files from the Roblox
 - [ ] BingoQuests
 - [ ] SpecialAbilities
 - [x] Pools
-- [ ] Modes
+- [x] Modes
 - [ ] Enemies
 - [ ] TeamEventShopItems
 - [ ] EnemyTypes
