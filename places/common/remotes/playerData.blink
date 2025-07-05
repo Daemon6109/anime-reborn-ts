@@ -1,0 +1,145 @@
+option TypesOutput = "network/types.luau"
+option ServerOutput = "network/server.ts"
+option ClientOutput = "network/client.ts"
+
+option PromiseLibrary = "ReplicatedStorage.rbxts_include.Promise"
+
+option UsePolling = false
+option Typescript = true
+option Casing = Camel
+
+scope Item {
+    struct Default {
+        id: string,
+        uuid: string,
+        amount: u16,
+        locked: boolean,
+    }
+    
+    struct Patch {
+        id: string?,
+        uuid: string?,
+        amount: u16?,
+        locked: boolean?,
+    }
+}
+scope Unit {
+    enum Traits = {
+        "Warrior",
+	    "Agile",
+	    "Sniper",
+	    "Exploder",
+	    "Anubis",
+	    "Archer",
+	    "Potential",
+	    "Wealth",
+	    "Slayer",
+	    "Heavenly",
+	    "Demon",
+	    "Ethereal",
+	    "Paladin",
+	    "Miracle",
+    }
+
+    struct Default {
+        id: string,
+        uuid: string,
+        obtainedAt: u32,
+        trait: Traits?,
+
+        traitData: struct {
+            trait: Traits,
+            time: u32,
+        }?[],
+
+        evo: u8,
+        shiny: boolean,
+        locked: boolean,
+        favorited: boolean,
+        level: struct {
+            value: u16,
+            target: u32,
+            current: u32,
+        },
+        potential: struct {
+            damage: u8,
+            range: u8,
+            spa: u8,
+        },
+    }
+    
+    struct Patch {
+        id: string?,
+        uuid: string?,
+        obtainedAt: u32?,
+        trait: Traits?,
+
+        traitData: struct {
+            trait: Traits,
+            time: u32,
+        }?[]?,
+
+        evo: u8?,
+        shiny: boolean?,
+        locked: boolean?,
+        favorited: boolean?,
+        level: struct {
+            value: u16?,
+            target: u32?,
+            current: u32?,
+        }?,
+        potential: struct {
+            damage: u8?,
+            range: u8?,
+            spa: u8?,
+        }?,
+    }
+}
+
+scope DataStore {
+    scope Player {
+        struct Default {
+            units: Unit.Default?[],
+            items: Item.Default?[],
+            team: string?[0..6]
+        }
+        
+        struct Patch {
+            units: Unit.Patch?[]?,
+            items: Item.Patch?[]?,
+            team: string?[0..6]?
+        }
+    }
+}
+
+scope Atoms {
+    map PlayerMap = { [string]: DataStore.Player.Default}
+    map PlayerPatchMap = { [string]: DataStore.Player.Patch}
+
+    enum PayloadSync = "type" {
+        init {
+            data: struct {
+                ["players"]: PlayerMap
+            }
+        },
+        patch {
+            data: struct {
+                ["players"]: PlayerPatchMap
+            }
+        }
+    }
+
+
+    event sync {
+        From: Server,
+        Type: Reliable,
+        Call: SingleSync,
+        Data: PayloadSync
+    }
+
+    event init {
+        From: Client,
+        Type: Reliable,
+        Call: SingleSync,
+    }
+}

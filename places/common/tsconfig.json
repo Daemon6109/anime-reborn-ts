@@ -28,7 +28,8 @@
 			"@services/*": ["./server/services/*"],
 			"@shared/*": ["./shared/*"],
 			"@server/*": ["./server/*"],
-			"@client/*": ["./client/*"]
+			"@client/*": ["./client/*"],
+			"@network/*": ["../remotes/network/*"]
 		},
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
