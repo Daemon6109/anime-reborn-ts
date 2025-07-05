@@ -1,274 +1,233 @@
 // Services
-import { Players } from "@rbxts/services";
+import { Players, RunService } from "@rbxts/services";
 
 // Packages
 import { MockDataStoreService, MockMemoryStoreService } from "@rbxts/lyra";
-import { server, SyncPayload } from "@rbxts/charm-sync";
 import { Service, OnInit } from "@flamework/core";
 import { createPlayerStore } from "@rbxts/lyra";
 import ServerNetwork from "@network/server";
-import { effect } from "@rbxts/charm";
 
 // Types
 import type { PlayerData } from "@shared/atoms/player-data";
 
-// Utility
-import { filterPayload } from "@shared/atoms/utility/filter-payload";
-import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
-
 // Dependencies
-import { setPlayerData, getPlayerData, updatePlayerData, deletePlayerData } from "@shared/atoms/player-data";
-import atoms, { GlobalAtoms } from "@shared/atoms";
 import template from "./template";
 import schema from "./schema";
+import { safePlayerAdded } from "../../../shared/utils/safe-player-added.util";
 
 @Service()
 export class DataStore implements OnInit {
+	// Track which players have requested initialization
+	private playersRequestedInit = new Set<Player>();
+	// Track which players have been sent their initial data
+	private playersSentInitialData = new Set<Player>();
+
+	/**
+	 * Creates a logger function that shows all logs in Studio and only errors in production
+	 */
+	private createLogger() {
+		if (RunService.IsStudio()) {
+			// Show all logs in Studio
+			return (message: { level: string; message: string; context?: unknown }) => {
+				print(`[Lyra][${message.level}] ${message.message}`);
+				if (message.context !== undefined) {
+					print("Context:", message.context);
+				}
+			};
+		} else {
+			// Only show errors in production
+			return (message: { level: string; message: string; context?: unknown }) => {
+				if (message.level === "error" || message.level === "fatal") {
+					warn(`[Lyra] ${message.message}`);
+				}
+			};
+		}
+	}
+
 	private store = createPlayerStore<PlayerData>({
 		name: "PlayerData",
 		template: template,
 		schema: schema,
 		dataStoreService: new MockDataStoreService(),
 		memoryStoreService: new MockMemoryStoreService(),
+
+		// Lyra's built-in networking callbacks
+		changedCallbacks: [
+			(key: string, newData: PlayerData, oldData?: PlayerData) => {
+				this.syncPlayerDataWithClient(key, newData, oldData);
+			},
+		],
+
+		// Lyra's built-in logging for debugging
+		logCallback: this.createLogger(),
+
+		// Add migration steps if needed
+		/**
+		 * Example of how to add Lyra migrations when needed:
+		 *
+		 * migrationSteps: [
+		 *     Lyra.MigrationStep.addFields("addGems", { gems: 0 }),
+		 *     Lyra.MigrationStep.transform("renameInventory", (data) => {
+		 *         data.items = data.inventory;
+		 *         data.inventory = undefined;
+		 *         return data;
+		 *     }),
+		 * ],
+		 *
+		 * importLegacyData: (key: string) => {
+		 *     // Import data from old DataStore if needed
+		 *     return undefined; // or legacy data
+		 * },
+		 */
+
+		// Legacy data import if needed
+		// importLegacyData: (key: string) => { /* ... */ },
 	});
 
-	// Function to mark player data as ready
-	private markPlayerDataReady!: (player: Player) => void;
-
-	// Promise system for tracking when player data is ready
-	private playerDataPromises = new Map<string, Promise<PlayerData>>();
-	private playerDataResolvers = new Map<string, (data: PlayerData) => void>();
-	private playerDataRejectors = new Map<string, (reason: string) => void>();
-	private playerDataTimeouts = new Map<string, thread>();
-
 	/**
-	 * Helper method to clean up all promise-related data for a player
+	 * Lyra's network sync callback - called when player data changes
+	 * Only sends updates AFTER the client has been initialized
 	 */
-	private cleanupPlayerPromise(playerId: string): void {
-		// Cancel timeout if it exists
-		const timeoutThread = this.playerDataTimeouts.get(playerId);
-		if (timeoutThread) {
-			task.cancel(timeoutThread);
-			this.playerDataTimeouts.delete(playerId);
-		}
+	private syncPlayerDataWithClient(key: string, newData: PlayerData, oldData?: PlayerData): void {
+		try {
+			const userId = tonumber(key);
+			if (userId === undefined) {
+				warn(`[DataStore] Invalid userId from key: ${key}`);
+				return;
+			}
 
-		// Clean up all promise-related maps
-		this.playerDataPromises.delete(playerId);
-		this.playerDataResolvers.delete(playerId);
-		this.playerDataRejectors.delete(playerId);
-	}
+			const player = Players.GetPlayerByUserId(userId);
+			if (!player) {
+				// Player may have left - this is normal
+				return;
+			}
 
-	/**
-	 * Helper method to resolve player data promises
-	 */
-	private resolvePlayerDataPromise(playerId: string, data: PlayerData): void {
-		const resolver = this.playerDataResolvers.get(playerId);
-		if (resolver) {
-			resolver(data);
-			this.cleanupPlayerPromise(playerId);
-		}
-	}
+			// Only send sync updates if we've already sent the initial data
+			if (!this.playersSentInitialData.has(player)) {
+				return;
+			}
 
-	/**
-	 * Helper method to reject player data promises
-	 */
-	private rejectPlayerDataPromise(playerId: string, reason: string): void {
-		const rejector = this.playerDataRejectors.get(playerId);
-		if (rejector) {
-			rejector(reason);
-			this.cleanupPlayerPromise(playerId);
+			// Send patch update to client
+			const playersMap = new Map<string, unknown>();
+			playersMap.set(tostring(player.UserId), newData);
+
+			ServerNetwork.playerData.sync.fire(player, {
+				type: "patch",
+				data: {
+					players: playersMap,
+				},
+			} as Parameters<typeof ServerNetwork.playerData.sync.fire>[1]);
+
+			print(`[DataStore] Synced patch data for player ${player.Name}`);
+		} catch (error) {
+			warn(`[DataStore] Error syncing player data: ${error}`);
 		}
 	}
 
 	/**
-	 * Internal method to create a player data promise with timeout management
+	 * Sends initial player data to client
 	 */
-	private createPlayerDataPromise(playerId: string): Promise<PlayerData> {
-		// Check if data is already available
-		const existingData = getPlayerData(playerId);
-		if (existingData) {
-			return Promise.resolve(existingData);
+	private async sendInitialPlayerData(player: Player): Promise<void> {
+		try {
+			const playerData = await this.store.get(player);
+
+			// Send initial data to client
+			const playersMap = new Map<string, unknown>();
+			playersMap.set(tostring(player.UserId), playerData);
+
+			ServerNetwork.playerData.sync.fire(player, {
+				type: "init",
+				data: {
+					players: playersMap,
+				},
+			} as Parameters<typeof ServerNetwork.playerData.sync.fire>[1]);
+
+			this.playersSentInitialData.add(player);
+			print(`[DataStore] Sent initial data for player ${player.Name}`);
+		} catch (error) {
+			warn(`[DataStore] Failed to send initial data for ${player.Name}: ${error}`);
 		}
-
-		// Return existing promise if one exists
-		const existingPromise = this.playerDataPromises.get(playerId);
-		if (existingPromise) {
-			return existingPromise;
-		}
-
-		// Create new promise with timeout
-		const promise = new Promise<PlayerData>((resolve, reject) => {
-			this.playerDataResolvers.set(playerId, resolve);
-			this.playerDataRejectors.set(playerId, reject);
-
-			// Add timeout to prevent hanging promises
-			const timeoutThread = task.delay(30, () => {
-				if (this.playerDataResolvers.has(playerId)) {
-					this.rejectPlayerDataPromise(playerId, "Player data loading timeout");
-				}
-			});
-
-			this.playerDataTimeouts.set(playerId, timeoutThread);
-		});
-
-		this.playerDataPromises.set(playerId, promise);
-		return promise;
 	}
 
 	/**
-	 * Get player data when it's available
-	 * Returns a promise that resolves with the player data once it's loaded
+	 * Expose the Lyra store directly for other services to use
+	 * This allows direct access to all Lyra methods: get, updateAsync, txAsync, etc.
 	 */
-	getPlayerDataWhenReady(player: Player): Promise<PlayerData> {
-		return this.createPlayerDataPromise(tostring(player.UserId));
-	}
-
-	/**
-	 * Get player data when it's available (by user ID)
-	 * Returns a promise that resolves with the player data once it's loaded
-	 */
-	getPlayerDataWhenReadyById(userId: number): Promise<PlayerData> {
-		return this.createPlayerDataPromise(tostring(userId));
+	public getPlayerStore() {
+		return this.store;
 	}
 
 	onInit(): void {
-		this.setupAtomSyncs();
+		this.setupNetworking();
 
 		safePlayerAdded((player) => {
-			this.onPlayerAdded(player);
-		});
-		Players.PlayerRemoving.Connect((player) => this.onPlayerRemoving(player));
-	}
+			try {
+				this.store.loadAsync(player);
+				// Set up automatic cleanup when player leaves
+				Promise.fromEvent(Players.PlayerRemoving, (left) => player === left).then(() => {
+					// Clean up tracking
+					this.playersRequestedInit.delete(player);
+					this.playersSentInitialData.delete(player);
 
-	private setupAtomSyncs() {
-		const syncer = server({ atoms, autoSerialize: false });
-		const playersInitialSyncComplete = new Map<string, boolean>();
-		const playersDataReady = new Map<string, boolean>();
-
-		syncer.connect((player, payload) => {
-			const playerId = tostring(player.UserId);
-			const isInitialSyncComplete = playersInitialSyncComplete.get(playerId) ?? false;
-			const isDataReady = playersDataReady.get(playerId) ?? false;
-
-			// Don't send anything until player data is ready
-			if (!isDataReady) {
-				return;
-			}
-
-			// Skip the first patch after init to prevent double initialization
-			if (payload.type === "patch" && !isInitialSyncComplete) {
-				playersInitialSyncComplete.set(playerId, true);
-				return;
-			}
-
-			const filteredPayload = filterPayload(player, payload as SyncPayload<GlobalAtoms>);
-			ServerNetwork.playerData.Atoms.sync.fire(player, filteredPayload);
-		});
-
-		ServerNetwork.playerData.Atoms.init.on((player) => {
-			const playerId = tostring(player.UserId);
-			const isDataReady = playersDataReady.get(playerId) ?? false;
-
-			if (isDataReady) {
-				syncer.hydrate(player);
-			} else {
-				// Use promise-based approach to avoid yielding in event callback
-				task.spawn(() => {
-					this.getPlayerDataWhenReady(player)
-						.then(() => {
-							syncer.hydrate(player);
-						})
-						.catch((err) => {
-							warn(`Failed to get player data for ${player.Name}: ${err}`);
-						});
+					// Lyra handles unloading automatically
+					this.store.unloadAsync(player);
 				});
+				print(`[DataStore] Player data loaded for ${player.Name}`);
+				// Try to send initial data if client has already requested it
+				this.tryToSendInitialData(player);
+			} catch (error) {
+				this.handlePlayerDataError(player, error);
 			}
 		});
 
-		// Clean up when player leaves
-		Players.PlayerRemoving.Connect((player) => {
-			const playerId = tostring(player.UserId);
-			playersInitialSyncComplete.delete(playerId);
-			playersDataReady.delete(playerId);
+		// Bind to close for proper Lyra shutdown
+		game.BindToClose(() => {
+			this.store.closeAsync();
 		});
-
-		// Expose method to mark player data as ready
-		this.markPlayerDataReady = (player: Player) => {
-			playersDataReady.set(tostring(player.UserId), true);
-		};
 	}
 
-	async loadPlayerData(player: Player) {
-		const playerId = tostring(player.UserId);
+	private setupNetworking(): void {
+		// Handle client init requests
+		ServerNetwork.playerData.init.on((player: Player) => {
+			this.playersRequestedInit.add(player);
+			print(`[DataStore] Player ${player.Name} requested initialization`);
+
+			// Try to send initial data immediately if player data is already loaded
+			// Use task.spawn since tryToSendInitialData is async and may yield
+			task.spawn(() => {
+				this.tryToSendInitialData(player);
+			});
+		});
+
+		print("[DataStore] Networking setup complete - listening for client init requests");
+	}
+
+	/**
+	 * Attempts to send initial data if both conditions are met:
+	 * 1. Client has requested init
+	 * 2. Player data is loaded
+	 */
+	private async tryToSendInitialData(player: Player): Promise<void> {
+		// Check if client has requested init and we haven't sent data yet
+		if (!this.playersRequestedInit.has(player) || this.playersSentInitialData.has(player)) {
+			return;
+		}
 
 		try {
-			this.store.loadAsync(player);
-			const session = await this.store.get(player);
-
-			// Check if player is still valid before proceeding
-			if (!player.IsDescendantOf(Players)) {
-				this.store.unloadAsync(player);
-				this.rejectPlayerDataPromise(playerId, "Player left during loading");
-				return;
-			}
-
-			// Set the player data first
-			setPlayerData(playerId, session);
-
-			// Resolve any waiting promises
-			this.resolvePlayerDataPromise(playerId, session);
-
-			// Mark the player data as ready so init can proceed
-			this.markPlayerDataReady(player);
-
-			const unsubscribe = effect(() => {
-				const playerData = getPlayerData(playerId);
-
-				if (playerData) {
-					this.store.updateAsync(player, (data) => {
-						data.units = playerData.units;
-						data.items = playerData.items;
-						data.team = playerData.team;
-						return true;
-					});
-				}
-			});
-
-			Promise.fromEvent(Players.PlayerRemoving, (left) => player === left)
-				.then(() => unsubscribe())
-				.then(() => this.store.unloadAsync(player));
+			// Check if player data is loaded by attempting to get it
+			const playerData = await this.store.get(player);
+			await this.sendInitialPlayerData(player);
 		} catch (error) {
-			// Handle any errors that occur during loading
-			this.handlePlayerDataError(player, error);
+			// Player data not loaded yet, will be handled when it loads
+			print(`[DataStore] Player data not ready yet for ${player.Name}, will send when loaded`);
 		}
 	}
 
 	private handlePlayerDataError(player: Player, error: unknown) {
 		const errorMessage = typeIs(error, "string") ? error : tostring(error);
 		warn(`Failed to load document for player ${player.Name}: ${errorMessage}`);
-		const playerId = tostring(player.UserId);
 
-		// Set template data
-		setPlayerData(playerId, template);
-
-		// Resolve any waiting promises with template data
-		this.resolvePlayerDataPromise(playerId, template);
-
-		// Mark data as ready
-		this.markPlayerDataReady(player);
-	}
-
-	onPlayerAdded(player: Player) {
-		this.loadPlayerData(player).catch((err) => {
-			this.handlePlayerDataError(player, err);
-		});
-	}
-	onPlayerRemoving(player: Player) {
-		const playerId = tostring(player.UserId);
-
-		// Clean up all promise-related data
-		this.cleanupPlayerPromise(playerId);
-
-		deletePlayerData(playerId);
+		// Kick the player to prevent data loss
+		player.Kick(`Your data failed to load. Please rejoin the game.\n\nError: ${errorMessage}`);
 	}
 }

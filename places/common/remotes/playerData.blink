@@ -112,34 +112,32 @@ scope DataStore {
     }
 }
 
-scope Atoms {
-    map PlayerMap = { [string]: DataStore.Player.Default}
-    map PlayerPatchMap = { [string]: DataStore.Player.Patch}
+map PlayerMap = { [string]: DataStore.Player.Default}
+map PlayerPatchMap = { [string]: DataStore.Player.Patch}
 
-    enum PayloadSync = "type" {
-        init {
-            data: struct {
-                ["players"]: PlayerMap
-            }
-        },
-        patch {
-            data: struct {
-                ["players"]: PlayerPatchMap
-            }
+enum PayloadSync = "type" {
+    init {
+        data: struct {
+            ["players"]: PlayerMap
+        }
+    },
+    patch {
+        data: struct {
+            ["players"]: PlayerPatchMap
         }
     }
+}
 
 
-    event sync {
-        From: Server,
-        Type: Reliable,
-        Call: SingleSync,
-        Data: PayloadSync
-    }
+event sync {
+    From: Server,
+    Type: Reliable,
+    Call: SingleSync,
+    Data: PayloadSync
+}
 
-    event init {
-        From: Client,
-        Type: Reliable,
-        Call: SingleSync,
-    }
+event init {
+    From: Client,
+    Type: Reliable,
+    Call: SingleSync,
 }
