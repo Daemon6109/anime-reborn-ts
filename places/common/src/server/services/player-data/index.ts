@@ -39,6 +39,24 @@ export class DataStore implements OnInit {
 	private playerDataPromises = new Map<string, Promise<PlayerData>>();
 	private playerDataResolvers = new Map<string, (data: PlayerData) => void>();
 	private playerDataRejectors = new Map<string, (reason: string) => void>();
+	private playerDataTimeouts = new Map<string, thread>();
+
+	/**
+	 * Helper method to clean up all promise-related data for a player
+	 */
+	private cleanupPlayerPromise(playerId: string): void {
+		// Cancel timeout if it exists
+		const timeoutThread = this.playerDataTimeouts.get(playerId);
+		if (timeoutThread) {
+			task.cancel(timeoutThread);
+			this.playerDataTimeouts.delete(playerId);
+		}
+
+		// Clean up all promise-related maps
+		this.playerDataPromises.delete(playerId);
+		this.playerDataResolvers.delete(playerId);
+		this.playerDataRejectors.delete(playerId);
+	}
 
 	/**
 	 * Helper method to resolve player data promises
@@ -47,8 +65,7 @@ export class DataStore implements OnInit {
 		const resolver = this.playerDataResolvers.get(playerId);
 		if (resolver) {
 			resolver(data);
-			this.playerDataResolvers.delete(playerId);
-			this.playerDataRejectors.delete(playerId);
+			this.cleanupPlayerPromise(playerId);
 		}
 	}
 
@@ -59,9 +76,43 @@ export class DataStore implements OnInit {
 		const rejector = this.playerDataRejectors.get(playerId);
 		if (rejector) {
 			rejector(reason);
-			this.playerDataResolvers.delete(playerId);
-			this.playerDataRejectors.delete(playerId);
+			this.cleanupPlayerPromise(playerId);
 		}
+	}
+
+	/**
+	 * Internal method to create a player data promise with timeout management
+	 */
+	private createPlayerDataPromise(playerId: string): Promise<PlayerData> {
+		// Check if data is already available
+		const existingData = getPlayerData(playerId);
+		if (existingData) {
+			return Promise.resolve(existingData);
+		}
+
+		// Return existing promise if one exists
+		const existingPromise = this.playerDataPromises.get(playerId);
+		if (existingPromise) {
+			return existingPromise;
+		}
+
+		// Create new promise with timeout
+		const promise = new Promise<PlayerData>((resolve, reject) => {
+			this.playerDataResolvers.set(playerId, resolve);
+			this.playerDataRejectors.set(playerId, reject);
+
+			// Add timeout to prevent hanging promises
+			const timeoutThread = task.delay(30, () => {
+				if (this.playerDataResolvers.has(playerId)) {
+					this.rejectPlayerDataPromise(playerId, "Player data loading timeout");
+				}
+			});
+
+			this.playerDataTimeouts.set(playerId, timeoutThread);
+		});
+
+		this.playerDataPromises.set(playerId, promise);
+		return promise;
 	}
 
 	/**
@@ -69,35 +120,7 @@ export class DataStore implements OnInit {
 	 * Returns a promise that resolves with the player data once it's loaded
 	 */
 	getPlayerDataWhenReady(player: Player): Promise<PlayerData> {
-		const playerId = tostring(player.UserId);
-
-		// Check if data is already available
-		const existingData = getPlayerData(playerId);
-		if (existingData) {
-			return Promise.resolve(existingData);
-		}
-
-		// Return existing promise if one exists
-		const existingPromise = this.playerDataPromises.get(playerId);
-		if (existingPromise) {
-			return existingPromise;
-		}
-
-		// Create new promise with timeout
-		const promise = new Promise<PlayerData>((resolve, reject) => {
-			this.playerDataResolvers.set(playerId, resolve);
-			this.playerDataRejectors.set(playerId, reject);
-
-			// Add timeout to prevent hanging promises
-			task.delay(30, () => {
-				if (this.playerDataResolvers.has(playerId)) {
-					this.rejectPlayerDataPromise(playerId, "Player data loading timeout");
-				}
-			});
-		});
-
-		this.playerDataPromises.set(playerId, promise);
-		return promise;
+		return this.createPlayerDataPromise(tostring(player.UserId));
 	}
 
 	/**
@@ -105,35 +128,7 @@ export class DataStore implements OnInit {
 	 * Returns a promise that resolves with the player data once it's loaded
 	 */
 	getPlayerDataWhenReadyById(userId: number): Promise<PlayerData> {
-		const playerId = tostring(userId);
-
-		// Check if data is already available
-		const existingData = getPlayerData(playerId);
-		if (existingData) {
-			return Promise.resolve(existingData);
-		}
-
-		// Return existing promise if one exists
-		const existingPromise = this.playerDataPromises.get(playerId);
-		if (existingPromise) {
-			return existingPromise;
-		}
-
-		// Create new promise with timeout
-		const promise = new Promise<PlayerData>((resolve, reject) => {
-			this.playerDataResolvers.set(playerId, resolve);
-			this.playerDataRejectors.set(playerId, reject);
-
-			// Add timeout to prevent hanging promises
-			task.delay(30, () => {
-				if (this.playerDataResolvers.has(playerId)) {
-					this.rejectPlayerDataPromise(playerId, "Player data loading timeout");
-				}
-			});
-		});
-
-		this.playerDataPromises.set(playerId, promise);
-		return promise;
+		return this.createPlayerDataPromise(tostring(userId));
 	}
 
 	onInit(): void {
@@ -249,7 +244,8 @@ export class DataStore implements OnInit {
 	}
 
 	private handlePlayerDataError(player: Player, error: unknown) {
-		warn(`Failed to load document for player ${player.Name}: ${error}`);
+		const errorMessage = typeIs(error, "string") ? error : tostring(error);
+		warn(`Failed to load document for player ${player.Name}: ${errorMessage}`);
 		const playerId = tostring(player.UserId);
 
 		// Set template data
@@ -270,10 +266,8 @@ export class DataStore implements OnInit {
 	onPlayerRemoving(player: Player) {
 		const playerId = tostring(player.UserId);
 
-		// Clean up promises
-		this.playerDataPromises.delete(playerId);
-		this.playerDataResolvers.delete(playerId);
-		this.playerDataRejectors.delete(playerId);
+		// Clean up all promise-related data
+		this.cleanupPlayerPromise(playerId);
 
 		deletePlayerData(playerId);
 	}
