@@ -4,7 +4,6 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"downlevelIteration": true,
-		"preserveSymlinks": true,
 		"jsx": "react",
 		"jsxFactory": "Roact.createElement",
 		"jsxFragmentFactory": "Roact.Fragment",
@@ -18,12 +17,7 @@
 		"strict": true,
 		"target": "ESNext",
 		"skipLibCheck": true,
-		"typeRoots": [
-			"./node_modules/@rbxts",
-			"./node_modules/@flamework",
-			"../../../node_modules/@rbxts",
-			"../../../node_modules/@flamework"
-		],
+		"typeRoots": ["../../node_modules/@rbxts", "../../node_modules/@flamework"],
 
 		// configurable
 		"rootDirs": ["src"],
@@ -40,12 +34,7 @@
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
 
-		"plugins": [
-			{
-				"transform": "rbxts-transformer-flamework",
-				"obfuscation": false
-			}
-		]
+		"plugins": [{ "transform": "rbxts-transformer-flamework" }]
 	},
-	"exclude": ["../../../node_modules/**", "out/**", "include/**", "node_modules/**"]
+	"exclude": ["../../node_modules/**", "out/**", "include/**"]
 }

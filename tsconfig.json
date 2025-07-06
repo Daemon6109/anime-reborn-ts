@@ -4,7 +4,7 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"downlevelIteration": true,
-		"preserveSymlinks": true,
+		"preserveSymlinks": false,
 		"jsx": "react",
 		"jsxFactory": "Roact.createElement",
 		"jsxFragmentFactory": "Roact.createFragment",

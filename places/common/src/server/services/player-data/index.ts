@@ -20,6 +20,8 @@ export class DataStore implements OnInit {
 	private playersRequestedInit = new Set<Player>();
 	// Track which players have been sent their initial data
 	private playersSentInitialData = new Set<Player>();
+	// Track which players are currently sending initial data to prevent race conditions
+	private playersSendingInitialData = new Set<Player>();
 
 	/**
 	 * Creates a logger function that shows all logs in Studio and only errors in production
@@ -167,6 +169,7 @@ export class DataStore implements OnInit {
 					// Clean up tracking
 					this.playersRequestedInit.delete(player);
 					this.playersSentInitialData.delete(player);
+					this.playersSendingInitialData.delete(player);
 
 					// Lyra handles unloading automatically
 					this.store.unloadAsync(player);
@@ -205,20 +208,31 @@ export class DataStore implements OnInit {
 	 * Attempts to send initial data if both conditions are met:
 	 * 1. Client has requested init
 	 * 2. Player data is loaded
+	 * 3. Not already sending data (prevents race condition)
 	 */
 	private async tryToSendInitialData(player: Player): Promise<void> {
-		// Check if client has requested init and we haven't sent data yet
-		if (this.playersRequestedInit.has(player) !== true || this.playersSentInitialData.has(player) === true) {
+		// Check if client has requested init and we haven't sent data yet and we're not already sending
+		if (
+			this.playersRequestedInit.has(player) !== true ||
+			this.playersSentInitialData.has(player) === true ||
+			this.playersSendingInitialData.has(player) === true
+		) {
 			return;
 		}
 
 		try {
+			// Mark that we're sending initial data to prevent race condition
+			this.playersSendingInitialData.add(player);
+
 			// Check if player data is loaded by attempting to get it
 			const playerData = await this.store.get(player);
 			await this.sendInitialPlayerData(player);
 		} catch (error) {
 			// Player data not loaded yet, will be handled when it loads
 			print(`[DataStore] Player data not ready yet for ${player.Name}, will send when loaded`);
+		} finally {
+			// Always clean up the sending flag
+			this.playersSendingInitialData.delete(player);
 		}
 	}
 
