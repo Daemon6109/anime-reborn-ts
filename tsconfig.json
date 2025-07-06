@@ -4,6 +4,7 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"downlevelIteration": true,
+		"preserveSymlinks": true,
 		"jsx": "react",
 		"jsxFactory": "Roact.createElement",
 		"jsxFragmentFactory": "Roact.createFragment",
@@ -47,6 +48,12 @@
 				"places/lobby/src/client/*",
 				"places/afk/src/client/*",
 				"places/gameplay/src/client/*"
+			],
+			"@network/*": [
+				"places/common/remotes/network/*",
+				"places/lobby/remotes/network/*",
+				"places/afk/remotes/network/*",
+				"places/gameplay/remotes/network/*"
 			]
 		},
 		"incremental": true,

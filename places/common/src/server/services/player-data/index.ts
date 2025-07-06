@@ -2,9 +2,8 @@
 import { Players, RunService } from "@rbxts/services";
 
 // Packages
-import { MockDataStoreService, MockMemoryStoreService } from "@rbxts/lyra";
+import { MockDataStoreService, MockMemoryStoreService, createPlayerStore } from "@rbxts/lyra";
 import { Service, OnInit } from "@flamework/core";
-import { createPlayerStore } from "@rbxts/lyra";
 import ServerNetwork from "@network/server";
 
 // Types
@@ -13,7 +12,7 @@ import type { PlayerData } from "@shared/atoms/player-data";
 // Dependencies
 import template from "./template";
 import schema from "./schema";
-import { safePlayerAdded } from "../../../shared/utils/safe-player-added.util";
+import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 
 @Service()
 export class DataStore implements OnInit {
@@ -26,7 +25,7 @@ export class DataStore implements OnInit {
 	 * Creates a logger function that shows all logs in Studio and only errors in production
 	 */
 	private createLogger() {
-		if (RunService.IsStudio()) {
+		if (RunService.IsStudio() === true) {
 			// Show all logs in Studio
 			return (message: { level: string; message: string; context?: unknown }) => {
 				print(`[Lyra][${message.level}] ${message.message}`);
@@ -97,13 +96,13 @@ export class DataStore implements OnInit {
 			}
 
 			const player = Players.GetPlayerByUserId(userId);
-			if (!player) {
+			if (player === undefined) {
 				// Player may have left - this is normal
 				return;
 			}
 
 			// Only send sync updates if we've already sent the initial data
-			if (!this.playersSentInitialData.has(player)) {
+			if (this.playersSentInitialData.has(player) !== true) {
 				return;
 			}
 
@@ -209,7 +208,7 @@ export class DataStore implements OnInit {
 	 */
 	private async tryToSendInitialData(player: Player): Promise<void> {
 		// Check if client has requested init and we haven't sent data yet
-		if (!this.playersRequestedInit.has(player) || this.playersSentInitialData.has(player)) {
+		if (this.playersRequestedInit.has(player) !== true || this.playersSentInitialData.has(player) === true) {
 			return;
 		}
 
@@ -223,8 +222,8 @@ export class DataStore implements OnInit {
 		}
 	}
 
-	private handlePlayerDataError(player: Player, error: unknown) {
-		const errorMessage = typeIs(error, "string") ? error : tostring(error);
+	private handlePlayerDataError(player: Player, err: unknown) {
+		const errorMessage = typeIs(err, "string") === true ? err : tostring(err);
 		warn(`Failed to load document for player ${player.Name}: ${errorMessage}`);
 
 		// Kick the player to prevent data loss
