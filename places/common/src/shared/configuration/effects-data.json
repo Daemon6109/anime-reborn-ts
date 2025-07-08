@@ -1,0 +1,43 @@
+{
+	"BasicLuck": {
+		"Icon": "rbxassetid://114034975822906",
+		"Description": "Grants the player a 20% banner luck boost",
+		"DisplayName": "Basic Luck",
+		"Multiplier": { "BannerLuck": 1.2 }
+	},
+	"50%Exp": {
+		"Icon": "rbxassetid://100748281662589",
+		"Description": "Grants the player a 50% (PLAYER EXP BOOST)",
+		"DisplayName": "50% Experience Boost",
+		"Multiplier": { "ExpBoost": 1.5 }
+	},
+	"ShinyBoost": {
+		"Icon": "rbxassetid://139517965516468",
+		"Description": "Grants the player a 10% banner shiny luck boost",
+		"DisplayName": "Shiny Chance Boost",
+		"Multiplier": { "ShinyBoost": 1.1 }
+	},
+	"LegendsBoost": {
+		"Icon": "rbxassetid://132445499585525",
+		"Description": "Grants the player a 2x drop chance boost for (unit) in Legend Stages",
+		"DisplayName": "Legend's Boost",
+		"Multiplier": { "DropChanceBoost": 2 }
+	},
+	"MegaLuck": {
+		"Icon": "rbxassetid://94606088984849",
+		"Description": "Grants the player a 100% banner luck boost and a 10% banner shiny luck boost",
+		"DisplayName": "Mega Luck",
+		"Multiplier": {
+			"ShinyBoost": 1.1,
+			"BannerLuck": 2
+		}
+	},
+	"SuperLuck": {
+		"Icon": "rbxassetid://106919223451712",
+		"Description": "Grants the player a 50% banner luck boost",
+		"DisplayName": "Super Luck",
+		"Multiplier": {
+			"BannerLuck": 1.5
+		}
+	}
+}
