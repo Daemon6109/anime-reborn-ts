@@ -11,6 +11,7 @@ const { atom } = Charm;
 export type PlayerData = {
 	units: Types.InterfaceProps.PlayerData.Unit.Player[];
 	items: Types.InterfaceProps.PlayerData.Item.Player[];
+	mounts: Types.InterfaceProps.PlayerData.Mount.Mount;
 	team: Types.InterfaceProps.PlayerData.Team.default;
 	effects: PlayerDataEffects[];
 };
