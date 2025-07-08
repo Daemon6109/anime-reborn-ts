@@ -47,10 +47,7 @@ const defaultData: PlayerData = {
 			claimed: new Map<number, { basic: boolean; premium: boolean }>(),
 		},
 	],
-	adventCalendar: {
-		claimed: [],
-		onlineDays: 1,
-	},
+	adventCalendar: {},
 };
 
 export default defaultData;

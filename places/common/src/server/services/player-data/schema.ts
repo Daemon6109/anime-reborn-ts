@@ -89,8 +89,11 @@ export default t.interface({
 			claimed: t.map(t.number, t.interface({ basic: t.boolean, premium: t.boolean })),
 		}),
 	),
-	adventCalendar: t.interface({
-		claimed: t.array(t.number),
-		onlineDays: t.number,
-	}),
+	adventCalendar: t.map(
+		t.string,
+		t.interface({
+			claimed: t.array(t.number),
+			onlineDays: t.number,
+		}),
+	),
 });

@@ -5,7 +5,9 @@ import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 const version = { major: 1, minor: 0, patch: 0 };
 
 export interface AdventCalendarConfig {
+	Name: string; // Calendar name (e.g., "WinterEvent2024")
 	StartDate: [number, number, number];
+	EndDate: [number, number, number]; // [year, month, day]
 	TargetHour: number;
 	TargetMin: number;
 	Rewards: { [day: number]: { [key: string]: unknown } };
@@ -26,7 +28,9 @@ export class AdventCalendarService implements OnInit {
 	public onInit(): void {
 		// Initialize with default config for winter event
 		this.setConfig({
+			Name: "WinterEvent2024",
 			StartDate: [2024, 12, 1],
+			EndDate: [2024, 12, 25],
 			TargetHour: 0,
 			TargetMin: 0,
 			Rewards: {
@@ -43,6 +47,17 @@ export class AdventCalendarService implements OnInit {
 		});
 
 		print("AdventCalendarService initialized");
+	}
+
+	/**
+	 * Generates the calendar key for storing in player data
+	 */
+	private getCalendarKey(): string {
+		if (this.config === undefined) {
+			return "";
+		}
+		const endDate = this.config.EndDate;
+		return `${this.config.Name}_${endDate[0]}-${endDate[1]}-${endDate[2]}`;
 	}
 
 	/**
@@ -139,22 +154,32 @@ export class AdventCalendarService implements OnInit {
 
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			await playerStore.updateAsync(player, (playerData: any) => {
+				const calendarKey = this.getCalendarKey();
+				if (calendarKey === "") {
+					return false;
+				}
+
 				// Initialize advent calendar data if it doesn't exist
-				if (playerData.AdventCalendarData === undefined) {
-					playerData.AdventCalendarData = {
-						Claimed: [],
-						OnlineDays: 0,
+				if (playerData.adventCalendar === undefined) {
+					playerData.adventCalendar = {};
+				}
+
+				// Initialize this calendar if it doesn't exist
+				if (playerData.adventCalendar[calendarKey] === undefined) {
+					playerData.adventCalendar[calendarKey] = {
+						claimed: [],
+						onlineDays: 0,
 					};
 				}
 
 				// Check if day is already claimed
-				if (playerData.AdventCalendarData.Claimed.includes(day) === true) {
+				if (playerData.adventCalendar[calendarKey].claimed.includes(day) === true) {
 					warn(`Player ${player.Name} already claimed advent reward for day ${day}`);
 					return false;
 				}
 
 				// Mark day as claimed
-				playerData.AdventCalendarData.Claimed.push(day);
+				playerData.adventCalendar[calendarKey].claimed.push(day);
 
 				// Give rewards
 				this.giveAdventRewardDirect(playerData, reward);
@@ -229,7 +254,8 @@ export class AdventCalendarService implements OnInit {
 			if (playerData !== undefined) {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const data = playerData as any;
-				if (data.AdventCalendarData?.Claimed?.includes(day) === true) {
+				const calendarKey = this.getCalendarKey();
+				if (data.adventCalendar?.[calendarKey]?.claimed?.includes(day) === true) {
 					return [false, "Already claimed"];
 				}
 			}
@@ -253,7 +279,9 @@ export class AdventCalendarService implements OnInit {
 				return [];
 			}
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			return (playerData as any).AdventCalendarData?.Claimed ?? [];
+			const data = playerData as any;
+			const calendarKey = this.getCalendarKey();
+			return data.adventCalendar?.[calendarKey]?.claimed ?? [];
 		} catch (error) {
 			warn(`Failed to get claimed days for player ${player.Name}: ${error}`);
 			return [];
@@ -272,7 +300,9 @@ export class AdventCalendarService implements OnInit {
 				return 0;
 			}
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			return (playerData as any).AdventCalendarData?.OnlineDays ?? 0;
+			const data = playerData as any;
+			const calendarKey = this.getCalendarKey();
+			return data.adventCalendar?.[calendarKey]?.onlineDays ?? 0;
 		} catch (error) {
 			warn(`Failed to get online days for player ${player.Name}: ${error}`);
 			return 0;
@@ -287,24 +317,33 @@ export class AdventCalendarService implements OnInit {
 			return;
 		}
 
-		const currentDay = this.getCurrentDay();
 		const playerStore = this.dataService.getPlayerStore();
 
 		try {
 			await playerStore.updateAsync(player, (playerData) => {
 				// eslint-disable-next-line @typescript-eslint/no-explicit-any
 				const data = playerData as any;
+				const calendarKey = this.getCalendarKey();
+				if (calendarKey === "") {
+					return false;
+				}
 
 				// Initialize advent calendar data if it doesn't exist
-				if (data.AdventCalendarData === undefined) {
-					data.AdventCalendarData = {
-						OnlineDays: 1,
-						Claimed: [],
+				if (data.adventCalendar === undefined) {
+					data.adventCalendar = {};
+				}
+
+				// Initialize this calendar if it doesn't exist
+				if (data.adventCalendar[calendarKey] === undefined) {
+					data.adventCalendar[calendarKey] = {
+						onlineDays: 1,
+						claimed: [],
 					};
 					return true; // Commit changes
 				} else {
 					// Increment online days (since player joined today)
-					data.AdventCalendarData.OnlineDays = (data.AdventCalendarData.OnlineDays ?? 0) + 1;
+					data.adventCalendar[calendarKey].onlineDays =
+						(data.adventCalendar[calendarKey].onlineDays ?? 0) + 1;
 					return true; // Commit changes
 				}
 			});
@@ -338,5 +377,27 @@ export class AdventCalendarService implements OnInit {
 		});
 
 		return math.max(0, nextUnlockTime - now);
+	}
+
+	/**
+	 * Gets all advent calendar data for a player
+	 */
+	public async getAllAdventCalendarData(
+		player: Player,
+	): Promise<Record<string, { claimed: number[]; onlineDays: number }>> {
+		const playerStore = this.dataService.getPlayerStore();
+
+		try {
+			const playerData = await playerStore.getAsync(player);
+			if (playerData === undefined) {
+				return {};
+			}
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const data = playerData as any;
+			return data.adventCalendar ?? {};
+		} catch (error) {
+			warn(`Failed to get all advent calendar data for player ${player.Name}: ${error}`);
+			return {};
+		}
 	}
 }
