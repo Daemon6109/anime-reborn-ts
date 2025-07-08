@@ -3,7 +3,6 @@ import Charm from "@rbxts/charm";
 
 // Types
 import type * as Types from "@shared/types";
-import type PlayerDataEffects from "@shared/types/interface/player-data/effects";
 
 // Charm Components
 const { atom } = Charm;
@@ -12,7 +11,8 @@ export type PlayerData = {
 	units: Types.InterfaceProps.PlayerData.Unit.Player[];
 	items: Types.InterfaceProps.PlayerData.Item.Player[];
 	team: Types.InterfaceProps.PlayerData.Team.default;
-	effects: PlayerDataEffects[];
+	effects: Types.InterfaceProps.PlayerData.Effects.EffectData[];
+	battlepass: Types.InterfaceProps.PlayerData.Battlepass.BattlepassData[];
 };
 
 type PlayerDataMap = {

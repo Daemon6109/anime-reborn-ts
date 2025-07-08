@@ -39,6 +39,14 @@ const defaultData: PlayerData = {
 	items: [],
 	team: [],
 	effects: [],
+	battlepass: [
+		{
+			level: 0,
+			xp: 0,
+			premium: false,
+			claimed: new Map<number, { basic: boolean; premium: boolean }>(),
+		},
+	],
 };
 
 export default defaultData;

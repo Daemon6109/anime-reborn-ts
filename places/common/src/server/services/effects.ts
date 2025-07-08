@@ -9,8 +9,8 @@ import { Analytics } from "@services/analytics";
 // Utils
 import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 
-import type { EffectName, ExactConfiguration, EffectData } from "../../shared/types/interface/player-data/effects";
-import { effectsData, MULTIPLIER_TYPES } from "../../shared/types/interface/player-data/effects";
+import type { EffectName, ExactConfiguration, EffectData } from "@shared/types/interface/player-data/effects";
+import { effectsData, MULTIPLIER_TYPES } from "@shared/types/interface/player-data/effects";
 
 const version = { major: 1, minor: 0, patch: 0 };
 

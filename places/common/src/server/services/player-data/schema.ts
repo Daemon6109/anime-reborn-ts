@@ -1,4 +1,5 @@
 import { t } from "@rbxts/t";
+import { EFFECT_NAMES } from "@shared/types/interface/player-data/effects";
 
 export default t.interface({
 	units: t.array(
@@ -74,9 +75,17 @@ export default t.interface({
 	team: t.array(t.optional(t.string)),
 	effects: t.array(
 		t.interface({
-			id: t.string,
+			id: t.literal(...EFFECT_NAMES),
 			duration: t.number,
 			startTime: t.number,
+		}),
+	),
+	battlepass: t.array(
+		t.interface({
+			level: t.number,
+			xp: t.number,
+			premium: t.boolean,
+			claimed: t.map(t.number, t.interface({ basic: t.boolean, premium: t.boolean })),
 		}),
 	),
 });
