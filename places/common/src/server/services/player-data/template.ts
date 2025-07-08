@@ -38,6 +38,7 @@ const defaultData: PlayerData = {
 	units,
 	items: [],
 	team: [],
+	effects: [],
 };
 
 export default defaultData;

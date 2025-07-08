@@ -72,4 +72,11 @@ export default t.interface({
 		}),
 	),
 	team: t.array(t.optional(t.string)),
+	effects: t.array(
+		t.interface({
+			id: t.string,
+			duration: t.number,
+			startTime: t.number,
+		}),
+	),
 });
