@@ -3,6 +3,7 @@ export type * as Team from "./team";
 export type * as Item from "./items";
 export type * as Effects from "./effects";
 export type * as Battlepass from "./battlepass";
+export type * as AdventCalendar from "./advent-calendar";
 
 import type { Atom } from "@rbxts/charm";
 import type * as Item from "./items";

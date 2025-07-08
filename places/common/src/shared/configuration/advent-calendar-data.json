@@ -1,0 +1,99 @@
+{
+	"Christmas_1": {
+		"TargetHour": 18,
+		"TargetMin": 0,
+		"StartDate": [2023, 12, 24],
+		"Rewards": {
+			"1": {
+				"Items": {
+					"TraitCrystal": 10
+				}
+			},
+			"2": {
+				"Currencies": {
+					"Gems": 1000
+				}
+			},
+			"3": {
+				"Currencies": {
+					"Candy Cane": 5000
+				}
+			},
+			"4": {
+				"Items": {
+					"MythicPresent": 2
+				}
+			},
+			"5": {
+				"Currencies": {
+					"Candy Cane": 7500
+				}
+			},
+			"6": {
+				"Items": {
+					"MythicPresent": 2
+				}
+			},
+			"7": {
+				"Currencies": {
+					"Gems": 1000
+				}
+			},
+			"8": {
+				"Items": {
+					"EventPresent": 2
+				}
+			},
+			"9": {
+				"Items": {
+					"TraitCrystal": 15
+				}
+			},
+			"10": {
+				"Currencies": {
+					"Gems": 1000
+				}
+			},
+			"11": {
+				"Items": {
+					"EventPresent": 4
+				}
+			},
+			"12": {
+				"Currencies": {
+					"Candy Cane": 10000
+				}
+			},
+			"13": {
+				"Currencies": {
+					"Gems": 1000
+				}
+			},
+			"14": {
+				"Items": {
+					"TraitCrystal": 15
+				}
+			},
+			"15": {
+				"Items": {
+					"MythicPresent": 3
+				}
+			},
+			"16": {
+				"Currencies": {
+					"Gems": 1000
+				}
+			},
+			"17": {
+				"Items": {
+					"EventPresent": 3
+				}
+			},
+			"18": {
+				"Items": {
+					"TraitCrystal": 50
+				}
+			}
+		}
+	}
+}
