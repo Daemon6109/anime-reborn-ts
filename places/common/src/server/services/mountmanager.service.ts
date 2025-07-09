@@ -110,7 +110,7 @@ export class MountsManager implements OnInit {
 
 			// Unequip all mounts first
 			data.mounts.ownedMounts.forEach((mount) => {
-				// incase for some reason theres 2 mounts that are both equipped
+				// in case for some reason there's 2 mounts that are both equipped
 				mount.equipped = false;
 			});
 
