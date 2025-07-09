@@ -1,16 +1,33 @@
 import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@services/player-data";
 import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
+import { adventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
+import { Analytics } from "./analytics";
 
 const version = { major: 1, minor: 0, patch: 0 };
 
 export interface AdventCalendarConfig {
-	Name: string; // Calendar name (e.g., "WinterEvent2024")
-	StartDate: [number, number, number];
-	EndDate: [number, number, number]; // [year, month, day]
 	TargetHour: number;
 	TargetMin: number;
-	Rewards: { [day: number]: { [key: string]: unknown } };
+	StartDate: number[]; // Changed from tuple to array to match JSON
+	Rewards: { [day: string]: { [key: string]: unknown } };
+}
+
+interface PlayerItem {
+	id: string;
+	uuid: string;
+	amount: number;
+	locked: boolean;
+}
+
+interface AdventCalendarEntry {
+	claimed: number[];
+	onlineDays: number;
+}
+
+interface PlayerDataWithAdventCalendar {
+	adventCalendar?: Record<string, AdventCalendarEntry>;
+	items: PlayerItem[];
 }
 
 /**
@@ -20,62 +37,69 @@ export interface AdventCalendarConfig {
 export class AdventCalendarService implements OnInit {
 	public readonly version = version;
 
-	// Configuration
-	private config: AdventCalendarConfig | undefined = undefined;
+	// Current active calendar name
+	private activeCalendarName: string | undefined = undefined;
 
-	constructor(private readonly dataService: DataStore) {}
+	constructor(
+		private readonly dataService: DataStore,
+		private readonly analytics: Analytics,
+	) {}
 
 	public onInit(): void {
-		// Initialize with default config for winter event
-		this.setConfig({
-			Name: "WinterEvent2024",
-			StartDate: [2024, 12, 1],
-			EndDate: [2024, 12, 25],
-			TargetHour: 0,
-			TargetMin: 0,
-			Rewards: {
-				1: { Currencies: { Gold: 1000, Gems: 10 } },
-				2: { Currencies: { Gold: 1200, Gems: 12 } },
-				3: { Currencies: { Gold: 1500, Gems: 15 }, Items: { SpecialItem: 1 } },
-				// Add more days as needed
-			},
-		});
+		// Set the active calendar (you can change this to switch between calendars)
+		this.setActiveCalendar("Christmas_1");
 
 		// Handle player joining to update advent calendar data
 		safePlayerAdded((player) => {
-			task.spawn(() => this.updateAdventCalendarData(player));
+			this.updateAdventCalendarData(player);
 		});
 
 		print("AdventCalendarService initialized");
 	}
 
 	/**
-	 * Generates the calendar key for storing in player data
+	 * Sets the active advent calendar by name
 	 */
-	private getCalendarKey(): string {
-		if (this.config === undefined) {
-			return "";
+	public setActiveCalendar(calendarName: keyof typeof adventCalendarData): void {
+		if (adventCalendarData[calendarName] !== undefined) {
+			this.activeCalendarName = calendarName;
+			print(`Active advent calendar set to: ${calendarName}`);
+		} else {
+			warn(`Calendar '${calendarName}' not found in configuration`);
 		}
-		const endDate = this.config.EndDate;
-		return `${this.config.Name}_${endDate[0]}-${endDate[1]}-${endDate[2]}`;
 	}
 
 	/**
-	 * Sets the advent calendar configuration
+	 * Gets the current active calendar configuration
 	 */
-	public setConfig(config: AdventCalendarConfig): void {
-		this.config = config;
+	private getActiveConfig(): AdventCalendarConfig | undefined {
+		if (this.activeCalendarName === undefined) {
+			return undefined;
+		}
+		return adventCalendarData[this.activeCalendarName as keyof typeof adventCalendarData];
+	}
+
+	/**
+	 * Generates the calendar key for storing in player data
+	 */
+	private getCalendarKey(): string {
+		if (this.activeCalendarName === undefined) {
+			return "";
+		}
+		// For now, we'll use just the calendar name as key since EndDate is not in the JSON
+		// You might want to add EndDate to the JSON later for better key generation
+		return this.activeCalendarName;
 	}
 
 	/**
 	 * Gets the current day of the advent calendar (1-based)
 	 */
 	public getCurrentDay(): number {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return 0;
 		}
 
-		const config = this.config;
 		const now = os.time();
 
 		// Create the target time for the first day
@@ -101,12 +125,13 @@ export class AdventCalendarService implements OnInit {
 	}
 
 	private getTotalDays(): number {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return 0;
 		}
-		const rewards = this.config.Rewards;
+		const rewards = config.Rewards;
 		let maxDay = 0;
-		for (const [dayStr] of pairs(rewards)) {
+		for (const [dayStr] of pairs(rewards as unknown as Record<string, unknown>)) {
 			const day = tonumber(dayStr);
 			if (day !== undefined && day > maxDay) {
 				maxDay = day;
@@ -119,7 +144,8 @@ export class AdventCalendarService implements OnInit {
 	 * Checks if the advent calendar is currently active
 	 */
 	public isAdventCalendarActive(): boolean {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return false;
 		}
 
@@ -131,18 +157,24 @@ export class AdventCalendarService implements OnInit {
 	 * Claims a reward for a specific day
 	 */
 	public async claimAdventReward(player: Player, day: number): Promise<boolean> {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return false;
 		}
 
 		const [canClaim, errorMessage] = await this.canClaimAdventReward(player, day);
 		if (canClaim === false) {
+			// Log failed claim attempt
+			this.analytics.LogCustomEvent(player, "advent_calendar_claim_failed", 1, {
+				calendar_name: this.activeCalendarName ?? "Unknown",
+				day: tostring(day),
+				reason: errorMessage ?? "Unknown",
+			});
 			warn(`Cannot claim advent reward: ${errorMessage}`);
 			return false;
 		}
 
-		const config = this.config;
-		const reward = config.Rewards[day];
+		const reward = config.Rewards[tostring(day)];
 		if (reward === undefined) {
 			return false;
 		}
@@ -152,8 +184,7 @@ export class AdventCalendarService implements OnInit {
 		try {
 			let rewardClaimed = false;
 
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			await playerStore.updateAsync(player, (playerData: any) => {
+			await playerStore.updateAsync(player, (playerData: PlayerDataWithAdventCalendar) => {
 				const calendarKey = this.getCalendarKey();
 				if (calendarKey === "") {
 					return false;
@@ -173,19 +204,22 @@ export class AdventCalendarService implements OnInit {
 				}
 
 				// Check if day is already claimed
-				if (playerData.adventCalendar[calendarKey].claimed.includes(day) === true) {
+				if (playerData.adventCalendar[calendarKey]!.claimed.includes(day) === true) {
 					warn(`Player ${player.Name} already claimed advent reward for day ${day}`);
 					return false;
 				}
 
 				// Mark day as claimed
-				playerData.adventCalendar[calendarKey].claimed.push(day);
+				playerData.adventCalendar[calendarKey]!.claimed.push(day);
 
 				// Give rewards
 				this.giveAdventRewardDirect(playerData, reward);
 
 				rewardClaimed = true;
 				print(`${player.DisplayName} claimed advent calendar day ${day} reward!`);
+
+				// Log analytics after successful claim
+				this.logRewardClaimAnalytics(player, day, reward);
 
 				return true; // Commit changes
 			});
@@ -200,13 +234,12 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gives advent calendar rewards directly to player data (for use within updateAsync)
 	 */
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	private giveAdventRewardDirect(playerData: any, reward: Record<string, unknown>): void {
+	private giveAdventRewardDirect(playerData: PlayerDataWithAdventCalendar, reward: Record<string, unknown>): void {
 		const processRewardCategory = (category: unknown) => {
 			if (category !== undefined && typeIs(category, "table")) {
 				for (const [id, amount] of pairs(category as Record<string, unknown>)) {
 					if (typeIs(amount, "number")) {
-						let item = playerData.items.find((item: { id: string }) => item.id === id);
+						let item = playerData.items.find((item: PlayerItem) => item.id === id);
 						if (item === undefined) {
 							item = { id: id, uuid: `${id}-${os.time()}`, amount: 0, locked: false };
 							playerData.items.push(item);
@@ -225,11 +258,10 @@ export class AdventCalendarService implements OnInit {
 	 * Checks if a player can claim a reward for a specific day
 	 */
 	public async canClaimAdventReward(player: Player, day: number): Promise<[boolean, string?]> {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return [false, "Advent calendar not configured"];
 		}
-
-		const config = this.config;
 
 		// Check if day is valid
 		if (day < 1 || day > this.getTotalDays()) {
@@ -237,7 +269,7 @@ export class AdventCalendarService implements OnInit {
 		}
 
 		// Check if reward exists for this day
-		if (config.Rewards[day] === undefined) {
+		if (config.Rewards[tostring(day)] === undefined) {
 			return [false, "No reward configured for this day"];
 		}
 
@@ -252,8 +284,7 @@ export class AdventCalendarService implements OnInit {
 		try {
 			const playerData = await playerStore.getAsync(player);
 			if (playerData !== undefined) {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const data = playerData as any;
+				const data = playerData as PlayerDataWithAdventCalendar;
 				const calendarKey = this.getCalendarKey();
 				if (data.adventCalendar?.[calendarKey]?.claimed?.includes(day) === true) {
 					return [false, "Already claimed"];
@@ -278,8 +309,7 @@ export class AdventCalendarService implements OnInit {
 			if (playerData === undefined) {
 				return [];
 			}
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const data = playerData as any;
+			const data = playerData as PlayerDataWithAdventCalendar;
 			const calendarKey = this.getCalendarKey();
 			return data.adventCalendar?.[calendarKey]?.claimed ?? [];
 		} catch (error) {
@@ -299,8 +329,7 @@ export class AdventCalendarService implements OnInit {
 			if (playerData === undefined) {
 				return 0;
 			}
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const data = playerData as any;
+			const data = playerData as PlayerDataWithAdventCalendar;
 			const calendarKey = this.getCalendarKey();
 			return data.adventCalendar?.[calendarKey]?.onlineDays ?? 0;
 		} catch (error) {
@@ -313,16 +342,18 @@ export class AdventCalendarService implements OnInit {
 	 * Updates advent calendar data when a player joins
 	 */
 	public async updateAdventCalendarData(player: Player): Promise<void> {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return;
 		}
 
 		const playerStore = this.dataService.getPlayerStore();
 
 		try {
+			let isFirstTime = false;
+
 			await playerStore.updateAsync(player, (playerData) => {
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const data = playerData as any;
+				const data = playerData as PlayerDataWithAdventCalendar;
 				const calendarKey = this.getCalendarKey();
 				if (calendarKey === "") {
 					return false;
@@ -339,14 +370,18 @@ export class AdventCalendarService implements OnInit {
 						onlineDays: 1,
 						claimed: [],
 					};
+					isFirstTime = true;
 					return true; // Commit changes
 				} else {
 					// Increment online days (since player joined today)
-					data.adventCalendar[calendarKey].onlineDays =
-						(data.adventCalendar[calendarKey].onlineDays ?? 0) + 1;
+					data.adventCalendar[calendarKey]!.onlineDays =
+						(data.adventCalendar[calendarKey]!.onlineDays ?? 0) + 1;
 					return true; // Commit changes
 				}
 			});
+
+			// Log analytics after successful update
+			this.logCalendarParticipationAnalytics(player, isFirstTime);
 		} catch (error) {
 			warn(`Failed to update advent calendar data for player ${player.Name}: ${error}`);
 		}
@@ -356,11 +391,11 @@ export class AdventCalendarService implements OnInit {
 	 * Gets time until next day unlock (in seconds)
 	 */
 	public getTimeUntilNextDay(): number {
-		if (this.config === undefined) {
+		const config = this.getActiveConfig();
+		if (config === undefined) {
 			return 0;
 		}
 
-		const config = this.config;
 		const now = os.time();
 
 		// Calculate next unlock time
@@ -382,9 +417,7 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gets all advent calendar data for a player
 	 */
-	public async getAllAdventCalendarData(
-		player: Player,
-	): Promise<Record<string, { claimed: number[]; onlineDays: number }>> {
+	public async getAllAdventCalendarData(player: Player): Promise<Record<string, AdventCalendarEntry>> {
 		const playerStore = this.dataService.getPlayerStore();
 
 		try {
@@ -392,12 +425,128 @@ export class AdventCalendarService implements OnInit {
 			if (playerData === undefined) {
 				return {};
 			}
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const data = playerData as any;
+			const data = playerData as PlayerDataWithAdventCalendar;
 			return data.adventCalendar ?? {};
 		} catch (error) {
 			warn(`Failed to get all advent calendar data for player ${player.Name}: ${error}`);
 			return {};
 		}
+	}
+
+	/**
+	 * Logs analytics for reward claim events
+	 */
+	private logRewardClaimAnalytics(player: Player, day: number, reward: Record<string, unknown>): void {
+		const calendarName = this.activeCalendarName ?? "Unknown";
+
+		// Log custom event for reward claim
+		this.analytics.LogCustomEvent(player, "advent_calendar_reward_claimed", 1, {
+			calendar_name: calendarName,
+			day: tostring(day),
+			reward_type: this.getRewardTypeFromReward(reward),
+		});
+
+		// Log progression event
+		this.analytics.LogProgressionEvent(
+			player,
+			`advent_calendar_${calendarName}`,
+			Enum.AnalyticsProgressionType.Complete,
+			day,
+			`Day ${day}`,
+			{
+				calendar_name: calendarName,
+				total_days: tostring(this.getTotalDays()),
+			},
+		);
+
+		// Log economy events for currency rewards
+		this.logEconomyEventsForReward(player, reward);
+	}
+
+	/**
+	 * Logs economy events for currency rewards
+	 */
+	private logEconomyEventsForReward(player: Player, reward: Record<string, unknown>): void {
+		const currencies = reward.Currencies as Record<string, number> | undefined;
+		if (currencies !== undefined && typeIs(currencies, "table")) {
+			for (const [currencyId, amount] of pairs(currencies)) {
+				if (typeIs(amount, "number") && amount > 0) {
+					// Map currency IDs to analytics-friendly names
+					const currencyType = this.mapCurrencyIdToAnalyticsType(currencyId);
+					if (currencyType !== undefined) {
+						this.analytics.LogEconomyEvent(
+							player,
+							Enum.AnalyticsEconomyFlowType.Source,
+							currencyType,
+							amount,
+							0, // We don't track ending balance here
+							"TimedReward",
+							undefined,
+							{
+								calendar_name: this.activeCalendarName ?? "Unknown",
+								source: "advent_calendar",
+							},
+						);
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Maps currency IDs to analytics currency types
+	 */
+	private mapCurrencyIdToAnalyticsType(currencyId: string): "Gold" | "Gems" | undefined {
+		switch (currencyId) {
+			case "Gold":
+				return "Gold";
+			case "Gems":
+				return "Gems";
+			default:
+				return undefined; // Other currencies not tracked in economy events
+		}
+	}
+
+	/**
+	 * Gets reward type string from reward object
+	 */
+	private getRewardTypeFromReward(reward: Record<string, unknown>): string {
+		const types: string[] = [];
+
+		if (reward.Currencies !== undefined) {
+			types.push("Currency");
+		}
+		if (reward.Items !== undefined) {
+			types.push("Items");
+		}
+
+		return types.size() > 0 ? types.join(",") : "Unknown";
+	}
+
+	/**
+	 * Logs analytics for calendar participation
+	 */
+	private logCalendarParticipationAnalytics(player: Player, isFirstTime: boolean): void {
+		const calendarName = this.activeCalendarName ?? "Unknown";
+
+		if (isFirstTime) {
+			// Log funnel step for first-time participation
+			this.analytics.LogFunnelStepEvent(
+				player,
+				"advent_calendar_onboarding",
+				`${player.UserId}_${calendarName}`,
+				1,
+				"first_login",
+				{
+					calendar_name: calendarName,
+				},
+			);
+		}
+
+		// Log custom event for daily participation
+		this.analytics.LogCustomEvent(player, "advent_calendar_daily_login", 1, {
+			calendar_name: calendarName,
+			is_first_time: tostring(isFirstTime),
+		});
 	}
 }
