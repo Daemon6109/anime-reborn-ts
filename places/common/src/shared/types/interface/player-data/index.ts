@@ -11,7 +11,7 @@ import type Unit from "./units";
 
 import type PlayerDataTeam from "./team";
 import type PlayerDataEffects from "./effects";
-import { Mount } from "./mount";
+import type { Mount } from "./mount";
 import type PlayerDataBattlepass from "./battlepass";
 
 export default interface PlayerDataTypes {
