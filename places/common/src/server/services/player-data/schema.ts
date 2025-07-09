@@ -1,6 +1,6 @@
 import { t } from "@rbxts/t";
 import { EFFECT_NAMES } from "@shared/types/interface/player-data/effects";
-import { adventCalendarData } from "../../../shared/types/interface/player-data/advent-calendar";
+import { getCalendarNames } from "@shared/types/interface/player-data/advent-calendar";
 
 export default t.interface({
 	units: t.array(
@@ -90,7 +90,7 @@ export default t.interface({
 		}),
 	),
 	adventCalendar: t.map(
-		t.string,
+		t.literal(...getCalendarNames()),
 		t.interface({
 			claimed: t.array(t.number),
 			onlineDays: t.number,

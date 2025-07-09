@@ -26,7 +26,7 @@ interface AdventCalendarEntry {
 }
 
 interface PlayerDataWithAdventCalendar {
-	adventCalendar?: Record<string, AdventCalendarEntry>;
+	adventCalendar?: Map<string, AdventCalendarEntry>;
 	items: PlayerItem[];
 }
 
@@ -192,25 +192,26 @@ export class AdventCalendarService implements OnInit {
 
 				// Initialize advent calendar data if it doesn't exist
 				if (playerData.adventCalendar === undefined) {
-					playerData.adventCalendar = {};
+					playerData.adventCalendar = new Map();
 				}
 
 				// Initialize this calendar if it doesn't exist
-				if (playerData.adventCalendar[calendarKey] === undefined) {
-					playerData.adventCalendar[calendarKey] = {
+				if (playerData.adventCalendar.get(calendarKey) === undefined) {
+					playerData.adventCalendar.set(calendarKey, {
 						claimed: [],
 						onlineDays: 0,
-					};
+					});
 				}
 
 				// Check if day is already claimed
-				if (playerData.adventCalendar[calendarKey]!.claimed.includes(day) === true) {
+				const calendarEntry = playerData.adventCalendar.get(calendarKey)!;
+				if (calendarEntry.claimed.includes(day) === true) {
 					warn(`Player ${player.Name} already claimed advent reward for day ${day}`);
 					return false;
 				}
 
 				// Mark day as claimed
-				playerData.adventCalendar[calendarKey]!.claimed.push(day);
+				calendarEntry.claimed.push(day);
 
 				// Give rewards
 				this.giveAdventRewardDirect(playerData, reward);
@@ -286,7 +287,7 @@ export class AdventCalendarService implements OnInit {
 			if (playerData !== undefined) {
 				const data = playerData as PlayerDataWithAdventCalendar;
 				const calendarKey = this.getCalendarKey();
-				if (data.adventCalendar?.[calendarKey]?.claimed?.includes(day) === true) {
+				if (data.adventCalendar?.get(calendarKey)?.claimed?.includes(day) === true) {
 					return [false, "Already claimed"];
 				}
 			}
@@ -311,7 +312,7 @@ export class AdventCalendarService implements OnInit {
 			}
 			const data = playerData as PlayerDataWithAdventCalendar;
 			const calendarKey = this.getCalendarKey();
-			return data.adventCalendar?.[calendarKey]?.claimed ?? [];
+			return data.adventCalendar?.get(calendarKey)?.claimed ?? [];
 		} catch (error) {
 			warn(`Failed to get claimed days for player ${player.Name}: ${error}`);
 			return [];
@@ -331,7 +332,7 @@ export class AdventCalendarService implements OnInit {
 			}
 			const data = playerData as PlayerDataWithAdventCalendar;
 			const calendarKey = this.getCalendarKey();
-			return data.adventCalendar?.[calendarKey]?.onlineDays ?? 0;
+			return data.adventCalendar?.get(calendarKey)?.onlineDays ?? 0;
 		} catch (error) {
 			warn(`Failed to get online days for player ${player.Name}: ${error}`);
 			return 0;
@@ -361,21 +362,21 @@ export class AdventCalendarService implements OnInit {
 
 				// Initialize advent calendar data if it doesn't exist
 				if (data.adventCalendar === undefined) {
-					data.adventCalendar = {};
+					data.adventCalendar = new Map();
 				}
 
 				// Initialize this calendar if it doesn't exist
-				if (data.adventCalendar[calendarKey] === undefined) {
-					data.adventCalendar[calendarKey] = {
+				if (data.adventCalendar.get(calendarKey) === undefined) {
+					data.adventCalendar.set(calendarKey, {
 						onlineDays: 1,
 						claimed: [],
-					};
+					});
 					isFirstTime = true;
 					return true; // Commit changes
 				} else {
 					// Increment online days (since player joined today)
-					data.adventCalendar[calendarKey]!.onlineDays =
-						(data.adventCalendar[calendarKey]!.onlineDays ?? 0) + 1;
+					const calendarEntry = data.adventCalendar.get(calendarKey)!;
+					calendarEntry.onlineDays = (calendarEntry.onlineDays ?? 0) + 1;
 					return true; // Commit changes
 				}
 			});
@@ -417,19 +418,19 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gets all advent calendar data for a player
 	 */
-	public async getAllAdventCalendarData(player: Player): Promise<Record<string, AdventCalendarEntry>> {
+	public async getAllAdventCalendarData(player: Player): Promise<Map<string, AdventCalendarEntry>> {
 		const playerStore = this.dataService.getPlayerStore();
 
 		try {
 			const playerData = await playerStore.getAsync(player);
 			if (playerData === undefined) {
-				return {};
+				return new Map();
 			}
 			const data = playerData as PlayerDataWithAdventCalendar;
-			return data.adventCalendar ?? {};
+			return data.adventCalendar ?? new Map();
 		} catch (error) {
 			warn(`Failed to get all advent calendar data for player ${player.Name}: ${error}`);
-			return {};
+			return new Map();
 		}
 	}
 
