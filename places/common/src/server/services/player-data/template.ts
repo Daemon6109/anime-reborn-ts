@@ -37,6 +37,7 @@ for (let i = 1; i <= 500; i++) {
 const defaultData: PlayerData = {
 	units,
 	items: [],
+	mounts: { ownedMounts: [] },
 	team: [],
 	effects: [],
 	battlepass: [
