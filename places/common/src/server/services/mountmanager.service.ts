@@ -1,27 +1,66 @@
 /* eslint-disable roblox-ts/lua-truthiness */
-/** Mounts Manager
- * @Spirast
+/**
+ * Service responsible for managing player mounts including equipping, unequipping, and ownership tracking.
+ * Handles mount model attachment to player characters and maintains equipped mount state.
+ * @Spirast - Converting to TypeScript
+ * @Copilot - Docstring generation and refactoring
  */
 
-import { ReplicatedStorage, ServerScriptService } from "@rbxts/services";
+import { ReplicatedStorage, ServerScriptService, Players } from "@rbxts/services";
+import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
 import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@services/player-data";
 
-const MountsRegistry: Folder = script.Parent?.Parent?.Parent.constants.Mounts; // also hallucinate this
-let EquippedMountData = new Map<Player, { Model?: Model }>();
+const MountsRegistry: Folder = ReplicatedStorage.FindFirstChild("constants")?.FindFirstChild("Mounts") as Folder;
 
 @Service()
 export class MountsManager implements OnInit {
+	private equippedMountData = new Map<Player, { Model?: Model }>();
+
 	constructor(private readonly dataservice: DataStore) {}
 
 	// Initialization
-	onInit(): void | Promise<void> {}
+	onInit(): void | Promise<void> {
+		safePlayerAdded((player: Player) => {
+			const character = player.Character || player.CharacterAdded.Wait()[0];
+			this.onCharacterAdded(player, character);
+		});
 
-	private FindModel(name: string) {
-		MountsRegistry.FindFirstChild(name);
+		Players.PlayerRemoving.Connect((player) => {
+			this.UnequipMount(player);
+			this.equippedMountData.delete(player);
+		});
 	}
 
-	// Give a player a mount
+	private FindModel(name: string) {
+		return MountsRegistry.FindFirstChild(name);
+	}
+
+	/**
+	 * Checks if a player has any mounts equipped on character add.
+	 * If the mount is marked as equipped in the player's data store, it equips it in-game when they first join.
+	 * @param player
+	 * @param character
+	 */
+	private onCharacterAdded(player: Player, character: Model) {
+		const PlayerProfile = this.dataservice.getPlayerStore();
+
+		PlayerProfile.get(player).andThen((data) => {
+			data.mounts.ownedMounts.forEach((mount) => {
+				if (mount.equipped === true) {
+					this.EquipMount(player, mount.name);
+				}
+			});
+		});
+	}
+
+	/**
+	 * Gives a specified mount to a player, adding it to their owned mounts collection.
+	 * If the player already owns the mount, increases the quantity by the specified amount.
+	 * @param player - The player to give the mount to
+	 * @param Mount - The name of the mount to give
+	 * @param amount - The quantity to give (defaults to 1)
+	 */
 	public GiveMount(player: Player, Mount: string, amount?: number) {
 		const PlayerProfile = this.dataservice.getPlayerStore();
 
@@ -29,7 +68,7 @@ export class MountsManager implements OnInit {
 			amount = 1;
 		}
 
-		if (!MountsRegistry[Mount]) {
+		if (!MountsRegistry.FindFirstChild(Mount)) {
 			warn(`Invalid Mount ${Mount}`);
 			return;
 		}
@@ -45,53 +84,127 @@ export class MountsManager implements OnInit {
 				playerData.mounts.ownedMounts.push({
 					name: Mount,
 					quantity: amount,
+					equipped: false,
 				});
 				return true;
 			}
 		});
 	}
 
-	public EquipMount(player: Player, Mount: string) {
+	/**
+	 * Equips a mount for the specified player by updating their data store and attaching the mount model to their character.
+	 * Unequips any currently equipped mounts before equipping the new one.
+	 *
+	 * @param player - The player to equip the mount for
+	 * @param Mount - The name of the mount to equip
+	 */
+	public async EquipMount(player: Player, Mount: string) {
 		const character = player.Character ?? player.CharacterAdded.Wait()[0];
 		const PlayerStore = this.dataservice.getPlayerStore();
+		const MountExists = this.FindModel(Mount);
 
-		// TODO: finish this
+		const updateResult = await PlayerStore.updateAsync(player, (data) => {
+			if (!MountExists || !data.mounts.ownedMounts.find((mount) => mount.name === Mount)) {
+				return false; // Mount doesn't exist or player doesn't own it
+			}
 
-		this.UnequipMount(player);
-		player.SetAttribute("MountToggled", true);
-		EquippedMountData.set(player, {});
+			// Unequip all mounts first
+			data.mounts.ownedMounts.forEach((mount) => {
+				// incase for some reason theres 2 mounts that are both equipped
+				mount.equipped = false;
+			});
 
-		if (MountModel) {
-			const ClonedModel = MountModel.Clone();
+			// Equip the new mount
+			const mountToEquip = data.mounts.ownedMounts.find((mount) => mount.name === Mount);
+			if (mountToEquip) {
+				mountToEquip.equipped = true;
+			}
 
-			EquippedMountData.set(player, { Model: ClonedModel });
+			return true;
+		});
 
-			for (const motor of ClonedModel.GetDescendants()) {
-				if (!motor.IsA("Motor6D")) continue;
+		if (updateResult) {
+			this.UnequipMount(player);
 
-				const motorInstance = motor as Motor6D;
-				const limb = character.FindFirstChild(motorInstance.Name);
+			const MountModel: Model = MountExists.Clone() as Model;
+
+			player.SetAttribute("MountToggled", true);
+			this.equippedMountData.set(player, {});
+
+			if (MountModel) {
+				this.equippedMountData.set(player, { Model: MountModel });
+			}
+
+			for (const motor of MountModel.GetDescendants()) {
+				if (!motor.IsA("Motor6D") || !character.FindFirstChild(motor.Name)) {
+					continue;
+				}
+
+				const Limb: BasePart = character.FindFirstChild(motor.Name) as BasePart;
 
 				if (!motor.Part0) {
-					motor.Part0 = limb;
+					motor.Part0 = Limb;
 				} else {
 					if (!motor.Part1) {
-						motor.Part1 = limb;
+						motor.Part1 = Limb;
 					}
 				}
-
-				ClonedModel.Parent = character;
-
-				let MountObject: ObjectValue = character.FindFirstChild("MountObject");
-				if (!MountObject) {
-					MountObject = new Instance("ObjectValue");
-					MountObject.Name = "MountObject";
-					MountObject.Parent = character;
-				}
-				MountObject.Value = ClonedModel;
 			}
+
+			MountModel.Parent = character;
+			let MountObject: ObjectValue = character.FindFirstChild("MountObject") as ObjectValue;
+			if (!MountObject) {
+				MountObject = new Instance("ObjectValue");
+				MountObject.Name = "MountObject";
+				MountObject.Parent = character;
+			}
+			MountObject.Value = MountModel;
 		}
 	}
 
-	public UnequipMount(player: Player) {}
+	/**
+	 * Unequips the currently equipped mount for the specified player.
+	 * Removes the mount model from the game world, clears the player's mount data, and updates the datastore.
+	 * @param player - The player whose mount should be unequipped
+	 */
+	public async UnequipMount(player: Player) {
+		const character = player.Character || player.CharacterAdded.Wait()[0];
+		const PlayerStore = this.dataservice.getPlayerStore();
+
+		player.SetAttribute("MountToggled", undefined);
+
+		const mountData = this.equippedMountData.get(player);
+		if (mountData) {
+			if (mountData.Model) {
+				mountData.Model.Destroy();
+			}
+			this.equippedMountData.delete(player);
+		}
+
+		// Update datastore to unequip all mounts
+		await PlayerStore.updateAsync(player, (data) => {
+			data.mounts.ownedMounts.forEach((mount) => {
+				mount.equipped = false;
+			});
+			return true;
+		});
+	}
+
+	// Check if a player owns a specific mount
+	public hasMount(player: Player, Mount: string): Promise<boolean> {
+		const PlayerStore = this.dataservice.getPlayerStore();
+
+		return PlayerStore.get(player)
+			.andThen((data) => {
+				if (!data) {
+					return false;
+				}
+
+				const ownedMount = data.mounts.ownedMounts.find((mount) => mount.name === Mount);
+				return ownedMount !== undefined && ownedMount.quantity > 0;
+			})
+			.catch(() => {
+				return false;
+			});
+	}
 }
