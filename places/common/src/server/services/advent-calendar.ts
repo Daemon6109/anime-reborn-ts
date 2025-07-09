@@ -1,34 +1,11 @@
 import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@services/player-data";
-import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
-import { adventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
-import { Analytics } from "./analytics";
+import { safePlayerAdded } from "@shared/utils/safe-player-added";
+import { adventCalendarData, getCalendarNames } from "@shared/types/interface/player-data/advent-calendar";
+import { Analytics } from "@services/analytics";
+import type { CalendarName } from "@shared/types/interface/player-data/advent-calendar";
 
 const version = { major: 1, minor: 0, patch: 0 };
-
-export interface AdventCalendarConfig {
-	TargetHour: number;
-	TargetMin: number;
-	StartDate: number[]; // Changed from tuple to array to match JSON
-	Rewards: { [day: string]: { [key: string]: unknown } };
-}
-
-interface PlayerItem {
-	id: string;
-	uuid: string;
-	amount: number;
-	locked: boolean;
-}
-
-interface AdventCalendarEntry {
-	claimed: number[];
-	onlineDays: number;
-}
-
-interface PlayerDataWithAdventCalendar {
-	adventCalendar?: Map<string, AdventCalendarEntry>;
-	items: PlayerItem[];
-}
 
 /**
  * Advent calendar system for managing time-limited daily rewards during special events.
@@ -38,7 +15,7 @@ export class AdventCalendarService implements OnInit {
 	public readonly version = version;
 
 	// Current active calendar name
-	private activeCalendarName: string | undefined = undefined;
+	private activeCalendarName?: CalendarName = undefined;
 
 	constructor(
 		private readonly dataService: DataStore,
@@ -72,7 +49,7 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gets the current active calendar configuration
 	 */
-	private getActiveConfig(): AdventCalendarConfig | undefined {
+	private getActiveConfig():  {
 		if (this.activeCalendarName === undefined) {
 			return undefined;
 		}

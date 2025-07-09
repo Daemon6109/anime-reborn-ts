@@ -1,6 +1,6 @@
 import { Service, OnInit } from "@flamework/core";
 import { AnalyticsService } from "@rbxts/services";
-import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
+import { safePlayerAdded } from "@shared/utils/safe-player-added";
 
 /**
  * Currency types for economy events

@@ -7,7 +7,7 @@ import { DataStore } from "@services/player-data";
 import { Analytics } from "@services/analytics";
 
 // Utils
-import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
+import { safePlayerAdded } from "@shared/utils/safe-player-added";
 
 import type { EffectName, ExactConfiguration, EffectData } from "@shared/types/interface/player-data/effects";
 import { effectsData, MULTIPLIER_TYPES } from "@shared/types/interface/player-data/effects";

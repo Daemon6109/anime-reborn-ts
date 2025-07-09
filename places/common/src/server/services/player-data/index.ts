@@ -12,7 +12,7 @@ import type { PlayerData } from "@shared/atoms/player-data";
 // Dependencies
 import template from "./template";
 import schema from "./schema";
-import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
+import { safePlayerAdded } from "@shared/utils/safe-player-added";
 
 @Service()
 export class DataStore implements OnInit {
