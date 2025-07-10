@@ -18,7 +18,7 @@ import {
 	EnemyType,
 	TargetPriority,
 	DamageType,
-} from "../../shared/components/tower-defense.components";
+} from "@shared/components/tower-defense.components";
 
 @Service()
 export class TowerDefenseService implements OnStart, OnTick {
@@ -88,9 +88,11 @@ export class TowerDefenseService implements OnStart, OnTick {
 			position: new Vector3(0, 5, 0),
 		});
 		this.world.set(tower, this.Tower, {
-			towerType: TowerType.Archer,
+			towerType: TowerType.BasicTower,
 			level: 1,
 			experience: 0,
+			playerId: "test-player",
+			id: tostring(tower),
 		});
 
 		this.world.set(tower, this.Targeting, {
@@ -111,7 +113,7 @@ export class TowerDefenseService implements OnStart, OnTick {
 			maximum: 100,
 		});
 
-		this.world.add(tower, this.TowerTag);
+		this.world.set(tower, this.TowerTag, true);
 
 		print("Created tower at", this.world.get(tower, this.Position)?.position);
 	}
@@ -123,12 +125,13 @@ export class TowerDefenseService implements OnStart, OnTick {
 		this.world.set(enemy, this.Velocity, { velocity: Vector3.zAxis.mul(-5) });
 		this.world.set(enemy, this.Health, { current: 100, maximum: 100 });
 		this.world.set(enemy, this.Enemy, {
-			enemyType: EnemyType.Goblin,
+			enemyType: EnemyType.BasicEnemy,
 			reward: 10,
 			speed: 5,
+			id: tostring(enemy),
 		});
 
-		this.world.add(enemy, this.EnemyTag);
+		this.world.set(enemy, this.EnemyTag, true);
 
 		return enemy;
 	}
@@ -155,7 +158,7 @@ export class TowerDefenseService implements OnStart, OnTick {
 			const targeting = this.world.get(tower, this.Targeting);
 			const towerPos = this.world.get(tower, this.Position);
 
-			if (!targeting || !towerPos) continue;
+			if (targeting === undefined || towerPos === undefined) continue;
 
 			let closestEnemy: jecs.Entity | undefined;
 			let closestDistance = targeting.range;
@@ -192,7 +195,13 @@ export class TowerDefenseService implements OnStart, OnTick {
 			const targeting = this.world.get(tower, this.Targeting);
 			const towerPos = this.world.get(tower, this.Position);
 
-			if (!attack || !targeting || !towerPos || !targeting.currentTarget) continue;
+			if (
+				attack === undefined ||
+				targeting === undefined ||
+				towerPos === undefined ||
+				targeting.currentTarget === undefined
+			)
+				continue;
 
 			// Check if enough time has passed since last attack
 			const timeSinceLastAttack = currentTime - attack.lastAttackTime;
@@ -215,13 +224,13 @@ export class TowerDefenseService implements OnStart, OnTick {
 		const towerAttack = this.world.get(tower, this.Attack);
 		const targetPos = this.world.get(target, this.Position);
 
-		if (!towerPos || !towerAttack || !targetPos) return;
+		if (towerPos === undefined || towerAttack === undefined || targetPos === undefined) return;
 
 		const projectile = this.world.entity();
 
 		// Calculate direction to target
 		const direction = targetPos.position.sub(towerPos.position).Unit;
-		const speed = towerAttack.projectileSpeed || 20;
+		const speed = towerAttack.projectileSpeed !== undefined ? towerAttack.projectileSpeed : 20;
 
 		this.world.set(projectile, this.Position, {
 			position: towerPos.position.add(new Vector3(0, 2, 0)), // Spawn slightly above tower
@@ -235,12 +244,13 @@ export class TowerDefenseService implements OnStart, OnTick {
 			damage: towerAttack.damage,
 			target,
 			speed,
-			piercing: towerAttack.piercing || 0,
-			splashRadius: towerAttack.splashRadius || 0,
+			piercing: towerAttack.piercing !== undefined ? towerAttack.piercing : 0,
+			splashRadius: towerAttack.splashRadius !== undefined ? towerAttack.splashRadius : 0,
 			damageType: DamageType.Physical,
+			id: tostring(projectile),
 		});
 
-		this.world.add(projectile, this.ProjectileTag);
+		this.world.set(projectile, this.ProjectileTag, true);
 	}
 
 	private updateProjectiles(deltaTime: number): void {
@@ -266,18 +276,18 @@ export class TowerDefenseService implements OnStart, OnTick {
 				// Hit if close enough
 				if (distance < 2) {
 					this.damageEntity(projData.target, projData.damage);
-					this.world.add(projectile, this.DeadTag);
+					this.world.set(projectile, this.DeadTag, true);
 					continue;
 				}
 			} else {
 				// Target is dead or doesn't exist, remove projectile
-				this.world.add(projectile, this.DeadTag);
+				this.world.set(projectile, this.DeadTag, true);
 				continue;
 			}
 
 			// Remove projectile if it's too far from origin
 			if (projPos.position.Magnitude > 200) {
-				this.world.add(projectile, this.DeadTag);
+				this.world.set(projectile, this.DeadTag, true);
 			}
 		}
 	}
@@ -294,7 +304,7 @@ export class TowerDefenseService implements OnStart, OnTick {
 
 		// Mark as dead if health reaches 0
 		if (newHealth <= 0) {
-			this.world.add(entity, this.DeadTag);
+			this.world.set(entity, this.DeadTag, true);
 			print("Entity died!");
 		}
 	}
@@ -310,15 +320,7 @@ export class TowerDefenseService implements OnStart, OnTick {
 			}
 
 			// Remove the entity (this removes all its components)
-			this.world.remove(entity, this.Position);
-			this.world.remove(entity, this.Velocity);
-			this.world.remove(entity, this.Health);
-			this.world.remove(entity, this.Enemy);
-			this.world.remove(entity, this.Projectile);
-			this.world.remove(entity, this.TowerTag);
-			this.world.remove(entity, this.EnemyTag);
-			this.world.remove(entity, this.ProjectileTag);
-			this.world.remove(entity, this.DeadTag);
+			this.world.delete(entity);
 		}
 	}
 

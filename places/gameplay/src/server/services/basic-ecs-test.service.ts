@@ -1,6 +1,6 @@
 import { Service } from "@flamework/core";
 import { RunService } from "@rbxts/services";
-import { TDWorld } from "../../shared/world/td-world";
+import { TDWorld } from "@shared/world/td-world";
 
 @Service()
 export class BasicECSTestService {
@@ -29,7 +29,7 @@ export class BasicECSTestService {
 		print("Set health component");
 
 		// Test 4: Add a tag
-		TDWorld.world.add(entity, TDWorld.EnemyTag);
+		TDWorld.world.set(entity, TDWorld.EnemyTag, true);
 		print("Added enemy tag");
 
 		// Test 5: Query for entities
@@ -59,7 +59,7 @@ export class BasicECSTestService {
 		TDWorld.world.set(entity2, TDWorld.Position, {
 			position: new Vector3(50, 60, 70),
 		});
-		TDWorld.world.add(entity2, TDWorld.TowerTag);
+		TDWorld.world.set(entity2, TDWorld.TowerTag, true);
 
 		print("Testing queries with multiple entities:");
 		for (const [queryEntity, position] of TDWorld.world.query(TDWorld.Position)) {

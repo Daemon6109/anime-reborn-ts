@@ -14,6 +14,7 @@
 		"foxundermoon.shell-format",
 		"christian-kohler.npm-intellisense",
 		"DavidAnson.vscode-markdownlint",
-		"eamodio.gitlens"
+		"eamodio.gitlens",
+		"filiptibell.deputy"
 	]
 }

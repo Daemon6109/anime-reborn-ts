@@ -1,6 +1,6 @@
 import { Service } from "@flamework/core";
 import { Players, RunService, Workspace } from "@rbxts/services";
-import { TDWorld } from "../../shared/world/td-world";
+import { TDWorld } from "@shared/world/td-world";
 import * as jecs from "@rbxts/jecs";
 import {
 	TowerType,
@@ -8,7 +8,7 @@ import {
 	TargetPriority,
 	DamageType,
 	EffectType,
-} from "../../shared/components/tower-defense.components";
+} from "@shared/components/tower-defense.components";
 
 @Service()
 export class ECSTowerDefenseService {
@@ -175,9 +175,10 @@ export class ECSTowerDefenseService {
 			piercing: 0,
 			splashRadius: 0,
 			damageType: DamageType.Physical,
+			id: tostring(projectileEntity),
 		});
 
-		TDWorld.world.add(projectileEntity, TDWorld.ProjectileTag);
+		TDWorld.world.set(projectileEntity, TDWorld.ProjectileTag, true);
 
 		// Create visual model
 		this.createProjectileModel(projectileEntity);
@@ -213,6 +214,7 @@ export class ECSTowerDefenseService {
 			effectType: EffectType.Death,
 			duration: 2,
 			startTime: tick(),
+			intensity: 1,
 		});
 	}
 
@@ -226,6 +228,7 @@ export class ECSTowerDefenseService {
 			effectType: EffectType.Hit,
 			duration: 0.5,
 			startTime: tick(),
+			intensity: 1,
 		});
 	}
 
@@ -257,7 +260,7 @@ export class ECSTowerDefenseService {
 		const towerEntity = TDWorld.createEntity();
 
 		// Add tower components
-		TDWorld.world.add(towerEntity, TDWorld.TowerTag);
+		TDWorld.world.set(towerEntity, TDWorld.TowerTag, true);
 
 		TDWorld.world.set(towerEntity, TDWorld.Position, {
 			position: position,
@@ -267,6 +270,8 @@ export class ECSTowerDefenseService {
 			towerType: towerType,
 			level: 1,
 			experience: 0,
+			playerId: "player1", // Placeholder
+			id: tostring(towerEntity),
 		});
 
 		TDWorld.world.set(towerEntity, TDWorld.Targeting, {
@@ -295,7 +300,7 @@ export class ECSTowerDefenseService {
 		const enemyEntity = TDWorld.createEntity();
 
 		// Add enemy components
-		TDWorld.world.add(enemyEntity, TDWorld.EnemyTag);
+		TDWorld.world.set(enemyEntity, TDWorld.EnemyTag, true);
 
 		TDWorld.world.set(enemyEntity, TDWorld.Position, {
 			position: position,
@@ -305,6 +310,7 @@ export class ECSTowerDefenseService {
 			enemyType: enemyType,
 			reward: 10,
 			speed: 5,
+			id: tostring(enemyEntity),
 		});
 
 		TDWorld.world.set(enemyEntity, TDWorld.Health, {
@@ -322,9 +328,9 @@ export class ECSTowerDefenseService {
 		return enemyEntity;
 	}
 
-	private createTowerModel(towerEntity: jecs.Entity, type: TowerType) {
+	private createTowerModel(towerEntity: jecs.Entity, towerType: TowerType) {
 		const part = new Instance("Part");
-		part.Name = `Tower_${type}`;
+		part.Name = `Tower_${towerType}`;
 		part.Size = new Vector3(4, 4, 4);
 		part.Color = Color3.fromRGB(99, 95, 98); // Dark stone gray
 		part.Shape = Enum.PartType.Cylinder;
@@ -332,7 +338,7 @@ export class ECSTowerDefenseService {
 		part.Anchored = true;
 
 		const model = new Instance("Model");
-		model.Name = `TowerModel_${type}`;
+		model.Name = `TowerModel_${towerType}`;
 		part.Parent = model;
 		model.PrimaryPart = part;
 		model.Parent = Workspace;
@@ -342,9 +348,9 @@ export class ECSTowerDefenseService {
 		});
 	}
 
-	private createEnemyModel(enemyEntity: jecs.Entity, type: EnemyType) {
+	private createEnemyModel(enemyEntity: jecs.Entity, enemyType: EnemyType) {
 		const part = new Instance("Part");
-		part.Name = `Enemy_${type}`;
+		part.Name = `Enemy_${enemyType}`;
 		part.Size = new Vector3(2, 2, 2);
 		part.Color = Color3.fromRGB(196, 40, 28); // Bright red
 		part.Shape = Enum.PartType.Block;
@@ -352,7 +358,7 @@ export class ECSTowerDefenseService {
 		part.Anchored = true;
 
 		const model = new Instance("Model");
-		model.Name = `EnemyModel_${type}`;
+		model.Name = `EnemyModel_${enemyType}`;
 		part.Parent = model;
 		model.PrimaryPart = part;
 		model.Parent = Workspace;

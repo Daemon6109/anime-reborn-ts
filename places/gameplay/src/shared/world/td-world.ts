@@ -27,6 +27,10 @@ import {
 	// Game state
 	PlayerResourcesComponent,
 	GameStateComponent,
+	// Visualization components
+	PlacementPreviewComponent,
+	PathVisualizationComponent,
+	TweenComponent,
 	// Tags
 	PlayerTag,
 	TowerTag,
@@ -34,7 +38,7 @@ import {
 	ProjectileTag,
 	DeadTag,
 	SelectedTag,
-} from "../components/tower-defense.components";
+} from "@shared/components/tower-defense.components";
 
 export class TowerDefenseWorld {
 	public readonly world: World;
@@ -67,6 +71,11 @@ export class TowerDefenseWorld {
 	// Rendering Components
 	public readonly Model: jecs.Entity<ModelComponent>;
 	public readonly Effect: jecs.Entity<EffectComponent>;
+
+	// Visualization Components (Client-only)
+	public readonly PlacementPreview: jecs.Entity<PlacementPreviewComponent>;
+	public readonly PathVisualization: jecs.Entity<PathVisualizationComponent>;
+	public readonly Tween: jecs.Entity<TweenComponent>;
 
 	// Game State
 	public readonly PlayerResources: jecs.Entity<PlayerResourcesComponent>;
@@ -107,6 +116,12 @@ export class TowerDefenseWorld {
 		this.Model = this.world.component<ModelComponent>();
 		this.Effect = this.world.component<EffectComponent>();
 
+		// Visualization Components
+		this.PlacementPreview = this.world.component<PlacementPreviewComponent>();
+		this.PathVisualization = this.world.component<PathVisualizationComponent>();
+		this.Tween = this.world.component<TweenComponent>();
+
+		// Game State
 		this.PlayerResources = this.world.component<PlayerResourcesComponent>();
 		this.GameState = this.world.component<GameStateComponent>();
 

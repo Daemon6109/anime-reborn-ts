@@ -74,7 +74,7 @@ export class TowerDefenseSystem implements OnStart, OnTick {
 		}
 	}
 
-	private createTower(type: "Archer" | "Mage" | "Cannon", position: Vector3): Tower {
+	private createTower(towerType: "Archer" | "Mage" | "Cannon", position: Vector3): Tower {
 		const id = `tower_${this.nextId++}`;
 
 		const towerStats = {
@@ -83,11 +83,11 @@ export class TowerDefenseSystem implements OnStart, OnTick {
 			Cannon: { damage: 100, range: 25, attackSpeed: 0.5 },
 		};
 
-		const stats = towerStats[type];
+		const stats = towerStats[towerType];
 		const tower: Tower = {
 			id,
 			position,
-			type,
+			type: towerType,
 			level: 1,
 			damage: stats.damage,
 			range: stats.range,
@@ -96,11 +96,11 @@ export class TowerDefenseSystem implements OnStart, OnTick {
 		};
 
 		this.towers.set(id, tower);
-		print(`Created ${type} tower at ${position}`);
+		print(`Created ${towerType} tower at ${position}`);
 		return tower;
 	}
 
-	private spawnEnemy(type: "Goblin" | "Orc" | "Troll", position: Vector3): Enemy {
+	private spawnEnemy(enemyType: "Goblin" | "Orc" | "Troll", position: Vector3): Enemy {
 		const id = `enemy_${this.nextId++}`;
 
 		const enemyStats = {
@@ -109,14 +109,14 @@ export class TowerDefenseSystem implements OnStart, OnTick {
 			Troll: { health: 500, speed: 4, reward: 50 },
 		};
 
-		const stats = enemyStats[type];
+		const stats = enemyStats[enemyType];
 		const enemy: Enemy = {
 			id,
 			position,
 			health: stats.health,
 			maxHealth: stats.health,
 			speed: stats.speed,
-			type,
+			type: enemyType,
 			reward: stats.reward,
 			direction: Vector3.zAxis.mul(-1), // Move towards negative Z
 		};
@@ -275,13 +275,13 @@ export class TowerDefenseSystem implements OnStart, OnTick {
 	}
 
 	// Public methods for external control
-	public createTowerAt(type: "Archer" | "Mage" | "Cannon", position: Vector3): Tower {
-		return this.createTower(type, position);
+	public createTowerAt(towerType: "Archer" | "Mage" | "Cannon", position: Vector3): Tower {
+		return this.createTower(towerType, position);
 	}
 
-	public spawnEnemyWave(count: number, type: "Goblin" | "Orc" | "Troll" = "Goblin"): void {
+	public spawnEnemyWave(count: number, enemyType: "Goblin" | "Orc" | "Troll" = "Goblin"): void {
 		for (let i = 0; i < count; i++) {
-			this.spawnEnemy(type, new Vector3(math.random(-30, 30), 0, 50));
+			this.spawnEnemy(enemyType, new Vector3(math.random(-30, 30), 0, 50));
 		}
 	}
 

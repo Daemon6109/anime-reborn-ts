@@ -1,5 +1,5 @@
 import { describe, it, expect } from "@rbxts/jest-globals";
-import { GameMath, GAME_CONFIG } from "../shared/utils/tower-defense.utils";
+import { GameMath, GAME_CONFIG } from "@shared/utils/tower-defense.utils";
 
 describe("Tower Defense System", () => {
 	it("should have proper component types", () => {

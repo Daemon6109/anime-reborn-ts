@@ -1,11 +1,22 @@
 import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@services/player-data";
 import { safePlayerAdded } from "@shared/utils/safe-player-added";
-import { adventCalendarData, getCalendarNames } from "@shared/types/interface/player-data/advent-calendar";
+import { adventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
 import { Analytics } from "@services/analytics";
-import type { CalendarName } from "@shared/types/interface/player-data/advent-calendar";
+import type { CalendarName, AdventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
+import type { PlayerData } from "@shared/atoms/player-data";
 
 const version = { major: 1, minor: 0, patch: 0 };
+
+// Player item type definition
+interface PlayerItem {
+	id: string;
+	uuid: string;
+	amount: number;
+	locked: boolean;
+}
+
+export type ExactConfiguration<T extends CalendarName> = (typeof adventCalendarData)[T];
 
 /**
  * Advent calendar system for managing time-limited daily rewards during special events.
@@ -37,7 +48,7 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Sets the active advent calendar by name
 	 */
-	public setActiveCalendar(calendarName: keyof typeof adventCalendarData): void {
+	public setActiveCalendar(calendarName: CalendarName): void {
 		if (adventCalendarData[calendarName] !== undefined) {
 			this.activeCalendarName = calendarName;
 			print(`Active advent calendar set to: ${calendarName}`);
@@ -49,20 +60,18 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gets the current active calendar configuration
 	 */
-	private getActiveConfig():  {
+	private getActiveConfig(): ExactConfiguration<CalendarName> | undefined {
 		if (this.activeCalendarName === undefined) {
 			return undefined;
 		}
-		return adventCalendarData[this.activeCalendarName as keyof typeof adventCalendarData];
+		return adventCalendarData[this.activeCalendarName as CalendarName];
 	}
 
 	/**
 	 * Generates the calendar key for storing in player data
 	 */
-	private getCalendarKey(): string {
-		if (this.activeCalendarName === undefined) {
-			return "";
-		}
+	private getCalendarKey(): CalendarName {
+		assert(this.activeCalendarName);
 		// For now, we'll use just the calendar name as key since EndDate is not in the JSON
 		// You might want to add EndDate to the JSON later for better key generation
 		return this.activeCalendarName;
@@ -151,7 +160,9 @@ export class AdventCalendarService implements OnInit {
 			return false;
 		}
 
-		const reward = config.Rewards[tostring(day)];
+		const reward = (config.Rewards as Record<string, unknown>)[tostring(day)] as
+			| Record<string, unknown>
+			| undefined;
 		if (reward === undefined) {
 			return false;
 		}
@@ -161,11 +172,8 @@ export class AdventCalendarService implements OnInit {
 		try {
 			let rewardClaimed = false;
 
-			await playerStore.updateAsync(player, (playerData: PlayerDataWithAdventCalendar) => {
+			await playerStore.updateAsync(player, (playerData) => {
 				const calendarKey = this.getCalendarKey();
-				if (calendarKey === "") {
-					return false;
-				}
 
 				// Initialize advent calendar data if it doesn't exist
 				if (playerData.adventCalendar === undefined) {
@@ -212,7 +220,7 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gives advent calendar rewards directly to player data (for use within updateAsync)
 	 */
-	private giveAdventRewardDirect(playerData: PlayerDataWithAdventCalendar, reward: Record<string, unknown>): void {
+	private giveAdventRewardDirect(playerData: PlayerData, reward: Record<string, unknown>): void {
 		const processRewardCategory = (category: unknown) => {
 			if (category !== undefined && typeIs(category, "table")) {
 				for (const [id, amount] of pairs(category as Record<string, unknown>)) {
@@ -247,7 +255,7 @@ export class AdventCalendarService implements OnInit {
 		}
 
 		// Check if reward exists for this day
-		if (config.Rewards[tostring(day)] === undefined) {
+		if ((config.Rewards as Record<string, unknown>)[tostring(day)] === undefined) {
 			return [false, "No reward configured for this day"];
 		}
 
@@ -262,7 +270,7 @@ export class AdventCalendarService implements OnInit {
 		try {
 			const playerData = await playerStore.getAsync(player);
 			if (playerData !== undefined) {
-				const data = playerData as PlayerDataWithAdventCalendar;
+				const data = playerData;
 				const calendarKey = this.getCalendarKey();
 				if (data.adventCalendar?.get(calendarKey)?.claimed?.includes(day) === true) {
 					return [false, "Already claimed"];
@@ -287,7 +295,7 @@ export class AdventCalendarService implements OnInit {
 			if (playerData === undefined) {
 				return [];
 			}
-			const data = playerData as PlayerDataWithAdventCalendar;
+			const data = playerData;
 			const calendarKey = this.getCalendarKey();
 			return data.adventCalendar?.get(calendarKey)?.claimed ?? [];
 		} catch (error) {
@@ -307,7 +315,7 @@ export class AdventCalendarService implements OnInit {
 			if (playerData === undefined) {
 				return 0;
 			}
-			const data = playerData as PlayerDataWithAdventCalendar;
+			const data = playerData;
 			const calendarKey = this.getCalendarKey();
 			return data.adventCalendar?.get(calendarKey)?.onlineDays ?? 0;
 		} catch (error) {
@@ -331,11 +339,8 @@ export class AdventCalendarService implements OnInit {
 			let isFirstTime = false;
 
 			await playerStore.updateAsync(player, (playerData) => {
-				const data = playerData as PlayerDataWithAdventCalendar;
+				const data = playerData;
 				const calendarKey = this.getCalendarKey();
-				if (calendarKey === "") {
-					return false;
-				}
 
 				// Initialize advent calendar data if it doesn't exist
 				if (data.adventCalendar === undefined) {
@@ -395,7 +400,7 @@ export class AdventCalendarService implements OnInit {
 	/**
 	 * Gets all advent calendar data for a player
 	 */
-	public async getAllAdventCalendarData(player: Player): Promise<Map<string, AdventCalendarEntry>> {
+	public async getAllAdventCalendarData(player: Player): Promise<AdventCalendarData> {
 		const playerStore = this.dataService.getPlayerStore();
 
 		try {
@@ -403,7 +408,7 @@ export class AdventCalendarService implements OnInit {
 			if (playerData === undefined) {
 				return new Map();
 			}
-			const data = playerData as PlayerDataWithAdventCalendar;
+			const data = playerData;
 			return data.adventCalendar ?? new Map();
 		} catch (error) {
 			warn(`Failed to get all advent calendar data for player ${player.Name}: ${error}`);

@@ -64,6 +64,9 @@
 			{
 				"transform": "rbxts-transformer-flamework",
 				"obfuscation": false
+			},
+			{
+				"transform": "rbxts-transformer-optimizer"
 			}
 		]
 	},

@@ -1,4 +1,40 @@
 import { Entity } from "@rbxts/jecs";
+// Import and re-export enums from config
+import { TowerType, EnemyType } from "@shared/config/game-config";
+export { TowerType, EnemyType };
+
+export const enum DamageType {
+	Physical = "Physical",
+	Magical = "Magical",
+	Pierce = "Pierce",
+	Splash = "Splash",
+}
+
+export const enum TargetPriority {
+	First = "First",
+	Last = "Last",
+	Strongest = "Strongest",
+	Weakest = "Weakest",
+	Closest = "Closest",
+}
+
+export const enum EffectType {
+	Death = "Death",
+	Hit = "Hit",
+	Slow = "Slow",
+	Poison = "Poison",
+	Burn = "Burn",
+	Freeze = "Freeze",
+	Stun = "Stun",
+}
+
+export const enum StatusEffectType {
+	Slow = "Slow",
+	Poison = "Poison",
+	Burn = "Burn",
+	Freeze = "Freeze",
+	Stun = "Stun",
+}
 
 // Core Position and Movement Components
 export interface PositionComponent {
@@ -35,6 +71,8 @@ export interface TowerComponent {
 	towerType: TowerType;
 	level: number;
 	experience: number;
+	playerId: string;
+	id: string;
 }
 
 export interface TargetingComponent {
@@ -64,6 +102,7 @@ export interface EnemyComponent {
 	enemyType: EnemyType;
 	reward: number;
 	speed: number;
+	id: string;
 }
 
 export interface PathFollowingComponent {
@@ -92,6 +131,7 @@ export interface ProjectileComponent {
 	piercing: number;
 	splashRadius: number;
 	damageType: DamageType;
+	id: string;
 }
 
 // Rendering Components
@@ -103,6 +143,7 @@ export interface EffectComponent {
 	effectType: EffectType;
 	duration: number;
 	startTime: number;
+	intensity: number;
 }
 
 // Game State Components
@@ -119,81 +160,87 @@ export interface GameStateComponent {
 	waveStartTime: number;
 }
 
-// Tags (components without data)
-export type PlayerTag = undefined;
-export type TowerTag = undefined;
-export type EnemyTag = undefined;
-export type ProjectileTag = undefined;
-export type DeadTag = undefined;
-export type SelectedTag = undefined;
-
-// Enums and Types
-export enum TowerType {
-	Archer = "Archer",
-	Mage = "Mage",
-	Cannon = "Cannon",
-	Support = "Support",
+// Visualization Components (Client-only)
+export interface PlacementPreviewComponent {
+	towerType: TowerType;
+	valid: boolean;
 }
 
-export enum EnemyType {
-	Goblin = "Goblin",
-	Orc = "Orc",
-	Troll = "Troll",
-	Boss = "Boss",
+export interface PathVisualizationComponent {
+	points: Vector3[];
+	connections: Part[];
 }
 
-export enum TargetPriority {
-	First = "First",
-	Last = "Last",
-	Closest = "Closest",
-	Strongest = "Strongest",
-	Weakest = "Weakest",
+export interface TweenComponent {
+	tween?: Tween;
+	targetPosition?: Vector3;
+	targetCFrame?: CFrame;
+	duration: number;
+	easingStyle: Enum.EasingStyle;
+	easingDirection: Enum.EasingDirection;
 }
 
-export enum DamageType {
-	Physical = "Physical",
-	Magical = "Magical",
-	Pierce = "Pierce",
-	True = "True",
+// Tags (marker components)
+export interface PlayerTag {
+	playerId: string;
 }
 
-export enum StatusEffectType {
-	Slow = "Slow",
-	Freeze = "Freeze",
-	Burn = "Burn",
-	Poison = "Poison",
-	Stun = "Stun",
-}
+export type TowerTag = true;
+export type EnemyTag = true;
+export type ProjectileTag = true;
+export type DeadTag = true;
+export type SelectedTag = true;
 
-export enum EffectType {
-	Hit = "Hit",
-	Death = "Death",
-	Explosion = "Explosion",
-	Heal = "Heal",
-}
-
+// Supporting types
 export interface StatusEffect {
 	type: StatusEffectType;
-	intensity: number;
 	duration: number;
+	intensity: number;
 	startTime: number;
 }
 
 export interface UpgradePath {
 	name: string;
-	description: string;
 	cost: number;
-	requirements: UpgradeRequirement[];
-	bonuses: UpgradeBonus[];
+	damageMultiplier?: number;
+	rangeMultiplier?: number;
+	attackSpeedMultiplier?: number;
+	specialEffect?: string;
 }
 
-export interface UpgradeRequirement {
-	type: "level" | "tower_count" | "wave";
-	value: number;
+// Tower configuration data
+export type TowerConfigMap = Record<TowerType, TowerStats>;
+
+export interface TowerStats {
+	cost: number;
+	damage: number;
+	range: number;
+	attackSpeed: number;
+	projectileSpeed?: number;
+	damageType: DamageType;
+	description: string;
 }
 
-export interface UpgradeBonus {
-	stat: keyof AttackComponent | keyof TargetingComponent;
-	type: "add" | "multiply";
-	value: number;
+// Enemy configuration data
+export type EnemyConfigMap = Record<EnemyType, EnemyStats>;
+
+export interface EnemyStats {
+	health: number;
+	speed: number;
+	armor: ArmorComponent;
+	reward: number;
+	description: string;
+}
+
+// Path data
+export interface PathPoint {
+	position: Vector3;
+	nextIndex?: number;
+}
+
+export interface GamePath {
+	id: string;
+	points: PathPoint[];
+	spawnPoint: Vector3;
+	endPoint: Vector3;
 }

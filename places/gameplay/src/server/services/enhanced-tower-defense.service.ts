@@ -7,7 +7,7 @@ import {
 	WaveManager,
 	TowerType,
 	EnemyType,
-} from "../../shared/utils/tower-defense.utils";
+} from "@shared/utils/tower-defense.utils";
 
 interface Tower {
 	id: string;
@@ -115,8 +115,8 @@ export class EnhancedTowerDefenseService implements OnStart, OnTick {
 		}
 	}
 
-	public createTower(type: TowerType, position: Vector3): Tower | undefined {
-		const config = GAME_CONFIG.towers[type];
+	public createTower(towerType: TowerType, position: Vector3): Tower | undefined {
+		const config = GAME_CONFIG.towers[towerType];
 
 		if (this.playerGold < config.cost) {
 			print(`Not enough gold! Need ${config.cost}, have ${this.playerGold}`);
@@ -127,7 +127,7 @@ export class EnhancedTowerDefenseService implements OnStart, OnTick {
 		const tower: Tower = {
 			id,
 			position,
-			type,
+			type: towerType,
 			level: 1,
 			damage: config.damage,
 			range: config.range,
@@ -139,13 +139,13 @@ export class EnhancedTowerDefenseService implements OnStart, OnTick {
 		this.playerGold -= config.cost;
 		this.createTowerVisual(tower);
 
-		print(`Created ${type} tower at ${position} for ${config.cost} gold`);
+		print(`Created ${towerType} tower at ${position} for ${config.cost} gold`);
 		return tower;
 	}
 
-	private spawnEnemy(type: EnemyType): Enemy {
+	private spawnEnemy(enemyType: EnemyType): Enemy {
 		const id = `enemy_${this.nextId++}`;
-		const config = GAME_CONFIG.enemies[type];
+		const config = GAME_CONFIG.enemies[enemyType];
 		const spawnPosition = GameMath.getRandomSpawnPosition();
 
 		const enemy: Enemy = {
@@ -154,7 +154,7 @@ export class EnhancedTowerDefenseService implements OnStart, OnTick {
 			health: config.health,
 			maxHealth: config.health,
 			speed: config.speed,
-			type,
+			type: enemyType,
 			reward: config.reward,
 			armor: config.armor,
 			direction: GameMath.getDirectionToCenter(spawnPosition),

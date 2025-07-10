@@ -3,7 +3,7 @@
 
 	// Use the main Dockerfile
 	"build": {
-		"dockerfile": "../Dockerfile",
+		"dockerfile": "./dockerfile",
 		"context": ".."
 	},
 
@@ -39,7 +39,8 @@
 				"foxundermoon.shell-format",
 				"christian-kohler.npm-intellisense",
 				"DavidAnson.vscode-markdownlint",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"filiptibell.deputy"
 			]
 		}
 	},

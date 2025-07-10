@@ -3,7 +3,7 @@ services:
     roblox-ts-dev:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
         platform: linux/amd64
         container_name: roblox-ts-dev
         volumes:
@@ -29,7 +29,7 @@ services:
     roblox-ts-test:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
         platform: linux/amd64
         volumes:
             - .:/workspace:cached
@@ -50,7 +50,7 @@ services:
     roblox-ts-build:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
         platform: linux/amd64
         volumes:
             - .:/workspace:cached
@@ -67,7 +67,7 @@ services:
     roblox-ts-lint:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
         platform: linux/amd64
         volumes:
             - .:/workspace:cached

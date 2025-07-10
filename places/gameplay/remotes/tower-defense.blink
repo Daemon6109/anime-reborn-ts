@@ -1,0 +1,123 @@
+-- Tower Defense Network Definitions
+
+-- Simple enum definitions
+enum TowerType = { BasicTower, ArcherTower, MageTower, CannonTower }
+enum EnemyType = { BasicEnemy, FastEnemy, TankEnemy, FlyingEnemy }
+
+-- Core game state structures  
+struct TowerPlacement {
+    position: vector,
+    towerType: TowerType,
+    playerId: string,
+}
+
+struct Enemy {
+    id: string,
+    enemyType: EnemyType,
+    position: vector,
+    health: f32,
+    maxHealth: f32,
+    speed: f32,
+    pathProgress: f32,
+}
+
+struct Tower {
+    id: string,
+    towerType: TowerType,
+    position: vector,
+    level: u32,
+    damage: f32,
+    range: f32,
+    attackSpeed: f32,
+    playerId: string,
+}
+
+struct Projectile {
+    id: string,
+    position: vector,
+    targetPosition: vector,
+    damage: f32,
+    speed: f32,
+}
+
+struct GameState {
+    currentWave: u32,
+    isWaveActive: boolean,
+    enemiesRemaining: u32,
+    playerGold: u32,
+    playerLives: u32,
+}
+
+struct PathPoint {
+    position: vector,
+    nextIndex: u32?,
+}
+
+struct EnemyDeathData {
+    enemyId: string,
+    goldReward: u32,
+}
+
+-- Client-to-Server events
+event PlaceTower {
+    from: Client,
+    type: Reliable,
+    call: SingleAsync,
+    data: TowerPlacement,
+}
+
+event StartWave {
+    from: Client,
+    type: Reliable,
+    call: SingleAsync,
+}
+
+-- Server-to-Client events
+event TowerPlaced {
+    from: Server,
+    type: Reliable,
+    call: SingleAsync,
+    data: Tower,
+}
+
+event EnemySpawned {
+    from: Server,
+    type: Reliable,
+    call: SingleAsync,
+    data: Enemy,
+}
+
+event EnemyUpdated {
+    from: Server,
+    type: Unreliable,
+    call: SingleAsync,
+    data: Enemy,
+}
+
+event EnemyDied {
+    from: Server,
+    type: Reliable,
+    call: SingleAsync,
+    data: EnemyDeathData,
+}
+
+event ProjectileCreated {
+    from: Server,
+    type: Unreliable,
+    call: SingleAsync,
+    data: Projectile,
+}
+
+event GameStateUpdated {
+    from: Server,
+    type: Reliable,
+    call: SingleAsync,
+    data: GameState,
+}
+
+event PathDataSent {
+    from: Server,
+    type: Reliable,
+    call: SingleAsync,
+    data: PathPoint[],
+}
