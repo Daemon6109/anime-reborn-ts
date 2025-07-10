@@ -1,6 +1,9 @@
+--!nolint
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local JestGlobals = require(
-	game.ReplicatedStorage
-		:FindFirstChild("rbxts_include")
+	ReplicatedStorage:FindFirstChild("rbxts_include")
 		:FindFirstChild("node_modules")
 		:FindFirstChild("@rbxts")
 		:FindFirstChild("jest-globals")

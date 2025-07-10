@@ -1,7 +1,7 @@
 // Data Testing Utilities for TypeScript
 
 import { DataTemplate, DATA_TEMPLATE } from "../data-template";
-import { deepCopy } from "../../utils/deep-copy";
+import { deepCopy } from "../../utils/deep-copy.util";
 
 interface DiffEntry {
 	old: unknown;

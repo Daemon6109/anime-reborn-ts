@@ -1,6 +1,7 @@
 // Types
 import type { PlayerData } from "@shared/atoms/player-data";
 import type * as Types from "@shared/types";
+import type { CalendarName } from "@shared/types/interface/player-data/advent-calendar";
 
 const units: Types.InterfaceProps.PlayerData.Unit.Player[] = [];
 
@@ -54,6 +55,7 @@ const defaultData: PlayerData = {
 			claimed: new Map<number, { basic: boolean; premium: boolean }>(),
 		},
 	],
+	adventCalendar: new Map<CalendarName, { claimed: number[]; onlineDays: number }>(),
 };
 
 export default defaultData;

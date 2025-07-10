@@ -3,8 +3,8 @@ import { Service, OnInit } from "@flamework/core";
 import { Players } from "@rbxts/services";
 
 // Dependencies
-import { DataStore } from "@services/player-data";
-import { Analytics } from "@services/analytics";
+import { DataStore } from "@server/services/player-data";
+import { Analytics } from "@server/services/analytics";
 
 // Utils
 import { safePlayerAdded } from "@shared/utils/safe-player-added.util";

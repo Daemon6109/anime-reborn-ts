@@ -16,6 +16,7 @@ export type PlayerData = {
 	team: Types.InterfaceProps.PlayerData.Team.default;
 	effects: Types.InterfaceProps.PlayerData.Effects.EffectData[];
 	battlepass: Types.InterfaceProps.PlayerData.Battlepass.BattlepassData[];
+	adventCalendar: Types.InterfaceProps.PlayerData.AdventCalendar.AdventCalendarData;
 };
 
 type PlayerDataMap = {

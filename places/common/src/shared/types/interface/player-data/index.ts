@@ -6,7 +6,7 @@ export type * as Mount from "./mount";
 export type * as Battlepass from "./battlepass";
 export type * as DailyReward from "./daily_reward";
 export type * as Currencies from "./currencies";
-
+export type * as AdventCalendar from "./advent-calendar";
 import type { Atom } from "@rbxts/charm";
 import type * as Item from "./items";
 import type Unit from "./units";

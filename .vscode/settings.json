@@ -11,11 +11,24 @@
 	},
 	"eslint.run": "onType",
 	"eslint.format.enable": true,
+	"typescript.format.semicolons": "insert",
+	"javascript.format.semicolons": "insert",
 	"search.exclude": {
+		"old_common": true,
+		"dist": true,
 		"node_modules": true,
 		"out": true,
 		"include": true
 	},
+	"luau-lsp.ignoreGlobs": [
+		"**/_Index/**",
+		"**/include/**",
+		"**/out/**",
+		"**/node_modules/**",
+		"**/dist/**",
+		"**/old_common/**",
+		"**/scripts/**"
+	],
 	"jest.jestCommandLine": "npm run test:jest --",
 	"jest.runMode": "on-demand",
 	"codium.codeCompletion.enable": false

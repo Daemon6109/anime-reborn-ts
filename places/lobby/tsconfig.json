@@ -29,7 +29,15 @@
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
 
-		"plugins": [{ "transform": "rbxts-transformer-flamework" }]
+		"plugins": [
+			{
+				"transform": "rbxts-transformer-flamework",
+				"obfuscation": true
+			},
+			{
+				"transform": "rbxts-transformer-optimizer"
+			}
+		]
 	},
 	"exclude": ["../../node_modules/**", "out/**", "include/**"]
 }

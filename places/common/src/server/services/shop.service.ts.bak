@@ -1,6 +1,6 @@
 import { Service, OnInit } from "@flamework/core";
 import { Players } from "@rbxts/services";
-import { DataService } from "@services/data.service";
+import { DataService } from "@server/services/data.service";
 import {
 	DungeonShopData,
 	EventShopData,
