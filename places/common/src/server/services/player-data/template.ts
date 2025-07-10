@@ -38,6 +38,12 @@ const defaultData: PlayerData = {
 	units,
 	items: [],
 	mounts: { ownedMounts: [] },
+	daily_reward: {
+		last_claimed: 0,
+		current_streak: 0,
+		CanClaim: true,
+		total_claimed: 0,
+	},
 	team: [],
 	effects: [],
 	battlepass: [

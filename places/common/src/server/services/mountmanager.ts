@@ -2,8 +2,6 @@
 /**
  * Service responsible for managing player mounts including equipping, unequipping, and ownership tracking.
  * Handles mount model attachment to player characters and maintains equipped mount state.
- * @Spirast - Converting to TypeScript
- * @Copilot - Docstring generation and refactoring
  */
 
 import { ReplicatedStorage, ServerScriptService, Players } from "@rbxts/services";
