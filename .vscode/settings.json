@@ -30,5 +30,6 @@
 		"**/scripts/**"
 	],
 	"jest.jestCommandLine": "npm run test:jest --",
-	"jest.runMode": "on-demand"
+	"jest.runMode": "on-demand",
+	"codium.codeCompletion.enable": false
 }
