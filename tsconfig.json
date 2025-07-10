@@ -25,12 +25,6 @@
 		"baseUrl": ".",
 		"paths": {
 			"@common/*": ["places/common/src/*"],
-			"@services/*": [
-				"places/common/src/server/services/*",
-				"places/lobby/src/server/services/*",
-				"places/afk/src/server/services/*",
-				"places/gameplay/src/server/services/*"
-			],
 			"@shared/*": [
 				"places/common/src/shared/*",
 				"places/lobby/src/shared/*",

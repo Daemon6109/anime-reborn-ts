@@ -1,6 +1,6 @@
 import { Service, OnInit } from "@flamework/core";
-import { DataStore } from "@services/player-data";
-import { Analytics } from "@services/analytics";
+import { DataStore } from "@server/services/player-data";
+import { Analytics } from "@server/services/analytics";
 import {
 	battlepassData,
 	BattlepassName,
