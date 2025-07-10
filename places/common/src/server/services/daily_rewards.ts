@@ -39,13 +39,6 @@ export class DailyRewardsService implements OnInit {
 			this.checkDailyReset(player);
 		});
 
-		// Also handle players who might already be in the game when the service initializes
-		for (const player of Players.GetPlayers()) {
-			this.checkDailyReset(player).catch((error) => {
-				warn(`[DailyRewardsService] Failed initial daily reset check for ${player.Name} with error: ${error}`);
-			});
-		}
-
 		// Setup hourly checks for daily reset (every hour)
 		task.spawn(() => {
 			do {
