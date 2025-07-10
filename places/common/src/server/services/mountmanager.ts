@@ -2,8 +2,6 @@
 /**
  * Service responsible for managing player mounts including equipping, unequipping, and ownership tracking.
  * Handles mount model attachment to player characters and maintains equipped mount state.
- * @Spirast - Converting to TypeScript
- * @Copilot - Docstring generation and refactoring
  */
 
 import { ReplicatedStorage, ServerScriptService, Players } from "@rbxts/services";
@@ -108,6 +106,8 @@ export class MountsManager implements OnInit {
 				return false; // Mount doesn't exist or player doesn't own it
 			}
 
+			this.UnequipMount(player);
+
 			// Unequip all mounts first
 			data.mounts.ownedMounts.forEach((mount) => {
 				// in case for some reason there's 2 mounts that are both equipped
@@ -124,8 +124,6 @@ export class MountsManager implements OnInit {
 		});
 
 		if (updateResult) {
-			this.UnequipMount(player);
-
 			const MountModel: Model = MountExists.Clone() as Model;
 
 			player.SetAttribute("MountToggled", true);
