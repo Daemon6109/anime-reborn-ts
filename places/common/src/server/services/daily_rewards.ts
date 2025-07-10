@@ -33,8 +33,13 @@ export class DailyRewardsService implements OnInit {
 	public newDayEvent = new Signal<[{ player: Player; day: number }]>();
 	public rewardClaimedEvent = new Signal<[{ player: Player; day: number; reward: DailyRewardPayload }]>();
 
+	/**
+	 * Initializes the DailyRewardsService.
+	 * Sets up player added and hourly daily reset checks.
+	 */
 	onInit(): void {
 		// The daily reset check will be queued by the data service and run once the player's data is loaded.
+		// This also handles future players
 		safePlayerAdded((player) => {
 			this.checkDailyReset(player);
 		});
@@ -51,10 +56,18 @@ export class DailyRewardsService implements OnInit {
 		});
 	}
 
+	/**
+	 * Returns the current day number since epoch, adjusted for daily reset hour.
+	 */
 	private GetCurrentDay(): number {
 		return math.floor((os.time() - this.Config._daily_reset_hour * 3600) / 86400);
 	}
 
+	/**
+	 * Checks and updates the player's daily reward streak and claim status.
+	 * Fires newDayEvent if a new day is detected.
+	 * @param player The player to check/reset daily rewards for.
+	 */
 	private async checkDailyReset(player: Player): Promise<void> {
 		const PlayerStore = this.dataservice.getPlayerStore();
 		const currentDay = this.GetCurrentDay();
@@ -87,6 +100,11 @@ export class DailyRewardsService implements OnInit {
 		}
 	}
 
+	/**
+	 * Claims the daily reward for the player if eligible.
+	 * Updates currencies and streak, fires rewardClaimedEvent.
+	 * @param player The player claiming the daily reward.
+	 */
 	public async ClaimDailyReward(player: Player): Promise<void> {
 		const PlayerStore = this.dataservice.getPlayerStore();
 
@@ -121,6 +139,12 @@ export class DailyRewardsService implements OnInit {
 		}
 	}
 
+	/**
+	 * Calculates the daily reward payload for a given streak day.
+	 * Includes base coins, streak bonus, and any special rewards.
+	 * @param day The current streak day.
+	 * @returns The reward payload for the day.
+	 */
 	public CalculateDailyReward(day: number): DailyRewardPayload {
 		const baseCoins = this.Config.BASE_REWARD_COINS;
 		const streakBonus = math.floor(baseCoins * (day - 1) * this.Config.STREAK_MULTIPLIER);
@@ -140,6 +164,12 @@ export class DailyRewardsService implements OnInit {
 		return reward;
 	}
 
+	/**
+	 * Gives the specified reward payload to the player.
+	 * Updates player's gold and gems.
+	 * @param player The player to give the reward to.
+	 * @param reward The reward payload.
+	 */
 	public GiveReward(player: Player, reward: DailyRewardPayload) {
 		const PlayerStore = this.dataservice.getPlayerStore();
 
@@ -159,6 +189,11 @@ export class DailyRewardsService implements OnInit {
 		});
 	}
 
+	/**
+	 * Gets the player's current daily reward status.
+	 * @param player The player to get status for.
+	 * @returns Object with currentDay, canClaim, and totalClaimed, or undefined if not found.
+	 */
 	public GetDailyStatus(player: Player): { currentDay: number; canClaim: boolean; totalClaimed: number } | undefined {
 		const PlayerStore = this.dataservice.getPlayerStore();
 		let playerData;
