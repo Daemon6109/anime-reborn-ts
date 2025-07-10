@@ -20,6 +20,15 @@
 		"out": true,
 		"include": true
 	},
+	"luau-lsp.ignoreGlobs": [
+		"**/_Index/**",
+		"**/include/**",
+		"**/out/**",
+		"**/node_modules/**",
+		"**/dist/**",
+		"**/old_common/**",
+		"**/scripts/**"
+	],
 	"jest.jestCommandLine": "npm run test:jest --",
 	"jest.runMode": "on-demand"
 }
