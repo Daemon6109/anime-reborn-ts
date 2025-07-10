@@ -2,25 +2,17 @@ import { Service, OnStart } from "@flamework/core";
 import { Players, RunService, Workspace } from "@rbxts/services";
 import { Janitor } from "@rbxts/janitor";
 import { atom, subscribe } from "@rbxts/charm";
-import { Dependency } from "@flamework/core";
-import { TowerType as NetworkTowerType, EnemyType as NetworkEnemyType } from "@rbxts/gameplay-remotes";
-import { ServerNet } from "@rbxts/gameplay-remotes";
+import ServerNetwork from "@network/server";
 import * as jecs from "@rbxts/jecs";
+import { safePlayerAdded } from "@common/shared/utils/safe-player-added.util";
 import {
 	TowerType,
 	EnemyType,
 	TowerComponent,
 	EnemyComponent,
 	PositionComponent,
-	VelocityComponent,
-	HealthComponent,
-	PathFollowingComponent,
-	ModelComponent,
-	TargetingComponent,
 	AttackComponent,
 	ProjectileComponent,
-	GameStateComponent,
-	PlayerResourcesComponent,
 	DamageType,
 	TargetPriority,
 } from "@shared/components/tower-defense.components";
@@ -87,10 +79,10 @@ export class CompleteTowerDefenseService implements OnStart {
 	}
 
 	private setupNetworkListeners(): void {
-		ServerNet.PlaceTowerRequest.On((player, request) => {
+		ServerNetwork.TowerDefense.PlaceTowerRequest.on((player, request) => {
 			this.placeTower(player, request.towerType, request.position);
 		});
-		ServerNet.StartWaveRequest.On((player) => {
+		ServerNetwork.TowerDefense.StartWaveRequest.on((player) => {
 			this.startNextWave();
 		});
 	}
@@ -111,7 +103,7 @@ export class CompleteTowerDefenseService implements OnStart {
 
 	private setupPlayerHandling(): void {
 		this.janitor.Add(
-			Players.PlayerAdded.Connect((player) => {
+			safePlayerAdded((player) => {
 				this.onPlayerJoined(player);
 			}),
 		);
@@ -121,11 +113,6 @@ export class CompleteTowerDefenseService implements OnStart {
 				this.onPlayerLeaving(player);
 			}),
 		);
-
-		// Handle existing players
-		Players.GetPlayers().forEach((player) => {
-			this.onPlayerJoined(player);
-		});
 	}
 
 	private setupGameLoop(): void {
@@ -179,7 +166,7 @@ export class CompleteTowerDefenseService implements OnStart {
 
 		// Send initial game state
 		const gameState = this.gameStateAtom();
-		ServerNet.GameStateUpdated.Fire(player, {
+		ServerNetwork.TowerDefense.GameStateUpdated.fire(player, {
 			currentWave: gameState.currentWave,
 			isWaveActive: gameState.isWaveActive,
 			enemiesRemaining: gameState.enemiesRemaining,
@@ -463,7 +450,7 @@ export class CompleteTowerDefenseService implements OnStart {
 		});
 		this.playerResourcesAtom(newResources);
 
-		ServerNet.TowerPlaced.FireAll({
+		ServerNetwork.TowerDefense.TowerPlaced.fireAll({
 			id: towerId,
 			towerType: towerType as unknown as NetworkTowerType,
 			position: position,
@@ -494,7 +481,7 @@ export class CompleteTowerDefenseService implements OnStart {
 		};
 
 		this.gameStateAtom(newGameState);
-		ServerNet.GameStateUpdated.FireAll(newGameState);
+		ServerNetwork.TowerDefense.GameStateUpdated.fireAll(newGameState);
 
 		print(`Wave ${nextWave} started!`);
 	}
@@ -541,7 +528,7 @@ export class CompleteTowerDefenseService implements OnStart {
 
 		this.enemyEntities.set(enemyId, enemyEntity);
 
-		ServerNet.EnemySpawned.FireAll({
+		ServerNetwork.TowerDefense.EnemySpawned.fireAll({
 			id: enemyId,
 			enemyType: enemyType as unknown as NetworkEnemyType,
 			position: DEFAULT_PATH_POINTS[0],
@@ -575,7 +562,7 @@ export class CompleteTowerDefenseService implements OnStart {
 
 		this.projectileEntities.set(projectileId, projectileEntity);
 
-		ServerNet.ProjectileCreated.FireAll({
+		ServerNetwork.TowerDefense.ProjectileCreated.fireAll({
 			id: projectileId,
 			position: towerPosition.position,
 			targetPosition: TDWorld.world.get(targetEntity, TDWorld.Position)!.position,
@@ -639,7 +626,7 @@ export class CompleteTowerDefenseService implements OnStart {
 		this.enemyEntities.delete(enemy.id);
 		TDWorld.world.delete(enemyEntity);
 
-		ServerNet.EnemyDied.FireAll({
+		ServerNetwork.TowerDefense.EnemyDied.fireAll({
 			enemyId: enemy.id,
 			goldReward: enemy.reward,
 		});

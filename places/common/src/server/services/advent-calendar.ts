@@ -1,6 +1,6 @@
 import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@server/services/player-data";
-import { safePlayerAdded } from "@shared/utils/safe-player-added";
+import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 import { adventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
 import { Analytics } from "@server/services/analytics";
 import type { CalendarName, AdventCalendarData } from "@shared/types/interface/player-data/advent-calendar";

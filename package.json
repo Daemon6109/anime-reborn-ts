@@ -7,7 +7,7 @@
 		"compilenetwork:gameplay": "blink ./places/gameplay/remotes/index.blink",
 		"compilenetwork:lobby": "blink ./places/lobby/remotes/index.blink",
 		"compilenetwork:common": "blink ./places/common/remotes/index.blink",
-		"compilenetwork:afk": "blink ./places/afk/remotes",
+		"compilenetwork:afk": "blink ./places/afk/remotes/index.blink",
 		"compilenetwork": "npm run compilenetwork:gameplay && npm run compilenetwork:lobby && npm run compilenetwork:common && npm run compilenetwork:afk",
 		"build": "rbxtsc -p .",
 		"build:gameplay": "rbxtsc -p ./places/gameplay",

@@ -24,12 +24,12 @@
 		"outDir": "out",
 		"baseUrl": "src",
 		"paths": {
-			"@common/*": ["../common/src/*"],
-			"@gameplay/*": ["./src/*"],
+			"@common/*": ["../../common/src/*"],
+			"@gameplay/*": ["../src/*"],
 			"@shared/*": ["./shared/*"],
 			"@server/*": ["./server/*"],
 			"@client/*": ["./client/*"],
-			"@network/*": ["./remotes/network/*"]
+			"@network/*": ["../remotes/network/*"]
 		},
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",

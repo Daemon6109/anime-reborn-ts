@@ -2,7 +2,6 @@
 // This is a basic implementation focusing on core functionality
 
 import { Service, OnStart, OnTick } from "@flamework/core";
-import { RunService } from "@rbxts/services";
 
 // For now, let's create a simple working system without JECS complexity
 // We'll use a basic object-oriented approach that can be migrated to JECS later

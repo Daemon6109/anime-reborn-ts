@@ -1,5 +1,5 @@
 import { Service, OnStart } from "@flamework/core";
-import { Players, RunService, Workspace, TweenService } from "@rbxts/services";
+import { Players, RunService } from "@rbxts/services";
 import { atom, effect, subscribe } from "@rbxts/charm";
 import { Janitor } from "@rbxts/janitor";
 import Signal from "@rbxts/lemon-signal";
@@ -11,15 +11,8 @@ import {
 	TowerComponent,
 	EnemyComponent,
 	PositionComponent,
-	VelocityComponent,
-	HealthComponent,
-	PathFollowingComponent,
-	ModelComponent,
-	TargetingComponent,
 	AttackComponent,
 	ProjectileComponent,
-	GameStateComponent,
-	PlayerResourcesComponent,
 	DamageType,
 	TargetPriority,
 } from "@shared/components/tower-defense.components";

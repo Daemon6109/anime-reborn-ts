@@ -1,13 +1,18 @@
 -- Tower Defense Network Definitions
 
--- Simple enum definitions
+-- Enums
 enum TowerType = { BasicTower, ArcherTower, MageTower, CannonTower }
 enum EnemyType = { BasicEnemy, FastEnemy, TankEnemy, FlyingEnemy }
 
--- Core game state structures  
-struct TowerPlacement {
-    position: vector,
+-- Structs for game objects and data
+struct Tower {
+    id: string,
     towerType: TowerType,
+    position: vector,
+    level: u8,
+    damage: f32,
+    range: f32,
+    attackSpeed: f32,
     playerId: string,
 }
 
@@ -21,17 +26,6 @@ struct Enemy {
     pathProgress: f32,
 }
 
-struct Tower {
-    id: string,
-    towerType: TowerType,
-    position: vector,
-    level: u32,
-    damage: f32,
-    range: f32,
-    attackSpeed: f32,
-    playerId: string,
-}
-
 struct Projectile {
     id: string,
     position: vector,
@@ -41,11 +35,11 @@ struct Projectile {
 }
 
 struct GameState {
-    currentWave: u32,
+    currentWave: u16,
     isWaveActive: boolean,
-    enemiesRemaining: u32,
-    playerGold: u32,
-    playerLives: u32,
+    enemiesRemaining: u16,
+    playerGold: i32,
+    playerLives: i16,
 }
 
 struct PathPoint {
@@ -55,69 +49,112 @@ struct PathPoint {
 
 struct EnemyDeathData {
     enemyId: string,
-    goldReward: u32,
+    goldReward: i32,
 }
 
--- Client-to-Server events
-event PlaceTower {
-    from: Client,
-    type: Reliable,
-    call: SingleAsync,
-    data: TowerPlacement,
+struct EnemyUpdateData {
+    id: string,
+    position: vector,
+    health: f32,
 }
 
-event StartWave {
-    from: Client,
-    type: Reliable,
-    call: SingleAsync,
+struct PlaceTowerData {
+    position: vector,
+    towerType: TowerType,
 }
 
--- Server-to-Client events
+struct TowerIdData {
+    towerId: string,
+}
+
+-- --- Client to Server Events ---
+
+-- Request to place a tower
+event PlaceTowerRequest {
+    From: Client,
+    Type: Reliable,
+    Call: SingleSync,
+    Data: PlaceTowerData,
+}
+
+-- Request to upgrade a tower
+event UpgradeTowerRequest {
+    From: Client,
+    Type: Reliable,
+    Call: SingleSync,
+    Data: TowerIdData,
+}
+
+-- Request to sell a tower
+event SellTowerRequest {
+    From: Client,
+    Type: Reliable,
+    Call: SingleSync,
+    Data: TowerIdData,
+}
+
+-- Request to start the next wave
+event StartWaveRequest {
+    From: Client,
+    Type: Reliable,
+    Call: SingleSync,
+}
+
+
+-- --- Server to Client Events ---
+
+-- Notifies clients that a tower has been placed
 event TowerPlaced {
-    from: Server,
-    type: Reliable,
-    call: SingleAsync,
-    data: Tower,
+    From: Server,
+    Type: Reliable,
+    Call: ManySync,
+    Data: Tower,
 }
 
+-- Notifies clients that an enemy has spawned
 event EnemySpawned {
-    from: Server,
-    type: Reliable,
-    call: SingleAsync,
-    data: Enemy,
+    From: Server,
+    Type: Reliable,
+    Call: ManySync,
+    Data: Enemy,
 }
 
+-- Notifies clients that an enemy's state has been updated
 event EnemyUpdated {
-    from: Server,
-    type: Unreliable,
-    call: SingleAsync,
-    data: Enemy,
+    From: Server,
+    Type: Unreliable,
+    Call: ManySync,
+    Data: EnemyUpdateData,
 }
 
+-- Notifies clients that an enemy has died
 event EnemyDied {
-    from: Server,
-    type: Reliable,
-    call: SingleAsync,
-    data: EnemyDeathData,
+    From: Server,
+    Type: Reliable,
+    Call: ManySync,
+    Data: EnemyDeathData,
 }
 
+-- Notifies clients that a projectile has been created
 event ProjectileCreated {
-    from: Server,
-    type: Unreliable,
-    call: SingleAsync,
-    data: Projectile,
+    From: Server,
+    Type: Unreliable,
+    Call: ManySync,
+    Data: Projectile,
 }
 
+-- Notifies clients of the current game state
 event GameStateUpdated {
-    from: Server,
-    type: Reliable,
-    call: SingleAsync,
-    data: GameState,
+    From: Server,
+    Type: Reliable,
+    Call: ManySync,
+    Data: GameState,
 }
 
+-- Sends the path data to clients
 event PathDataSent {
-    from: Server,
-    type: Reliable,
-    call: SingleAsync,
-    data: PathPoint[],
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: PathPoint[],
 }

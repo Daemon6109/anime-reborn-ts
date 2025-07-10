@@ -1,5 +1,5 @@
 // Complete data template with all factory imports
-import { migrations } from "../utils/migrations";
+import { migrations } from "../utils/migrations.util";
 
 // Import player-related factories
 import { PlayerBasicData, createPlayerBasicData } from "./factories/player/player-basic-data";

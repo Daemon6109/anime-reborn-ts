@@ -8,5 +8,4 @@ option UsePolling = false
 option Typescript = true
 option Casing = Camel
 
-import "./tower-defense" as TowerDefense
 import "../../common/remotes/index" as Common

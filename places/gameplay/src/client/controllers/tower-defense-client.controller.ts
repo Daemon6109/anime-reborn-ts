@@ -2,7 +2,6 @@ import { Service, OnStart } from "@flamework/core";
 import { Players, UserInputService, Workspace, TweenService, RunService } from "@rbxts/services";
 import { Janitor } from "@rbxts/janitor";
 import { atom, effect } from "@rbxts/charm";
-import { TowerDefenseNetworkService, TowerDefenseNetwork } from "@shared/services/tower-defense-network-clean.service";
 import { TOWER_CONFIGS, ENEMY_CONFIGS, GameConfig } from "@shared/config/game-config";
 
 @Service({
@@ -362,7 +361,7 @@ export class TowerDefenseClientController implements OnStart {
 	private updateEnemyVisual(enemy: TowerDefenseNetwork.Enemy): void {
 		const enemyModel = this.enemyVisuals.get(enemy.id);
 		if (enemyModel) {
-			enemyModel.SetPrimaryPartCFrame(new CFrame(enemy.position));
+			enemyModel.PivotTo(new CFrame(enemy.position));
 		}
 	}
 

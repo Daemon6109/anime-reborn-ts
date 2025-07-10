@@ -1,5 +1,4 @@
 import { Service } from "@flamework/core";
-import { RunService } from "@rbxts/services";
 import { TDWorld } from "@shared/world/td-world";
 
 @Service()

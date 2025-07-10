@@ -1,15 +1,9 @@
 import { Controller, OnStart } from "@flamework/core";
-import { Players, UserInputService, RunService, TweenService, Workspace } from "@rbxts/services";
-import { atom, effect, subscribe, peek } from "@rbxts/charm";
+import { Players, UserInputService, RunService, Workspace } from "@rbxts/services";
+import { atom, effect, peek } from "@rbxts/charm";
 import { Janitor } from "@rbxts/janitor";
 import Signal from "@rbxts/lemon-signal";
-import { TDWorld } from "@shared/world/td-world";
-import {
-	TowerType,
-	PlacementPreviewComponent,
-	PathVisualizationComponent,
-	TweenComponent,
-} from "@shared/components/tower-defense.components";
+import { TowerType } from "@shared/components/tower-defense.components";
 import { TOWER_CONFIGS, DEFAULT_PATH_POINTS } from "@shared/config/game-config";
 
 interface MouseState {
@@ -166,7 +160,7 @@ export class TowerDefenseVisualizationController implements OnStart {
 				const placementState = this.placementStateAtom();
 
 				if (placementState.previewModel) {
-					placementState.previewModel.SetPrimaryPartCFrame(new CFrame(mouseState.position));
+					placementState.previewModel.PivotTo(new CFrame(mouseState.position));
 				}
 			}),
 		);

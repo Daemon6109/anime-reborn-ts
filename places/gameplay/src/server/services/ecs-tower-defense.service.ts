@@ -1,5 +1,5 @@
 import { Service } from "@flamework/core";
-import { Players, RunService, Workspace } from "@rbxts/services";
+import { RunService, Workspace } from "@rbxts/services";
 import { TDWorld } from "@shared/world/td-world";
 import * as jecs from "@rbxts/jecs";
 import {
@@ -55,7 +55,7 @@ export class ECSTowerDefenseService {
 			// Update visual model if present
 			const model = TDWorld.world.get(entity, TDWorld.Model);
 			if (model?.model.PrimaryPart) {
-				model.model.SetPrimaryPartCFrame(new CFrame(newPosition));
+				model.model.PivotTo(new CFrame(newPosition));
 			}
 		}
 	}

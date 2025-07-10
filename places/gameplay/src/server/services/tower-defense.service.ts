@@ -1,5 +1,4 @@
 import { Service, OnStart, OnTick } from "@flamework/core";
-import { RunService } from "@rbxts/services";
 import * as jecs from "@rbxts/jecs";
 import {
 	PositionComponent,
