@@ -1,4 +1,5 @@
 // Types
+import { source } from "@rbxts/vide";
 import type { PlayerData } from "@shared/atoms/player-data";
 import type * as Types from "@shared/types";
 import type { CalendarName } from "@shared/types/interface/player-data/advent-calendar";
@@ -44,6 +45,10 @@ const defaultData: PlayerData = {
 		current_streak: 0,
 		CanClaim: true,
 		total_claimed: 0,
+	},
+	currencies: {
+		gold: source(0), // watever default is for gold and gems
+		gems: source(0),
 	},
 	team: [],
 	effects: [],

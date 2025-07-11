@@ -5,6 +5,7 @@ export type * as Effects from "./effects";
 export type * as Mount from "./mount";
 export type * as Battlepass from "./battlepass";
 export type * as DailyReward from "./daily_reward";
+export type * as Shop from "./shop";
 export type * as Currencies from "./currencies";
 export type * as AdventCalendar from "./advent-calendar";
 import type { Atom } from "@rbxts/charm";
@@ -15,6 +16,7 @@ import type PlayerDataTeam from "./team";
 import type PlayerDataEffects from "./effects";
 import type { Mount } from "./mount";
 import type daily_reward from "./daily_reward";
+import type PlayerDataShop from "./shop";
 import type PlayerDataBattlepass from "./battlepass";
 import { Currencies } from "../../../data/data-template";
 
@@ -24,6 +26,7 @@ export default interface PlayerDataTypes {
 	mounts: Atom<Mount>;
 	daily_reward: Atom<daily_reward>;
 	currencies: Atom<Currencies>;
+	shop: Atom<PlayerDataShop>;
 	team: Atom<PlayerDataTeam>;
 	effects: Atom<PlayerDataEffects>;
 	battlepass: Atom<PlayerDataBattlepass>;

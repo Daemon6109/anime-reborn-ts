@@ -79,7 +79,8 @@ export type LayoutThree = {
 
 export type BaseShopItem = {
 	cost: Source<number>;
-	productId: Source<number>;
+	productId: Source<string>;
+	stock: Source<number>;
 	color: Source<ColorSequence>;
 };
 

@@ -12,6 +12,7 @@ export type PlayerData = {
 	items: Types.InterfaceProps.PlayerData.Item.Player[];
 	mounts: Types.InterfaceProps.PlayerData.Mount.Mount;
 	daily_reward: Types.InterfaceProps.PlayerData.DailyReward.daily_reward;
+	shop: Types.InterfaceProps.PlayerData.Shop.ShopItems;
 	currencies: Types.InterfaceProps.PlayerData.Currencies.default;
 	team: Types.InterfaceProps.PlayerData.Team.default;
 	effects: Types.InterfaceProps.PlayerData.Effects.EffectData[];

@@ -8,6 +8,21 @@ option UsePolling = false
 option Typescript = true
 option Casing = Camel
 
-import "./playerData"
-import "./dailyRewards"
-import "./shop"
+enum shopType = {
+    "DunegonShop",
+    "EventShop",
+    "RaidShop"
+}
+
+struct shopData {
+    shopType: shopType,
+    itemId: string,
+    amount: u16
+}
+
+event PurchaseShopItem {
+    From: Client,
+    Type: Reliable,
+    Call: SingleSync,
+    Data: shopData
+}

@@ -1,6 +1,6 @@
 import { Service, OnInit } from "@flamework/core";
 import { Players } from "@rbxts/services";
-import { DataService } from "@server/services/data.service";
+import { DataStore } from "./player-data";
 import {
 	DungeonShopData,
 	EventShopData,
@@ -52,7 +52,7 @@ export class ShopService implements OnInit {
 	// Reset tracking
 	private lastResetCheck = 0;
 
-	constructor(private readonly dataService: DataService) {}
+	constructor(private readonly dataService: DataStore) {}
 
 	public onInit(): void {
 		this.loadDefaultShopConfigs();
@@ -129,41 +129,24 @@ export class ShopService implements OnInit {
 			return;
 		}
 
-		const playerData = await this.dataService.getCache(player);
-		if (!playerData) {
-			return;
-		}
+		const playerStore = this.dataService.getPlayerStore();
 
-		const newData = { ...playerData };
-		const shopDataKey = this.getShopDataKey(shopType);
-		const dataAsRecord = newData as unknown as Record<string, unknown>;
-
-		// Ensure shop data exists
-		if (dataAsRecord[shopDataKey] === undefined) {
-			switch (shopType) {
-				case "DungeonShop":
-					dataAsRecord.DungeonShopData = createDungeonShopData();
-					break;
-				case "EventShop":
-					dataAsRecord.EventShopData = createEventShopData();
-					break;
-				case "RaidShop":
-					dataAsRecord.RaidShopData = createRaidShopData();
-					break;
+		playerStore.updateAsync(player, (playerData) => {
+			if (!playerData) {
+				return;
 			}
-		}
 
-		const shopData = dataAsRecord[shopDataKey] as Record<string, unknown>;
-		const config = this.shopConfigs[shopType];
+			const config = this.shopConfigs[shopType];
+			const shopDataKey = this.getShopDataKey(shopType);
+			const dataAsRecord = playerData as unknown as Record<string, unknown>;
+			let shopData = dataAsRecord[shopDataKey] as { items: Record<string, number> } | undefined;
 
-		// Initialize stock for items that have limited stock
-		for (const [itemId, itemConfig] of pairs(config.items)) {
-			if (itemConfig.stock > 0 && shopData[itemId] === undefined) {
-				shopData[itemId] = { stock: itemConfig.stock };
+			for (const [itemId, itemConfig] of pairs(config.items)) {
+				if (itemConfig.stock !== 0 && shopData?.items[itemId] === undefined) {
+					shopData?.items;
+				}
 			}
-		}
-
-		this.dataService.setCache(player, newData);
+		});
 	}
 
 	/**
