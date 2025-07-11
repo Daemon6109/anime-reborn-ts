@@ -39,6 +39,7 @@ const defaultData: PlayerData = {
 	units,
 	items: [],
 	mounts: { ownedMounts: [] },
+	shop: [], // Empty shop items array
 	daily_reward: {
 		last_claimed: 0,
 		current_streak: 0,
