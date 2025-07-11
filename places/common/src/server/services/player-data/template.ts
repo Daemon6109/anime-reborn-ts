@@ -1,4 +1,5 @@
 // Types
+import { source } from "@rbxts/vide";
 import type { PlayerData } from "@shared/atoms/player-data";
 import type { Player as UnitPlayer } from "@shared/data/units-data";
 import type { CalendarName } from "@shared/data/advent-calendar-data";
@@ -39,6 +40,7 @@ const defaultData: PlayerData = {
 	units,
 	items: [],
 	mounts: { ownedMounts: [] },
+	shop: [], // Empty shop items array
 	daily_reward: {
 		last_claimed: 0,
 		current_streak: 0,

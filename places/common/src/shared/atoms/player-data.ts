@@ -7,6 +7,7 @@ import type { Player as ItemPlayer } from "@shared/data/items-data";
 import type Mount from "@shared/data/mount-data";
 import type daily_reward from "@shared/data/daily-reward-data";
 import type { PlayerDataCurrencies } from "@shared/data/currencies-data";
+import type { ShopItems } from "../data/shop-data";
 import type PlayerDataTeam from "@shared/data/team-data";
 import type { PlayerEffectData } from "@shared/data/effects-data";
 import type { BattlepassDataForPlayer } from "@shared/data/battlepass-data";
@@ -19,6 +20,7 @@ export type PlayerData = {
 	units: UnitPlayer[];
 	items: ItemPlayer[];
 	mounts: Mount;
+	shop: ShopItems;
 	daily_reward: daily_reward;
 	currencies: PlayerDataCurrencies;
 	team: PlayerDataTeam;
