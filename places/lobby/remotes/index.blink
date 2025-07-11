@@ -9,3 +9,4 @@ option Typescript = true
 option Casing = Camel
 
 import "../../common/remotes/index" as Common
+import "./gohan-limit" as GohanLimit

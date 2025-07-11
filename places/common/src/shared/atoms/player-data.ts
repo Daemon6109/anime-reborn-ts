@@ -10,10 +10,16 @@ import type { PlayerDataCurrencies } from "@shared/data/currencies-data";
 import type PlayerDataTeam from "@shared/data/team-data";
 import type { PlayerEffectData } from "@shared/data/effects-data";
 import type { BattlepassDataForPlayer } from "@shared/data/battlepass-data";
-import type { AdventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
+import type { AdventCalendarData } from "@shared/data/advent-calendar-data";
+import type { BingoData } from "../../../../lobby/src/server/services/bingo/types";
 
 // Charm Components
 const { atom } = Charm;
+
+export interface BattlepassData {
+	premium: boolean;
+	claimed: Map<number, { basic: boolean; premium: boolean }>;
+}
 
 export type PlayerData = {
 	units: UnitPlayer[];
@@ -23,8 +29,9 @@ export type PlayerData = {
 	currencies: PlayerDataCurrencies;
 	team: PlayerDataTeam;
 	effects: PlayerEffectData[];
-	battlepass: BattlepassDataForPlayer[];
+	battlepass: BattlepassData[];
 	adventCalendar: AdventCalendarData;
+	bingo?: BingoData;
 };
 
 type PlayerDataMap = {

@@ -1,0 +1,16 @@
+option ClientOutput = "src/client/gohan-limit-network.ts"
+option ServerOutput = "src/server/gohan-limit-network.ts"
+option TypesOutput = "src/types/gohan-limit-network.d.ts"
+option Typescript = true
+
+function GetGohanLimitData {
+    Yield: Coroutine,
+    Return: (u32, u32)
+}
+
+event UpdateGohanLimit {
+    From: Server,
+    Type: Reliable,
+    Call: SingleSync,
+    Data: (u32, u32)
+}
