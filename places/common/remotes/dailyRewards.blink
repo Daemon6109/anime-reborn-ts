@@ -8,5 +8,9 @@ option UsePolling = false
 option Typescript = true
 option Casing = Camel
 
-import "./playerData"
-import "./dailyRewards"
+
+event ClaimDailyReward {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync
+}
