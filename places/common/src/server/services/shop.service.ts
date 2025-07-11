@@ -1,6 +1,6 @@
 import { Service, OnInit } from "@flamework/core";
 import { Players } from "@rbxts/services";
-import { DataService } from "@server/services/data.service";
+import { DataStore } from "./player-data";
 import {
 	DungeonShopData,
 	EventShopData,
@@ -52,7 +52,7 @@ export class ShopService implements OnInit {
 	// Reset tracking
 	private lastResetCheck = 0;
 
-	constructor(private readonly dataService: DataService) {}
+	constructor(private readonly dataService: DataStore) {}
 
 	public onInit(): void {
 		this.loadDefaultShopConfigs();
@@ -129,41 +129,42 @@ export class ShopService implements OnInit {
 			return;
 		}
 
-		const playerData = await this.dataService.getCache(player);
-		if (!playerData) {
-			return;
+		try {
+			const store = this.dataService.getPlayerStore();
+			await store.updateAsync(player, (playerData) => {
+				const shopDataKey = this.getShopDataKey(shopType);
+				const dataAsRecord = playerData as unknown as Record<string, unknown>;
+
+				// Ensure shop data exists
+				if (dataAsRecord[shopDataKey] === undefined) {
+					switch (shopType) {
+						case "DungeonShop":
+							dataAsRecord.DungeonShopData = createDungeonShopData();
+							break;
+						case "EventShop":
+							dataAsRecord.EventShopData = createEventShopData();
+							break;
+						case "RaidShop":
+							dataAsRecord.RaidShopData = createRaidShopData();
+							break;
+					}
+				}
+
+				const shopData = dataAsRecord[shopDataKey] as Record<string, unknown>;
+				const config = this.shopConfigs[shopType];
+
+				// Initialize stock for items that have limited stock
+				for (const [itemId, itemConfig] of pairs(config.items)) {
+					if (itemConfig.stock > 0 && shopData[itemId] === undefined) {
+						shopData[itemId] = { stock: itemConfig.stock };
+					}
+				}
+
+				return true; // Return true to save the changes
+			});
+		} catch (error) {
+			warn(`[ShopService] Failed to initialize shop data for ${player.Name}: ${error}`);
 		}
-
-		const newData = { ...playerData };
-		const shopDataKey = this.getShopDataKey(shopType);
-		const dataAsRecord = newData as unknown as Record<string, unknown>;
-
-		// Ensure shop data exists
-		if (dataAsRecord[shopDataKey] === undefined) {
-			switch (shopType) {
-				case "DungeonShop":
-					dataAsRecord.DungeonShopData = createDungeonShopData();
-					break;
-				case "EventShop":
-					dataAsRecord.EventShopData = createEventShopData();
-					break;
-				case "RaidShop":
-					dataAsRecord.RaidShopData = createRaidShopData();
-					break;
-			}
-		}
-
-		const shopData = dataAsRecord[shopDataKey] as Record<string, unknown>;
-		const config = this.shopConfigs[shopType];
-
-		// Initialize stock for items that have limited stock
-		for (const [itemId, itemConfig] of pairs(config.items)) {
-			if (itemConfig.stock > 0 && shopData[itemId] === undefined) {
-				shopData[itemId] = { stock: itemConfig.stock };
-			}
-		}
-
-		this.dataService.setCache(player, newData);
 	}
 
 	/**
@@ -220,24 +221,25 @@ export class ShopService implements OnInit {
 			return;
 		}
 
-		const playerData = await this.dataService.getCache(player);
-		if (!playerData) {
-			return;
+		try {
+			const store = this.dataService.getPlayerStore();
+			await store.updateAsync(player, (playerData) => {
+				const shopDataKey = this.getShopDataKey(shopType);
+				const dataAsRecord = playerData as unknown as Record<string, unknown>;
+				const shopData = (dataAsRecord[shopDataKey] as Record<string, unknown>) ?? {};
+
+				const config = this.shopConfigs[shopType];
+				for (const [itemId, itemConfig] of pairs(config.items)) {
+					if (itemConfig.stock > 0) {
+						shopData[itemId] = { stock: itemConfig.stock };
+					}
+				}
+
+				return true; // Return true to save the changes
+			});
+		} catch (error) {
+			warn(`[ShopService] Failed to reset shop for player ${player.Name}: ${error}`);
 		}
-
-		const newData = { ...playerData };
-		const shopDataKey = this.getShopDataKey(shopType);
-		const dataAsRecord = newData as unknown as Record<string, unknown>;
-		const shopData = (dataAsRecord[shopDataKey] as Record<string, unknown>) ?? {};
-
-		const config = this.shopConfigs[shopType];
-		for (const [itemId, itemConfig] of pairs(config.items)) {
-			if (itemConfig.stock > 0) {
-				shopData[itemId] = { stock: itemConfig.stock };
-			}
-		}
-
-		this.dataService.setCache(player, newData);
 	}
 
 	/**
@@ -267,88 +269,93 @@ export class ShopService implements OnInit {
 			return false;
 		}
 
-		const playerData = await this.dataService.getCache(player);
-		if (!playerData) {
-			warn(`Failed to get player data for ${player.Name}`);
+		try {
+			const store = this.dataService.getPlayerStore();
+			let purchaseSuccessful = false;
+			let totalCost: Record<string, number> = {};
+
+			await store.updateAsync(player, (playerData) => {
+				const shopDataKey = this.getShopDataKey(shopType);
+				const dataAsRecord = playerData as unknown as Record<string, unknown>;
+				const shopData = (dataAsRecord[shopDataKey] as Record<string, unknown>) ?? {};
+
+				// Check stock
+				if (itemConfig.stock > 0) {
+					const itemData = shopData[itemId] as { stock: number } | undefined;
+					const currentStock = itemData?.stock ?? itemConfig.stock;
+					if (currentStock < amount) {
+						warn(`Insufficient stock for ${itemId}. Available: ${currentStock}, Requested: ${amount}`);
+						return false; // Don't save changes
+					}
+				}
+
+				// Calculate total cost
+				totalCost = {};
+				for (const [currency, cost] of pairs(itemConfig.cost)) {
+					totalCost[currency] = cost * amount;
+				}
+
+				// Check if player can afford the item
+				const currencies = playerData.currencies as unknown as Record<string, number>;
+				for (const [currency, cost] of pairs(totalCost)) {
+					const playerAmount = currencies[currency] ?? 0;
+					if (playerAmount < cost) {
+						warn(`Insufficient ${currency}. Required: ${cost}, Available: ${playerAmount}`);
+						return false; // Don't save changes
+					}
+				}
+
+				// Process the purchase - deduct cost
+				const newCurrencies = playerData.currencies as unknown as Record<string, number>;
+				for (const [currency, cost] of pairs(totalCost)) {
+					newCurrencies[currency] = (newCurrencies[currency] ?? 0) - cost;
+				}
+
+				// Add item to inventory - items are stored by itemId directly
+				const inventory = playerData.items as unknown as Record<string, { Count: number; Cost: number }>;
+				if (inventory[itemId]) {
+					// Item exists, increase count
+					inventory[itemId].Count += amount;
+				} else {
+					// Item doesn't exist, add new entry
+					inventory[itemId] = {
+						Count: amount,
+						Cost: 0, // Items purchased from shop don't have individual cost tracking
+					};
+				}
+
+				// Update shop stock
+				if (itemConfig.stock > 0) {
+					if (shopData[itemId] === undefined) {
+						shopData[itemId] = { stock: itemConfig.stock };
+					}
+					const itemData = shopData[itemId] as { stock: number };
+					itemData.stock -= amount;
+				}
+
+				purchaseSuccessful = true;
+				return true; // Save the changes
+			});
+
+			if (purchaseSuccessful) {
+				// Fire event
+				this.fireItemPurchased({
+					player: player,
+					shopType: shopType,
+					itemId: itemId,
+					amount: amount,
+					cost: totalCost,
+				});
+
+				print(`${player.DisplayName} purchased ${amount}x ${itemId} from ${shopType}`);
+				return true;
+			}
+
+			return false;
+		} catch (error) {
+			warn(`[ShopService] Failed to purchase item for ${player.Name}: ${error}`);
 			return false;
 		}
-
-		const shopDataKey = this.getShopDataKey(shopType);
-		const dataAsRecord = playerData as unknown as Record<string, unknown>;
-		const shopData = (dataAsRecord[shopDataKey] as Record<string, unknown>) ?? {};
-
-		// Check stock
-		if (itemConfig.stock > 0) {
-			const itemData = shopData[itemId] as { stock: number } | undefined;
-			const currentStock = itemData?.stock ?? itemConfig.stock;
-			if (currentStock < amount) {
-				warn(`Insufficient stock for ${itemId}. Available: ${currentStock}, Requested: ${amount}`);
-				return false;
-			}
-		}
-
-		// Calculate total cost
-		const totalCost: Record<string, number> = {};
-		for (const [currency, cost] of pairs(itemConfig.cost)) {
-			totalCost[currency] = cost * amount;
-		}
-
-		// Check if player can afford the item
-		const currencies = playerData.Currencies as unknown as Record<string, number>;
-		for (const [currency, cost] of pairs(totalCost)) {
-			const playerAmount = currencies[currency] ?? 0;
-			if (playerAmount < cost) {
-				warn(`Insufficient ${currency}. Required: ${cost}, Available: ${playerAmount}`);
-				return false;
-			}
-		}
-
-		// Process the purchase
-		const newData = { ...playerData };
-
-		// Deduct cost
-		const newCurrencies = newData.Currencies as unknown as Record<string, number>;
-		for (const [currency, cost] of pairs(totalCost)) {
-			newCurrencies[currency] = (newCurrencies[currency] ?? 0) - cost;
-		}
-
-		// Add item to inventory - items are stored by itemId directly
-		const inventory = newData.Inventory.Items;
-		if (inventory[itemId]) {
-			// Item exists, increase count
-			inventory[itemId].Count += amount;
-		} else {
-			// Item doesn't exist, add new entry
-			inventory[itemId] = {
-				Count: amount,
-				Cost: 0, // Items purchased from shop don't have individual cost tracking
-			};
-		}
-
-		// Update shop stock
-		const newDataAsRecord = newData as unknown as Record<string, unknown>;
-		const newShopData = newDataAsRecord[shopDataKey] as Record<string, unknown>;
-		if (itemConfig.stock > 0) {
-			if (newShopData[itemId] === undefined) {
-				newShopData[itemId] = { stock: itemConfig.stock };
-			}
-			const itemData = newShopData[itemId] as { stock: number };
-			itemData.stock -= amount;
-		}
-
-		this.dataService.setCache(player, newData);
-
-		// Fire event
-		this.fireItemPurchased({
-			player: player,
-			shopType: shopType,
-			itemId: itemId,
-			amount: amount,
-			cost: totalCost,
-		});
-
-		print(`${player.DisplayName} purchased ${amount}x ${itemId} from ${shopType}`);
-		return true;
 	}
 
 	/**
@@ -364,25 +371,27 @@ export class ShopService implements OnInit {
 	public async getShopStock(player: Player, shopType: ShopType): Promise<Record<string, number>> {
 		const stock: Record<string, number> = {};
 
-		const playerData = await this.dataService.getCache(player);
-		if (!playerData) {
-			return stock;
-		}
+		try {
+			const store = this.dataService.getPlayerStore();
+			const playerData = await store.get(player);
 
-		const shopDataKey = this.getShopDataKey(shopType);
-		const dataAsRecord = playerData as unknown as Record<string, unknown>;
-		const shopData = (dataAsRecord[shopDataKey] as Record<string, unknown>) ?? {};
+			const shopDataKey = this.getShopDataKey(shopType);
+			const dataAsRecord = playerData as unknown as Record<string, unknown>;
+			const shopData = (dataAsRecord[shopDataKey] as Record<string, unknown>) ?? {};
 
-		const config = this.shopConfigs[shopType];
-		if (config) {
-			for (const [itemId, itemConfig] of pairs(config.items)) {
-				if (itemConfig.stock > 0) {
-					const itemData = shopData[itemId] as { stock: number } | undefined;
-					stock[itemId] = itemData?.stock ?? itemConfig.stock;
-				} else {
-					stock[itemId] = -1; // Unlimited
+			const config = this.shopConfigs[shopType];
+			if (config) {
+				for (const [itemId, itemConfig] of pairs(config.items)) {
+					if (itemConfig.stock > 0) {
+						const itemData = shopData[itemId] as { stock: number } | undefined;
+						stock[itemId] = itemData?.stock ?? itemConfig.stock;
+					} else {
+						stock[itemId] = -1; // Unlimited
+					}
 				}
 			}
+		} catch (error) {
+			warn(`[ShopService] Failed to get shop stock for ${player.Name}: ${error}`);
 		}
 
 		return stock;
