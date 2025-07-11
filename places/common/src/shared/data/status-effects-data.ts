@@ -1,221 +1,15 @@
-/**
- * Status Effects Registry Data - Migrated from live game
- * Contains all status effects that can be applied to enemies
- */
+import statusEffects from "@shared/configuration/status-effects-data.json";
 
-export interface StatusEffectData {
-	readonly name: string;
-	readonly displayName: string;
-	readonly effectCooldown: number;
-	readonly description?: string;
-	readonly damageMultiplier?: number;
-	readonly duration?: number;
-	readonly stackable?: boolean;
-}
+export type StatusEffectsRegistry = typeof statusEffects;
+export type StatusEffectName = keyof StatusEffectsRegistry;
+export type StatusEffectData = StatusEffectsRegistry[StatusEffectName] & {
+	damageMultiplier?: number;
+};
 
 /**
  * All status effects organized by their internal names
  */
-export const StatusEffectsRegistry: Record<string, StatusEffectData> = {
-	Burning: {
-		name: "Burning",
-		displayName: "Burning",
-		effectCooldown: 0,
-		description: "Deals damage over time with fire",
-		damageMultiplier: 1.0,
-		duration: 5,
-		stackable: false,
-	},
-
-	Slow: {
-		name: "Slow",
-		displayName: "Slow",
-		effectCooldown: 0,
-		description: "Reduces enemy movement speed",
-		duration: 3,
-		stackable: false,
-	},
-
-	PermaBleed: {
-		name: "PermaBleed",
-		displayName: "Permanent Bleed",
-		effectCooldown: 0,
-		description: "Continuous bleeding effect",
-		damageMultiplier: 0.8,
-		stackable: true,
-	},
-
-	SakomotoSpecialDoTEffect: {
-		name: "SakomotoSpecialDoTEffect",
-		displayName: "Sakamoto Special DoT",
-		effectCooldown: 0,
-		description: "Special damage over time effect",
-		damageMultiplier: 1.2,
-		duration: 4,
-		stackable: false,
-	},
-
-	Stun: {
-		name: "Stun",
-		displayName: "Stun",
-		effectCooldown: 10,
-		description: "Prevents enemy movement and actions",
-		duration: 2,
-		stackable: false,
-	},
-
-	"Dark Flames": {
-		name: "Dark Flames",
-		displayName: "Dark Flames",
-		effectCooldown: 0,
-		description: "Dark fire damage over time",
-		damageMultiplier: 1.1,
-		duration: 5,
-		stackable: false,
-	},
-
-	"Sun Burn": {
-		name: "Sun Burn",
-		displayName: "Sun Burn",
-		effectCooldown: 0,
-		description: "Intense solar burning effect",
-		damageMultiplier: 1.3,
-		duration: 6,
-		stackable: false,
-	},
-
-	"Weak Point": {
-		name: "Weak Point",
-		displayName: "Weak Point",
-		effectCooldown: 10,
-		description: "Makes enemy take increased damage",
-		duration: 5,
-		stackable: false,
-	},
-
-	Suffocation: {
-		name: "Suffocation",
-		displayName: "Suffocation",
-		effectCooldown: 15,
-		description: "Gradually reduces enemy health",
-		damageMultiplier: 0.9,
-		duration: 8,
-		stackable: false,
-	},
-
-	Woter: {
-		name: "Woter",
-		displayName: "Water",
-		effectCooldown: 10,
-		description: "Water-based slowing effect",
-		duration: 4,
-		stackable: false,
-	},
-
-	Frozen: {
-		name: "Frozen",
-		displayName: "Frozen",
-		effectCooldown: 8,
-		description: "Completely immobilizes enemy",
-		duration: 3,
-		stackable: false,
-	},
-
-	"Frost Bite": {
-		name: "Frost Bite",
-		displayName: "Frost Bite",
-		effectCooldown: 0,
-		description: "Ice damage over time",
-		damageMultiplier: 1.0,
-		duration: 5,
-		stackable: false,
-	},
-
-	DioScar: {
-		name: "DioScar",
-		displayName: "Dio's Scar",
-		effectCooldown: 0,
-		description: "Special scar damage effect",
-		damageMultiplier: 1.4,
-		duration: 7,
-		stackable: false,
-	},
-
-	"Ice Shatter": {
-		name: "Ice Shatter",
-		displayName: "Ice Shatter",
-		effectCooldown: 0,
-		description: "Shattering ice damage",
-		damageMultiplier: 1.1,
-		duration: 3,
-		stackable: false,
-	},
-
-	Fear: {
-		name: "Fear",
-		displayName: "Fear",
-		effectCooldown: 9999999,
-		description: "Causes enemy to flee in terror",
-		duration: 4,
-		stackable: false,
-	},
-
-	Paralysis: {
-		name: "Paralysis",
-		displayName: "Paralysis",
-		effectCooldown: 10,
-		description: "Paralyzes enemy movement",
-		duration: 3,
-		stackable: false,
-	},
-
-	Scar: {
-		name: "Scar",
-		displayName: "Scar",
-		effectCooldown: 0,
-		description: "Persistent damage mark",
-		damageMultiplier: 1.2,
-		duration: 6,
-		stackable: true,
-	},
-
-	Charm: {
-		name: "Charm",
-		displayName: "Charm",
-		effectCooldown: 5,
-		description: "Makes enemy fight for your side",
-		duration: 4,
-		stackable: false,
-	},
-
-	CharmBoaEvo: {
-		name: "CharmBoaEvo",
-		displayName: "Boa Evolution Charm",
-		effectCooldown: 5,
-		description: "Enhanced charm effect from Boa evolution",
-		duration: 5,
-		stackable: false,
-	},
-
-	CharmStun: {
-		name: "CharmStun",
-		displayName: "Charm Stun",
-		effectCooldown: 6,
-		description: "Combines charm with stunning effect",
-		duration: 3,
-		stackable: false,
-	},
-
-	Poison: {
-		name: "Poison",
-		displayName: "Poison",
-		effectCooldown: 0,
-		description: "Toxic damage over time",
-		damageMultiplier: 0.9,
-		duration: 6,
-		stackable: true,
-	},
-} as const;
+export const StatusEffectsRegistry: StatusEffectsRegistry = statusEffects;
 
 /**
  * Helper functions for working with status effects
@@ -224,7 +18,7 @@ export namespace StatusEffectsData {
 	/**
 	 * Get status effect data by name
 	 */
-	export function getStatusEffect(name: string): StatusEffectData | undefined {
+	export function getStatusEffect(name: StatusEffectName): StatusEffectData | undefined {
 		return StatusEffectsRegistry[name];
 	}
 
@@ -234,8 +28,8 @@ export namespace StatusEffectsData {
 	export function getDamageOverTimeEffects(): Record<string, StatusEffectData> {
 		const dotEffects: Record<string, StatusEffectData> = {};
 		for (const [name, effect] of pairs(StatusEffectsRegistry)) {
-			if (effect.damageMultiplier !== undefined) {
-				dotEffects[name] = effect;
+			if ((effect as StatusEffectData).damageMultiplier !== undefined) {
+				dotEffects[name as string] = effect;
 			}
 		}
 		return dotEffects;
@@ -249,8 +43,8 @@ export namespace StatusEffectsData {
 		const ccNames = ["Stun", "Slow", "Frozen", "Paralysis", "Fear"];
 
 		for (const [name, effect] of pairs(StatusEffectsRegistry)) {
-			if (ccNames.includes(name)) {
-				ccEffects[name] = effect;
+			if (ccNames.includes(name as string)) {
+				ccEffects[name as string] = effect;
 			}
 		}
 		return ccEffects;
@@ -263,7 +57,7 @@ export namespace StatusEffectsData {
 		const stackableEffects: Record<string, StatusEffectData> = {};
 		for (const [name, effect] of pairs(StatusEffectsRegistry)) {
 			if (effect.stackable === true) {
-				stackableEffects[name] = effect;
+				stackableEffects[name as string] = effect;
 			}
 		}
 		return stackableEffects;
@@ -272,7 +66,7 @@ export namespace StatusEffectsData {
 	/**
 	 * Check if effect has cooldown
 	 */
-	export function hasCooldown(name: string): boolean {
+	export function hasCooldown(name: StatusEffectName): boolean {
 		const effect = StatusEffectsRegistry[name];
 		return effect !== undefined && effect.effectCooldown > 0;
 	}
@@ -280,28 +74,30 @@ export namespace StatusEffectsData {
 	/**
 	 * Get effect display name
 	 */
-	export function getDisplayName(name: string): string | undefined {
+	export function getDisplayName(name: StatusEffectName): string | undefined {
 		return StatusEffectsRegistry[name]?.displayName;
 	}
 
 	/**
 	 * Check if effect is stackable
 	 */
-	export function isStackable(name: string): boolean {
+	export function isStackable(name: StatusEffectName): boolean {
 		return StatusEffectsRegistry[name]?.stackable === true;
 	}
 
 	/**
 	 * Get effect duration
 	 */
-	export function getDuration(name: string): number | undefined {
-		return StatusEffectsRegistry[name]?.duration;
+	export function getDuration(name: StatusEffectName): number | undefined {
+		const effect = StatusEffectsRegistry[name];
+		return effect && "duration" in effect ? effect.duration : undefined;
 	}
 
 	/**
 	 * Get damage multiplier for effect
 	 */
-	export function getDamageMultiplier(name: string): number | undefined {
-		return StatusEffectsRegistry[name]?.damageMultiplier;
+	export function getDamageMultiplier(name: StatusEffectName): number | undefined {
+		const effect = StatusEffectsRegistry[name];
+		return effect && "damageMultiplier" in effect ? effect.damageMultiplier : undefined;
 	}
 }

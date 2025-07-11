@@ -1,58 +1,12 @@
-// Field Privacy Manifest for data access control
+import manifest from "@shared/configuration/field-privacy-manifest.json";
 
-export type PrivacyType = "Private" | "Public";
+// Type derived directly from the JSON file
+export type FieldPrivacyManifest = typeof manifest;
 
-export interface FieldPrivacyManifest {
-	Currencies: PrivacyType;
-	SummoningData: PrivacyType;
-	Level: PrivacyType;
-	XP: PrivacyType;
-	TeamEventData: PrivacyType;
-	RobuxSpent: PrivacyType;
-	Quests: PrivacyType;
-	Slotbar: PrivacyType;
-	CurrentTitle: PrivacyType;
-	Inventory: PrivacyType;
-	Settings: PrivacyType;
-	IndexData: PrivacyType;
-	MissionCompletionData: PrivacyType;
-	ProductsBought: PrivacyType;
-	RedeemedCodes: PrivacyType;
-	ClaimedLevelRewards: PrivacyType;
-	MerchantItemsBought: PrivacyType;
-	PlayerStatistics: PrivacyType;
-	Teams: PrivacyType;
-	SlotsApplicable: PrivacyType;
-	TraitPity: PrivacyType;
-	Blessing: PrivacyType;
-	Effects: PrivacyType;
-}
+// Extract "Private" | "Public" from the values of the JSON object
+export type PrivacyType = FieldPrivacyManifest[keyof FieldPrivacyManifest];
 
-export const FIELD_PRIVACY_MANIFEST: FieldPrivacyManifest = {
-	Currencies: "Private",
-	SummoningData: "Private",
-	Level: "Public",
-	XP: "Public",
-	TeamEventData: "Public",
-	RobuxSpent: "Private",
-	Quests: "Private",
-	Slotbar: "Public",
-	CurrentTitle: "Public",
-	Inventory: "Private",
-	Settings: "Private",
-	IndexData: "Private",
-	MissionCompletionData: "Private",
-	ProductsBought: "Public",
-	RedeemedCodes: "Private",
-	ClaimedLevelRewards: "Private",
-	MerchantItemsBought: "Private",
-	PlayerStatistics: "Public",
-	Teams: "Private",
-	SlotsApplicable: "Private",
-	TraitPity: "Private",
-	Blessing: "Public",
-	Effects: "Private",
-};
+export const FIELD_PRIVACY_MANIFEST: FieldPrivacyManifest = manifest;
 
 /**
  * Checks if a field is publicly accessible

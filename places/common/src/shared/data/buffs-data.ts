@@ -1,79 +1,17 @@
-/**
- * Buffs Registry Data - Migrated from live game
- * Contains all buff systems including stat potentials
- */
+import buffs from "@shared/configuration/buffs-data.json";
 
-export type StatGrade = "C-" | "C" | "C+" | "B-" | "B" | "B+" | "A-" | "A" | "A+" | "S-" | "S" | "S+";
-
-export interface StatPotentialsData {
-	readonly Damage: Record<StatGrade, number>;
-	readonly Health: Record<StatGrade, number>;
-	readonly Range: Record<StatGrade, number>;
-	readonly Speed: Record<StatGrade, number>;
-}
+export type StatPotentials = typeof buffs;
+export type StatName = keyof Omit<
+	StatPotentials,
+	"Order" | "OrderNums" | "Weights" | "Weights50Worth" | "Weights100Worth"
+>;
+export type StatGrade = StatPotentials["Order"][number];
 
 /**
  * Stat potential multipliers for different grades
  * Higher grades provide better stat multipliers
  */
-export const StatPotentials: StatPotentialsData = {
-	Damage: {
-		"C-": 0.9,
-		C: 0.935,
-		"C+": 0.97,
-		"B-": 1,
-		B: 1.03,
-		"B+": 1.065,
-		"A-": 1.1,
-		A: 1.125,
-		"A+": 1.15,
-		"S-": 1.175,
-		S: 1.2,
-		"S+": 1.225,
-	},
-	Health: {
-		"C-": 0.9,
-		C: 0.935,
-		"C+": 0.97,
-		"B-": 1,
-		B: 1.03,
-		"B+": 1.065,
-		"A-": 1.1,
-		A: 1.125,
-		"A+": 1.15,
-		"S-": 1.175,
-		S: 1.2,
-		"S+": 1.225,
-	},
-	Range: {
-		"C-": 0.85,
-		C: 0.9,
-		"C+": 0.95,
-		"B-": 1,
-		B: 1.05,
-		"B+": 1.1,
-		"A-": 1.15,
-		A: 1.2,
-		"A+": 1.25,
-		"S-": 1.3,
-		S: 1.35,
-		"S+": 1.4,
-	},
-	Speed: {
-		"C-": 0.85,
-		C: 0.9,
-		"C+": 0.95,
-		"B-": 1,
-		B: 1.05,
-		"B+": 1.1,
-		"A-": 1.15,
-		A: 1.2,
-		"A+": 1.25,
-		"S-": 1.3,
-		S: 1.35,
-		"S+": 1.4,
-	},
-} as const;
+export const StatPotentials: StatPotentials = buffs;
 
 export interface BuffData {
 	readonly name: string;
@@ -117,15 +55,15 @@ export namespace BuffsData {
 	/**
 	 * Get stat potential multiplier
 	 */
-	export function getStatPotentialMultiplier(stat: keyof StatPotentialsData, grade: StatGrade): number {
-		return StatPotentials[stat][grade];
+	export function getStatPotentialMultiplier(stat: StatName, grade: StatGrade): number {
+		return (StatPotentials[stat] as Record<StatGrade, number>)[grade];
 	}
 
 	/**
 	 * Get all stat grades in order from worst to best
 	 */
 	export function getStatGradesOrdered(): StatGrade[] {
-		return ["C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+", "S-", "S", "S+"];
+		return [...StatPotentials.Order];
 	}
 
 	/**
@@ -165,11 +103,7 @@ export namespace BuffsData {
 	/**
 	 * Calculate total stat multiplier with potential
 	 */
-	export function calculateStatWithPotential(
-		baseStat: number,
-		statType: keyof StatPotentialsData,
-		grade: StatGrade,
-	): number {
+	export function calculateStatWithPotential(baseStat: number, statType: StatName, grade: StatGrade): number {
 		const multiplier = getStatPotentialMultiplier(statType, grade);
 		return baseStat * multiplier;
 	}
@@ -213,6 +147,8 @@ export namespace BuffsData {
 			"S-": Color3.fromRGB(255, 100, 255), // Purple
 			S: Color3.fromRGB(255, 120, 255),
 			"S+": Color3.fromRGB(255, 140, 255),
+			SS: Color3.fromRGB(255, 255, 0), // Yellow
+			SSS: Color3.fromRGB(255, 0, 0), // Red
 		};
 
 		return gradeColors[grade];

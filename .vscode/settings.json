@@ -27,7 +27,8 @@
 		"**/node_modules/**",
 		"**/dist/**",
 		"**/old_common/**",
-		"**/scripts/**"
+		"**/scripts/**",
+		"**/network/**"
 	],
 	"jest.jestCommandLine": "npm run test:jest --",
 	"jest.runMode": "on-demand",

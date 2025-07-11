@@ -1,0 +1,167 @@
+{
+	"Gold": {
+		"configuration": {
+			"TrueName": "Gold",
+			"DisplayName": "Gold",
+			"Description": "Regular currency!",
+			"Image": "rbxassetid://18922132513",
+			"Rarity": "Legendary",
+			"Sort": ["Currency"],
+			"Order": 2,
+			"DisplayIconSize": {
+				"ScaleX": 0.7,
+				"ScaleY": 0.7
+			},
+			"Gradient": [
+				{
+					"r": 1,
+					"g": 0.615686,
+					"b": 0
+				},
+				{
+					"r": 0.898039,
+					"g": 1,
+					"b": 0
+				},
+				{
+					"r": 1,
+					"g": 0.615686,
+					"b": 0
+				},
+				{
+					"r": 0.898039,
+					"g": 1,
+					"b": 0
+				}
+			]
+		}
+	},
+	"Gems": {
+		"configuration": {
+			"TrueName": "Gems",
+			"DisplayName": "Gems",
+			"Description": "Premium currency!",
+			"Image": "rbxassetid://18919544914",
+			"Rarity": "Mythical",
+			"Sort": ["Currency"],
+			"Order": -6,
+			"DisplayIconSize": {
+				"ScaleX": 0.7,
+				"ScaleY": 0.7
+			},
+			"Gradient": [
+				{
+					"r": 0,
+					"g": 1,
+					"b": 1
+				},
+				{
+					"r": 0.439216,
+					"g": 1,
+					"b": 0.67451
+				},
+				{
+					"r": 0.752941,
+					"g": 0.470588,
+					"b": 1
+				}
+			]
+		}
+	},
+	"Red Ticket": {
+		"configuration": {
+			"TrueName": "Red Ticket",
+			"DisplayName": "Red Ticket",
+			"Description": "Event currency!",
+			"Image": "rbxassetid://97041119207213",
+			"Rarity": "Exclusive",
+			"Sort": ["Currency"],
+			"Order": -6,
+			"DisplayIconSize": {
+				"ScaleX": 0.7,
+				"ScaleY": 0.7
+			},
+			"Gradient": [
+				{
+					"r": 0,
+					"g": 1,
+					"b": 1
+				},
+				{
+					"r": 0.439216,
+					"g": 1,
+					"b": 0.67451
+				},
+				{
+					"r": 0.752941,
+					"g": 0.470588,
+					"b": 1
+				}
+			]
+		}
+	},
+	"Candy Cane": {
+		"configuration": {
+			"TrueName": "Candy Cane",
+			"DisplayName": "Candy Cane",
+			"Description": "Event currency!",
+			"Image": "http://www.roblox.com/asset/?id=130838390833163",
+			"Rarity": "Exclusive",
+			"Sort": ["Currency"],
+			"Order": -6,
+			"DisplayIconSize": {
+				"ScaleX": 0.7,
+				"ScaleY": 0.7
+			},
+			"Gradient": [
+				{
+					"r": 0,
+					"g": 1,
+					"b": 1
+				},
+				{
+					"r": 0.439216,
+					"g": 1,
+					"b": 0.67451
+				},
+				{
+					"r": 0.752941,
+					"g": 0.470588,
+					"b": 1
+				}
+			]
+		}
+	},
+	"New Year Coin": {
+		"configuration": {
+			"TrueName": "New Year Coin",
+			"DisplayName": "New Year Coin",
+			"Description": "Event currency!",
+			"Image": "rbxassetid://118764467778787",
+			"Rarity": "Exclusive",
+			"Sort": ["Currency"],
+			"Order": -6,
+			"DisplayIconSize": {
+				"ScaleX": 0.7,
+				"ScaleY": 0.7
+			},
+			"Gradient": [
+				{
+					"r": 0,
+					"g": 1,
+					"b": 1
+				},
+				{
+					"r": 0.439216,
+					"g": 1,
+					"b": 0.67451
+				},
+				{
+					"r": 0.752941,
+					"g": 0.470588,
+					"b": 1
+				}
+			]
+		}
+	}
+}

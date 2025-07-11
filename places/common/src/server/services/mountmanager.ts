@@ -1,33 +1,29 @@
-/* eslint-disable roblox-ts/lua-truthiness */
-/**
- * Service responsible for managing player mounts including equipping, unequipping, and ownership tracking.
- * Handles mount model attachment to player characters and maintains equipped mount state.
- */
-
-import { ReplicatedStorage, ServerScriptService, Players } from "@rbxts/services";
-import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
+import { ReplicatedStorage, Players } from "@rbxts/services";
+import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 import { Service, OnInit } from "@flamework/core";
-import { DataStore } from "@services/player-data";
+import { DataStore } from "@server/services/player-data";
+import { promiseR15 } from "@rbxts/character-promise";
+import { Janitor } from "@rbxts/janitor";
 
 const MountsRegistry: Folder = ReplicatedStorage.FindFirstChild("constants")?.FindFirstChild("Mounts") as Folder;
 
 @Service()
 export class MountsManager implements OnInit {
-	private equippedMountData = new Map<Player, { Model?: Model }>();
+	private readonly equippedMounts = new Map<Player, Janitor>();
+	private readonly serviceJanitor = new Janitor();
 
 	constructor(private readonly dataservice: DataStore) {}
 
-	// Initialization
-	onInit(): void | Promise<void> {
+	onInit(): void {
 		safePlayerAdded((player: Player) => {
-			const character = player.Character || player.CharacterAdded.Wait()[0];
-			this.onCharacterAdded(player, character);
+			const characterPromise = promiseR15(player.Character || player.CharacterAdded.Wait()[0]);
+			characterPromise.andThen((character) => this.onCharacterAdded(player));
 		});
 
-		Players.PlayerRemoving.Connect((player) => {
+		const playerRemovingConnection = Players.PlayerRemoving.Connect((player) => {
 			this.UnequipMount(player);
-			this.equippedMountData.delete(player);
 		});
+		this.serviceJanitor.Add(playerRemovingConnection, "Disconnect");
 	}
 
 	private FindModel(name: string) {
@@ -37,10 +33,8 @@ export class MountsManager implements OnInit {
 	/**
 	 * Checks if a player has any mounts equipped on character add.
 	 * If the mount is marked as equipped in the player's data store, it equips it in-game when they first join.
-	 * @param player
-	 * @param character
 	 */
-	private onCharacterAdded(player: Player, character: Model) {
+	private onCharacterAdded(player: Player) {
 		const PlayerProfile = this.dataservice.getPlayerStore();
 
 		PlayerProfile.get(player).andThen((data) => {
@@ -55,9 +49,6 @@ export class MountsManager implements OnInit {
 	/**
 	 * Gives a specified mount to a player, adding it to their owned mounts collection.
 	 * If the player already owns the mount, increases the quantity by the specified amount.
-	 * @param player - The player to give the mount to
-	 * @param Mount - The name of the mount to give
-	 * @param amount - The quantity to give (defaults to 1)
 	 */
 	public GiveMount(player: Player, Mount: string, amount?: number) {
 		const PlayerProfile = this.dataservice.getPlayerStore();
@@ -92,21 +83,18 @@ export class MountsManager implements OnInit {
 	/**
 	 * Equips a mount for the specified player by updating their data store and attaching the mount model to their character.
 	 * Unequips any currently equipped mounts before equipping the new one.
-	 *
-	 * @param player - The player to equip the mount for
-	 * @param Mount - The name of the mount to equip
 	 */
 	public async EquipMount(player: Player, Mount: string) {
-		const character = player.Character ?? player.CharacterAdded.Wait()[0];
+		const character = player.Character ?? (await player.CharacterAdded.Wait())[0];
 		const PlayerStore = this.dataservice.getPlayerStore();
 		const MountExists = this.FindModel(Mount);
+
+		this.cleanupEquippedMountModel(player);
 
 		const updateResult = await PlayerStore.updateAsync(player, (data) => {
 			if (!MountExists || !data.mounts.ownedMounts.find((mount) => mount.name === Mount)) {
 				return false; // Mount doesn't exist or player doesn't own it
 			}
-
-			this.UnequipMount(player);
 
 			// Unequip all mounts first
 			data.mounts.ownedMounts.forEach((mount) => {
@@ -123,15 +111,12 @@ export class MountsManager implements OnInit {
 			return true;
 		});
 
-		if (updateResult) {
+		if (updateResult && MountExists) {
+			const mountJanitor = new Janitor();
+			this.equippedMounts.set(player, mountJanitor);
+
 			const MountModel: Model = MountExists.Clone() as Model;
-
-			player.SetAttribute("MountToggled", true);
-			this.equippedMountData.set(player, {});
-
-			if (MountModel) {
-				this.equippedMountData.set(player, { Model: MountModel });
-			}
+			mountJanitor.Add(MountModel, "Destroy");
 
 			for (const motor of MountModel.GetDescendants()) {
 				if (!motor.IsA("Motor6D") || !character.FindFirstChild(motor.Name)) {
@@ -156,6 +141,7 @@ export class MountsManager implements OnInit {
 				MountObject.Name = "MountObject";
 				MountObject.Parent = character;
 			}
+			mountJanitor.Add(MountObject, "Destroy");
 			MountObject.Value = MountModel;
 		}
 	}
@@ -163,29 +149,26 @@ export class MountsManager implements OnInit {
 	/**
 	 * Unequips the currently equipped mount for the specified player.
 	 * Removes the mount model from the game world, clears the player's mount data, and updates the datastore.
-	 * @param player - The player whose mount should be unequipped
 	 */
 	public async UnequipMount(player: Player) {
-		const character = player.Character || player.CharacterAdded.Wait()[0];
-		const PlayerStore = this.dataservice.getPlayerStore();
-
-		player.SetAttribute("MountToggled", undefined);
-
-		const mountData = this.equippedMountData.get(player);
-		if (mountData) {
-			if (mountData.Model) {
-				mountData.Model.Destroy();
-			}
-			this.equippedMountData.delete(player);
-		}
+		this.cleanupEquippedMountModel(player);
 
 		// Update datastore to unequip all mounts
+		const PlayerStore = this.dataservice.getPlayerStore();
 		await PlayerStore.updateAsync(player, (data) => {
 			data.mounts.ownedMounts.forEach((mount) => {
 				mount.equipped = false;
 			});
 			return true;
 		});
+	}
+
+	private cleanupEquippedMountModel(player: Player) {
+		const mountJanitor = this.equippedMounts.get(player);
+		if (mountJanitor) {
+			mountJanitor.Cleanup();
+			this.equippedMounts.delete(player);
+		}
 	}
 
 	// Check if a player owns a specific mount
