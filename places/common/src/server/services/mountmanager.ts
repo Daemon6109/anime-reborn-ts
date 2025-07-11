@@ -4,6 +4,7 @@ import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@server/services/player-data";
 import { promiseR15 } from "@rbxts/character-promise";
 import { Janitor } from "@rbxts/janitor";
+import { Analytics } from "./analytics";
 
 const MountsRegistry: Folder = ReplicatedStorage.FindFirstChild("constants")?.FindFirstChild("Mounts") as Folder;
 
@@ -12,7 +13,10 @@ export class MountsManager implements OnInit {
 	private readonly equippedMounts = new Map<Player, Janitor>();
 	private readonly serviceJanitor = new Janitor();
 
-	constructor(private readonly dataservice: DataStore) {}
+	constructor(
+		private readonly dataservice: DataStore,
+		private readonly analytics: Analytics,
+	) {}
 
 	onInit(): void {
 		safePlayerAdded((player: Player) => {
@@ -67,16 +71,17 @@ export class MountsManager implements OnInit {
 			const existingMount = playerData.mounts.ownedMounts.find((mount) => mount.name === Mount);
 
 			if (existingMount) {
-				existingMount.quantity += amount;
-				return true;
+				existingMount.quantity += amount as number;
 			} else {
 				playerData.mounts.ownedMounts.push({
 					name: Mount,
-					quantity: amount,
+					quantity: amount as number,
 					equipped: false,
 				});
-				return true;
 			}
+
+			this.analytics.LogCustomEvent(player, "mount_given", amount as number, { mount_name: Mount });
+			return true;
 		});
 	}
 
@@ -112,6 +117,7 @@ export class MountsManager implements OnInit {
 		});
 
 		if (updateResult && MountExists) {
+			this.analytics.LogCustomEvent(player, "mount_equipped", 1, { mount_name: Mount });
 			const mountJanitor = new Janitor();
 			this.equippedMounts.set(player, mountJanitor);
 
@@ -156,6 +162,10 @@ export class MountsManager implements OnInit {
 		// Update datastore to unequip all mounts
 		const PlayerStore = this.dataservice.getPlayerStore();
 		await PlayerStore.updateAsync(player, (data) => {
+			const equippedMount = data.mounts.ownedMounts.find((mount) => mount.equipped);
+			if (equippedMount) {
+				this.analytics.LogCustomEvent(player, "mount_unequipped", 1, { mount_name: equippedMount.name });
+			}
 			data.mounts.ownedMounts.forEach((mount) => {
 				mount.equipped = false;
 			});
