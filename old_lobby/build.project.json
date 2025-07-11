@@ -1,0 +1,61 @@
+{
+  "name": "Anime-Reborn",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Network": {
+        "$path": "../network"
+      },
+      "Shared": {
+        "$path": "dist/src/shared"
+      },
+      "Common": {
+        "$className": "Folder",
+        "Composables": {
+          "$path": "dist/common/composables"
+        },
+        "Data": {
+          "$path": "dist/common/data"
+        },
+        "Utils": {
+          "$path": "dist/common/utils"
+        }
+      },
+      "Registry": {
+        "$path": "dist/common/constants"
+      },
+      "Client": {
+        "$path": "dist/src/client"
+      },
+      "Packages": {
+        "$path": "../pkgs/prod/roblox_packages"
+      },
+      "Assets": {
+        "$path": "assets"
+      }
+    },
+    "ServerScriptService": {
+      "CommonProviders": {
+        "$path": "dist/common/server"
+      },
+      "Packages": {
+        "$path": "../pkgs/prod/roblox_server_packages"
+      },
+      "Server": {
+        "$path": "dist/src/server"
+      }
+    },
+    "StarterGui": {
+      "$properties": {
+        "VirtualCursorMode": "Enabled",
+        "RtlTextSupport": "Enabled"
+      }
+    },
+    "TextChatService": {
+      "$properties": {
+        "ChatVersion": "TextChatService"
+      }
+    }
+  }
+}

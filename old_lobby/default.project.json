@@ -1,0 +1,79 @@
+{
+  "name": "Anime-Reborn",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Network": {
+        "$path": "../network"
+      },
+      "Shared": {
+        "$path": "src/shared"
+      },
+      "Common": {
+        "$className": "Folder",
+        "Composables": {
+          "$path": "../common/src/composables"
+        },
+        "Data": {
+          "$path": "../common/src/data"
+        },
+        "Utils": {
+          "$path": "../common/src/utils"
+        }
+      },
+      "Registry": {
+        "$path": "../common/src/constants"
+      },
+      "Stories": {
+        "$path": "stories"
+      },
+      "Client": {
+        "$path": "src/client"
+      },
+      "DevPackages": {
+        "$path": "../pkgs/dev/roblox_packages",
+        "Project": {
+          "$path": "src",
+          "tests": {
+            "$path": "tests"
+          },
+          "commontests": {
+            "$path": "../common/tests"
+          }
+        }
+      },
+      "Packages": {
+        "$path": "../pkgs/prod/roblox_packages"
+      },
+      "Assets": {
+        "$path": "assets"
+      }
+    },
+    "ServerScriptService": {
+      "run-tests": {
+        "$path": "tasks/run-tests.server.luau"
+      },
+      "CommonProviders": {
+        "$path": "../common/src/server"
+      },
+      "Packages": {
+        "$path": "../pkgs/prod/roblox_server_packages"
+      },
+      "Server": {
+        "$path": "src/server"
+      }
+    },
+    "StarterGui": {
+      "$properties": {
+        "VirtualCursorMode": "Enabled",
+        "RtlTextSupport": "Enabled"
+      }
+    },
+    "TextChatService": {
+      "$properties": {
+        "ChatVersion": "TextChatService"
+      }
+    }
+  }
+}
