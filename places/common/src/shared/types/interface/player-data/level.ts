@@ -1,8 +1,3 @@
-// Types
-import type { Source } from "@rbxts/vide";
+import type PlayerDataLevel from "@shared/data/level-data";
 
-export default interface PlayerDataLevel {
-	value: Source<number>;
-	required: Source<number>;
-	current: Source<number>;
-}
+export default PlayerDataLevel;

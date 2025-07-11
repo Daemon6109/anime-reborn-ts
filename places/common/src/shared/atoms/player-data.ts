@@ -2,21 +2,29 @@
 import Charm from "@rbxts/charm";
 
 // Types
-import type * as Types from "@shared/types";
+import type { Player as UnitPlayer } from "@shared/data/units-data";
+import type { Player as ItemPlayer } from "@shared/data/items-data";
+import type Mount from "@shared/data/mount-data";
+import type daily_reward from "@shared/data/daily-reward-data";
+import type { PlayerDataCurrencies } from "@shared/data/currencies-data";
+import type PlayerDataTeam from "@shared/data/team-data";
+import type { PlayerEffectData } from "@shared/data/effects-data";
+import type { BattlepassDataForPlayer } from "@shared/data/battlepass-data";
+import type { AdventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
 
 // Charm Components
 const { atom } = Charm;
 
 export type PlayerData = {
-	units: Types.InterfaceProps.PlayerData.Unit.Player[];
-	items: Types.InterfaceProps.PlayerData.Item.Player[];
-	mounts: Types.InterfaceProps.PlayerData.Mount.Mount;
-	daily_reward: Types.InterfaceProps.PlayerData.DailyReward.daily_reward;
-	currencies: Types.InterfaceProps.PlayerData.Currencies.default;
-	team: Types.InterfaceProps.PlayerData.Team.default;
-	effects: Types.InterfaceProps.PlayerData.Effects.EffectData[];
-	battlepass: Types.InterfaceProps.PlayerData.Battlepass.BattlepassData[];
-	adventCalendar: Types.InterfaceProps.PlayerData.AdventCalendar.AdventCalendarData;
+	units: UnitPlayer[];
+	items: ItemPlayer[];
+	mounts: Mount;
+	daily_reward: daily_reward;
+	currencies: PlayerDataCurrencies;
+	team: PlayerDataTeam;
+	effects: PlayerEffectData[];
+	battlepass: BattlepassDataForPlayer[];
+	adventCalendar: AdventCalendarData;
 };
 
 type PlayerDataMap = {

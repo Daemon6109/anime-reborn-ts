@@ -39,14 +39,8 @@ export const MULTIPLIER_TYPES = (() => {
 	return [...multiplierTypes] as readonly string[];
 })();
 
-export interface EffectData {
-	id: EffectName; // unique identifier for the effect
-	duration: number; // duration in seconds
-	startTime: number; // Unix timestamp when effect started
-}
+// Types
+import type { PlayerEffectData } from "@shared/data/effects-data";
 
-export default interface PlayerDataEffects {
-	id: EffectName; // unique identifier for the effect
-	duration: number; // duration in seconds
-	startTime: number; // Unix timestamp when effect started
-}
+export type { PlayerEffectData };
+export default PlayerEffectData;

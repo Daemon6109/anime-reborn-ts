@@ -1,12 +1,5 @@
-export interface MountData {
-	name: string;
-	quantity: number;
-	equipped: boolean;
-	// Add other mount properties as needed
-}
+import type Mount from "@shared/data/mount-data";
+import type { MountData } from "@shared/data/mount-data";
 
-export interface Mount {
-	ownedMounts: MountData[];
-}
-
+export type { MountData };
 export default Mount;

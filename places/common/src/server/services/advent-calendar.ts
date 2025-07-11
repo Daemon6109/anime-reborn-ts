@@ -1,9 +1,8 @@
 import { Service, OnInit } from "@flamework/core";
 import { DataStore } from "@server/services/player-data";
 import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
-import { adventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
+import { adventCalendarData, CalendarName, AdventCalendarData } from "@shared/data/advent-calendar-data";
 import { Analytics } from "@server/services/analytics";
-import type { CalendarName, AdventCalendarData } from "@shared/types/interface/player-data/advent-calendar";
 import type { PlayerData } from "@shared/atoms/player-data";
 
 const version = { major: 1, minor: 0, patch: 0 };

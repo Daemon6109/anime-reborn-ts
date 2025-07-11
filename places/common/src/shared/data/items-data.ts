@@ -79,3 +79,37 @@ export namespace ItemsData {
 		return item && "Limit" in item ? (item.Limit as number | "inf") : undefined;
 	}
 }
+
+import { Item as ItemCategory, Rarities } from "@shared/types";
+
+export interface Constant {
+	name: string;
+	displayName: string;
+	description: string;
+	category: ItemCategory;
+	rarity: Rarities;
+}
+
+export interface Preview {
+	name: string;
+	displayName: string;
+	description: string;
+	category: ItemCategory;
+	rarity: Rarities;
+
+	amount?:
+		| {
+				min: number;
+				max: number;
+		  }
+		| number;
+}
+
+export interface Player {
+	id: string;
+	uuid: string;
+	amount: number;
+	locked: boolean;
+}
+
+export type ItemPlayerData = Constant & Player;

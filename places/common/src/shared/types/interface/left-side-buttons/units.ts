@@ -1,6 +1,6 @@
 // Types
 import { Source } from "@rbxts/vide";
-import type * as Types from "..";
+import type { UnitData } from "@shared/data/units-data";
 
 export default interface LeftSideUnits {
 	visible: Source<boolean>;
@@ -8,7 +8,7 @@ export default interface LeftSideUnits {
 	unitInfoVisible: Source<boolean>;
 
 	selectedUUID: Source<string | undefined>;
-	units: Vide.Source<Types.PlayerData.Unit.default[] | []>;
+	units: Source<UnitData[] | []>;
 	evolve: Source<boolean>;
 
 	closeCallback: Source<(() => void) | undefined>;

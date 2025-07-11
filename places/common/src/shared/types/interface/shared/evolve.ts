@@ -1,13 +1,12 @@
 // Types
 import type { Source } from "@rbxts/vide";
-import type * as Types from "@shared/types";
+import type { Constant as ItemConstant } from "@shared/data/items-data";
+import type { Constant as UnitConstant } from "@shared/data/units-data";
 
-export default interface SharedChances {
+export default interface SharedEvolve {
 	visible: Source<boolean>;
 
 	kills: Source<number | undefined>;
 	selectedUUID: Source<string | undefined>;
-	requirments: Source<
-		Array<Types.InterfaceProps.PlayerData.Unit.Constant | Types.InterfaceProps.PlayerData.Item.Constant> | []
-	>;
+	requirments: Source<Array<UnitConstant | ItemConstant> | []>;
 }

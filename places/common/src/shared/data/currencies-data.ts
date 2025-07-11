@@ -140,3 +140,8 @@ export namespace CurrenciesData {
 		return CurrenciesRegistry[name]?.DisplayIconSize;
 	}
 }
+
+export interface PlayerDataCurrencies {
+	gems: number;
+	gold: number;
+}

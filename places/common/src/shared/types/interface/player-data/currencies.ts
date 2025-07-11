@@ -1,7 +1,4 @@
 // Types
-import type { Source } from "@rbxts/vide";
+import type { PlayerDataCurrencies } from "@shared/data/currencies-data";
 
-export default interface PlayerDataCurrencies {
-	gems: Source<number>;
-	gold: Source<number>;
-}
+export default PlayerDataCurrencies;

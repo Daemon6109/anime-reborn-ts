@@ -1,6 +1,7 @@
 // Types
-import type * as Types from "@shared/types";
 import type { Source } from "@rbxts/vide";
+import type { Constant as ItemConstant } from "@shared/data/items-data";
+import type { Constant as UnitConstant } from "@shared/data/units-data";
 
 export default interface SharedChances {
 	visible: Source<boolean>;
@@ -8,8 +9,8 @@ export default interface SharedChances {
 	closeCallback?: () => void;
 	data: Source<
 		| {
-				items: Array<Types.InterfaceProps.PlayerData.Item.Constant>;
-				units: Array<Types.InterfaceProps.PlayerData.Unit.Constant>;
+				items: Array<ItemConstant>;
+				units: Array<UnitConstant>;
 		  }
 		| undefined
 	>;

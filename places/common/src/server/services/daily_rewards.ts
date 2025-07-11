@@ -109,13 +109,13 @@ export class DailyRewardsService implements OnInit {
 				const streakDay = playerData.daily_reward.current_streak ?? 1;
 				const reward = this.CalculateDailyReward(streakDay);
 
-				const goldReward = (playerData.currencies.gold() ?? 0) + reward.Coins + reward.BonusCoins;
-				const gemsReward = (playerData.currencies.gems() ?? 0) + reward.Gems;
+				const goldReward = playerData.currencies.gold + reward.Coins + reward.BonusCoins;
+				const gemsReward = playerData.currencies.gems + reward.Gems;
 
 				// Atomically update currency and reward status.
 				if (playerData.currencies) {
-					playerData.currencies.gold(goldReward);
-					playerData.currencies.gems(gemsReward);
+					playerData.currencies.gold = goldReward;
+					playerData.currencies.gems = gemsReward;
 				}
 
 				playerData.daily_reward.CanClaim = false;
@@ -164,12 +164,12 @@ export class DailyRewardsService implements OnInit {
 		PlayerStore.updateAsync(player, (playerData) => {
 			// Add gold (its named coins in dailyrewardpayload but im 2 lazy to change it)
 			if (reward.Coins !== undefined && reward.BonusCoins !== undefined) {
-				playerData.currencies.gold((playerData.currencies.gold() ?? 0) + reward.Coins + reward.BonusCoins);
+				playerData.currencies.gold = (playerData.currencies.gold ?? 0) + reward.Coins + reward.BonusCoins;
 			}
 
 			// Add gems
 			if (reward.Gems !== undefined) {
-				playerData.currencies.gems((playerData.currencies.gems() ?? 0) + reward.Gems);
+				playerData.currencies.gems = (playerData.currencies.gems ?? 0) + reward.Gems;
 			}
 
 			// commit

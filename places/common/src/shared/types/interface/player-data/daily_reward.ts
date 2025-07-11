@@ -1,8 +1,3 @@
-export interface daily_reward {
-	last_claimed: number;
-	current_streak: number;
-	CanClaim: boolean;
-	total_claimed: number;
-}
+import type daily_reward from "@shared/data/daily-reward-data";
 
 export default daily_reward;

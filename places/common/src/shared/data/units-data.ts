@@ -316,6 +316,95 @@ export function validateUnit<T extends UnitName>(unitName: T): { isValid: boolea
 	};
 }
 
+import type { Preview as ItemPreview } from "./items-data";
+import { Unit as UnitCategory, Elements, UnitTypes, AttackTypes, Traits, Rarities } from "@shared/types/shared-types";
+
+export interface Player {
+	id: string;
+	uuid: string;
+	obtainedAt: number;
+	trait?: Traits;
+
+	traitData?: {
+		trait: Traits;
+		time: number;
+	}[];
+
+	evo: number;
+	shiny: boolean;
+	locked: boolean;
+	favorited: boolean;
+	level: {
+		value: number;
+		target: number;
+		current: number;
+	};
+	potential: {
+		damage: number;
+		range: number;
+		spa: number;
+	};
+}
+
+export interface Constant {
+	name: string;
+	displayName: string;
+	rarity: Rarities;
+	category: UnitCategory;
+	released: boolean;
+	tradable: boolean;
+	sellable: boolean;
+	placement: number;
+	radius: number;
+
+	element: Elements;
+	type: UnitTypes;
+
+	price: number;
+	damage?: number;
+	money?: number;
+	range: number;
+	spa: number;
+	attackSize: number;
+	attackEffects?: string[];
+	attackType: AttackTypes;
+
+	passive: string[];
+
+	animations: {
+		idle: number;
+		walk: number;
+	};
+
+	upgrades: Array<{
+		price: number;
+		damage?: number;
+		money?: number;
+		range?: number;
+		attackSpeed?: number;
+		unitType?: UnitTypes;
+		newAbility?: {
+			name: string;
+			attackSize: number;
+			attackEffects?: string[];
+			attackType: AttackTypes;
+		};
+	}>;
+
+	evoData?: {
+		unit: Constant;
+		display: string[];
+		requirements: Array<Constant | ItemPreview>;
+	};
+
+	criticalData: {
+		chance: number;
+		multiplier: number;
+	};
+}
+
+export type UnitData = Constant & Player;
+
 /*
  * Perfect per-unit typing examples:
  *

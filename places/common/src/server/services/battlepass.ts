@@ -11,7 +11,7 @@ import {
 	getExactBattlepass,
 	getExactLevelData,
 	getExactLevelReward,
-} from "@shared/types/battlepass-data";
+} from "@shared/data/battlepass-data";
 
 const version = { major: 1, minor: 0, patch: 0 };
 

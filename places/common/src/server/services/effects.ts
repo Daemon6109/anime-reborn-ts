@@ -9,8 +9,8 @@ import { Analytics } from "@server/services/analytics";
 // Utils
 import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
 
-import type { EffectName, ExactConfiguration, EffectData } from "@shared/types/interface/player-data/effects";
-import { effectsData, MULTIPLIER_TYPES } from "@shared/types/interface/player-data/effects";
+import type { EffectName, EffectData, EffectMultiplier, PlayerEffectData } from "@shared/data/effects-data";
+import { EffectsRegistry } from "@shared/data/effects-data";
 
 const version = { major: 1, minor: 0, patch: 0 };
 
@@ -22,7 +22,7 @@ export class EffectsService implements OnInit {
 	public readonly version = version;
 
 	// Effect configurations - initialized from JSON data
-	private effectConfigs: Record<EffectName, ExactConfiguration<EffectName>> = effectsData;
+	private effectConfigs: Record<EffectName, EffectData> = EffectsRegistry;
 
 	constructor(
 		private readonly dataService: DataStore,
@@ -34,7 +34,8 @@ export class EffectsService implements OnInit {
 		this.setupAnalyticsReporting();
 
 		// Debug: Log available multiplier types
-		print(`EffectsService initialized with multiplier types: ${MULTIPLIER_TYPES.join(", ")}`);
+		const multiplierTypes = this.getAvailableMultiplierTypes();
+		print(`EffectsService initialized with multiplier types: ${multiplierTypes.join(", ")}`);
 	}
 
 	/**
@@ -190,7 +191,7 @@ export class EffectsService implements OnInit {
 	/**
 	 * Internal helper to check if effect is active
 	 */
-	private isEffectActiveInternal(effects: EffectData[], effect: EffectName, currentTime: number): boolean {
+	private isEffectActiveInternal(effects: PlayerEffectData[], effect: EffectName, currentTime: number): boolean {
 		const effectData = effects.find((e) => e.id === effect);
 		if (!effectData) {
 			return false;
@@ -202,25 +203,25 @@ export class EffectsService implements OnInit {
 	/**
 	 * Gets all active effects for a player
 	 */
-	public async getAllActiveEffects(player: Player): Promise<Record<EffectName, EffectData>> {
+	public async getAllActiveEffects(player: Player): Promise<Record<EffectName, PlayerEffectData>> {
 		const playerStore = this.dataService.getPlayerStore();
 
 		try {
 			const playerData = await playerStore.get(player);
-			const allEffects = playerData.effects || [];
-			const activeEffects: Record<EffectName, EffectData> = {} as Record<EffectName, EffectData>;
+			const allEffects = (playerData.effects as PlayerEffectData[]) || [];
+			const activeEffects: Record<EffectName, PlayerEffectData> = {} as Record<EffectName, PlayerEffectData>;
 			const currentTime = DateTime.now().UnixTimestamp;
 
 			for (const effectData of allEffects) {
-				if (this.isEffectActiveInternal(allEffects, effectData.id as EffectName, currentTime)) {
-					activeEffects[effectData.id as EffectName] = effectData;
+				if (this.isEffectActiveInternal(allEffects, effectData.id, currentTime)) {
+					activeEffects[effectData.id] = effectData;
 				}
 			}
 
 			return activeEffects;
 		} catch (error) {
 			warn(`Failed to get active effects for ${player.Name}: ${error}`);
-			return {} as Record<EffectName, EffectData>;
+			return {} as Record<EffectName, PlayerEffectData>;
 		}
 	}
 
@@ -230,7 +231,8 @@ export class EffectsService implements OnInit {
 	public async calculateMultiplier(player: Player, multiplierType: string): Promise<number> {
 		// Validate multiplier type
 		if (!this.isValidMultiplierType(multiplierType)) {
-			warn(`Invalid multiplier type: ${multiplierType}. Available types: ${MULTIPLIER_TYPES.join(", ")}`);
+			const multiplierTypes = this.getAvailableMultiplierTypes();
+			warn(`Invalid multiplier type: ${multiplierType}. Available types: ${multiplierTypes.join(", ")}`);
 			return 1;
 		}
 
@@ -254,7 +256,8 @@ export class EffectsService implements OnInit {
 	 * Validates if a multiplier type exists in the configuration
 	 */
 	public isValidMultiplierType(multiplierType: string): boolean {
-		return MULTIPLIER_TYPES.includes(multiplierType);
+		const multiplierTypes = this.getAvailableMultiplierTypes();
+		return multiplierTypes.includes(multiplierType);
 	}
 
 	/**
@@ -262,8 +265,9 @@ export class EffectsService implements OnInit {
 	 */
 	public async calculateAllMultipliers(player: Player): Promise<Record<string, number>> {
 		const results: Record<string, number> = {};
+		const multiplierTypes = this.getAvailableMultiplierTypes();
 
-		for (const multiplierType of MULTIPLIER_TYPES) {
+		for (const multiplierType of multiplierTypes) {
 			results[multiplierType] = await this.calculateMultiplier(player, multiplierType);
 		}
 
@@ -273,21 +277,21 @@ export class EffectsService implements OnInit {
 	/**
 	 * Gets effect configuration
 	 */
-	public getEffectConfig(effect: EffectName): ExactConfiguration<EffectName> | undefined {
+	public getEffectConfig(effect: EffectName): EffectData | undefined {
 		return this.effectConfigs[effect];
 	}
 
 	/**
 	 * Gets all effect configurations
 	 */
-	public getAllEffectConfigs(): Record<EffectName, ExactConfiguration<EffectName>> {
+	public getAllEffectConfigs(): Record<EffectName, EffectData> {
 		return { ...this.effectConfigs };
 	}
 
 	/**
 	 * Sets effect configuration
 	 */
-	public setEffectConfig(effect: EffectName, config: ExactConfiguration<EffectName>) {
+	public setEffectConfig(effect: EffectName, config: EffectData) {
 		this.effectConfigs[effect] = config;
 	}
 
@@ -527,7 +531,8 @@ export class EffectsService implements OnInit {
 			}
 
 			// Track multiplier usage patterns
-			for (const multiplierType of MULTIPLIER_TYPES) {
+			const multiplierTypes = this.getAvailableMultiplierTypes();
+			for (const multiplierType of multiplierTypes) {
 				const multiplier = await this.calculateMultiplier(player, multiplierType);
 				if (multiplier > 1) {
 					this.analytics.LogCustomEvent(player, "multiplier_active", math.floor(multiplier * 100), {
@@ -634,10 +639,10 @@ export class EffectsService implements OnInit {
 						const originalLength = effects.size();
 
 						// Update remaining durations for active effects and remove expired ones
-						const updatedEffects: EffectData[] = [];
+						const updatedEffects: PlayerEffectData[] = [];
 
 						for (const effectData of effects) {
-							if (this.isEffectActiveInternal(effects, effectData.id as EffectName, currentTime)) {
+							if (this.isEffectActiveInternal(effects, effectData.id, currentTime)) {
 								const remainingTime = effectData.startTime + effectData.duration - currentTime;
 								updatedEffects.push({
 									id: effectData.id,
@@ -680,8 +685,8 @@ export class EffectsService implements OnInit {
 
 				// Calculate total multiplier impact
 				let totalMultiplierBoost = 0;
-
-				for (const multiplierType of MULTIPLIER_TYPES) {
+				const multiplierTypes = this.getAvailableMultiplierTypes();
+				for (const multiplierType of multiplierTypes) {
 					const multiplier = await this.calculateMultiplier(player, multiplierType);
 					totalMultiplierBoost += multiplier - 1; // Get the boost amount
 				}
@@ -701,8 +706,20 @@ export class EffectsService implements OnInit {
 	/**
 	 * Gets all available multiplier types from the configuration
 	 */
-	public getAvailableMultiplierTypes(): readonly string[] {
-		return MULTIPLIER_TYPES;
+	public getAvailableMultiplierTypes(): string[] {
+		const multiplierTypes = new Set<string>();
+		for (const [_, effectConfig] of pairs(this.effectConfigs)) {
+			if (effectConfig.Multiplier) {
+				for (const [multiplierKey] of pairs(effectConfig.Multiplier)) {
+					multiplierTypes.add(multiplierKey as string);
+				}
+			}
+		}
+		const types: string[] = [];
+		for (const type of multiplierTypes) {
+			types.push(type);
+		}
+		return types;
 	}
 
 	/**
@@ -710,8 +727,8 @@ export class EffectsService implements OnInit {
 	 */
 	public async getAllActiveMultipliers(player: Player): Promise<Record<string, number>> {
 		const multipliers: Record<string, number> = {};
-
-		for (const multiplierType of MULTIPLIER_TYPES) {
+		const multiplierTypes = this.getAvailableMultiplierTypes();
+		for (const multiplierType of multiplierTypes) {
 			const multiplier = await this.calculateMultiplier(player, multiplierType);
 			if (multiplier > 1) {
 				multipliers[multiplierType] = multiplier;

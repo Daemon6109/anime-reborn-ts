@@ -1,9 +1,9 @@
 // Types
 import type { PlayerData } from "@shared/atoms/player-data";
-import type * as Types from "@shared/types";
-import type { CalendarName } from "@shared/types/interface/player-data/advent-calendar";
+import type { Player as UnitPlayer } from "@shared/data/units-data";
+import type { CalendarName } from "@shared/data/advent-calendar-data";
 
-const units: Types.InterfaceProps.PlayerData.Unit.Player[] = [];
+const units: UnitPlayer[] = [];
 
 for (let i = 1; i <= 500; i++) {
 	units.push({
@@ -44,6 +44,10 @@ const defaultData: PlayerData = {
 		current_streak: 0,
 		CanClaim: true,
 		total_claimed: 0,
+	},
+	currencies: {
+		gems: 0,
+		gold: 0,
 	},
 	team: [],
 	effects: [],
