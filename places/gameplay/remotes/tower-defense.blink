@@ -52,6 +52,10 @@ struct EnemyDeathData {
     goldReward: i32,
 }
 
+struct EnemyReachedEndData {
+	enemyId: string,
+}
+
 struct EnemyUpdateData {
     id: string,
     position: vector,
@@ -65,6 +69,13 @@ struct PlaceTowerData {
 
 struct TowerIdData {
     towerId: string,
+}
+
+event EnemyReachedEnd {
+	From: Server,
+	Type: Reliable,
+	Call: ManyAsync,
+	Data: EnemyReachedEndData
 }
 
 -- --- Client to Server Events ---

@@ -20,16 +20,14 @@
 		"typeRoots": ["../../node_modules/@rbxts", "../../node_modules/@flamework"],
 
 		// configurable
-		"rootDirs": ["src", "../common/src"],
+		"baseUrl": ".",
+		"rootDir": "src",
 		"outDir": "out",
-		"baseUrl": "src",
 		"paths": {
-			"@common/*": ["../../common/src/*"],
-			"@gameplay/*": ["../src/*"],
-			"@shared/*": ["./shared/*"],
-			"@server/*": ["./server/*"],
-			"@client/*": ["./client/*"],
-			"@network/*": ["../remotes/network/*"]
+			"@shared/*": ["src/shared/*"],
+			"@server/*": ["src/server/*"],
+			"@client/*": ["src/client/*"],
+			"@network/*": ["remotes/network/*"]
 		},
 		"incremental": true,
 		"tsBuildInfoFile": "out/tsconfig.tsbuildinfo",
@@ -44,5 +42,6 @@
 			}
 		]
 	},
-	"exclude": ["../../node_modules/**", "out/**", "include/**"]
+	"exclude": ["../../node_modules/**", "out/**", "include/**"],
+	"include": ["src", "remotes", "jest.config.ts"]
 }

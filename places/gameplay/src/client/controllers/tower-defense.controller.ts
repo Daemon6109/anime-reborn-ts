@@ -1,283 +1,224 @@
 import { Controller, OnStart } from "@flamework/core";
-import { Players, UserInputService, RunService } from "@rbxts/services";
-import { atom, effect } from "@rbxts/charm";
-
-interface TowerPlacements {
-	[position: string]: {
-		type: "Archer" | "Mage" | "Cannon";
-		position: Vector3;
-	};
-}
+import { UserInputService, Workspace, RunService } from "@rbxts/services";
+import { Janitor } from "@rbxts/janitor";
+import { atom, subscribe } from "@rbxts/charm";
+import ClientNetwork from "@network/client";
+import { TowerType, EnemyType } from "@shared/config/game-config";
+import { TOWER_CONFIGS, ENEMY_CONFIGS } from "@shared/config/game-config";
+import {
+	Tower as NetworkTower,
+	Enemy as NetworkEnemy,
+	Projectile as NetworkProjectile,
+	GameState as NetworkGameState,
+	EnemyDeathData,
+} from "@network/types";
 
 @Controller()
 export class TowerDefenseController implements OnStart {
-	private player = Players.LocalPlayer;
-	private camera = game.Workspace.CurrentCamera!;
+	private readonly janitor = new Janitor();
+	private readonly towerModels = new Map<string, Model>();
+	private readonly enemyModels = new Map<string, Model>();
+	private readonly projectileModels = new Map<string, Part>();
+	private placementPreview?: Model;
+	private placementGrid?: Part;
 
-	// State atoms
-	private selectedTowerTypeAtom = atom<"Archer" | "Mage" | "Cannon" | undefined>(undefined);
-	private isPlacingTowerAtom = atom<boolean>(false);
-	private playerGoldAtom = atom<number>(1000);
-	private placedTowersAtom = atom<TowerPlacements>({});
-
-	// Tower costs
-	private readonly towerCosts = {
-		Archer: 100,
-		Mage: 150,
-		Cannon: 200,
-	};
+	private readonly selectedTowerTypeAtom = atom<TowerType | undefined>(undefined);
+	private readonly gameStateAtom = atom<NetworkGameState | undefined>(undefined);
 
 	onStart(): void {
-		this.setupInputHandling();
 		this.setupUI();
-		this.setupEffects();
-		print("Tower Defense Client Controller Started!");
-	}
+		this.setupNetworkListeners();
+		this.setupInputHandling();
+		this.setupPlacementGrid();
 
-	private setupInputHandling(): void {
-		// Handle mouse clicks for tower placement
-		UserInputService.InputBegan.Connect((input, gameProcessed) => {
-			if (gameProcessed) return;
-
-			if (input.UserInputType === Enum.UserInputType.MouseButton1) {
-				this.handleLeftClick();
-			} else if (input.UserInputType === Enum.UserInputType.MouseButton2) {
-				this.handleRightClick();
-			}
-		});
-
-		// Handle keyboard input for tower selection
-		UserInputService.InputBegan.Connect((input, gameProcessed) => {
-			if (gameProcessed) return;
-
-			if (input.KeyCode === Enum.KeyCode.Q) {
-				this.selectTowerType("Archer");
-			} else if (input.KeyCode === Enum.KeyCode.W) {
-				this.selectTowerType("Mage");
-			} else if (input.KeyCode === Enum.KeyCode.E) {
-				this.selectTowerType("Cannon");
-			} else if (input.KeyCode === Enum.KeyCode.Escape) {
-				this.cancelTowerPlacement();
-			}
-		});
+		print("Tower Defense Client Controller initialized!");
 	}
 
 	private setupUI(): void {
-		// Create a simple UI for tower selection
-		const playerGui = this.player.WaitForChild("PlayerGui") as PlayerGui;
-
+		// Create a simple UI for selecting towers and starting waves
 		const screenGui = new Instance("ScreenGui");
 		screenGui.Name = "TowerDefenseUI";
-		screenGui.Parent = playerGui;
+		screenGui.Parent = game.GetService("Players").LocalPlayer.WaitForChild("PlayerGui");
+		this.janitor.Add(screenGui);
 
-		// Create tower selection frame
 		const towerFrame = new Instance("Frame");
-		towerFrame.Name = "TowerSelection";
-		towerFrame.Size = UDim2.fromScale(0.3, 0.1);
-		towerFrame.Position = UDim2.fromScale(0.05, 0.85);
-		towerFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50);
-		towerFrame.BorderSizePixel = 2;
-		towerFrame.BorderColor3 = Color3.fromRGB(100, 100, 100);
+		towerFrame.Size = new UDim2(0, 200, 0, 50);
+		towerFrame.Position = new UDim2(0, 10, 0, 10);
 		towerFrame.Parent = screenGui;
 
-		// Create tower buttons
-		const towerTypes: ("Archer" | "Mage" | "Cannon")[] = ["Archer", "Mage", "Cannon"];
-
-		towerTypes.forEach((towerType, index) => {
+		let xOffset = 0;
+		for (const [towerType, towerConfig] of pairs(TOWER_CONFIGS)) {
 			const button = new Instance("TextButton");
-			button.Name = `${towerType}Button`;
-			button.Size = UDim2.fromScale(0.3, 0.8);
-			button.Position = UDim2.fromScale(0.05 + index * 0.32, 0.1);
-			button.BackgroundColor3 = Color3.fromRGB(70, 70, 70);
-			button.TextColor3 = Color3.fromRGB(255, 255, 255);
-			button.TextScaled = true;
-			button.Font = Enum.Font.SourceSansBold;
-			button.Text = `${towerType}\n$${this.towerCosts[towerType]}`;
+			button.Size = new UDim2(0, 40, 0, 40);
+			button.Position = new UDim2(0, xOffset, 0, 5);
+			button.Text = towerConfig.name;
 			button.Parent = towerFrame;
-
-			// Handle button clicks
 			button.MouseButton1Click.Connect(() => {
-				this.selectTowerType(towerType);
+				this.selectedTowerTypeAtom(towerType as TowerType);
 			});
+			xOffset += 50;
+		}
+
+		const startWaveButton = new Instance("TextButton");
+		startWaveButton.Size = new UDim2(0, 100, 0, 50);
+		startWaveButton.Position = new UDim2(0, 10, 0, 70);
+		startWaveButton.Text = "Start Wave";
+		startWaveButton.Parent = screenGui;
+		startWaveButton.MouseButton1Click.Connect(() => {
+			ClientNetwork.TowerDefense.StartWaveRequest.fire({});
 		});
-
-		// Create gold display
-		const goldLabel = new Instance("TextLabel");
-		goldLabel.Name = "GoldDisplay";
-		goldLabel.Size = UDim2.fromScale(0.15, 0.05);
-		goldLabel.Position = UDim2.fromScale(0.8, 0.05);
-		goldLabel.BackgroundColor3 = Color3.fromRGB(255, 215, 0);
-		goldLabel.TextColor3 = Color3.fromRGB(0, 0, 0);
-		goldLabel.TextScaled = true;
-		goldLabel.Font = Enum.Font.SourceSansBold;
-		goldLabel.Text = `Gold: ${this.playerGoldAtom()}`;
-		goldLabel.Parent = screenGui;
-
-		// Update gold display when gold changes
-		effect(() => {
-			goldLabel.Text = `Gold: ${this.playerGoldAtom()}`;
-		});
-
-		// Create instructions
-		const instructionsLabel = new Instance("TextLabel");
-		instructionsLabel.Name = "Instructions";
-		instructionsLabel.Size = UDim2.fromScale(0.4, 0.1);
-		instructionsLabel.Position = UDim2.fromScale(0.05, 0.05);
-		instructionsLabel.BackgroundTransparency = 1;
-		instructionsLabel.TextColor3 = Color3.fromRGB(255, 255, 255);
-		instructionsLabel.TextScaled = true;
-		instructionsLabel.Font = Enum.Font.SourceSans;
-		instructionsLabel.Text = "Q/W/E: Select tower type\nLeft Click: Place tower\nRight Click: Cancel";
-		instructionsLabel.Parent = screenGui;
 	}
 
-	private setupEffects(): void {
-		// Visual feedback for tower placement
-		effect(() => {
-			const selectedType = this.selectedTowerTypeAtom();
-			const isPlacing = this.isPlacingTowerAtom();
+	private setupNetworkListeners(): void {
+		ClientNetwork.TowerDefense.TowerPlaced.on((data: NetworkTower) => {
+			this.createTowerVisual(data);
+		});
 
-			if (selectedType && isPlacing) {
-				print(`Ready to place ${selectedType} tower - Click to place!`);
+		ClientNetwork.TowerDefense.EnemySpawned.on((data: NetworkEnemy) => {
+			this.createEnemyVisual(data);
+		});
+
+		ClientNetwork.TowerDefense.EnemyDied.on((data: EnemyDeathData) => {
+			const enemyModel = this.enemyModels.get(data.enemyId);
+			if (enemyModel) {
+				enemyModel.Destroy();
+				this.enemyModels.delete(data.enemyId);
 			}
 		});
+
+		ClientNetwork.TowerDefense.ProjectileCreated.on((data: NetworkProjectile) => {
+			this.createProjectileVisual(data);
+		});
+
+		ClientNetwork.TowerDefense.GameStateUpdated.on((data: NetworkGameState) => {
+			this.gameStateAtom(data);
+		});
 	}
 
-	private selectTowerType(towerType: "Archer" | "Mage" | "Cannon"): void {
-		const currentGold = this.playerGoldAtom();
-		const cost = this.towerCosts[towerType];
+	private setupInputHandling(): void {
+		this.janitor.Add(
+			UserInputService.InputBegan.Connect((input, gameProcessed) => {
+				if (gameProcessed) return;
 
-		if (currentGold >= cost) {
-			this.selectedTowerTypeAtom(towerType);
-			this.isPlacingTowerAtom(true);
-			print(`Selected ${towerType} tower (Cost: $${cost})`);
-		} else {
-			print(`Not enough gold! Need $${cost}, have $${currentGold}`);
+				if (input.UserInputType === Enum.UserInputType.MouseButton1) {
+					const selectedTower = this.selectedTowerTypeAtom();
+					if (selectedTower && this.placementPreview) {
+						ClientNetwork.TowerDefense.PlaceTowerRequest.fire({
+							towerType: selectedTower,
+							position: this.placementPreview.PrimaryPart!.Position,
+						});
+						this.selectedTowerTypeAtom(undefined);
+						this.placementPreview.Destroy();
+						this.placementPreview = undefined;
+					}
+				}
+			}),
+		);
+
+		this.janitor.Add(
+			subscribe(this.selectedTowerTypeAtom, (towerType) => {
+				if (towerType) {
+					this.showPlacementPreview(towerType);
+				} else {
+					if (this.placementPreview) {
+						this.placementPreview.Destroy();
+						this.placementPreview = undefined;
+					}
+				}
+			}),
+		);
+	}
+
+	private setupPlacementGrid(): void {
+		this.placementGrid = new Instance("Part");
+		this.placementGrid.Name = "PlacementGrid";
+		this.placementGrid.Size = new Vector3(512, 0.1, 512);
+		this.placementGrid.Position = new Vector3(0, 0, 0);
+		this.placementGrid.Anchored = true;
+		this.placementGrid.Transparency = 1;
+		this.placementGrid.CanCollide = false;
+		this.placementGrid.Parent = Workspace;
+		this.janitor.Add(this.placementGrid);
+
+		this.janitor.Add(
+			RunService.RenderStepped.Connect(() => {
+				if (this.placementPreview) {
+					const mouse = UserInputService.GetMouseLocation();
+					const ray = Workspace.CurrentCamera!.ViewportPointToRay(mouse.X, mouse.Y);
+					const result = Workspace.Raycast(ray.Origin, ray.Direction.mul(1000), new RaycastParams());
+					if (result && result.Instance === this.placementGrid) {
+						this.placementPreview.SetPrimaryPartCFrame(new CFrame(result.Position));
+					}
+				}
+			}),
+		);
+	}
+
+	private showPlacementPreview(towerType: TowerType): void {
+		if (this.placementPreview) {
+			this.placementPreview.Destroy();
 		}
+
+		const towerConfig = TOWER_CONFIGS[towerType];
+		this.placementPreview = new Instance("Model");
+		const part = new Instance("Part");
+		part.Size = towerConfig.size;
+		part.Color = towerConfig.color;
+		part.Transparency = 0.5;
+		part.Anchored = true;
+		part.CanCollide = false;
+		part.Parent = this.placementPreview;
+		this.placementPreview.PrimaryPart = part;
+		this.placementPreview.Parent = Workspace;
 	}
 
-	private handleLeftClick(): void {
-		const selectedType = this.selectedTowerTypeAtom();
-		const isPlacing = this.isPlacingTowerAtom();
-
-		if (!selectedType || !isPlacing) return;
-
-		const mousePosition = UserInputService.GetMouseLocation();
-		const ray = this.camera.ScreenPointToRay(mousePosition.X, mousePosition.Y);
-
-		// Cast ray to find placement position
-		const raycastParams = new RaycastParams();
-		raycastParams.FilterType = Enum.RaycastFilterType.Blacklist;
-		raycastParams.FilterDescendantsInstances = [];
-
-		const raycastResult = game.Workspace.Raycast(ray.Origin, ray.Direction.mul(1000), raycastParams);
-
-		if (raycastResult) {
-			const placementPosition = raycastResult.Position;
-			this.placeTower(selectedType, placementPosition);
-		}
+	private createTowerVisual(tower: NetworkTower): void {
+		const towerConfig = TOWER_CONFIGS[tower.towerType as TowerType];
+		const model = new Instance("Model");
+		const part = new Instance("Part");
+		part.Size = towerConfig.size;
+		part.Color = towerConfig.color;
+		part.Position = tower.position;
+		part.Anchored = true;
+		part.Parent = model;
+		model.Parent = Workspace;
+		this.towerModels.set(tower.id, model);
 	}
 
-	private handleRightClick(): void {
-		this.cancelTowerPlacement();
+	private createEnemyVisual(enemy: NetworkEnemy): void {
+		const enemyConfig = ENEMY_CONFIGS[enemy.enemyType as EnemyType];
+		const model = new Instance("Model");
+		const part = new Instance("Part");
+		part.Size = enemyConfig.size;
+		part.Color = enemyConfig.color;
+		part.Position = enemy.position;
+		part.Anchored = true;
+		part.Parent = model;
+		model.Parent = Workspace;
+		this.enemyModels.set(enemy.id, model);
 	}
 
-	private placeTower(towerType: "Archer" | "Mage" | "Cannon", position: Vector3): void {
-		const cost = this.towerCosts[towerType];
-		const currentGold = this.playerGoldAtom();
+	private createProjectileVisual(projectile: NetworkProjectile): void {
+		const part = new Instance("Part");
+		part.Shape = Enum.PartType.Ball;
+		part.Size = new Vector3(0.5, 0.5, 0.5);
+		part.Color = new Color3(1, 1, 0);
+		part.Position = projectile.position;
+		part.Anchored = true;
+		part.CanCollide = false;
+		part.Parent = Workspace;
+		this.projectileModels.set(projectile.id, part);
 
-		if (currentGold >= cost) {
-			// Deduct gold
-			this.playerGoldAtom(currentGold - cost);
-
-			// Add to placed towers
-			const positionKey = `${math.floor(position.X)}_${math.floor(position.Z)}`;
-			const currentTowers = this.placedTowersAtom();
-			this.placedTowersAtom({
-				...currentTowers,
-				[positionKey]: { type: towerType, position },
-			});
-
-			// Create visual representation
-			this.createTowerVisual(towerType, position);
-
-			// Reset placement state
-			this.cancelTowerPlacement();
-
-			print(`Placed ${towerType} tower at ${position}`);
-
-			// TODO: Send placement command to server
-			// ServerNetwork.PlaceTower.fire(towerType, position);
-		}
+		const tweenInfo = new TweenInfo(0.2);
+		const tween = game.GetService("TweenService").Create(part, tweenInfo, { Position: projectile.targetPosition });
+		tween.Play();
+		tween.Completed.Connect(() => {
+			part.Destroy();
+			this.projectileModels.delete(projectile.id);
+		});
 	}
 
-	private createTowerVisual(towerType: "Archer" | "Mage" | "Cannon", position: Vector3): void {
-		// Create a simple visual representation of the tower
-		const tower = new Instance("Part");
-		tower.Name = `${towerType}Tower`;
-		tower.Size = new Vector3(4, 6, 4);
-		tower.Position = position.add(new Vector3(0, 3, 0));
-		tower.Anchored = true;
-		tower.CanCollide = false;
-		tower.Parent = game.Workspace;
-
-		// Color based on tower type
-		const colors = {
-			Archer: Color3.fromRGB(139, 69, 19), // Brown
-			Mage: Color3.fromRGB(128, 0, 128), // Purple
-			Cannon: Color3.fromRGB(64, 64, 64), // Gray
-		};
-		tower.Color = colors[towerType];
-
-		// Add a simple roof
-		const roof = new Instance("Part");
-		roof.Name = "Roof";
-		roof.Size = new Vector3(5, 1, 5);
-		roof.Position = position.add(new Vector3(0, 6.5, 0));
-		roof.Anchored = true;
-		roof.CanCollide = false;
-		roof.Color = Color3.fromRGB(139, 0, 0); // Dark red
-		roof.Parent = tower;
-
-		// Add a label
-		const billboardGui = new Instance("BillboardGui");
-		billboardGui.Size = UDim2.fromOffset(100, 50);
-		billboardGui.StudsOffset = new Vector3(0, 4, 0);
-		billboardGui.Parent = tower;
-
-		const label = new Instance("TextLabel");
-		label.Size = UDim2.fromScale(1, 1);
-		label.BackgroundTransparency = 1;
-		label.TextColor3 = Color3.fromRGB(255, 255, 255);
-		label.TextScaled = true;
-		label.Font = Enum.Font.SourceSansBold;
-		label.Text = towerType;
-		label.TextStrokeTransparency = 0;
-		label.TextStrokeColor3 = Color3.fromRGB(0, 0, 0);
-		label.Parent = billboardGui;
-	}
-
-	private cancelTowerPlacement(): void {
-		this.selectedTowerTypeAtom(undefined);
-		this.isPlacingTowerAtom(false);
-		print("Tower placement cancelled");
-	}
-
-	// Public methods for external control
-	public addGold(amount: number): void {
-		const currentGold = this.playerGoldAtom();
-		this.playerGoldAtom(currentGold + amount);
-	}
-
-	public getSelectedTowerType(): "Archer" | "Mage" | "Cannon" | undefined {
-		return this.selectedTowerTypeAtom();
-	}
-
-	public isPlacingTower(): boolean {
-		return this.isPlacingTowerAtom();
-	}
-
-	public getPlayerGold(): number {
-		return this.playerGoldAtom();
+	public destroy(): void {
+		this.janitor.Cleanup();
 	}
 }
