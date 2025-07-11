@@ -3,6 +3,7 @@ import { Players } from "@rbxts/services";
 import { DataStore } from "./player-data";
 import { Service, OnInit } from "@flamework/core";
 import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
+import { dailyRewards } from "../../../remotes/network/server";
 
 type DailyRewardPayload = { Coins: number; Gems: number; BonusCoins: number };
 
@@ -47,6 +48,10 @@ export class DailyRewardsService implements OnInit {
 				}
 				// eslint-disable-next-line no-constant-condition
 			} while (true);
+		});
+
+		dailyRewards.ClaimDailyReward.on((player: Player) => {
+			this.ClaimDailyReward(player);
 		});
 	}
 
