@@ -1,9 +1,10 @@
 import { Signal } from "@rbxts/lemon-signal";
 import { Players } from "@rbxts/services";
-import { DataStore } from "./player-data";
+import { DataStore } from "@server/services/player-data";
 import { Service, OnInit } from "@flamework/core";
-import { safePlayerAdded } from "../../shared/utils/safe-player-added.util";
-import { dailyRewards } from "../../../remotes/network/server";
+import { safePlayerAdded } from "@shared/utils/safe-player-added.util";
+import { dailyRewards } from "@network/server";
+import { Analytics } from "@server/services/analytics";
 
 type DailyRewardPayload = { Coins: number; Gems: number; BonusCoins: number };
 
@@ -22,7 +23,10 @@ export class DailyRewardsService implements OnInit {
 		]),
 	};
 
-	constructor(private readonly dataservice: DataStore) {}
+	constructor(
+		private readonly dataservice: DataStore,
+		private readonly analytics: Analytics,
+	) {}
 
 	// Events
 	public newDayEvent = new Signal<[{ player: Player; day: number }]>();
@@ -90,6 +94,8 @@ export class DailyRewardsService implements OnInit {
 				daily_reward.CanClaim = true;
 				this.newDayEvent.Fire({ player: player, day: newStreak });
 
+				this.analytics.LogCustomEvent(player, "daily_reward_new_day", newStreak);
+
 				// Commit the changes.
 				return true;
 			});
@@ -116,6 +122,37 @@ export class DailyRewardsService implements OnInit {
 
 				const goldReward = playerData.currencies.gold + reward.Coins + reward.BonusCoins;
 				const gemsReward = playerData.currencies.gems + reward.Gems;
+
+				const totalCoins = reward.Coins + reward.BonusCoins;
+				if (totalCoins > 0) {
+					this.analytics.LogEconomyEvent(
+						player,
+						Enum.AnalyticsEconomyFlowType.Source,
+						"Gold",
+						totalCoins,
+						goldReward,
+						"TimedReward",
+						"daily_reward",
+						{
+							streak_day: tostring(streakDay),
+						},
+					);
+				}
+
+				if (reward.Gems > 0) {
+					this.analytics.LogEconomyEvent(
+						player,
+						Enum.AnalyticsEconomyFlowType.Source,
+						"Gems",
+						reward.Gems,
+						gemsReward,
+						"TimedReward",
+						"daily_reward",
+						{
+							streak_day: tostring(streakDay),
+						},
+					);
+				}
 
 				// Atomically update currency and reward status.
 				if (playerData.currencies) {
@@ -167,14 +204,33 @@ export class DailyRewardsService implements OnInit {
 		const PlayerStore = this.dataservice.getPlayerStore();
 
 		PlayerStore.updateAsync(player, (playerData) => {
-			// Add gold (its named coins in dailyrewardpayload but im 2 lazy to change it)
-			if (reward.Coins !== undefined && reward.BonusCoins !== undefined) {
-				playerData.currencies.gold = (playerData.currencies.gold ?? 0) + reward.Coins + reward.BonusCoins;
+			const totalCoins = reward.Coins + reward.BonusCoins;
+			if (totalCoins > 0) {
+				const endingBalance = (playerData.currencies.gold ?? 0) + totalCoins;
+				this.analytics.LogEconomyEvent(
+					player,
+					Enum.AnalyticsEconomyFlowType.Source,
+					"Gold",
+					totalCoins,
+					endingBalance,
+					"TimedReward",
+					"daily_reward_give",
+				);
+				playerData.currencies.gold = endingBalance;
 			}
 
-			// Add gems
-			if (reward.Gems !== undefined) {
-				playerData.currencies.gems = (playerData.currencies.gems ?? 0) + reward.Gems;
+			if (reward.Gems > 0) {
+				const endingBalance = (playerData.currencies.gems ?? 0) + reward.Gems;
+				this.analytics.LogEconomyEvent(
+					player,
+					Enum.AnalyticsEconomyFlowType.Source,
+					"Gems",
+					reward.Gems,
+					endingBalance,
+					"TimedReward",
+					"daily_reward_give",
+				);
+				playerData.currencies.gems = endingBalance;
 			}
 
 			// commit

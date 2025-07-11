@@ -1,0 +1,21 @@
+{
+    "languageMode": "strict",
+    "lint": {
+        "*": true,
+        "LocalUnused": true
+    },
+    "lintErrors": true,
+    "aliases": {
+        "network": "../network",
+        "commonserver": "../common/src/server",
+        "commoncomposables": "../common/src/composables",
+        "commonutils": "../common/src/utils",
+        "serverpkgs": "../pkgs/prod/roblox_server_packages",
+        "registry": "../common/src/constants",
+        "devpkgs": "../pkgs/dev/roblox_packages",
+        "pkgs": "../pkgs/prod/roblox_packages",
+        "client": "src/client",
+        "server": "src/server",
+        "data": "../common/src/data"
+    }
+}

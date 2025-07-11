@@ -1,0 +1,188 @@
+option Casing = Camel
+
+option TypesOutput = "../network/types.luau"
+option ServerOutput = "../network/server.luau"
+option ClientOutput = "../network/client.luau"
+
+option UsePolling = false
+
+import "../common/common"
+
+map StringToUnknown = { [string]: unknown }
+
+struct OpenPoolData {
+    poolName: string,
+    amount: u8?
+}
+
+struct TeleportRequestData {
+    placeId: u32,
+    data: StringToUnknown?
+}
+
+struct SettingsUpdatedData {
+    settings: StringToUnknown
+}
+
+event OpenPool {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: OpenPoolData
+}
+
+event TeleportRequest {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: TeleportRequestData
+}
+
+event ReturnSettingsUpdated {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: SettingsUpdatedData
+}
+
+event SettingsUpdated {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: SettingsUpdatedData
+}
+
+struct PlayerJoinedQueueData {
+    queueId: string,
+    playerCount: u8,
+    maxPlayers: u8
+}
+
+event PlayerJoinedQueue {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: PlayerJoinedQueueData
+}
+
+struct PlayerLeftQueueData {
+    queueId: string
+}
+
+event PlayerLeftQueue {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: PlayerLeftQueueData
+}
+
+struct QueueCountdownStartedData {
+    queueId: string,
+    waitTime: u8,
+}
+
+event QueueCountdownStarted {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: QueueCountdownStartedData
+}
+
+event QueueCancelled {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: PlayerLeftQueueData
+}
+
+event JoinQueue {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: PlayerLeftQueueData
+}
+
+event LeaveQueue {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync
+}
+
+
+struct TitleData {
+    title: string
+}
+
+event TitleEquipped {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: TitleData
+}
+
+event TitleAwarded {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: TitleData
+}
+
+struct BingoProgressUpdatedData {
+    questName: string,
+    progress: u32
+}
+
+event BingoProgressUpdated {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: BingoProgressUpdatedData
+}
+
+struct BingoSquareClaimedData {
+    location: string,
+    reward: string
+}
+
+event BingoSquareClaimed {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: BingoSquareClaimedData
+}
+
+struct BingoRowClaimedData {
+    rowType: string,
+    rowNumber: u8,
+    rewardTier: u8
+}
+
+event BingoRowClaimed {
+    From: Server,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: BingoRowClaimedData
+}
+
+struct ClaimBingoSquareData {
+    location: string,
+}
+
+event ClaimBingoSquare {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: ClaimBingoSquareData
+}
+
+struct ClaimBingoRowData {
+    rowType: string,
+    rowNumber: u8,
+}
+
+event ClaimBingoRow {
+    From: Client,
+    Type: Reliable,
+    Call: SingleAsync,
+    Data: ClaimBingoRowData
+}

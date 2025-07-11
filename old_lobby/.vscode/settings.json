@@ -1,0 +1,12 @@
+{
+    "luau-lsp.ignoreGlobs": [
+        ".pesde/**",
+        "tests/**",
+        "network/**",
+        "src/jest.config.luau",
+        "scripts/**",
+        "pkgs/**",
+        "dist/**",
+        "tasks/**",
+    ]
+}
