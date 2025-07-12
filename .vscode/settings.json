@@ -32,5 +32,6 @@
 	],
 	"jest.jestCommandLine": "npm run test:jest --",
 	"jest.runMode": "on-demand",
-	"codium.codeCompletion.enable": false
+	"codium.codeCompletion.enable": false,
+	"terminal.integrated.defaultProfile.windows": "Git Bash"
 }
